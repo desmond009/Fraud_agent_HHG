@@ -194,6 +194,9 @@ export const App: React.FC = () => {
               analystRole={analystRole}
               onApproveAction={handleApproveAction}
               isRunning={isRunningAgent}
+              cases={cases}
+              selectedCaseId={selectedCaseId}
+              onSelectCase={handleSelectCase}
             />
           )}
 

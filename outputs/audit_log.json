@@ -38,5 +38,315 @@
     "action": "APPROVE_BLOCK_CARD",
     "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route L1. Notes: Confirmed ring abuse across 111 cards.",
     "route": "L1"
+  },
+  {
+    "id": "evt-1790191232687",
+    "timestamp": "2026-09-24T00:50:32.687220",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191237091",
+    "timestamp": "2026-09-24T00:50:37.091393",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191239154",
+    "timestamp": "2026-09-24T00:50:39.154442",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191240573",
+    "timestamp": "2026-09-24T00:50:40.572687",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191241723",
+    "timestamp": "2026-09-24T00:50:41.723183",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191242239",
+    "timestamp": "2026-09-24T00:50:42.239343",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191242470",
+    "timestamp": "2026-09-24T00:50:42.470111",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191242719",
+    "timestamp": "2026-09-24T00:50:42.719490",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191242938",
+    "timestamp": "2026-09-24T00:50:42.938122",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191243138",
+    "timestamp": "2026-09-24T00:50:43.138047",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191243337",
+    "timestamp": "2026-09-24T00:50:43.336791",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191243537",
+    "timestamp": "2026-09-24T00:50:43.536805",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191243737",
+    "timestamp": "2026-09-24T00:50:43.736777",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191243954",
+    "timestamp": "2026-09-24T00:50:43.953646",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191244136",
+    "timestamp": "2026-09-24T00:50:44.136164",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191244840",
+    "timestamp": "2026-09-24T00:50:44.840242",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191245338",
+    "timestamp": "2026-09-24T00:50:45.338493",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191245621",
+    "timestamp": "2026-09-24T00:50:45.620707",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191245889",
+    "timestamp": "2026-09-24T00:50:45.888968",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191246120",
+    "timestamp": "2026-09-24T00:50:46.120561",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191246337",
+    "timestamp": "2026-09-24T00:50:46.337206",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191246556",
+    "timestamp": "2026-09-24T00:50:46.556469",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191246787",
+    "timestamp": "2026-09-24T00:50:46.787520",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191247022",
+    "timestamp": "2026-09-24T00:50:47.022107",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191247254",
+    "timestamp": "2026-09-24T00:50:47.253607",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191247471",
+    "timestamp": "2026-09-24T00:50:47.470693",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191252256",
+    "timestamp": "2026-09-24T00:50:52.255888",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191253489",
+    "timestamp": "2026-09-24T00:50:53.488812",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191254221",
+    "timestamp": "2026-09-24T00:50:54.221472",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191255438",
+    "timestamp": "2026-09-24T00:50:55.437683",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790191256523",
+    "timestamp": "2026-09-24T00:50:56.522622",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
   }
 ]

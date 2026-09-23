@@ -8,5 +8,15 @@
     "analyst_role": "L1 Team Lead",
     "approved_at": "2026-09-23T23:41:36.070511",
     "notes": "Confirmed ring abuse across 111 cards."
+  },
+  "HHG-001": {
+    "status": "approved",
+    "decision": "approve",
+    "action_name": "APPROVE_TRANSACTION",
+    "route": "auto",
+    "approved_by": "Sarah Lin (Lead)",
+    "analyst_role": "L1 Team Lead",
+    "approved_at": "2026-09-24T00:50:56.522622",
+    "notes": "Approved under auto routing guidelines."
   }
 }

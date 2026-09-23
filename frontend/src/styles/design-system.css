@@ -4,49 +4,49 @@
    ========================================================================== */
 
 :root {
-  /* Surface colors */
-  --bg-app: #06090f;
-  --bg-sidebar: #090e17;
-  --bg-topbar: #0a101b;
-  --bg-card: #0d1524;
-  --bg-card-elevated: #111b2e;
-  --bg-card-hover: #15223a;
-  --bg-input: #080d16;
-  --bg-tag: #131d31;
+  /* Surface colors - Slate/Zinc Dark Aesthetic */
+  --bg-app: #09090b;
+  --bg-sidebar: #101014;
+  --bg-topbar: #121215;
+  --bg-card: #141419;
+  --bg-card-elevated: #18181f;
+  --bg-card-hover: #1e1e26;
+  --bg-input: #18181b;
+  --bg-tag: #1c1c24;
 
   /* Borders */
-  --border-subtle: #141f33;
-  --border-default: #1e2c45;
-  --border-active: #2b3e60;
+  --border-subtle: #1f1f26;
+  --border-default: #27272a;
+  --border-active: #3f3f46;
   --border-highlight: #38bdf8;
 
   /* Text */
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-inverse: #020617;
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --text-inverse: #09090b;
 
   /* Brand & Core Accents */
   --brand-tiger: #0ea5e9;
-  --brand-tiger-glow: rgba(14, 165, 233, 0.25);
+  --brand-tiger-glow: rgba(14, 165, 233, 0.2);
   --brand-tiger-hover: #38bdf8;
 
   /* Risk & Status Accents */
   --risk-critical: #f43f5e;
   --risk-critical-bg: rgba(244, 63, 94, 0.12);
-  --risk-critical-border: rgba(244, 63, 94, 0.3);
+  --risk-critical-border: rgba(244, 63, 94, 0.35);
 
-  --risk-high: #ef4444;
-  --risk-high-bg: rgba(239, 68, 68, 0.12);
-  --risk-high-border: rgba(239, 68, 68, 0.3);
+  --risk-high: #f43f5e;
+  --risk-high-bg: rgba(244, 63, 94, 0.12);
+  --risk-high-border: rgba(244, 63, 94, 0.35);
 
   --risk-medium: #f59e0b;
   --risk-medium-bg: rgba(245, 158, 11, 0.12);
-  --risk-medium-border: rgba(245, 158, 11, 0.3);
+  --risk-medium-border: rgba(245, 158, 11, 0.35);
 
   --risk-low: #10b981;
   --risk-low-bg: rgba(16, 185, 129, 0.12);
-  --risk-low-border: rgba(16, 185, 129, 0.3);
+  --risk-low-border: rgba(16, 185, 129, 0.35);
 
   --route-auto: #06b6d4;
   --route-auto-bg: rgba(6, 182, 212, 0.12);
@@ -56,23 +56,23 @@
   --route-l1-bg: rgba(245, 158, 11, 0.12);
   --route-l1-border: rgba(245, 158, 11, 0.3);
 
-  --route-l2: #8b5cf6;
-  --route-l2-bg: rgba(139, 92, 246, 0.14);
-  --route-l2-border: rgba(139, 92, 246, 0.35);
+  --route-l2: #a855f7;
+  --route-l2-bg: rgba(168, 85, 247, 0.14);
+  --route-l2-border: rgba(168, 85, 247, 0.35);
 
   /* Fonts */
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', Helvetica, Arial, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;
 
   /* Shadows & Radius */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
   --radius-pill: 9999px;
 
-  --shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
-  --shadow-card: 0 4px 12px 0 rgba(0, 0, 0, 0.45);
-  --shadow-drawer: -8px 0 24px rgba(0, 0, 0, 0.6);
+  --shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 4px 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  --shadow-drawer: -8px 0 32px rgba(0, 0, 0, 0.7);
 }
 
 /* Base resets */
@@ -321,32 +321,48 @@ body {
   padding: 20px;
 }
 
-/* Investigation Workspace Layout */
+/* Investigation Workspace Layout - 3-Column Enterprise Workbench */
 .workspace-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   height: 100%;
+  min-height: 0;
 }
 
 .workspace-grid {
   display: grid;
-  grid-template-columns: 310px 1fr 340px;
-  gap: 16px;
+  grid-template-columns: 260px 1fr 380px;
+  gap: 14px;
   flex: 1;
-  min-height: 520px;
+  min-height: 0;
+  height: 100%;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
   .workspace-grid {
-    grid-template-columns: 280px 1fr 300px;
+    grid-template-columns: 240px 1fr 340px;
+    gap: 12px;
   }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
   .workspace-grid {
     grid-template-columns: 1fr;
+    overflow-y: auto;
   }
+}
+
+/* Glass panel highlight */
+.glass-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05), var(--shadow-subtle);
+  border-radius: var(--radius-md);
+}
+
+.mono {
+  font-family: var(--font-mono);
 }
 
 /* Graph Canvas Container */
