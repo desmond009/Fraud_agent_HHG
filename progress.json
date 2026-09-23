@@ -1,0 +1,168 @@
+{
+  "phase": "phase_3",
+  "tasks": {
+    "eda": {
+      "status": "completed",
+      "script": "scripts/eda.py",
+      "output": "outputs/eda_summary.json"
+    },
+    "schema": {
+      "status": "completed",
+      "script": "schema/setup_schema.py",
+      "graph": "FraudGraph",
+      "vertices": 7,
+      "edges": 9
+    },
+    "ingestion": {
+      "status": "completed",
+      "script": "scripts/ingest.py",
+      "transactions_ingested": 590742,
+      "closed_cases_ingested": 5565,
+      "card_mappings": 13553
+    },
+    "testing": {
+      "status": "completed",
+      "script": "test_phase1.py",
+      "vertices": {
+        "Customer": {
+          "count": 13553,
+          "status": "PASS"
+        },
+        "Card": {
+          "count": 13553,
+          "status": "PASS"
+        },
+        "Transaction": {
+          "count": 590742,
+          "status": "PASS"
+        },
+        "DeviceProfile": {
+          "count": 9363,
+          "status": "PASS"
+        },
+        "EmailDomain": {
+          "count": 59,
+          "status": "PASS"
+        },
+        "BillingRegion": {
+          "count": 331,
+          "status": "PASS"
+        },
+        "ClosedCase": {
+          "count": 5565,
+          "status": "PASS"
+        }
+      },
+      "edges": {
+        "OWNS": {
+          "count": 13510,
+          "status": "PASS"
+        },
+        "MADE": {
+          "count": 590742,
+          "status": "PASS"
+        },
+        "FROM_DEVICE": {
+          "count": 118852,
+          "status": "PASS"
+        },
+        "PURCHASER_EMAIL": {
+          "count": 496262,
+          "status": "PASS"
+        },
+        "BILLED_IN": {
+          "count": 525003,
+          "status": "PASS"
+        },
+        "NEXT": {
+          "count": 577189,
+          "status": "PASS"
+        },
+        "INVOLVES": {
+          "count": 9911,
+          "status": "PASS"
+        },
+        "ON_CARD": {
+          "count": 4353,
+          "status": "PASS"
+        },
+        "CONNECTED_TO": {
+          "count": 69,
+          "status": "PASS"
+        }
+      },
+      "spot_checks": {
+        "txn_3514030": "PASS",
+        "case_CC-0001": "PASS"
+      },
+      "connectivity": {
+        "card_connectivity": "PASS",
+        "edge_count": 422
+      },
+      "overall": "PASS"
+    },
+    "gsql_queries": {
+      "status": "completed",
+      "file": "gsql/queries.gsql"
+    },
+    "vector_indexer": {
+      "status": "completed",
+      "collection": "fraud_policy_rules",
+      "indexed_documents": 17,
+      "storage_path": "C:\\Users\\HARSHIT TRIPATHI\\OneDrive\\Desktop\\FraudAgent\\outputs\\vector_store"
+    },
+    "testing_phase2": {
+      "status": "completed",
+      "mcp_results": {
+        "get_transaction": "PASS",
+        "txn_window": "PASS",
+        "neighborhood": "PASS",
+        "historical_cases": "PASS",
+        "tools_schema": "PASS"
+      },
+      "rag_results": {
+        "RULE_R5": "PASS",
+        "RULE_R2": "PASS",
+        "RULE_R1": "PASS",
+        "REG_FINCEN_SAR": "PASS"
+      },
+      "overall": "PASS"
+    },
+    "mcp_bridge": {
+      "status": "completed"
+    },
+    "agent_workflow": {
+      "status": "completed",
+      "tested_case": "HHG-001",
+      "states_traversed": [
+        "trigger_ingestion",
+        "initial_investigation",
+        "evidence_synthesis",
+        "uncertainty_assessment",
+        "evidence_simulation",
+        "case_memory_writeback"
+      ],
+      "tool_calls": 6,
+      "latency_s": 46.8,
+      "written_to_graph": true,
+      "overall": "PASS"
+    },
+    "testing_phase3": {
+      "status": "completed",
+      "tested_case": "HHG-001",
+      "states_traversed": [
+        "trigger_ingestion",
+        "initial_investigation",
+        "evidence_synthesis",
+        "uncertainty_assessment",
+        "evidence_simulation",
+        "case_memory_writeback"
+      ],
+      "tool_calls": 6,
+      "latency_s": 46.8,
+      "written_to_graph": true,
+      "overall": "PASS"
+    }
+  },
+  "last_updated": "2026-09-23T22:07:41.619891"
+}

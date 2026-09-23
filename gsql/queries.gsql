@@ -1,0 +1,71 @@
+USE GRAPH FraudGraph
+
+CREATE OR REPLACE QUERY txn_window(VERTEX<Card> target_card, DATETIME target_ts, INT window_hours = 2) FOR GRAPH FraudGraph {
+    SumAccum<INT> @@total_txns;
+    SumAccum<DOUBLE> @@exposure_usd;
+    SumAccum<INT> @@micro_authorizations;
+    SumAccum<INT> @@large_purchases;
+    ListAccum<VERTEX<Transaction>> @@txn_ids;
+
+    Start = {target_card};
+
+    Txns = SELECT t FROM Start:c -(MADE:e)- Transaction:t
+           WHERE abs(datetime_diff(t.ts, target_ts)) <= window_hours * 3600
+           ACCUM
+               @@total_txns += 1,
+               @@exposure_usd += t.amount,
+               @@txn_ids += t,
+               CASE WHEN t.amount < 5.0 THEN
+                   @@micro_authorizations += 1
+               ELSE
+                   CASE WHEN t.amount >= 50.0 THEN
+                       @@large_purchases += 1
+                   END
+               END;
+
+    PRINT @@total_txns AS total_txns,
+          @@exposure_usd AS exposure_usd,
+          @@micro_authorizations AS micro_authorizations,
+          @@large_purchases AS large_purchases,
+          (@@micro_authorizations >= 3 AND @@large_purchases >= 1) AS is_card_testing,
+          @@txn_ids AS txn_ids;
+}
+
+CREATE OR REPLACE QUERY device_region_neighborhood(VERTEX<Transaction> target_txn) FOR GRAPH FraudGraph {
+    SetAccum<VERTEX<DeviceProfile>> @@shared_devices;
+    SetAccum<VERTEX<Card>> @@connected_cards;
+    SetAccum<VERTEX<ClosedCase>> @@prior_cases;
+    SumAccum<INT> @@prior_fraud_cases;
+
+    Start = {target_txn};
+
+    Devs = SELECT d FROM Start:t -(FROM_DEVICE:e)- DeviceProfile:d
+           ACCUM @@shared_devices += d;
+
+    OtherTxns = SELECT t FROM Devs:d -(DEVICE_USED_IN:e)- Transaction:t
+                WHERE t != target_txn;
+
+    OtherCards = SELECT c FROM OtherTxns:t -(MADE_BY:e)- Card:c
+                 ACCUM @@connected_cards += c;
+
+    Cases = SELECT cc FROM OtherCards:c -(HAS_CASE:e)- ClosedCase:cc
+            ACCUM
+                @@prior_cases += cc,
+                CASE WHEN cc.outcome == "confirmed_fraud" THEN @@prior_fraud_cases += 1 END;
+
+    PRINT @@shared_devices AS shared_devices,
+          @@connected_cards.size() AS connected_card_count,
+          @@connected_cards AS connected_cards,
+          @@prior_cases.size() AS prior_case_count,
+          @@prior_fraud_cases AS prior_fraud_cases,
+          @@prior_cases AS prior_cases;
+}
+
+CREATE OR REPLACE QUERY historical_case_matcher(STRING pattern_filter, INT max_results = 5) FOR GRAPH FraudGraph {
+    Cases = {ClosedCase.*};
+    MatchingCases = SELECT c FROM Cases:c
+                    WHERE pattern_filter == "" OR c.pattern == pattern_filter
+                    LIMIT max_results;
+
+    PRINT MatchingCases;
+}
