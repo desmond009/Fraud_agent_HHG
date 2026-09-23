@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   X,
   FileText,
@@ -12,6 +13,7 @@ import {
   User,
 } from 'lucide-react';
 import { SARPayload } from '../../types';
+import { fadeSlideInRight, snappyTransition } from '../../utils/motion';
 
 interface SARDrawerProps {
   isOpen: boolean;
@@ -42,7 +44,11 @@ export const SARDrawer: React.FC<SARDrawerProps> = ({ isOpen, onClose, caseId, s
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
       style={{
         position: 'fixed',
         top: 0,
@@ -50,24 +56,28 @@ export const SARDrawer: React.FC<SARDrawerProps> = ({ isOpen, onClose, caseId, s
         right: 0,
         bottom: 0,
         background: 'rgba(0, 0, 0, 0.75)',
-        backdropFilter: 'blur(6px)',
+        backdropFilter: 'blur(8px)',
         display: 'flex',
         justifyContent: 'flex-end',
         zIndex: 50,
       }}
       onClick={onClose}
     >
-      <div
+      <motion.div
+        variants={fadeSlideInRight}
+        initial="initial"
+        animate="animate"
+        exit="exit"
         style={{
           width: '560px',
-          maxWidth: '90vw',
-          background: 'var(--bg-card-elevated)',
-          borderLeft: '1px solid var(--border-default)',
+          maxWidth: '92vw',
+          background: 'rgba(18, 18, 24, 0.95)',
+          backdropFilter: 'blur(20px)',
+          borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          boxShadow: 'var(--shadow-drawer)',
-          animation: 'slideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          boxShadow: '-10px 0 40px rgba(0, 0, 0, 0.8)',
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -75,49 +85,53 @@ export const SARDrawer: React.FC<SARDrawerProps> = ({ isOpen, onClose, caseId, s
         <div
           style={{
             padding: '16px 20px',
-            borderBottom: '1px solid var(--border-default)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            background: 'var(--bg-topbar)',
+            background: 'rgba(255, 255, 255, 0.02)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div
               style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '6px',
-                background: 'var(--route-l2-bg)',
-                border: '1px solid var(--route-l2-border)',
+                width: '34px',
+                height: '34px',
+                borderRadius: '8px',
+                background: 'rgba(168, 85, 247, 0.15)',
+                border: '1px solid rgba(168, 85, 247, 0.35)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                boxShadow: '0 0 12px rgba(168, 85, 247, 0.2)',
               }}
             >
-              <FileText size={16} color="var(--route-l2)" />
+              <FileText size={16} color="#c084fc" />
             </div>
             <div>
-              <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-primary)' }}>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: '#f4f4f5' }}>
                 FinCEN Suspicious Activity Report (SAR)
               </div>
-              <div className="mono" style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+              <div className="mono" style={{ fontSize: '11px', color: '#a1a1aa' }}>
                 Docket Ref: SAR-{caseId} • Regulatory Filing
               </div>
             </div>
           </div>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
             onClick={onClose}
             style={{
               background: 'transparent',
               border: 'none',
-              color: 'var(--text-muted)',
+              color: '#a1a1aa',
               cursor: 'pointer',
+              padding: '4px',
             }}
           >
             <X size={18} />
-          </button>
+          </motion.button>
         </div>
 
         {/* Drawer Content */}
@@ -127,27 +141,27 @@ export const SARDrawer: React.FC<SARDrawerProps> = ({ isOpen, onClose, caseId, s
             style={{
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
-              gap: '10px',
-              padding: '12px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'var(--bg-input)',
-              border: '1px solid var(--border-subtle)',
+              gap: '12px',
+              padding: '14px',
+              borderRadius: '8px',
+              background: 'rgba(0, 0, 0, 0.4)',
+              border: '1px solid rgba(255, 255, 255, 0.06)',
             }}
           >
             <div>
-              <div style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+              <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#71717a', fontWeight: 600 }}>
                 TOTAL SUSPICIOUS AMOUNT
               </div>
-              <div className="mono" style={{ fontSize: '16px', fontWeight: 800, color: 'var(--risk-high)', marginTop: '2px' }}>
+              <div className="mono" style={{ fontSize: '18px', fontWeight: 800, color: '#f43f5e', marginTop: '2px', textShadow: '0 0 12px rgba(244, 63, 94, 0.3)' }}>
                 ${sar.total_amount_usd.toFixed(2)} USD
               </div>
             </div>
 
             <div>
-              <div style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+              <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#71717a', fontWeight: 600 }}>
                 ACTIVITY DATE WINDOW
               </div>
-              <div className="mono" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-primary)', marginTop: '2px' }}>
+              <div className="mono" style={{ fontSize: '12px', fontWeight: 600, color: '#f4f4f5', marginTop: '4px' }}>
                 {sar.activity_dates?.[0] || '2016-12-08'} to {sar.activity_dates?.[1] || '2016-12-08'}
               </div>
             </div>
@@ -155,18 +169,19 @@ export const SARDrawer: React.FC<SARDrawerProps> = ({ isOpen, onClose, caseId, s
 
           {/* Filing Justification */}
           <div>
-            <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.03em', color: 'var(--text-secondary)' }}>
+            <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#f4f4f5' }}>
               REGULATORY FILING JUSTIFICATION
             </span>
             <div
               style={{
                 marginTop: '6px',
-                padding: '8px 12px',
-                borderRadius: 'var(--radius-sm)',
-                background: 'rgba(239, 68, 68, 0.05)',
-                border: '1px solid rgba(239, 68, 68, 0.2)',
+                padding: '10px 14px',
+                borderRadius: '8px',
+                background: 'rgba(244, 63, 94, 0.08)',
+                border: '1px solid rgba(244, 63, 94, 0.25)',
                 fontSize: '12px',
-                color: 'var(--text-primary)',
+                color: '#f4f4f5',
+                lineHeight: 1.45,
               }}
             >
               {sar.reason}
@@ -175,7 +190,7 @@ export const SARDrawer: React.FC<SARDrawerProps> = ({ isOpen, onClose, caseId, s
 
           {/* Named Subjects */}
           <div>
-            <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.03em', color: 'var(--text-secondary)' }}>
+            <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#f4f4f5' }}>
               NAMED SUSPECTS & LINKED ENTITIES ({sar.subjects?.length || 0})
             </span>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '6px' }}>
@@ -187,10 +202,10 @@ export const SARDrawer: React.FC<SARDrawerProps> = ({ isOpen, onClose, caseId, s
                     fontSize: '11px',
                     fontWeight: 600,
                     padding: '3px 8px',
-                    borderRadius: 'var(--radius-sm)',
-                    background: 'var(--bg-tag)',
-                    border: '1px solid var(--border-default)',
-                    color: 'var(--brand-tiger)',
+                    borderRadius: '4px',
+                    background: 'rgba(56, 189, 248, 0.1)',
+                    border: '1px solid rgba(56, 189, 248, 0.3)',
+                    color: '#38bdf8',
                   }}
                 >
                   {sub}
@@ -202,31 +217,44 @@ export const SARDrawer: React.FC<SARDrawerProps> = ({ isOpen, onClose, caseId, s
           {/* Official Narrative */}
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-              <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.03em', color: 'var(--text-secondary)' }}>
+              <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#f4f4f5' }}>
                 STANDALONE SAR NARRATIVE
               </span>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={handleCopy}
-                className="btn btn-secondary btn-sm"
-                style={{ fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px' }}
+                style={{
+                  fontSize: '11px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: '4px 8px',
+                  borderRadius: '4px',
+                  background: 'rgba(255, 255, 255, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  color: '#f4f4f5',
+                  cursor: 'pointer',
+                }}
               >
-                {copied ? <Check size={11} color="var(--risk-low)" /> : <Copy size={11} />}
+                {copied ? <Check size={11} color="#10b981" /> : <Copy size={11} />}
                 <span>{copied ? 'Copied!' : 'Copy Narrative'}</span>
-              </button>
+              </motion.button>
             </div>
 
             <div
               style={{
                 flex: 1,
                 padding: '14px',
-                borderRadius: 'var(--radius-sm)',
-                background: 'var(--bg-input)',
-                border: '1px solid var(--border-default)',
+                borderRadius: '8px',
+                background: 'rgba(0, 0, 0, 0.5)',
+                border: '1px solid rgba(255, 255, 255, 0.07)',
                 fontSize: '12px',
                 lineHeight: 1.6,
-                color: 'var(--text-primary)',
-                fontFamily: 'Georgia, serif',
+                color: '#e4e4e7',
+                fontFamily: 'var(--font-mono)',
                 whiteSpace: 'pre-wrap',
+                boxShadow: 'inset 0 1px 3px rgba(0, 0, 0, 0.4)',
               }}
             >
               {sar.narrative}
@@ -238,27 +266,60 @@ export const SARDrawer: React.FC<SARDrawerProps> = ({ isOpen, onClose, caseId, s
         <div
           style={{
             padding: '14px 20px',
-            borderTop: '1px solid var(--border-default)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            background: 'var(--bg-topbar)',
+            background: 'rgba(0, 0, 0, 0.3)',
           }}
         >
-          <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+          <div style={{ fontSize: '11px', color: '#71717a' }}>
             Complies with FinCEN Narrative Guidance & Rule R2/R6
           </div>
           <div style={{ display: 'flex', gap: '8px' }}>
-            <button onClick={handleDownload} className="btn btn-secondary btn-sm">
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={handleDownload}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '6px 12px',
+                borderRadius: '6px',
+                background: 'rgba(255, 255, 255, 0.06)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                color: '#f4f4f5',
+                fontSize: '11px',
+                fontWeight: 600,
+                cursor: 'pointer',
+              }}
+            >
               <Download size={12} />
               <span>Export SAR JSON</span>
-            </button>
-            <button onClick={onClose} className="btn btn-primary btn-sm">
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={onClose}
+              style={{
+                padding: '6px 14px',
+                borderRadius: '6px',
+                background: '#0ea5e9',
+                border: '1px solid #38bdf8',
+                color: '#fff',
+                fontSize: '11px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                boxShadow: '0 0 12px rgba(14, 165, 233, 0.3)',
+              }}
+            >
               <span>Close Dossier</span>
-            </button>
+            </motion.button>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
+

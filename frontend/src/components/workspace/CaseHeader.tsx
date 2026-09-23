@@ -10,10 +10,9 @@ import {
   FileText,
   CreditCard,
   User,
-  Activity,
-  Layers,
 } from 'lucide-react';
 import { CaseDetail } from '../../types';
+import { AnimatedCounter } from '../../utils/motion';
 
 interface CaseHeaderProps {
   caseData: CaseDetail;
@@ -30,64 +29,101 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
   const getVerdictBadge = () => {
     if (verdict === 'fraud') {
       return (
-        <span
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '5px',
-            fontSize: '11px',
-            fontWeight: 700,
-            padding: '3px 10px',
-            borderRadius: '9999px',
-            background: 'rgba(244, 63, 94, 0.15)',
-            color: '#f43f5e',
-            border: '1px solid rgba(244, 63, 94, 0.35)',
-            letterSpacing: '0.02em',
-          }}
-        >
-          <ShieldAlert size={12} /> CONFIRMED FRAUD
-        </span>
+        <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
+          {/* Animated Radar Pulse Ring */}
+          <motion.span
+            animate={{ scale: [1, 2.3], opacity: [0.75, 0] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: 'easeOut' }}
+            style={{
+              position: 'absolute',
+              inset: -2,
+              borderRadius: '9999px',
+              border: '2px solid rgba(244, 63, 94, 0.8)',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}
+          />
+          <span
+            style={{
+              position: 'relative',
+              zIndex: 1,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontSize: '11px',
+              fontWeight: 700,
+              padding: '3px 11px',
+              borderRadius: '9999px',
+              background: 'rgba(244, 63, 94, 0.18)',
+              color: '#f43f5e',
+              border: '1px solid rgba(244, 63, 94, 0.45)',
+              boxShadow: '0 0 14px rgba(244, 63, 94, 0.25)',
+              letterSpacing: '0.03em',
+            }}
+          >
+            <ShieldAlert size={12} /> CONFIRMED FRAUD
+          </span>
+        </div>
       );
     }
     if (verdict === 'legitimate') {
       return (
-        <span
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '5px',
-            fontSize: '11px',
-            fontWeight: 700,
-            padding: '3px 10px',
-            borderRadius: '9999px',
-            background: 'rgba(16, 185, 129, 0.15)',
-            color: '#10b981',
-            border: '1px solid rgba(16, 185, 129, 0.35)',
-            letterSpacing: '0.02em',
-          }}
-        >
-          <ShieldCheck size={12} /> CLEARED LEGITIMATE
-        </span>
+        <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
+          <span
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontSize: '11px',
+              fontWeight: 700,
+              padding: '3px 11px',
+              borderRadius: '9999px',
+              background: 'rgba(16, 185, 129, 0.18)',
+              color: '#10b981',
+              border: '1px solid rgba(16, 185, 129, 0.45)',
+              boxShadow: '0 0 14px rgba(16, 185, 129, 0.2)',
+              letterSpacing: '0.03em',
+            }}
+          >
+            <ShieldCheck size={12} /> CLEARED LEGITIMATE
+          </span>
+        </div>
       );
     }
     return (
-      <span
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '5px',
-          fontSize: '11px',
-          fontWeight: 700,
-          padding: '3px 10px',
-          borderRadius: '9999px',
-          background: 'rgba(245, 158, 11, 0.15)',
-          color: '#f59e0b',
-          border: '1px solid rgba(245, 158, 11, 0.35)',
-          letterSpacing: '0.02em',
-        }}
-      >
-        <HelpCircle size={12} /> UNCERTAIN / REVIEW
-      </span>
+      <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
+        <motion.span
+          animate={{ scale: [1, 2.1], opacity: [0.6, 0] }}
+          transition={{ repeat: Infinity, duration: 2.2, ease: 'easeOut' }}
+          style={{
+            position: 'absolute',
+            inset: -2,
+            borderRadius: '9999px',
+            border: '2px solid rgba(245, 158, 11, 0.7)',
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+        />
+        <span
+          style={{
+            position: 'relative',
+            zIndex: 1,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            fontSize: '11px',
+            fontWeight: 700,
+            padding: '3px 11px',
+            borderRadius: '9999px',
+            background: 'rgba(245, 158, 11, 0.18)',
+            color: '#f59e0b',
+            border: '1px solid rgba(245, 158, 11, 0.45)',
+            letterSpacing: '0.03em',
+          }}
+        >
+          <HelpCircle size={12} /> UNCERTAIN / REVIEW
+        </span>
+      </div>
     );
   };
 
@@ -103,19 +139,38 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
   const isLowRisk = probPercent <= 30;
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: -6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
       style={{
-        background: 'rgba(20, 20, 25, 0.7)',
-        backdropFilter: 'blur(12px)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 2px 8px rgba(0, 0, 0, 0.4)',
-        borderRadius: '8px',
+        background: 'radial-gradient(ellipse at 15% 0%, rgba(14, 165, 233, 0.08), transparent 70%), rgba(20, 20, 26, 0.78)',
+        backdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255, 255, 255, 0.09)',
+        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 4px 20px rgba(0, 0, 0, 0.45)',
+        borderRadius: '10px',
         padding: '14px 18px',
         display: 'flex',
         flexDirection: 'column',
         gap: '12px',
+        position: 'relative',
+        flexShrink: 0,
       }}
     >
+      {/* Subtle Top Accent Beam */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: '5%',
+          right: '5%',
+          height: '1px',
+          background: isHighRisk
+            ? 'linear-gradient(90deg, transparent, rgba(244, 63, 94, 0.5), transparent)'
+            : 'linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent)',
+        }}
+      />
+
       {/* Top Row: Case ID, Status Pill, Risk Pill, Financial Exposure & SAR */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
         {/* Left Side: Large Case ID & Status Badges */}
@@ -123,12 +178,12 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
           <h1
             className="mono"
             style={{
-              fontSize: '22px',
+              fontSize: '23px',
               fontWeight: 800,
               color: '#f4f4f5',
               letterSpacing: '-0.03em',
               margin: 0,
-              lineHeight: 1,
+              lineHeight: 1.2,
             }}
           >
             {caseData.case_id}
@@ -141,11 +196,14 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
             style={{
               fontSize: '11px',
               fontWeight: 700,
-              padding: '3px 9px',
+              padding: '4px 10px',
               borderRadius: '9999px',
               background: isHighRisk ? 'rgba(244, 63, 94, 0.15)' : isLowRisk ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)',
               color: isHighRisk ? '#f43f5e' : isLowRisk ? '#10b981' : '#f59e0b',
               border: `1px solid ${isHighRisk ? 'rgba(244, 63, 94, 0.35)' : isLowRisk ? 'rgba(16, 185, 129, 0.35)' : 'rgba(245, 158, 11, 0.35)'}`,
+              display: 'inline-flex',
+              alignItems: 'center',
+              lineHeight: 'normal',
             }}
           >
             {probPercent}% RISK
@@ -154,7 +212,7 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
           <span
             style={{
               fontSize: '10.5px',
-              padding: '2px 8px',
+              padding: '3px 9px',
               borderRadius: '9999px',
               background: 'rgba(255, 255, 255, 0.05)',
               border: '1px solid rgba(255, 255, 255, 0.08)',
@@ -162,6 +220,9 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
               textTransform: 'uppercase',
               fontWeight: 600,
               letterSpacing: '0.03em',
+              display: 'inline-flex',
+              alignItems: 'center',
+              lineHeight: 'normal',
             }}
           >
             {c.status || 'Active'}
@@ -174,25 +235,24 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
             <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#71717a', fontWeight: 700 }}>
               Total Exposure
             </div>
-            <motion.div
-              key={caseData.case_id + exposure}
-              initial={{ opacity: 0, y: -4 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2 }}
+            <div
               className="mono"
               style={{
-                fontSize: '19px',
+                fontSize: '20px',
                 fontWeight: 800,
                 color: exposure > 0 ? '#f43f5e' : '#f4f4f5',
                 letterSpacing: '-0.02em',
+                textShadow: exposure > 0 ? '0 0 16px rgba(244, 63, 94, 0.3)' : 'none',
               }}
             >
-              ${exposure.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
-            </motion.div>
+              <AnimatedCounter value={exposure} prefix="$" suffix=" USD" decimals={2} duration={0.8} />
+            </div>
           </div>
 
           {caseData.sar?.file && onOpenSAR && (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.03, y: -1 }}
+              whileTap={{ scale: 0.97 }}
               onClick={onOpenSAR}
               style={{
                 display: 'flex',
@@ -200,18 +260,19 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
                 gap: '6px',
                 padding: '6px 12px',
                 borderRadius: '6px',
-                background: 'rgba(14, 165, 233, 0.12)',
-                border: '1px solid rgba(56, 189, 248, 0.4)',
+                background: 'linear-gradient(180deg, rgba(14, 165, 233, 0.18), rgba(14, 165, 233, 0.08))',
+                border: '1px solid rgba(56, 189, 248, 0.45)',
+                boxShadow: '0 0 12px rgba(14, 165, 233, 0.18)',
                 color: '#38bdf8',
                 fontSize: '11px',
                 fontWeight: 600,
                 cursor: 'pointer',
-                transition: 'all 0.15s ease',
+                transition: 'border-color 0.15s ease',
               }}
             >
               <FileText size={13} />
               <span>FinCEN SAR Ready</span>
-            </button>
+            </motion.button>
           )}
         </div>
       </div>
@@ -272,10 +333,21 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
 
           <span style={{ color: '#3f3f46' }}>•</span>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
             <Database size={11} color="#10b981" />
             <span style={{ color: '#71717a' }}>TigerGraph:</span>
-            <span className="mono" style={{ color: '#10b981', fontWeight: 600 }}>✓ Synced</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: '#10b981', fontWeight: 600 }}>
+              <span
+                style={{
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  background: '#10b981',
+                  boxShadow: '0 0 8px #10b981',
+                }}
+              />
+              Synced
+            </span>
           </div>
         </div>
       </div>
@@ -283,14 +355,15 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
       {/* Trigger Reason Banner Strip */}
       <div
         style={{
-          background: 'rgba(0, 0, 0, 0.35)',
-          border: '1px solid rgba(255, 255, 255, 0.05)',
-          borderRadius: '5px',
-          padding: '6px 10px',
+          background: 'rgba(0, 0, 0, 0.4)',
+          border: '1px solid rgba(255, 255, 255, 0.06)',
+          borderRadius: '6px',
+          padding: '7px 11px',
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
           fontSize: '11px',
+          boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.4)',
         }}
       >
         <span
@@ -299,9 +372,10 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
             fontWeight: 700,
             textTransform: 'uppercase',
             letterSpacing: '0.04em',
-            background: 'rgba(14, 165, 233, 0.15)',
+            background: 'rgba(14, 165, 233, 0.16)',
             color: '#38bdf8',
-            padding: '2px 6px',
+            border: '1px solid rgba(56, 189, 248, 0.3)',
+            padding: '2px 7px',
             borderRadius: '4px',
             whiteSpace: 'nowrap',
           }}
@@ -312,6 +386,7 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
           {trigger?.trigger_text || 'Automated risk scoring on authorization request.'}
         </span>
       </div>
-    </div>
+    </motion.div>
   );
 };
+

@@ -118,23 +118,26 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
   return (
     <div
       style={{
-        background: 'rgba(20, 20, 25, 0.7)',
-        backdropFilter: 'blur(12px)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-        borderRadius: '8px',
+        background: 'radial-gradient(ellipse at 15% 0%, rgba(14, 165, 233, 0.05), transparent 70%), rgba(20, 20, 26, 0.78)',
+        backdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255, 255, 255, 0.09)',
+        boxShadow: primaryAction.action.includes('BLOCK')
+          ? 'inset 2px 0 12px rgba(244, 63, 94, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.07), 0 4px 20px rgba(0, 0, 0, 0.45)'
+          : 'inset 2px 0 12px rgba(16, 185, 129, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.07), 0 4px 20px rgba(0, 0, 0, 0.45)',
+        borderRadius: '10px',
         padding: '14px 16px',
         display: 'flex',
         flexDirection: 'column',
         gap: '12px',
         borderLeft: primaryAction.action.includes('BLOCK') ? '4px solid #f43f5e' : '4px solid #10b981',
+        flexShrink: 0,
       }}
     >
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Sparkles size={14} color="#38bdf8" />
-          <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#a1a1aa', fontWeight: 700 }}>
+          <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#f4f4f5', fontWeight: 700 }}>
             Next-Best Action Engine
           </span>
         </div>
@@ -148,9 +151,10 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '8px 12px',
-          borderRadius: '6px',
-          background: 'rgba(0, 0, 0, 0.35)',
-          border: '1px solid rgba(255, 255, 255, 0.05)',
+          borderRadius: '8px',
+          background: 'rgba(0, 0, 0, 0.4)',
+          border: '1px solid rgba(255, 255, 255, 0.06)',
+          boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.3)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -163,7 +167,15 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
 
           <div style={{ textAlign: 'left' }}>
             <div style={{ fontSize: '9px', textTransform: 'uppercase', color: '#71717a', fontWeight: 600 }}>Post-Evidence</div>
-            <div className="mono" style={{ fontSize: '15px', fontWeight: 800, color: isConfirmedFraud ? '#f43f5e' : '#10b981' }}>
+            <div
+              className="mono"
+              style={{
+                fontSize: '15px',
+                fontWeight: 800,
+                color: isConfirmedFraud ? '#f43f5e' : '#10b981',
+                textShadow: isConfirmedFraud ? '0 0 12px rgba(244, 63, 94, 0.4)' : '0 0 12px rgba(16, 185, 129, 0.4)',
+              }}
+            >
               {finalPct}%
             </div>
           </div>
@@ -180,6 +192,7 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
             background: delta > 0 ? 'rgba(244, 63, 94, 0.15)' : 'rgba(16, 185, 129, 0.15)',
             color: delta > 0 ? '#f43f5e' : '#10b981',
             border: `1px solid ${delta > 0 ? 'rgba(244, 63, 94, 0.35)' : 'rgba(16, 185, 129, 0.35)'}`,
+            boxShadow: `0 0 10px ${delta > 0 ? 'rgba(244, 63, 94, 0.2)' : 'rgba(16, 185, 129, 0.2)'}`,
             display: 'flex',
             alignItems: 'center',
             gap: '4px',
@@ -215,6 +228,7 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
             background: 'transparent',
             color: activeTab === 'before' ? '#f4f4f5' : '#71717a',
             zIndex: 2,
+            transition: 'color 0.15s ease',
           }}
         >
           {activeTab === 'before' && (
@@ -247,6 +261,7 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
             background: 'transparent',
             color: activeTab === 'after' ? '#38bdf8' : '#71717a',
             zIndex: 2,
+            transition: 'color 0.15s ease',
           }}
         >
           {activeTab === 'after' && (
@@ -257,7 +272,7 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
                 inset: 0,
                 borderRadius: '4px',
                 background: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(56, 189, 248, 0.25)',
+                border: '1px solid rgba(56, 189, 248, 0.35)',
                 zIndex: -1,
               }}
               transition={{ type: 'spring', stiffness: 450, damping: 32 }}
@@ -271,7 +286,7 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
       <div
         style={{
           padding: '12px 14px',
-          borderRadius: '6px',
+          borderRadius: '8px',
           background: activeTab === 'before'
             ? 'rgba(245, 158, 11, 0.08)'
             : isConfirmedFraud
@@ -280,8 +295,8 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
           border: activeTab === 'before'
             ? '1px solid rgba(245, 158, 11, 0.25)'
             : isConfirmedFraud
-            ? '1px solid rgba(244, 63, 94, 0.25)'
-            : '1px solid rgba(16, 185, 129, 0.25)',
+            ? '1px solid rgba(244, 63, 94, 0.3)'
+            : '1px solid rgba(16, 185, 129, 0.3)',
           display: 'flex',
           flexDirection: 'column',
           gap: '8px',
@@ -291,7 +306,7 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
           <span
             className="mono"
             style={{
-              fontSize: '16px',
+              fontSize: '17px',
               fontWeight: 800,
               color: primaryAction.action.includes('BLOCK')
                 ? '#f43f5e'
@@ -299,6 +314,7 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
                 ? '#10b981'
                 : '#f4f4f5',
               letterSpacing: '-0.02em',
+              textShadow: primaryAction.action.includes('BLOCK') ? '0 0 16px rgba(244, 63, 94, 0.35)' : 'none',
             }}
           >
             {primaryAction.action}
@@ -309,6 +325,10 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
               fontSize: '11px',
               fontWeight: 700,
               color: activeTab === 'before' ? '#f59e0b' : isConfirmedFraud ? '#f43f5e' : '#10b981',
+              background: 'rgba(255, 255, 255, 0.04)',
+              padding: '2px 7px',
+              borderRadius: '9999px',
+              border: '1px solid rgba(255, 255, 255, 0.07)',
             }}
           >
             Confidence: {activeTab === 'before' ? `${initialPct}%` : `${finalPct}%`}
@@ -324,9 +344,9 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
           <div
             style={{
               marginTop: '4px',
-              padding: '6px 8px',
-              borderRadius: '4px',
-              background: 'rgba(0, 0, 0, 0.4)',
+              padding: '7px 9px',
+              borderRadius: '6px',
+              background: 'rgba(0, 0, 0, 0.45)',
               border: '1px solid rgba(255, 255, 255, 0.06)',
               fontSize: '10.5px',
               color: '#a1a1aa',
@@ -337,7 +357,7 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
           >
             <TrendingUp size={13} color="#38bdf8" style={{ marginTop: '2px', flexShrink: 0 }} />
             <div>
-              <strong style={{ color: '#f4f4f5' }}>Agent Evidence Shift: </strong>
+              <strong style={{ color: '#38bdf8' }}>Agent Evidence Shift: </strong>
               <span>{whatChanged}</span>
             </div>
           </div>
@@ -390,16 +410,19 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
           )}
         </div>
 
-        {/* Action Buttons Grid */}
+        {/* Action Buttons Grid with Smooth Hover & Press Motion */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-          <button
+          <motion.button
+            whileHover={hasClearance ? { scale: 1.02, y: -1 } : {}}
+            whileTap={hasClearance ? { scale: 0.98 } : {}}
             onClick={() => onApproveAction('BLOCK_CARD', primaryAction.route, 'approve')}
             disabled={!hasClearance}
             style={{
               padding: '9px 12px',
               borderRadius: '6px',
-              background: 'rgba(244, 63, 94, 0.15)',
-              border: '1px solid rgba(244, 63, 94, 0.4)',
+              background: 'linear-gradient(180deg, rgba(244, 63, 94, 0.22), rgba(244, 63, 94, 0.12))',
+              border: '1px solid rgba(244, 63, 94, 0.45)',
+              boxShadow: '0 0 14px rgba(244, 63, 94, 0.2)',
               color: '#f43f5e',
               fontSize: '11.5px',
               fontWeight: 700,
@@ -409,21 +432,24 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
               alignItems: 'center',
               justifyContent: 'center',
               gap: '6px',
-              transition: 'all 0.15s ease',
+              transition: 'border-color 0.15s ease',
             }}
           >
             <Lock size={12} />
             <span>Block Card</span>
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
+            whileHover={hasClearance ? { scale: 1.02, y: -1 } : {}}
+            whileTap={hasClearance ? { scale: 0.98 } : {}}
             onClick={() => onApproveAction('APPROVE_TRANSACTION', primaryAction.route, 'approve')}
             disabled={!hasClearance}
             style={{
               padding: '9px 12px',
               borderRadius: '6px',
-              background: 'rgba(16, 185, 129, 0.15)',
-              border: '1px solid rgba(16, 185, 129, 0.4)',
+              background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.22), rgba(16, 185, 129, 0.12))',
+              border: '1px solid rgba(16, 185, 129, 0.45)',
+              boxShadow: '0 0 14px rgba(16, 185, 129, 0.2)',
               color: '#10b981',
               fontSize: '11.5px',
               fontWeight: 700,
@@ -433,24 +459,26 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
               alignItems: 'center',
               justifyContent: 'center',
               gap: '6px',
-              transition: 'all 0.15s ease',
+              transition: 'border-color 0.15s ease',
             }}
           >
             <Check size={12} />
             <span>Clear & Approve</span>
-          </button>
+          </motion.button>
         </div>
 
         {/* Secondary SAR trigger */}
         {caseData.sar?.file && onOpenSAR && (
-          <button
+          <motion.button
+            whileHover={{ scale: 1.01, backgroundColor: 'rgba(56, 189, 248, 0.08)' }}
+            whileTap={{ scale: 0.99 }}
             onClick={onOpenSAR}
             style={{
               width: '100%',
               padding: '7px 10px',
               borderRadius: '6px',
               background: 'rgba(255, 255, 255, 0.03)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              border: '1px solid rgba(56, 189, 248, 0.25)',
               color: '#38bdf8',
               fontSize: '11px',
               fontWeight: 600,
@@ -464,9 +492,10 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
           >
             <FileText size={12} />
             <span>Open FinCEN SAR Report Preview</span>
-          </button>
+          </motion.button>
         )}
       </div>
     </div>
   );
+
 };

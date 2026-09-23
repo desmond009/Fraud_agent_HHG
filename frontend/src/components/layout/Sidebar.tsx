@@ -94,12 +94,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Brand Header */}
       <div
         style={{
-          padding: '16px 14px',
+          padding: '0 14px',
+          height: '52px',
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
           borderBottom: '1px solid var(--border-default)',
-          minHeight: '52px',
+          boxSizing: 'border-box',
         }}
       >
         <div

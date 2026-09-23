@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import {
   CaseDetail,
   CaseSummary,
@@ -84,12 +85,14 @@ export const InvestigationWorkspace: React.FC<InvestigationWorkspaceProps> = ({
           </div>
 
           {/* Live Agentic Reasoning Trace (6-Stage Loop) */}
-          <div style={{ flex: 1, minHeight: '340px' }}>
+          <div style={{ flex: '1 0 auto', minHeight: '340px', flexShrink: 0 }}>
             <AgentActivityFeed caseData={caseData} isRunning={isRunning} />
           </div>
 
           {/* Timeline */}
-          <InvestigationTimeline caseData={caseData} />
+          <div style={{ flexShrink: 0 }}>
+            <InvestigationTimeline caseData={caseData} />
+          </div>
         </div>
 
         {/* COLUMN 3: INSPECTOR & ACTIONS (RIGHT 380px) */}
@@ -114,14 +117,16 @@ export const InvestigationWorkspace: React.FC<InvestigationWorkspaceProps> = ({
       </div>
 
       {/* Standalone FinCEN Suspicious Activity Report (SAR) Drawer */}
-      {caseData.sar && (
-        <SARDrawer
-          isOpen={sarOpen}
-          onClose={() => setSarOpen(false)}
-          caseId={caseData.case_id}
-          sar={caseData.sar}
-        />
-      )}
+      <AnimatePresence>
+        {sarOpen && caseData.sar && (
+          <SARDrawer
+            isOpen={sarOpen}
+            onClose={() => setSarOpen(false)}
+            caseId={caseData.case_id}
+            sar={caseData.sar}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

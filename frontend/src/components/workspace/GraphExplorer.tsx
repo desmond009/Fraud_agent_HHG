@@ -189,10 +189,13 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
     >
       {/* Controls Overlay */}
       <div className="graph-controls">
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
+          whileTap={{ scale: 0.95 }}
           style={{
-            background: 'rgba(18, 18, 22, 0.85)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            background: 'rgba(18, 18, 24, 0.85)',
+            backdropFilter: 'blur(12px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
             color: '#f4f4f5',
             borderRadius: '6px',
             padding: '6px',
@@ -200,16 +203,20 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)',
           }}
           onClick={() => setTransform((prev) => ({ ...prev, scale: Math.min(2.5, prev.scale * 1.2) }))}
           title="Zoom In"
         >
           <ZoomIn size={13} />
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
+          whileTap={{ scale: 0.95 }}
           style={{
-            background: 'rgba(18, 18, 22, 0.85)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            background: 'rgba(18, 18, 24, 0.85)',
+            backdropFilter: 'blur(12px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
             color: '#f4f4f5',
             borderRadius: '6px',
             padding: '6px',
@@ -217,16 +224,20 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)',
           }}
           onClick={() => setTransform((prev) => ({ ...prev, scale: Math.max(0.4, prev.scale * 0.8) }))}
           title="Zoom Out"
         >
           <ZoomOut size={13} />
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
+          whileTap={{ scale: 0.95 }}
           style={{
-            background: 'rgba(18, 18, 22, 0.85)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            background: 'rgba(18, 18, 24, 0.85)',
+            backdropFilter: 'blur(12px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
             color: '#f4f4f5',
             borderRadius: '6px',
             padding: '6px',
@@ -234,12 +245,13 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)',
           }}
           onClick={resetView}
           title="Fit to View"
         >
           <Maximize2 size={13} />
-        </button>
+        </motion.button>
       </div>
 
       {/* Top Banner Tag */}
@@ -251,25 +263,34 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
-          background: 'rgba(18, 18, 22, 0.85)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          background: 'rgba(18, 18, 24, 0.85)',
+          backdropFilter: 'blur(16px)',
+          border: '1px solid rgba(255, 255, 255, 0.09)',
           borderRadius: '6px',
           padding: '5px 12px',
           fontSize: '11px',
           fontWeight: 600,
           color: '#a1a1aa',
           zIndex: 4,
-          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.45)',
         }}
       >
-        <div className="live-dot" />
+        <span
+          style={{
+            width: '6px',
+            height: '6px',
+            borderRadius: '50%',
+            background: '#38bdf8',
+            boxShadow: '0 0 8px #38bdf8',
+          }}
+        />
         <span style={{ color: '#f4f4f5', letterSpacing: '0.04em' }}>TIGERGRAPH SUBGRAPH</span>
         <span style={{ color: '#71717a' }}>•</span>
         <span className="mono" style={{ color: '#38bdf8', fontWeight: 700 }}>
           {nodes.length} Vertices / {edges.length} Edges
         </span>
       </div>
+
 
       {/* SVG Canvas with Fluid Entrance */}
       <motion.div
@@ -375,15 +396,27 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
                   transition: 'opacity 0.2s ease',
                 }}
               >
-                {/* Glow ring if selected or flagged */}
-                {(isSelected || node.attributes?.is_flagged || node.attributes?.is_ring) && (
+                {/* Animated Pulsing Ring for Flagged Transaction */}
+                {node.attributes?.is_flagged && (
+                  <motion.circle
+                    r="20"
+                    fill="none"
+                    stroke="#f43f5e"
+                    strokeWidth="2"
+                    animate={{ r: [16, 28], opacity: [0.85, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.8, ease: 'easeOut' }}
+                  />
+                )}
+
+                {/* Glow ring if selected or ring entity */}
+                {(isSelected || node.attributes?.is_ring) && (
                   <circle
                     r="24"
                     fill="none"
                     stroke={color}
                     strokeWidth="2"
                     strokeDasharray={node.attributes?.is_ring ? '4,4' : undefined}
-                    opacity={isSelected ? 0.9 : 0.4}
+                    opacity={isSelected ? 0.9 : 0.5}
                   />
                 )}
 
@@ -394,7 +427,7 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
                   stroke={color}
                   strokeWidth={isSelected ? 3 : 2}
                   style={{
-                    filter: `drop-shadow(0 2px 6px ${color}40)`,
+                    filter: `drop-shadow(0 2px 8px ${color}60)`,
                   }}
                 />
 
@@ -408,7 +441,7 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
                 {/* Node Label Below */}
                 <text
                   y="28"
-                  fill={isSelected ? '#fff' : '#cbd5e1'}
+                  fill={isSelected ? '#38bdf8' : '#e4e4e7'}
                   fontSize="10px"
                   fontFamily="var(--font-sans)"
                   fontWeight={isSelected ? 700 : 500}
@@ -416,7 +449,7 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
                   style={{
                     userSelect: 'none',
                     paintOrder: 'stroke',
-                    stroke: '#06090f',
+                    stroke: '#09090b',
                     strokeWidth: '3px',
                     strokeLinejoin: 'round',
                   }}
@@ -431,32 +464,52 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
     </motion.div>
 
       {/* Graph Legend */}
-      <div className="graph-legend">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }} />
-          <span>Customer</span>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '12px',
+          left: '12px',
+          background: 'rgba(18, 18, 24, 0.88)',
+          backdropFilter: 'blur(16px)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          borderRadius: '8px',
+          padding: '6px 14px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '14px',
+          fontSize: '11px',
+          fontWeight: 600,
+          color: '#a1a1aa',
+          zIndex: 5,
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.45)',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6', boxShadow: '0 0 6px #3b82f6' }} />
+          <span style={{ color: '#f4f4f5' }}>Customer</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0ea5e9' }} />
-          <span>Card</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0ea5e9', boxShadow: '0 0 6px #0ea5e9' }} />
+          <span style={{ color: '#f4f4f5' }}>Card</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }} />
-          <span>Flagged Txn</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f43f5e', boxShadow: '0 0 6px #f43f5e' }} />
+          <span style={{ color: '#f4f4f5' }}>Flagged Txn</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ec4899' }} />
-          <span>Device</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ec4899', boxShadow: '0 0 6px #ec4899' }} />
+          <span style={{ color: '#f4f4f5' }}>Device</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b' }} />
-          <span>Linked Card</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b', boxShadow: '0 0 6px #f59e0b' }} />
+          <span style={{ color: '#f4f4f5' }}>Linked Card</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7' }} />
-          <span>Prior Case</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7', boxShadow: '0 0 6px #a855f7' }} />
+          <span style={{ color: '#f4f4f5' }}>Prior Case</span>
         </div>
       </div>
+
 
       {/* Selected Entity Inspector Side Drawer with Fluid Slide-in Entrance */}
       <AnimatePresence>

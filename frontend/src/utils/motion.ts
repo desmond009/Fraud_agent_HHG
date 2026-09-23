@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { type Variants, type Transition } from 'framer-motion';
 
 /**
@@ -173,3 +174,47 @@ export const accordionVariants: Variants = {
     transition: { duration: 0.25, ease: snappyEase },
   },
 };
+
+/**
+ * 60 FPS smooth count-up counter with optional decimals
+ */
+export const AnimatedCounter: React.FC<{
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  duration?: number;
+  decimals?: number;
+}> = ({ value, prefix = '', suffix = '', duration = 0.8, decimals = 0 }) => {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    let startTimestamp: number | null = null;
+    const startVal = 0;
+    let animFrame: number;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = startVal + (value - startVal) * ease;
+      setDisplayValue(current);
+      if (progress < 1) {
+        animFrame = window.requestAnimationFrame(step);
+      } else {
+        setDisplayValue(value);
+      }
+    };
+    animFrame = window.requestAnimationFrame(step);
+    return () => window.cancelAnimationFrame(animFrame);
+  }, [value, duration]);
+
+  const formatted =
+    decimals > 0
+      ? displayValue.toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        })
+      : Math.floor(displayValue).toLocaleString('en-US');
+
+  return React.createElement('span', null, prefix, formatted, suffix);
+};
+

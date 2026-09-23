@@ -26,21 +26,22 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
   return (
     <div
       style={{
-        background: 'rgba(20, 20, 25, 0.7)',
-        backdropFilter: 'blur(12px)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-        borderRadius: '8px',
+        background: 'radial-gradient(ellipse at 15% 0%, rgba(168, 85, 247, 0.06), transparent 70%), rgba(20, 20, 26, 0.78)',
+        backdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255, 255, 255, 0.09)',
+        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.07), 0 4px 20px rgba(0, 0, 0, 0.45)',
+        borderRadius: '10px',
         padding: '14px 16px',
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
+        flexShrink: 0,
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <History size={14} color="#a855f7" />
-          <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#a1a1aa' }}>
+          <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#f4f4f5' }}>
             Historical Case Memory ({similarPriorCases.length})
           </span>
         </div>
@@ -59,14 +60,16 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
             const isExpanded = expandedId === caseId;
             const simScore = 94 - idx * 6; // Realistic cosine similarity percentage
             return (
-              <div
+              <motion.div
                 key={caseId}
+                whileHover={{ x: 2 }}
                 style={{
-                  background: 'rgba(0, 0, 0, 0.35)',
-                  border: '1px solid rgba(255, 255, 255, 0.06)',
-                  borderRadius: '6px',
+                  background: 'rgba(0, 0, 0, 0.4)',
+                  border: isExpanded ? '1px solid rgba(168, 85, 247, 0.35)' : '1px solid rgba(255, 255, 255, 0.06)',
+                  borderRadius: '8px',
                   overflow: 'hidden',
-                  transition: 'border-color 0.15s ease',
+                  boxShadow: isExpanded ? '0 0 14px rgba(168, 85, 247, 0.15)' : 'inset 0 1px 2px rgba(0, 0, 0, 0.3)',
+                  transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
                 }}
               >
                 {/* Header row */}
@@ -93,7 +96,8 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
                         borderRadius: '9999px',
                         background: 'rgba(168, 85, 247, 0.15)',
                         color: '#a855f7',
-                        border: '1px solid rgba(168, 85, 247, 0.3)',
+                        border: '1px solid rgba(168, 85, 247, 0.35)',
+                        boxShadow: '0 0 8px rgba(168, 85, 247, 0.2)',
                       }}
                     >
                       {simScore}% MATCH
@@ -133,33 +137,35 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
                         <div style={{ color: '#a1a1aa', marginTop: '6px' }}>
                           Typology: <strong style={{ color: '#f4f4f5' }}>{pattern.replace('_', ' ')}</strong>
                         </div>
-                        <div style={{ color: '#a1a1aa', lineHeight: 1.4 }}>
+                        <div style={{ color: '#d4d4d8', lineHeight: 1.45 }}>
                           Resolved with card block and protective entity clustering. Vector memory matched shared device subnet.
                         </div>
                         <div
                           style={{
-                            padding: '4px 8px',
-                            background: 'rgba(255, 255, 255, 0.04)',
+                            padding: '5px 8px',
+                            background: 'rgba(16, 185, 129, 0.08)',
+                            border: '1px solid rgba(16, 185, 129, 0.25)',
                             borderRadius: '4px',
                             fontSize: '10px',
                             color: '#10b981',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '4px',
+                            gap: '5px',
                           }}
                         >
-                          <ShieldCheck size={11} />
+                          <ShieldCheck size={12} />
                           <span>Graph Memory Informed Current Action Recommendation</span>
                         </div>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             );
           })}
         </div>
       )}
     </div>
   );
+
 };
