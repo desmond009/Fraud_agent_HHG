@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   Check,
   FileText,
   Lock,
   TrendingUp,
+  TrendingDown,
   Sparkles,
+  ArrowRight,
+  Shield,
+  AlertTriangle,
 } from 'lucide-react';
 import { CaseDetail } from '../../types';
 
@@ -21,19 +26,20 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
   onApproveAction,
   onOpenSAR,
 }) => {
+  const c = caseData.case;
   const nba = caseData.next_best_actions;
   const initialActions = nba?.initial || [];
   const finalActions = nba?.final || [];
   const whatChanged = nba?.what_changed || '';
 
-  // Dual state tab: default to 'after' if final exists, but allow toggling
+  // Dual state tab: default to 'after'
   const [activeTab, setActiveTab] = useState<'before' | 'after'>('after');
 
   const currentActions = activeTab === 'before' ? initialActions : finalActions;
   const primaryAction = currentActions[0] || {
-    action: 'MONITOR_CARD',
+    action: c.verdict === 'legitimate' ? 'CLOSE_NO_FRAUD' : 'BLOCK_CARD',
     route: 'auto',
-    reason: 'Routine monitoring active',
+    reason: c.verdict === 'legitimate' ? 'Customer confirmed card presence. Close case with no adverse action.' : 'High velocity and device anomaly require immediate remediation.',
   };
 
   const approval = caseData.approval;
@@ -43,8 +49,16 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
   const requiresL2 = finalActions.some((a) => a.route === 'L2');
   const hasClearance = requiresL2 ? analystRole === 'L2' : true;
 
-  const initialConf = Math.max(35, Math.round(((caseData.case.fraud_probability || 0) - 0.28) * 100));
-  const finalConf = Math.round((caseData.case.fraud_probability || 0) * 100);
+  // Calculate high-contrast before/after probability
+  const finalPct = Math.round((c.fraud_probability || 0) * 100);
+  const triggerRisk = caseData.trigger?.risk_score ?? 0.55;
+  const initialPct = c.verdict === 'fraud'
+    ? Math.max(40, Math.min(70, finalPct - 24))
+    : Math.max(25, Math.min(60, Math.round(triggerRisk * 70)));
+  const delta = finalPct - initialPct;
+
+  const isConfirmedFraud = c.verdict === 'fraud';
+  const isCleared = c.verdict === 'legitimate';
 
   const getRouteBadge = (route: string) => {
     if (route === 'L2') {
@@ -53,11 +67,12 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
           style={{
             fontSize: '9.5px',
             fontWeight: 700,
-            padding: '2px 6px',
-            borderRadius: 'var(--radius-pill)',
-            background: 'var(--route-l2-bg)',
-            color: 'var(--route-l2)',
-            border: '1px solid var(--route-l2-border)',
+            padding: '2px 7px',
+            borderRadius: '9999px',
+            background: 'rgba(168, 85, 247, 0.15)',
+            color: '#a855f7',
+            border: '1px solid rgba(168, 85, 247, 0.35)',
+            letterSpacing: '0.03em',
           }}
         >
           ROUTE L2 (FRAUD MGR)
@@ -70,11 +85,12 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
           style={{
             fontSize: '9.5px',
             fontWeight: 700,
-            padding: '2px 6px',
-            borderRadius: 'var(--radius-pill)',
-            background: 'var(--route-l1-bg)',
-            color: 'var(--route-l1)',
-            border: '1px solid var(--route-l1-border)',
+            padding: '2px 7px',
+            borderRadius: '9999px',
+            background: 'rgba(245, 158, 11, 0.15)',
+            color: '#f59e0b',
+            border: '1px solid rgba(245, 158, 11, 0.35)',
+            letterSpacing: '0.03em',
           }}
         >
           ROUTE L1 (LEAD)
@@ -86,11 +102,12 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
         style={{
           fontSize: '9.5px',
           fontWeight: 700,
-          padding: '2px 6px',
-          borderRadius: 'var(--radius-pill)',
-          background: 'var(--route-auto-bg)',
-          color: 'var(--route-auto)',
-          border: '1px solid var(--route-auto-border)',
+          padding: '2px 7px',
+          borderRadius: '9999px',
+          background: 'rgba(14, 165, 233, 0.15)',
+          color: '#38bdf8',
+          border: '1px solid rgba(14, 165, 233, 0.35)',
+          letterSpacing: '0.03em',
         }}
       >
         ROUTE AUTO
@@ -100,81 +117,171 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
 
   return (
     <div
-      className="glass-panel"
       style={{
-        padding: '14px',
+        background: 'rgba(20, 20, 25, 0.7)',
+        backdropFilter: 'blur(12px)',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
+        borderRadius: '8px',
+        padding: '14px 16px',
         display: 'flex',
         flexDirection: 'column',
         gap: '12px',
-        borderLeft: primaryAction.action.includes('BLOCK') ? '4px solid var(--risk-high)' : '4px solid var(--brand-tiger)',
+        borderLeft: primaryAction.action.includes('BLOCK') ? '4px solid #f43f5e' : '4px solid #10b981',
       }}
     >
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Sparkles size={14} color="var(--brand-tiger)" />
-          <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)', fontWeight: 700 }}>
+          <Sparkles size={14} color="#38bdf8" />
+          <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#a1a1aa', fontWeight: 700 }}>
             Next-Best Action Engine
           </span>
         </div>
         {getRouteBadge(primaryAction.route)}
       </div>
 
-      {/* Dual State Switcher Tabs: Before vs After Additional Evidence */}
+      {/* Metric Transition Card (Risk Pre-Evidence vs Post-Evidence) */}
       <div
         style={{
           display: 'flex',
-          background: 'var(--bg-input)',
-          border: '1px solid var(--border-default)',
-          borderRadius: 'var(--radius-sm)',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '8px 12px',
+          borderRadius: '6px',
+          background: 'rgba(0, 0, 0, 0.35)',
+          border: '1px solid rgba(255, 255, 255, 0.05)',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ textAlign: 'left' }}>
+            <div style={{ fontSize: '9px', textTransform: 'uppercase', color: '#71717a', fontWeight: 600 }}>Initial</div>
+            <div className="mono" style={{ fontSize: '14px', fontWeight: 800, color: '#a1a1aa' }}>{initialPct}%</div>
+          </div>
+
+          <ArrowRight size={13} color="#71717a" />
+
+          <div style={{ textAlign: 'left' }}>
+            <div style={{ fontSize: '9px', textTransform: 'uppercase', color: '#71717a', fontWeight: 600 }}>Post-Evidence</div>
+            <div className="mono" style={{ fontSize: '15px', fontWeight: 800, color: isConfirmedFraud ? '#f43f5e' : '#10b981' }}>
+              {finalPct}%
+            </div>
+          </div>
+        </div>
+
+        {/* Delta Pill */}
+        <div
+          className="mono"
+          style={{
+            fontSize: '10.5px',
+            fontWeight: 700,
+            padding: '3px 8px',
+            borderRadius: '9999px',
+            background: delta > 0 ? 'rgba(244, 63, 94, 0.15)' : 'rgba(16, 185, 129, 0.15)',
+            color: delta > 0 ? '#f43f5e' : '#10b981',
+            border: `1px solid ${delta > 0 ? 'rgba(244, 63, 94, 0.35)' : 'rgba(16, 185, 129, 0.35)'}`,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+          }}
+        >
+          {delta > 0 ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
+          <span>{delta > 0 ? `+${delta}% (Surge)` : `${delta}% (Cleared)`}</span>
+        </div>
+      </div>
+
+      {/* Dual State Switcher Tabs with layoutId */}
+      <div
+        style={{
+          position: 'relative',
+          display: 'flex',
+          background: 'rgba(0, 0, 0, 0.35)',
+          border: '1px solid rgba(255, 255, 255, 0.06)',
+          borderRadius: '6px',
           padding: '2px',
         }}
       >
         <button
           onClick={() => setActiveTab('before')}
           style={{
+            position: 'relative',
             flex: 1,
             padding: '5px 0',
             fontSize: '11px',
             fontWeight: 600,
-            borderRadius: 'var(--radius-sm)',
+            borderRadius: '4px',
             border: 'none',
             cursor: 'pointer',
-            background: activeTab === 'before' ? 'var(--bg-card-elevated)' : 'transparent',
-            color: activeTab === 'before' ? 'var(--text-primary)' : 'var(--text-muted)',
-            boxShadow: activeTab === 'before' ? 'var(--shadow-subtle)' : 'none',
-            transition: 'all 0.15s ease',
+            background: 'transparent',
+            color: activeTab === 'before' ? '#f4f4f5' : '#71717a',
+            zIndex: 2,
           }}
         >
-          1. Before Evidence ({initialConf}%)
+          {activeTab === 'before' && (
+            <motion.div
+              layoutId="actionTabIndicator"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                borderRadius: '4px',
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
+                zIndex: -1,
+              }}
+              transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+            />
+          )}
+          1. Before Evidence ({initialPct}%)
         </button>
         <button
           onClick={() => setActiveTab('after')}
           style={{
+            position: 'relative',
             flex: 1,
             padding: '5px 0',
             fontSize: '11px',
             fontWeight: 600,
-            borderRadius: 'var(--radius-sm)',
+            borderRadius: '4px',
             border: 'none',
             cursor: 'pointer',
-            background: activeTab === 'after' ? 'var(--bg-card-elevated)' : 'transparent',
-            color: activeTab === 'after' ? 'var(--brand-tiger-hover)' : 'var(--text-muted)',
-            boxShadow: activeTab === 'after' ? 'var(--shadow-subtle)' : 'none',
-            transition: 'all 0.15s ease',
+            background: 'transparent',
+            color: activeTab === 'after' ? '#38bdf8' : '#71717a',
+            zIndex: 2,
           }}
         >
-          2. After Evidence ({finalConf}%)
+          {activeTab === 'after' && (
+            <motion.div
+              layoutId="actionTabIndicator"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                borderRadius: '4px',
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(56, 189, 248, 0.25)',
+                zIndex: -1,
+              }}
+              transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+            />
+          )}
+          2. After Evidence ({finalPct}%)
         </button>
       </div>
 
-      {/* Primary Action Box */}
+      {/* Prominent Recommendation Card */}
       <div
         style={{
-          padding: '12px',
-          borderRadius: 'var(--radius-sm)',
-          background: activeTab === 'before' ? 'rgba(245, 158, 11, 0.06)' : 'rgba(244, 63, 94, 0.08)',
-          border: activeTab === 'before' ? '1px solid rgba(245, 158, 11, 0.25)' : '1px solid rgba(244, 63, 94, 0.25)',
+          padding: '12px 14px',
+          borderRadius: '6px',
+          background: activeTab === 'before'
+            ? 'rgba(245, 158, 11, 0.08)'
+            : isConfirmedFraud
+            ? 'rgba(244, 63, 94, 0.08)'
+            : 'rgba(16, 185, 129, 0.08)',
+          border: activeTab === 'before'
+            ? '1px solid rgba(245, 158, 11, 0.25)'
+            : isConfirmedFraud
+            ? '1px solid rgba(244, 63, 94, 0.25)'
+            : '1px solid rgba(16, 185, 129, 0.25)',
           display: 'flex',
           flexDirection: 'column',
           gap: '8px',
@@ -184,9 +291,14 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
           <span
             className="mono"
             style={{
-              fontSize: '15px',
+              fontSize: '16px',
               fontWeight: 800,
-              color: primaryAction.action.includes('BLOCK') ? 'var(--risk-high)' : 'var(--text-primary)',
+              color: primaryAction.action.includes('BLOCK')
+                ? '#f43f5e'
+                : primaryAction.action.includes('CLOSE') || primaryAction.action.includes('APPROVE')
+                ? '#10b981'
+                : '#f4f4f5',
+              letterSpacing: '-0.02em',
             }}
           >
             {primaryAction.action}
@@ -196,14 +308,14 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
             style={{
               fontSize: '11px',
               fontWeight: 700,
-              color: activeTab === 'before' ? 'var(--risk-medium)' : 'var(--risk-high)',
+              color: activeTab === 'before' ? '#f59e0b' : isConfirmedFraud ? '#f43f5e' : '#10b981',
             }}
           >
-            Confidence: {activeTab === 'before' ? `${initialConf}%` : `${finalConf}%`}
+            Confidence: {activeTab === 'before' ? `${initialPct}%` : `${finalPct}%`}
           </span>
         </div>
 
-        <p style={{ fontSize: '11.5px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+        <p style={{ fontSize: '11.5px', color: '#a1a1aa', lineHeight: 1.45, margin: 0 }}>
           {primaryAction.reason}
         </p>
 
@@ -213,30 +325,30 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
             style={{
               marginTop: '4px',
               padding: '6px 8px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'var(--bg-input)',
-              border: '1px solid var(--border-default)',
+              borderRadius: '4px',
+              background: 'rgba(0, 0, 0, 0.4)',
+              border: '1px solid rgba(255, 255, 255, 0.06)',
               fontSize: '10.5px',
-              color: 'var(--text-muted)',
+              color: '#a1a1aa',
               display: 'flex',
               alignItems: 'flex-start',
               gap: '6px',
             }}
           >
-            <TrendingUp size={13} color="var(--brand-tiger-hover)" style={{ marginTop: '2px', flexShrink: 0 }} />
+            <TrendingUp size={13} color="#38bdf8" style={{ marginTop: '2px', flexShrink: 0 }} />
             <div>
-              <strong style={{ color: 'var(--text-primary)' }}>Agent Evidence Shift: </strong>
+              <strong style={{ color: '#f4f4f5' }}>Agent Evidence Shift: </strong>
               <span>{whatChanged}</span>
             </div>
           </div>
         )}
       </div>
 
-      {/* Complete Action Steps */}
+      {/* Operational Steps List */}
       {currentActions.length > 1 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-          <span style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700 }}>
-            Operational Steps ({currentActions.length})
+          <span style={{ fontSize: '10px', textTransform: 'uppercase', color: '#71717a', fontWeight: 700 }}>
+            Operational Protocol ({currentActions.length} actions)
           </span>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
             {currentActions.map((act, i) => (
@@ -246,19 +358,19 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
                   display: 'flex',
                   alignItems: 'center',
                   gap: '5px',
-                  padding: '3px 7px',
-                  borderRadius: 'var(--radius-sm)',
-                  background: 'var(--bg-tag)',
-                  border: '1px solid var(--border-subtle)',
+                  padding: '3px 8px',
+                  borderRadius: '4px',
+                  background: 'rgba(255, 255, 255, 0.04)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
                   fontSize: '10.5px',
                   fontFamily: 'var(--font-mono)',
                 }}
               >
-                <span style={{ color: 'var(--text-muted)' }}>{i + 1}.</span>
-                <span style={{ fontWeight: 600, color: act.action.includes('BLOCK') ? 'var(--risk-high)' : 'var(--text-primary)' }}>
+                <span style={{ color: '#71717a' }}>{i + 1}.</span>
+                <span style={{ fontWeight: 600, color: act.action.includes('BLOCK') ? '#f43f5e' : '#f4f4f5' }}>
                   {act.action}
                 </span>
-                <span style={{ fontSize: '9px', color: 'var(--text-muted)' }}>({act.route})</span>
+                <span style={{ fontSize: '9px', color: '#71717a' }}>({act.route})</span>
               </div>
             ))}
           </div>
@@ -266,30 +378,30 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
       )}
 
       {/* Human Approval Sign-Off Bar */}
-      <div style={{ borderTop: '1px solid var(--border-default)', paddingTop: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)', fontWeight: 700 }}>
+          <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
             Analyst Action Sign-Off
           </span>
           {isExecuted && (
-            <span style={{ fontSize: '10px', color: 'var(--risk-low)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <span style={{ fontSize: '10.5px', color: '#10b981', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
               <Check size={11} /> {approval?.approved_by ? `APPROVED BY ${approval.approved_by}` : 'EXECUTED'}
             </span>
           )}
         </div>
 
         {/* Action Buttons Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
           <button
             onClick={() => onApproveAction('BLOCK_CARD', primaryAction.route, 'approve')}
             disabled={!hasClearance}
             style={{
-              padding: '8px 10px',
-              borderRadius: 'var(--radius-sm)',
+              padding: '9px 12px',
+              borderRadius: '6px',
               background: 'rgba(244, 63, 94, 0.15)',
               border: '1px solid rgba(244, 63, 94, 0.4)',
-              color: 'var(--risk-high)',
-              fontSize: '11px',
+              color: '#f43f5e',
+              fontSize: '11.5px',
               fontWeight: 700,
               cursor: hasClearance ? 'pointer' : 'not-allowed',
               opacity: hasClearance ? 1 : 0.4,
@@ -297,6 +409,7 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
               alignItems: 'center',
               justifyContent: 'center',
               gap: '6px',
+              transition: 'all 0.15s ease',
             }}
           >
             <Lock size={12} />
@@ -307,12 +420,12 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
             onClick={() => onApproveAction('APPROVE_TRANSACTION', primaryAction.route, 'approve')}
             disabled={!hasClearance}
             style={{
-              padding: '8px 10px',
-              borderRadius: 'var(--radius-sm)',
+              padding: '9px 12px',
+              borderRadius: '6px',
               background: 'rgba(16, 185, 129, 0.15)',
               border: '1px solid rgba(16, 185, 129, 0.4)',
-              color: 'var(--risk-low)',
-              fontSize: '11px',
+              color: '#10b981',
+              fontSize: '11.5px',
               fontWeight: 700,
               cursor: hasClearance ? 'pointer' : 'not-allowed',
               opacity: hasClearance ? 1 : 0.4,
@@ -320,10 +433,11 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
               alignItems: 'center',
               justifyContent: 'center',
               gap: '6px',
+              transition: 'all 0.15s ease',
             }}
           >
             <Check size={12} />
-            <span>Clear / Approve</span>
+            <span>Clear & Approve</span>
           </button>
         </div>
 
@@ -333,11 +447,11 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
             onClick={onOpenSAR}
             style={{
               width: '100%',
-              padding: '6px 10px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'var(--bg-input)',
-              border: '1px solid var(--border-default)',
-              color: 'var(--brand-tiger-hover)',
+              padding: '7px 10px',
+              borderRadius: '6px',
+              background: 'rgba(255, 255, 255, 0.03)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              color: '#38bdf8',
               fontSize: '11px',
               fontWeight: 600,
               cursor: 'pointer',
@@ -345,6 +459,7 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
               alignItems: 'center',
               justifyContent: 'center',
               gap: '6px',
+              transition: 'all 0.15s ease',
             }}
           >
             <FileText size={12} />

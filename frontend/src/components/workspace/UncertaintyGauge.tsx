@@ -1,14 +1,15 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import {
   AlertTriangle,
   TrendingUp,
   TrendingDown,
   HelpCircle,
-  CheckCircle,
   ArrowRight,
-  Shield,
+  ShieldCheck,
 } from 'lucide-react';
 import { CaseDetail } from '../../types';
+import { snappyTransition, fadeSlideUp } from '../../utils/motion';
 
 interface UncertaintyGaugeProps {
   caseData: CaseDetail;
@@ -34,26 +35,35 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
   const connectedCards = c.connected_card_ids?.length || 0;
   const sufficiencyPct = Math.min(98, 50 + evidenceCount * 15 + (connectedCards > 0 ? 15 : 0));
 
+  const getVerdictColor = (pct: number) => {
+    if (pct >= 70) return '#f43f5e';
+    if (pct <= 25) return '#10b981';
+    return '#f59e0b';
+  };
+
   return (
     <div
-      className="card"
       style={{
+        background: 'rgba(20, 20, 25, 0.7)',
+        backdropFilter: 'blur(12px)',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
+        borderRadius: '8px',
         padding: '14px 16px',
         display: 'flex',
         flexDirection: 'column',
         gap: '12px',
-        background: 'var(--bg-card)',
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <AlertTriangle size={14} color="var(--risk-medium)" />
-          <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-secondary)' }}>
-            RISK & UNCERTAINTY CALIBRATION
+          <AlertTriangle size={14} color="#f59e0b" />
+          <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#a1a1aa' }}>
+            Risk & Uncertainty Calibration
           </span>
         </div>
-        <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-          Sufficiency: <strong style={{ color: 'var(--text-primary)' }}>{sufficiencyPct}%</strong>
+        <div style={{ fontSize: '11px', color: '#71717a' }}>
+          Sufficiency: <strong style={{ color: '#f4f4f5' }}>{sufficiencyPct}%</strong>
         </div>
       </div>
 
@@ -63,40 +73,59 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
           display: 'grid',
           gridTemplateColumns: '1fr auto 1fr',
           alignItems: 'center',
-          gap: '16px',
-          background: 'var(--bg-input)',
-          padding: '12px 16px',
-          borderRadius: 'var(--radius-sm)',
-          border: '1px solid var(--border-subtle)',
+          gap: '14px',
+          background: 'rgba(0, 0, 0, 0.35)',
+          padding: '12px 14px',
+          borderRadius: '6px',
+          border: '1px solid rgba(255, 255, 255, 0.05)',
         }}
       >
         {/* Stage 1: Initial Assessment (Prior to verification) */}
         <div>
-          <div style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600 }}>
-            Initial Assessment (Pre-Check)
+          <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#71717a', fontWeight: 600 }}>
+            Initial Assessment
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '2px' }}>
-            <span className="mono" style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-secondary)' }}>
+            <span className="mono" style={{ fontSize: '20px', fontWeight: 800, color: '#f4f4f5' }}>
               {initialPct}%
             </span>
-            <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>fraud probability</span>
+            <span style={{ fontSize: '10px', color: '#71717a' }}>probability</span>
           </div>
-          <div style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '2px' }}>
-            Subject to Rule R1 weak signal guard
+
+          {/* Animated Bar Width for Initial */}
+          <div style={{ width: '100%', height: '4px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '2px', marginTop: '6px', overflow: 'hidden' }}>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: `${initialPct}%` }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                height: '100%',
+                background: '#f59e0b',
+                borderRadius: '2px',
+              }}
+            />
+          </div>
+
+          <div style={{ fontSize: '10px', color: '#71717a', marginTop: '4px' }}>
+            Rule R1 weak-signal guard
           </div>
         </div>
 
         {/* Transition Arrow / Evidence Catalyst */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
-          <div
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={snappyTransition}
+            className="mono"
             style={{
-              padding: '4px 8px',
-              borderRadius: 'var(--radius-pill)',
-              background: delta >= 0 ? 'var(--risk-high-bg)' : 'var(--risk-low-bg)',
-              color: delta >= 0 ? 'var(--risk-high)' : 'var(--risk-low)',
-              fontSize: '11px',
+              padding: '3px 8px',
+              borderRadius: '9999px',
+              background: delta >= 0 ? 'rgba(244, 63, 94, 0.15)' : 'rgba(16, 185, 129, 0.15)',
+              color: delta >= 0 ? '#f43f5e' : '#10b981',
+              border: `1px solid ${delta >= 0 ? 'rgba(244, 63, 94, 0.35)' : 'rgba(16, 185, 129, 0.35)'}`,
+              fontSize: '10.5px',
               fontWeight: 700,
-              fontFamily: 'var(--font-mono)',
               display: 'flex',
               alignItems: 'center',
               gap: '3px',
@@ -104,13 +133,13 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
           >
             {delta >= 0 ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
             <span>{delta >= 0 ? `+${delta}%` : `${delta}%`}</span>
-          </div>
-          <ArrowRight size={14} color="var(--border-active)" />
+          </motion.div>
+          <ArrowRight size={13} color="#52525b" />
         </div>
 
         {/* Stage 2: Final Calibrated Verdict */}
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600 }}>
+          <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#71717a', fontWeight: 600 }}>
             Post-Evidence Verdict
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'flex-end', gap: '6px', marginTop: '2px' }}>
@@ -119,43 +148,63 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
               style={{
                 fontSize: '22px',
                 fontWeight: 800,
-                color: finalPct > 70 ? 'var(--risk-high)' : finalPct < 20 ? 'var(--risk-low)' : 'var(--risk-medium)',
+                color: getVerdictColor(finalPct),
               }}
             >
               {finalPct}%
             </span>
-            <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>final calibrated</span>
+            <span style={{ fontSize: '10px', color: '#71717a' }}>calibrated</span>
           </div>
-          <div style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '2px' }}>
+
+          {/* Animated Bar Width for Final Verdict */}
+          <div style={{ width: '100%', height: '4px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '2px', marginTop: '6px', overflow: 'hidden', display: 'flex', justifyContent: 'flex-end' }}>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: `${finalPct}%` }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                height: '100%',
+                background: getVerdictColor(finalPct),
+                borderRadius: '2px',
+                boxShadow: `0 0 8px ${getVerdictColor(finalPct)}88`,
+              }}
+            />
+          </div>
+
+          <div style={{ fontSize: '10px', color: '#a1a1aa', marginTop: '4px', fontWeight: 500 }}>
             {c.verdict === 'fraud' ? 'Confirmed Unauthorized' : 'Confirmed Legitimate'}
           </div>
         </div>
       </div>
 
-      {/* What Changed Callout */}
+      {/* What Changed Callout with Fluid Slide-in Entrance */}
       {nba?.what_changed && (
-        <div
+        <motion.div
+          variants={fadeSlideUp}
+          initial="initial"
+          animate="animate"
           style={{
             padding: '8px 12px',
-            borderRadius: 'var(--radius-sm)',
-            background: 'rgba(56, 189, 248, 0.05)',
-            border: '1px solid rgba(56, 189, 248, 0.2)',
-            fontSize: '11.5px',
-            color: 'var(--text-primary)',
+            borderRadius: '6px',
+            background: 'rgba(56, 189, 248, 0.08)',
+            border: '1px solid rgba(56, 189, 248, 0.25)',
+            fontSize: '11px',
+            color: '#f4f4f5',
             display: 'flex',
             alignItems: 'flex-start',
             gap: '8px',
           }}
         >
-          <div style={{ marginTop: '2px' }}>
-            <HelpCircle size={13} color="var(--brand-tiger)" />
+          <div style={{ marginTop: '2px', flexShrink: 0 }}>
+            <HelpCircle size={13} color="#38bdf8" />
           </div>
-          <div style={{ flex: 1 }}>
-            <span style={{ fontWeight: 600, color: 'var(--brand-tiger)' }}>Catalyst / What Changed: </span>
-            <span>{nba.what_changed}</span>
+          <div style={{ flex: 1, lineHeight: 1.4 }}>
+            <span style={{ fontWeight: 600, color: '#38bdf8' }}>Catalyst / What Changed: </span>
+            <span style={{ color: '#d4d4d8' }}>{nba.what_changed}</span>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );
 };
+

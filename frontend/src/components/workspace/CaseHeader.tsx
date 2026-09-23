@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import {
   ShieldAlert,
   ShieldCheck,
@@ -9,7 +10,8 @@ import {
   FileText,
   CreditCard,
   User,
-  Fingerprint,
+  Activity,
+  Layers,
 } from 'lucide-react';
 import { CaseDetail } from '../../types';
 
@@ -29,18 +31,18 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
     if (verdict === 'fraud') {
       return (
         <span
-          className="badge-pill"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '4px',
+            gap: '5px',
             fontSize: '11px',
             fontWeight: 700,
-            padding: '2px 8px',
-            borderRadius: 'var(--radius-pill)',
-            background: 'var(--risk-high-bg)',
-            color: 'var(--risk-high)',
-            border: '1px solid var(--risk-high-border)',
+            padding: '3px 10px',
+            borderRadius: '9999px',
+            background: 'rgba(244, 63, 94, 0.15)',
+            color: '#f43f5e',
+            border: '1px solid rgba(244, 63, 94, 0.35)',
+            letterSpacing: '0.02em',
           }}
         >
           <ShieldAlert size={12} /> CONFIRMED FRAUD
@@ -50,18 +52,18 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
     if (verdict === 'legitimate') {
       return (
         <span
-          className="badge-pill"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '4px',
+            gap: '5px',
             fontSize: '11px',
             fontWeight: 700,
-            padding: '2px 8px',
-            borderRadius: 'var(--radius-pill)',
-            background: 'var(--risk-low-bg)',
-            color: 'var(--risk-low)',
-            border: '1px solid var(--risk-low-border)',
+            padding: '3px 10px',
+            borderRadius: '9999px',
+            background: 'rgba(16, 185, 129, 0.15)',
+            color: '#10b981',
+            border: '1px solid rgba(16, 185, 129, 0.35)',
+            letterSpacing: '0.02em',
           }}
         >
           <ShieldCheck size={12} /> CLEARED LEGITIMATE
@@ -70,18 +72,18 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
     }
     return (
       <span
-        className="badge-pill"
         style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '4px',
+          gap: '5px',
           fontSize: '11px',
           fontWeight: 700,
-          padding: '2px 8px',
-          borderRadius: 'var(--radius-pill)',
-          background: 'var(--risk-medium-bg)',
-          color: 'var(--risk-medium)',
-          border: '1px solid var(--risk-medium-border)',
+          padding: '3px 10px',
+          borderRadius: '9999px',
+          background: 'rgba(245, 158, 11, 0.15)',
+          color: '#f59e0b',
+          border: '1px solid rgba(245, 158, 11, 0.35)',
+          letterSpacing: '0.02em',
         }}
       >
         <HelpCircle size={12} /> UNCERTAIN / REVIEW
@@ -97,69 +99,96 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
       .join(' ');
   };
 
+  const isHighRisk = probPercent >= 70;
+  const isLowRisk = probPercent <= 30;
+
   return (
     <div
-      className="glass-panel"
       style={{
-        padding: '12px 16px',
+        background: 'rgba(20, 20, 25, 0.7)',
+        backdropFilter: 'blur(12px)',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 2px 8px rgba(0, 0, 0, 0.4)',
+        borderRadius: '8px',
+        padding: '14px 18px',
         display: 'flex',
         flexDirection: 'column',
-        gap: '10px',
-        borderLeft:
-          verdict === 'fraud'
-            ? '3px solid var(--risk-high)'
-            : verdict === 'legitimate'
-            ? '3px solid var(--risk-low)'
-            : '3px solid var(--route-l2)',
+        gap: '12px',
       }}
     >
-      {/* Top Row: Case ID, Risk Badges, Financial Exposure & Telemetry */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
-        {/* Left Side: ID & Badges */}
+      {/* Top Row: Case ID, Status Pill, Risk Pill, Financial Exposure & SAR */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+        {/* Left Side: Large Case ID & Status Badges */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-          <span className="mono" style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
+          <h1
+            className="mono"
+            style={{
+              fontSize: '22px',
+              fontWeight: 800,
+              color: '#f4f4f5',
+              letterSpacing: '-0.03em',
+              margin: 0,
+              lineHeight: 1,
+            }}
+          >
             {caseData.case_id}
-          </span>
+          </h1>
+
           {getVerdictBadge()}
+
           <span
             className="mono"
             style={{
               fontSize: '11px',
               fontWeight: 700,
-              padding: '2px 8px',
-              borderRadius: 'var(--radius-pill)',
-              background: probPercent >= 70 ? 'var(--risk-high-bg)' : probPercent <= 30 ? 'var(--risk-low-bg)' : 'var(--risk-medium-bg)',
-              color: probPercent >= 70 ? 'var(--risk-high)' : probPercent <= 30 ? 'var(--risk-low)' : 'var(--risk-medium)',
-              border: `1px solid ${probPercent >= 70 ? 'var(--risk-high-border)' : probPercent <= 30 ? 'var(--risk-low-border)' : 'var(--risk-medium-border)'}`,
+              padding: '3px 9px',
+              borderRadius: '9999px',
+              background: isHighRisk ? 'rgba(244, 63, 94, 0.15)' : isLowRisk ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)',
+              color: isHighRisk ? '#f43f5e' : isLowRisk ? '#10b981' : '#f59e0b',
+              border: `1px solid ${isHighRisk ? 'rgba(244, 63, 94, 0.35)' : isLowRisk ? 'rgba(16, 185, 129, 0.35)' : 'rgba(245, 158, 11, 0.35)'}`,
             }}
           >
             {probPercent}% RISK
           </span>
+
           <span
             style={{
-              fontSize: '11px',
+              fontSize: '10.5px',
               padding: '2px 8px',
-              borderRadius: 'var(--radius-pill)',
-              background: 'var(--bg-input)',
-              border: '1px solid var(--border-default)',
-              color: 'var(--text-secondary)',
+              borderRadius: '9999px',
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              color: '#a1a1aa',
               textTransform: 'uppercase',
               fontWeight: 600,
+              letterSpacing: '0.03em',
             }}
           >
             {c.status || 'Active'}
           </span>
         </div>
 
-        {/* Right Side: Exposure & Actions */}
+        {/* Right Side: Exposure Callout & FinCEN SAR Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)', fontWeight: 700 }}>
+            <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#71717a', fontWeight: 700 }}>
               Total Exposure
             </div>
-            <div className="mono" style={{ fontSize: '18px', fontWeight: 800, color: exposure > 0 ? 'var(--risk-high)' : 'var(--text-primary)' }}>
+            <motion.div
+              key={caseData.case_id + exposure}
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className="mono"
+              style={{
+                fontSize: '19px',
+                fontWeight: 800,
+                color: exposure > 0 ? '#f43f5e' : '#f4f4f5',
+                letterSpacing: '-0.02em',
+              }}
+            >
               ${exposure.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
-            </div>
+            </motion.div>
           </div>
 
           {caseData.sar?.file && onOpenSAR && (
@@ -168,110 +197,120 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '5px',
+                gap: '6px',
                 padding: '6px 12px',
-                borderRadius: 'var(--radius-sm)',
-                background: 'rgba(56, 189, 248, 0.1)',
-                border: '1px solid rgba(56, 189, 248, 0.35)',
-                color: 'var(--brand-tiger-hover)',
+                borderRadius: '6px',
+                background: 'rgba(14, 165, 233, 0.12)',
+                border: '1px solid rgba(56, 189, 248, 0.4)',
+                color: '#38bdf8',
                 fontSize: '11px',
                 fontWeight: 600,
                 cursor: 'pointer',
+                transition: 'all 0.15s ease',
               }}
             >
               <FileText size={13} />
               <span>FinCEN SAR Ready</span>
             </button>
           )}
+        </div>
+      </div>
 
-          {/* Micro Telemetry */}
-          <div style={{ display: 'flex', gap: '10px', borderLeft: '1px solid var(--border-default)', paddingLeft: '14px', fontSize: '11px' }}>
-            <div>
-              <div style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '3px', fontSize: '10px' }}>
-                <Clock size={10} /> Latency
-              </div>
-              <div className="mono" style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
-                {caseData.latency_s}s
-              </div>
-            </div>
-            <div>
-              <div style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '3px', fontSize: '10px' }}>
-                <Cpu size={10} /> Tools
-              </div>
-              <div className="mono" style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
-                {caseData.tool_calls}
-              </div>
-            </div>
-            <div>
-              <div style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '3px', fontSize: '10px' }}>
-                <Database size={10} /> Graph Write
-              </div>
-              <div className="mono" style={{ fontWeight: 700, color: 'var(--risk-low)' }}>
-                ✓ Sync
-              </div>
-            </div>
+      {/* Inline Secondary Metadata Row (Latency, Graph Write, Customer, Card, Typology) */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '12px',
+          paddingTop: '8px',
+          borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+          fontSize: '11px',
+          color: '#a1a1aa',
+        }}
+      >
+        {/* Core Entities */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <User size={12} color="#71717a" />
+            <span style={{ color: '#71717a' }}>Customer:</span>
+            <span className="mono" style={{ color: '#38bdf8', fontWeight: 600 }}>{trigger?.customer_id}</span>
+          </div>
+
+          <span style={{ color: '#3f3f46' }}>•</span>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <CreditCard size={12} color="#71717a" />
+            <span style={{ color: '#71717a' }}>Card:</span>
+            <span className="mono" style={{ color: '#f4f4f5', fontWeight: 600 }}>{trigger?.card_id}</span>
+          </div>
+
+          <span style={{ color: '#3f3f46' }}>•</span>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <span style={{ color: '#71717a' }}>Typology:</span>
+            <span style={{ color: '#f4f4f5', fontWeight: 600 }}>{formatPattern(c.pattern)}</span>
+          </div>
+        </div>
+
+        {/* Telemetry Chips */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <Clock size={11} color="#71717a" />
+            <span style={{ color: '#71717a' }}>Latency:</span>
+            <span className="mono" style={{ color: '#f4f4f5', fontWeight: 600 }}>{caseData.latency_s}s</span>
+          </div>
+
+          <span style={{ color: '#3f3f46' }}>•</span>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <Cpu size={11} color="#71717a" />
+            <span style={{ color: '#71717a' }}>Tools:</span>
+            <span className="mono" style={{ color: '#f4f4f5', fontWeight: 600 }}>{caseData.tool_calls}</span>
+          </div>
+
+          <span style={{ color: '#3f3f46' }}>•</span>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <Database size={11} color="#10b981" />
+            <span style={{ color: '#71717a' }}>TigerGraph:</span>
+            <span className="mono" style={{ color: '#10b981', fontWeight: 600 }}>✓ Synced</span>
           </div>
         </div>
       </div>
 
-      {/* Bottom Sub-row: Trigger Reason, Entity IDs & Typology */}
+      {/* Trigger Reason Banner Strip */}
       <div
         style={{
-          background: 'var(--bg-input)',
-          border: '1px solid var(--border-subtle)',
-          borderRadius: 'var(--radius-sm)',
+          background: 'rgba(0, 0, 0, 0.35)',
+          border: '1px solid rgba(255, 255, 255, 0.05)',
+          borderRadius: '5px',
           padding: '6px 10px',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '12px',
-          flexWrap: 'wrap',
+          gap: '8px',
+          fontSize: '11px',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
-          <span
-            style={{
-              fontSize: '10px',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.04em',
-              background: 'var(--bg-tag)',
-              color: 'var(--brand-tiger-hover)',
-              padding: '2px 6px',
-              borderRadius: 'var(--radius-sm)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            TRIGGER: {trigger?.trigger_type.replace('_', ' ')}
-          </span>
-          <span style={{ fontSize: '11px', color: 'var(--text-primary)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
-            {trigger?.trigger_text || 'Automated risk scoring on authorization request.'}
-          </span>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '10.5px' }}>
-            <User size={12} color="var(--text-muted)" />
-            <span className="mono" style={{ color: 'var(--brand-tiger)', fontWeight: 600 }}>{trigger?.customer_id}</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '10.5px' }}>
-            <CreditCard size={12} color="var(--text-muted)" />
-            <span className="mono" style={{ color: 'var(--text-primary)' }}>{trigger?.card_id}</span>
-          </div>
-          <div
-            style={{
-              fontSize: '10.5px',
-              fontWeight: 600,
-              color: 'var(--text-primary)',
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border-default)',
-              padding: '1px 6px',
-              borderRadius: 'var(--radius-sm)',
-            }}
-          >
-            {formatPattern(c.pattern)}
-          </div>
-        </div>
+        <span
+          style={{
+            fontSize: '9.5px',
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '0.04em',
+            background: 'rgba(14, 165, 233, 0.15)',
+            color: '#38bdf8',
+            padding: '2px 6px',
+            borderRadius: '4px',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          TRIGGER: {trigger?.trigger_type.replace('_', ' ')}
+        </span>
+        <span style={{ color: '#d4d4d8', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+          {trigger?.trigger_text || 'Automated risk scoring on authorization request.'}
+        </span>
       </div>
     </div>
   );

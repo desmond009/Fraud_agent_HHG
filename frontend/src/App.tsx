@@ -230,11 +230,14 @@ export const App: React.FC = () => {
           )}
 
           {currentTab === 'policies' && (
-            <PoliciesView policies={policies} />
+            <PoliciesView
+              policies={policies}
+              onInvestigateCase={handleSelectCase}
+            />
           )}
 
           {currentTab === 'audit' && (
-            <AuditLogView />
+            <AuditLogView onInvestigateCase={handleSelectCase} />
           )}
         </main>
       </div>

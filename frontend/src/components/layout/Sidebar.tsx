@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
   SearchCode,
@@ -158,6 +159,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               onClick={() => onSelectTab(item.id)}
               title={collapsed ? item.label : undefined}
               style={{
+                position: 'relative',
                 width: '100%',
                 display: 'flex',
                 alignItems: 'center',
@@ -165,34 +167,46 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 padding: collapsed ? '9px 0' : '8px 10px',
                 justifyContent: collapsed ? 'center' : 'flex-start',
                 borderRadius: 'var(--radius-sm)',
-                background: isActive ? 'var(--bg-card-elevated)' : 'transparent',
+                background: 'transparent',
                 color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                border: '1px solid',
-                borderColor: isActive ? 'var(--border-default)' : 'transparent',
+                border: 'none',
                 cursor: 'pointer',
                 textAlign: 'left',
-                transition: 'all 0.15s ease',
+                transition: 'color 0.15s ease',
               }}
               onMouseEnter={(e) => {
                 if (!isActive) {
-                  e.currentTarget.style.background = 'var(--bg-card)';
                   e.currentTarget.style.color = 'var(--text-primary)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isActive) {
-                  e.currentTarget.style.background = 'transparent';
                   e.currentTarget.style.color = 'var(--text-secondary)';
                 }
               }}
             >
+              {isActive && (
+                <motion.div
+                  layoutId="sidebarActivePill"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: 'var(--radius-sm)',
+                    background: 'rgba(255, 255, 255, 0.08)',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+                    zIndex: 0,
+                  }}
+                  transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                />
+              )}
               <Icon
                 size={16}
                 color={isActive ? 'var(--brand-tiger)' : 'var(--text-secondary)'}
-                style={{ flexShrink: 0 }}
+                style={{ flexShrink: 0, position: 'relative', zIndex: 1 }}
               />
               {!collapsed && (
-                <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', zIndex: 1 }}>
                   <span style={{ fontSize: '12.5px', fontWeight: isActive ? 600 : 500 }}>
                     {item.label}
                   </span>

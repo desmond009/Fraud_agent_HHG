@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search,
   Shield,
   Activity,
-  Layers,
   Sparkles,
 } from 'lucide-react';
 import { CaseSummary } from '../../types';
+import { snappyTransition } from '../../utils/motion';
 
 interface TopBarProps {
   currentTab: string;
@@ -33,6 +34,8 @@ export const TopBar: React.FC<TopBarProps> = ({
   onRunActiveCase,
   isRunning = false,
 }) => {
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+
   return (
     <header className="topbar">
       {/* Left: View title & Demo Case Quick Switcher */}
@@ -84,33 +87,62 @@ export const TopBar: React.FC<TopBarProps> = ({
         </div>
       </div>
 
-      {/* Center: Universal Search */}
-      <div style={{ position: 'relative', width: '280px' }}>
+      {/* Center: Universal Search with Fluid Expand/Contract Animation */}
+      <motion.div
+        animate={{ width: isSearchFocused ? 360 : 260 }}
+        transition={snappyTransition}
+        style={{ position: 'relative' }}
+      >
         <Search
           size={14}
-          color="var(--text-muted)"
-          style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }}
+          color={isSearchFocused ? 'var(--brand-tiger)' : 'var(--text-muted)'}
+          style={{
+            position: 'absolute',
+            left: '10px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            transition: 'color 0.2s ease',
+          }}
         />
         <input
           type="text"
-          placeholder="Filter cases, cards, txns..."
+          placeholder="Search cases, cards, txns..."
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
+          onFocus={() => setIsSearchFocused(true)}
+          onBlur={() => setIsSearchFocused(false)}
           style={{
             width: '100%',
-            background: 'var(--bg-input)',
-            border: '1px solid var(--border-default)',
+            background: isSearchFocused ? 'rgba(15, 23, 42, 0.9)' : 'var(--bg-input)',
+            border: isSearchFocused ? '1px solid rgba(14, 165, 233, 0.6)' : '1px solid var(--border-default)',
+            boxShadow: isSearchFocused ? '0 0 12px rgba(14, 165, 233, 0.2)' : 'none',
             borderRadius: 'var(--radius-sm)',
-            padding: '5px 10px 5px 30px',
+            padding: '5px 32px 5px 30px',
             color: 'var(--text-primary)',
             fontSize: '12px',
             outline: 'none',
-            transition: 'border-color 0.15s ease',
+            transition: 'all 0.2s ease',
           }}
-          onFocus={(e) => (e.target.style.borderColor = 'var(--brand-tiger)')}
-          onBlur={(e) => (e.target.style.borderColor = 'var(--border-default)')}
         />
-      </div>
+        <kbd
+          style={{
+            position: 'absolute',
+            right: '8px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            fontSize: '10px',
+            fontFamily: 'var(--font-mono)',
+            padding: '1px 5px',
+            borderRadius: '4px',
+            background: 'rgba(255, 255, 255, 0.06)',
+            color: isSearchFocused ? 'var(--brand-tiger)' : 'var(--text-muted)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            pointerEvents: 'none',
+          }}
+        >
+          ⌘K
+        </kbd>
+      </motion.div>
 
       {/* Right Controls: Role Clearance, Re-run agent, Status */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -127,7 +159,7 @@ export const TopBar: React.FC<TopBarProps> = ({
           </button>
         )}
 
-        {/* Clearance Role Switcher */}
+        {/* Clearance Role Switcher with Animated Sliding Pill */}
         <div
           style={{
             display: 'flex',
@@ -136,46 +168,79 @@ export const TopBar: React.FC<TopBarProps> = ({
             border: '1px solid var(--border-default)',
             borderRadius: 'var(--radius-sm)',
             padding: '2px',
+            position: 'relative',
           }}
         >
-          <div style={{ padding: '2px 6px', fontSize: '10px', fontWeight: 600, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '3px' }}>
+          <div style={{ padding: '2px 6px', fontSize: '10px', fontWeight: 600, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '3px', zIndex: 1 }}>
             <Shield size={11} /> ROLE:
           </div>
+
           <button
             onClick={() => onToggleAnalystRole('L1')}
             style={{
+              position: 'relative',
               padding: '2px 8px',
               fontSize: '11px',
               fontWeight: 600,
               borderRadius: 'var(--radius-sm)',
               border: 'none',
               cursor: 'pointer',
-              background: analystRole === 'L1' ? 'var(--route-l1)' : 'transparent',
+              background: 'transparent',
               color: analystRole === 'L1' ? '#000' : 'var(--text-secondary)',
-              transition: 'all 0.1s ease',
+              zIndex: 1,
+              transition: 'color 0.15s ease',
             }}
           >
+            {analystRole === 'L1' && (
+              <motion.div
+                layoutId="roleActivePill"
+                transition={snappyTransition}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: 'var(--radius-sm)',
+                  background: 'var(--route-l1)',
+                  zIndex: -1,
+                }}
+              />
+            )}
             L1 Lead
           </button>
+
           <button
             onClick={() => onToggleAnalystRole('L2')}
             style={{
+              position: 'relative',
               padding: '2px 8px',
               fontSize: '11px',
               fontWeight: 600,
               borderRadius: 'var(--radius-sm)',
               border: 'none',
               cursor: 'pointer',
-              background: analystRole === 'L2' ? 'var(--route-l2)' : 'transparent',
+              background: 'transparent',
               color: analystRole === 'L2' ? '#fff' : 'var(--text-secondary)',
-              transition: 'all 0.1s ease',
+              zIndex: 1,
+              transition: 'color 0.15s ease',
             }}
           >
+            {analystRole === 'L2' && (
+              <motion.div
+                layoutId="roleActivePill"
+                transition={snappyTransition}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: 'var(--radius-sm)',
+                  background: 'var(--route-l2)',
+                  zIndex: -1,
+                }}
+              />
+            )}
             L2 Manager
           </button>
         </div>
 
-        {/* TigerGraph Engine Status Badge */}
+        {/* TigerGraph Engine Status Badge with Micro-pulse indicator */}
         <div
           style={{
             display: 'flex',
@@ -192,9 +257,24 @@ export const TopBar: React.FC<TopBarProps> = ({
         >
           <Activity size={12} color="var(--brand-tiger)" />
           <span>TG MCP</span>
-          <span style={{ color: 'var(--risk-low)', fontSize: '9px' }}>● 12ms</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <motion.span
+              animate={{ scale: [1, 1.35, 1], opacity: [1, 0.6, 1] }}
+              transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
+              style={{
+                display: 'inline-block',
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                background: '#10b981',
+                boxShadow: '0 0 6px #10b981',
+              }}
+            />
+            <span style={{ color: 'var(--risk-low)', fontSize: '9px', fontFamily: 'var(--font-mono)' }}>12ms</span>
+          </div>
         </div>
       </div>
     </header>
   );
 };
+

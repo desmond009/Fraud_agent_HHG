@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   ZoomIn,
   ZoomOut,
@@ -16,6 +17,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { SubgraphData, GraphNode, GraphEdge } from '../../types';
+import { snappyTransition, fadeSlideInRight } from '../../utils/motion';
 
 interface GraphExplorerProps {
   subgraph: SubgraphData | null;
@@ -188,20 +190,54 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
       {/* Controls Overlay */}
       <div className="graph-controls">
         <button
-          className="btn btn-secondary btn-sm"
+          style={{
+            background: 'rgba(18, 18, 22, 0.85)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            color: '#f4f4f5',
+            borderRadius: '6px',
+            padding: '6px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
           onClick={() => setTransform((prev) => ({ ...prev, scale: Math.min(2.5, prev.scale * 1.2) }))}
           title="Zoom In"
         >
           <ZoomIn size={13} />
         </button>
         <button
-          className="btn btn-secondary btn-sm"
+          style={{
+            background: 'rgba(18, 18, 22, 0.85)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            color: '#f4f4f5',
+            borderRadius: '6px',
+            padding: '6px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
           onClick={() => setTransform((prev) => ({ ...prev, scale: Math.max(0.4, prev.scale * 0.8) }))}
           title="Zoom Out"
         >
           <ZoomOut size={13} />
         </button>
-        <button className="btn btn-secondary btn-sm" onClick={resetView} title="Fit to View">
+        <button
+          style={{
+            background: 'rgba(18, 18, 22, 0.85)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            color: '#f4f4f5',
+            borderRadius: '6px',
+            padding: '6px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onClick={resetView}
+          title="Fit to View"
+        >
           <Maximize2 size={13} />
         </button>
       </div>
@@ -215,27 +251,35 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
-          background: 'rgba(13, 21, 36, 0.85)',
-          backdropFilter: 'blur(8px)',
-          border: '1px solid var(--border-default)',
-          borderRadius: 'var(--radius-sm)',
-          padding: '4px 10px',
+          background: 'rgba(18, 18, 22, 0.85)',
+          backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          borderRadius: '6px',
+          padding: '5px 12px',
           fontSize: '11px',
           fontWeight: 600,
-          color: 'var(--text-secondary)',
+          color: '#a1a1aa',
           zIndex: 4,
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
         }}
       >
         <div className="live-dot" />
-        <span>TIGERGRAPH SUBGRAPH</span>
-        <span style={{ color: 'var(--text-muted)' }}>•</span>
-        <span className="mono" style={{ color: 'var(--text-primary)' }}>
+        <span style={{ color: '#f4f4f5', letterSpacing: '0.04em' }}>TIGERGRAPH SUBGRAPH</span>
+        <span style={{ color: '#71717a' }}>•</span>
+        <span className="mono" style={{ color: '#38bdf8', fontWeight: 700 }}>
           {nodes.length} Vertices / {edges.length} Edges
         </span>
       </div>
 
-      {/* SVG Canvas */}
-      <svg width="100%" height="100%" style={{ overflow: 'visible' }}>
+      {/* SVG Canvas with Fluid Entrance */}
+      <motion.div
+        key={nodes.map((n) => n.id).join('-') || 'empty'}
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={snappyTransition}
+        style={{ width: '100%', height: '100%' }}
+      >
+        <svg width="100%" height="100%" style={{ overflow: 'visible' }}>
         <defs>
           <marker
             id="arrow"
@@ -384,6 +428,7 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
           })}
         </g>
       </svg>
+    </motion.div>
 
       {/* Graph Legend */}
       <div className="graph-legend">
@@ -413,27 +458,32 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
         </div>
       </div>
 
-      {/* Selected Entity Inspector Side Drawer */}
-      {selectedNode && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: '290px',
-            background: 'rgba(11, 17, 28, 0.95)',
-            backdropFilter: 'blur(12px)',
-            borderLeft: '1px solid var(--border-default)',
-            boxShadow: 'var(--shadow-drawer)',
-            zIndex: 10,
-            display: 'flex',
-            flexDirection: 'column',
-            padding: '16px',
-            overflowY: 'auto',
-          }}
-          onClick={(e) => e.stopPropagation()}
-        >
+      {/* Selected Entity Inspector Side Drawer with Fluid Slide-in Entrance */}
+      <AnimatePresence>
+        {selectedNode && (
+          <motion.div
+            variants={fadeSlideInRight}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            style={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              bottom: 0,
+              width: '290px',
+              background: 'rgba(11, 17, 28, 0.95)',
+              backdropFilter: 'blur(12px)',
+              borderLeft: '1px solid var(--border-default)',
+              boxShadow: 'var(--shadow-drawer)',
+              zIndex: 10,
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '16px',
+              overflowY: 'auto',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <Info size={14} color="var(--brand-tiger)" />
@@ -559,8 +609,9 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </AnimatePresence>
+  </div>
   );
 };

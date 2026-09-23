@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Search, ChevronRight, ShieldAlert, ChevronLeft } from 'lucide-react';
 import { CaseSummary } from '../../types';
 
@@ -217,24 +218,41 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
             const badgeColor = isHigh ? 'var(--risk-high)' : isMed ? 'var(--risk-medium)' : 'var(--risk-low)';
 
             return (
-              <div
+              <motion.div
                 key={c.case_id}
+                layout
                 onClick={() => onSelectCase(c.case_id)}
                 style={{
+                  position: 'relative',
                   padding: '9px 10px',
                   borderRadius: 'var(--radius-sm)',
                   cursor: 'pointer',
-                  background: isSelected ? 'var(--bg-card-hover)' : 'var(--bg-card)',
-                  border: isSelected ? '1px solid var(--border-highlight)' : '1px solid var(--border-subtle)',
-                  boxShadow: isSelected ? '0 0 10px rgba(14, 165, 233, 0.15)' : 'none',
+                  background: 'transparent',
+                  border: '1px solid transparent',
                   transition: 'all 0.15s ease',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '4px',
                 }}
               >
+                {isSelected && (
+                  <motion.div
+                    layoutId="activeQueueItem"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      borderRadius: 'var(--radius-sm)',
+                      background: 'rgba(255, 255, 255, 0.07)',
+                      border: '1px solid rgba(56, 189, 248, 0.4)',
+                      boxShadow: '0 0 12px rgba(14, 165, 233, 0.15)',
+                      zIndex: 0,
+                    }}
+                    transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                  />
+                )}
+
                 {/* Top Line: ID & Risk Pill */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', zIndex: 1 }}>
                   <span className="mono" style={{ fontSize: '12px', fontWeight: 800, color: 'var(--text-primary)' }}>
                     {c.case_id}
                   </span>
@@ -243,13 +261,28 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
                     style={{
                       fontSize: '9.5px',
                       fontWeight: 700,
-                      padding: '1px 5px',
+                      padding: '1px 6px',
                       borderRadius: 'var(--radius-pill)',
                       background: badgeBg,
                       border: `1px solid ${badgeBorder}`,
                       color: badgeColor,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '4px',
                     }}
                   >
+                    {isHigh && (
+                      <span
+                        style={{
+                          width: '5px',
+                          height: '5px',
+                          borderRadius: '50%',
+                          background: '#f43f5e',
+                          boxShadow: '0 0 6px #f43f5e',
+                          animation: 'pulse-ring 2s infinite',
+                        }}
+                      />
+                    )}
                     Risk {risk}
                   </span>
                 </div>
@@ -286,7 +319,7 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
                     {c.status}
                   </span>
                 </div>
-              </div>
+              </motion.div>
             );
           })
         )}
