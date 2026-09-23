@@ -1,0 +1,80 @@
+{
+  "case_id": "HHG-009",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.83,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3581141"
+    ],
+    "first_suspicious_txn_id": "3581141",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 30.02,
+    "evidence": [
+      {
+        "claim": "Cardholder explicitly disputed the transaction: 'Customer C08299 message: 'I never made this $30.02 purchase. Please check my card.' Refers to 3581141.'",
+        "source": "customer",
+        "ref": "trigger:customer_report",
+        "entity_ids": [
+          "3581141"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-4162",
+      "CC-4071"
+    ],
+    "summary": "Investigation confirmed card not present fraud fraud with $30.02 total exposure. Triggered by Customer C08299 message: 'I never made this $30.02 purchase. Please check my card.' Refers to 3581141.. Key evidence: Cardholder explicitly disputed the transaction: 'Customer C08299 message: 'I never made this $30.02 purchase. Please check my card.' Refers to 3581141.' Card blocked and protective actions applied under policy.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-009"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 3,
+      "assumed_response": "Customer states they did not make these purchases and remained in possession of the card"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: assess weak/pending signal before block"
+      },
+      {
+        "action": "STEP_UP_AUTH",
+        "route": "auto",
+        "reason": "R1: require step-up authentication pending verification"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer confirmed unauthorized use (exposure $30.02)"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: create internal case record in graph"
+      }
+    ],
+    "what_changed": "Customer denial confirmed unauthorized usage, raising fraud probability to 0.83."
+  },
+  "sar": {
+    "file": false,
+    "reason": "",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Customer response settled the investigation; policy actions determined.",
+  "tool_calls": 6,
+  "tokens": 0,
+  "latency_s": 0.7
+}

@@ -1,0 +1,106 @@
+{
+  "case_id": "HHG-005",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.88,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3523199"
+    ],
+    "first_suspicious_txn_id": "3523199",
+    "connected_card_ids": [
+      "C10948-K1",
+      "C00750-K2",
+      "C07987-K2"
+    ],
+    "connected_device_profiles": [
+      "5b64ce5e4c42"
+    ],
+    "exposure_usd": 100.07,
+    "evidence": [
+      {
+        "claim": "Device/region cluster shared across 111 cards, connected to 592 prior confirmed fraud cases",
+        "source": "graph",
+        "ref": "query:device_region_neighborhood(txn_id=3523199)",
+        "entity_ids": [
+          "C10948-K1",
+          "C00750-K2",
+          "C07987-K2"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-4785",
+      "CC-4207"
+    ],
+    "summary": "Investigation confirmed card not present new device fraud with $100.07 total exposure. Triggered by Real-time model scored transaction 3523199 ($100.07, online) at 0.54. Review and decide.. Key evidence: Device/region cluster shared across 111 cards, connected to 592 prior confirmed fraud cases Card blocked and protective actions applied under policy.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-005"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 3,
+      "assumed_response": "Customer states they did not make these purchases and remained in possession of the card"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: assess weak/pending signal before block"
+      },
+      {
+        "action": "STEP_UP_AUTH",
+        "route": "auto",
+        "reason": "R1: require step-up authentication pending verification"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer confirmed unauthorized use (exposure $100.07)"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: create internal case record in graph"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2/R6: confirmed unauthorized use with exposure > $1,000 or linked cross-card entities"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: monitor connected cards sharing device/region"
+      }
+    ],
+    "what_changed": "Customer denial confirmed unauthorized usage, raising fraud probability to 0.88."
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2/R6: confirmed unauthorized use with exposure > $1,000 or linked cross-card entities",
+    "narrative": "Between 2016-12-08 and 2016-12-08, customer C02923 card(s) C02923-K1, C10948-K1, C00750-K2 experienced unauthorized transactions totaling $100.07 conducted via the online channel. The activity matches the card_not_present_new_device fraud typology, displaying abnormal volume and velocity inconsistent with historical cardholder profile. Device/region cluster shared across 111 cards, connected to 592 prior confirmed fraud cases. Customer verification confirmed unauthorized use. The compromised card has been blocked and scheduled for reissue, and linked entities have been placed under protective monitoring.",
+    "subjects": [
+      "C02923",
+      "C02923-K1",
+      "C10948-K1",
+      "C00750-K2"
+    ],
+    "total_amount_usd": 100.07,
+    "activity_dates": [
+      "2016-12-08",
+      "2016-12-08"
+    ]
+  },
+  "stop_reason": "Customer response settled the investigation; policy actions determined.",
+  "tool_calls": 6,
+  "tokens": 450,
+  "latency_s": 1.61
+}

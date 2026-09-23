@@ -1,0 +1,114 @@
+{
+  "case_id": "HHG-016",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.83,
+    "pattern": "out_of_region_use",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3534820"
+    ],
+    "first_suspicious_txn_id": "3534820",
+    "connected_card_ids": [
+      "C09616-K1",
+      "C08374-K1",
+      "C07371-K1"
+    ],
+    "connected_device_profiles": [
+      "c7dd64850bf1"
+    ],
+    "exposure_usd": 59.67,
+    "evidence": [
+      {
+        "claim": "Device/region cluster shared across 157 cards, connected to 1051 prior confirmed fraud cases",
+        "source": "graph",
+        "ref": "query:device_region_neighborhood(txn_id=3534820)",
+        "entity_ids": [
+          "C09616-K1",
+          "C08374-K1",
+          "C07371-K1"
+        ]
+      },
+      {
+        "claim": "Cardholder explicitly disputed the transaction: 'Customer C09988 message: 'I never made this $59.67 purchase. Please check my card.' Refers to 3534820.'",
+        "source": "customer",
+        "ref": "trigger:customer_report",
+        "entity_ids": [
+          "3534820"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-4254",
+      "CC-4115"
+    ],
+    "summary": "Investigation confirmed out of region use fraud with $59.67 total exposure. Triggered by Customer C09988 message: 'I never made this $59.67 purchase. Please check my card.' Refers to 3534820.. Key evidence: Device/region cluster shared across 157 cards, connected to 1051 prior confirmed fraud cases Card blocked and protective actions applied under policy.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-016"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 3,
+      "assumed_response": "Customer states they did not make these purchases and remained in possession of the card"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: assess weak/pending signal before block"
+      },
+      {
+        "action": "STEP_UP_AUTH",
+        "route": "auto",
+        "reason": "R1: require step-up authentication pending verification"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer confirmed unauthorized use (exposure $59.67)"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: create internal case record in graph"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2/R6: confirmed unauthorized use with exposure > $1,000 or linked cross-card entities"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: monitor connected cards sharing device/region"
+      }
+    ],
+    "what_changed": "Customer denial confirmed unauthorized usage, raising fraud probability to 0.83."
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2/R6: confirmed unauthorized use with exposure > $1,000 or linked cross-card entities",
+    "narrative": "Between 2016-12-12 and 2016-12-12, customer C09988 card(s) C09988-K1, C09616-K1, C08374-K1 experienced unauthorized transactions totaling $59.67 conducted via the in_person channel. The activity matches the out_of_region_use fraud typology, displaying abnormal volume and velocity inconsistent with historical cardholder profile. Device/region cluster shared across 157 cards, connected to 1051 prior confirmed fraud cases; Cardholder explicitly disputed the transaction: 'Customer C09988 message: 'I never made this $59.67 purchase. Please check my card.' Refers to 3534820.'. Customer verification confirmed unauthorized use. The compromised card has been blocked and scheduled for reissue, and linked entities have been placed under protective monitoring.",
+    "subjects": [
+      "C09988",
+      "C09988-K1",
+      "C09616-K1",
+      "C08374-K1"
+    ],
+    "total_amount_usd": 59.67,
+    "activity_dates": [
+      "2016-12-12",
+      "2016-12-12"
+    ]
+  },
+  "stop_reason": "Customer response settled the investigation; policy actions determined.",
+  "tool_calls": 6,
+  "tokens": 450,
+  "latency_s": 1.28
+}

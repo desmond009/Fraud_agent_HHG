@@ -1,5 +1,5 @@
 {
-  "phase": "phase_3",
+  "phase": "phase_4",
   "tasks": {
     "eda": {
       "status": "completed",
@@ -143,7 +143,7 @@
         "case_memory_writeback"
       ],
       "tool_calls": 6,
-      "latency_s": 46.8,
+      "latency_s": 2.94,
       "written_to_graph": true,
       "overall": "PASS"
     },
@@ -159,10 +159,218 @@
         "case_memory_writeback"
       ],
       "tool_calls": 6,
-      "latency_s": 46.8,
+      "latency_s": 2.94,
       "written_to_graph": true,
+      "overall": "PASS"
+    },
+    "benchmark_execution": {
+      "status": "completed",
+      "total_cases": 20,
+      "fraud_cases": 15,
+      "legitimate_cases": 5,
+      "sar_filed_count": 11,
+      "total_tool_calls": 120,
+      "total_time_s": 23.16,
+      "cases_directory": "C:\\Users\\HARSHIT TRIPATHI\\OneDrive\\Desktop\\FraudAgent\\cases",
+      "cases": [
+        {
+          "case_id": "HHG-001",
+          "verdict": "legitimate",
+          "pattern": "none",
+          "exposure_usd": 0.0,
+          "sar_filed": false,
+          "tool_calls": 6,
+          "latency_s": 1.61
+        },
+        {
+          "case_id": "HHG-002",
+          "verdict": "legitimate",
+          "pattern": "none",
+          "exposure_usd": 0.0,
+          "sar_filed": false,
+          "tool_calls": 6,
+          "latency_s": 0.82
+        },
+        {
+          "case_id": "HHG-003",
+          "verdict": "fraud",
+          "pattern": "card_not_present_fraud",
+          "exposure_usd": 869.84,
+          "sar_filed": false,
+          "tool_calls": 6,
+          "latency_s": 0.77
+        },
+        {
+          "case_id": "HHG-004",
+          "verdict": "fraud",
+          "pattern": "card_not_present_fraud",
+          "exposure_usd": 273.48,
+          "sar_filed": false,
+          "tool_calls": 6,
+          "latency_s": 0.82
+        },
+        {
+          "case_id": "HHG-005",
+          "verdict": "fraud",
+          "pattern": "card_not_present_new_device",
+          "exposure_usd": 100.07,
+          "sar_filed": true,
+          "tool_calls": 6,
+          "latency_s": 1.61
+        },
+        {
+          "case_id": "HHG-006",
+          "verdict": "fraud",
+          "pattern": "out_of_region_use",
+          "exposure_usd": 2020.0,
+          "sar_filed": true,
+          "tool_calls": 6,
+          "latency_s": 1.28
+        },
+        {
+          "case_id": "HHG-007",
+          "verdict": "legitimate",
+          "pattern": "none",
+          "exposure_usd": 0.0,
+          "sar_filed": false,
+          "tool_calls": 6,
+          "latency_s": 0.63
+        },
+        {
+          "case_id": "HHG-008",
+          "verdict": "fraud",
+          "pattern": "card_not_present_fraud",
+          "exposure_usd": 333.91,
+          "sar_filed": false,
+          "tool_calls": 6,
+          "latency_s": 0.8
+        },
+        {
+          "case_id": "HHG-009",
+          "verdict": "fraud",
+          "pattern": "card_not_present_fraud",
+          "exposure_usd": 30.02,
+          "sar_filed": false,
+          "tool_calls": 6,
+          "latency_s": 0.71
+        },
+        {
+          "case_id": "HHG-010",
+          "verdict": "fraud",
+          "pattern": "card_not_present_new_device",
+          "exposure_usd": 1000.03,
+          "sar_filed": true,
+          "tool_calls": 6,
+          "latency_s": 1.61
+        },
+        {
+          "case_id": "HHG-011",
+          "verdict": "fraud",
+          "pattern": "card_testing",
+          "exposure_usd": 2312.75,
+          "sar_filed": true,
+          "tool_calls": 6,
+          "latency_s": 1.29
+        },
+        {
+          "case_id": "HHG-012",
+          "verdict": "legitimate",
+          "pattern": "none",
+          "exposure_usd": 0.0,
+          "sar_filed": false,
+          "tool_calls": 6,
+          "latency_s": 0.84
+        },
+        {
+          "case_id": "HHG-013",
+          "verdict": "fraud",
+          "pattern": "card_not_present_new_device",
+          "exposure_usd": 1693.86,
+          "sar_filed": true,
+          "tool_calls": 6,
+          "latency_s": 1.57
+        },
+        {
+          "case_id": "HHG-014",
+          "verdict": "fraud",
+          "pattern": "out_of_region_use",
+          "exposure_usd": 142.0,
+          "sar_filed": true,
+          "tool_calls": 6,
+          "latency_s": 1.38
+        },
+        {
+          "case_id": "HHG-015",
+          "verdict": "fraud",
+          "pattern": "card_not_present_new_device",
+          "exposure_usd": 599.94,
+          "sar_filed": true,
+          "tool_calls": 6,
+          "latency_s": 1.22
+        },
+        {
+          "case_id": "HHG-016",
+          "verdict": "fraud",
+          "pattern": "out_of_region_use",
+          "exposure_usd": 59.67,
+          "sar_filed": true,
+          "tool_calls": 6,
+          "latency_s": 1.28
+        },
+        {
+          "case_id": "HHG-017",
+          "verdict": "fraud",
+          "pattern": "card_not_present_new_device",
+          "exposure_usd": 300.14,
+          "sar_filed": true,
+          "tool_calls": 6,
+          "latency_s": 1.46
+        },
+        {
+          "case_id": "HHG-018",
+          "verdict": "legitimate",
+          "pattern": "none",
+          "exposure_usd": 0.0,
+          "sar_filed": false,
+          "tool_calls": 6,
+          "latency_s": 0.73
+        },
+        {
+          "case_id": "HHG-019",
+          "verdict": "fraud",
+          "pattern": "card_not_present_new_device",
+          "exposure_usd": 243.83,
+          "sar_filed": true,
+          "tool_calls": 6,
+          "latency_s": 1.67
+        },
+        {
+          "case_id": "HHG-020",
+          "verdict": "fraud",
+          "pattern": "card_not_present_new_device",
+          "exposure_usd": 450.9,
+          "sar_filed": true,
+          "tool_calls": 6,
+          "latency_s": 1.07
+        }
+      ]
+    },
+    "submission_packaging": {
+      "status": "completed",
+      "files_validated": 20,
+      "total_expected": 20,
+      "schema_compliance": "100%",
+      "tigergraph_writeback_verified": true,
+      "overall": "PASS"
+    },
+    "testing_phase4": {
+      "status": "completed",
+      "files_validated": 20,
+      "total_expected": 20,
+      "schema_compliance": "100%",
+      "tigergraph_writeback_verified": true,
       "overall": "PASS"
     }
   },
-  "last_updated": "2026-09-23T22:07:41.619891"
+  "last_updated": "2026-09-23T22:25:26.757145"
 }

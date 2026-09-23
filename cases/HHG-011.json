@@ -1,0 +1,172 @@
+{
+  "case_id": "HHG-011",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.92,
+    "pattern": "card_testing",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3583199",
+      "3582413",
+      "3584516",
+      "3583417",
+      "3584155",
+      "3582602",
+      "3582327",
+      "3582738",
+      "3584401",
+      "3584693",
+      "3583644",
+      "3583368",
+      "3584985",
+      "3583101",
+      "3582624",
+      "3583348",
+      "3584859",
+      "3582142",
+      "3583435",
+      "3582175",
+      "3582338",
+      "3583670",
+      "3583406",
+      "3584706",
+      "3582178",
+      "3585055",
+      "3582375",
+      "3583140",
+      "3584003",
+      "3583411",
+      "3582671",
+      "3582107",
+      "3583914",
+      "3583229",
+      "3583494",
+      "3583415",
+      "3585345",
+      "3583968",
+      "3584962",
+      "3582082",
+      "3583866",
+      "3584153",
+      "3581345",
+      "3581048",
+      "3582897",
+      "3584460",
+      "3585064",
+      "3582868"
+    ],
+    "first_suspicious_txn_id": "3583199",
+    "connected_card_ids": [
+      "C05595-K1",
+      "C05678-K1",
+      "C03938-K1"
+    ],
+    "connected_device_profiles": [
+      "a6e029ef1f64"
+    ],
+    "exposure_usd": 2312.75,
+    "evidence": [
+      {
+        "claim": "5 micro authorizations under $5 followed by larger purchase in window",
+        "source": "graph",
+        "ref": "query:txn_window(card_id=C11923-K2)",
+        "entity_ids": [
+          "3583199",
+          "3582413",
+          "3584516",
+          "3583417"
+        ]
+      },
+      {
+        "claim": "Device/region cluster shared across 3 cards, connected to 8 prior confirmed fraud cases",
+        "source": "graph",
+        "ref": "query:device_region_neighborhood(txn_id=3583368)",
+        "entity_ids": [
+          "C05595-K1",
+          "C05678-K1",
+          "C03938-K1"
+        ]
+      },
+      {
+        "claim": "Cardholder explicitly disputed the transaction: 'Customer C11923 message: 'I never made this $131.30 purchase. Please check my card.' Refers to 3583368.'",
+        "source": "customer",
+        "ref": "trigger:customer_report",
+        "entity_ids": [
+          "3583368"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CASE-HHG-011",
+      "CC-0370"
+    ],
+    "summary": "Investigation confirmed card testing fraud with $2312.75 total exposure. Triggered by Customer C11923 message: 'I never made this $131.30 purchase. Please check my card.' Refers to 3583368.. Key evidence: 5 micro authorizations under $5 followed by larger purchase in window Card blocked and protective actions applied under policy.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-011"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 3,
+      "assumed_response": "Customer states they did not make these purchases and remained in possession of the card"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R5: card testing velocity pattern detected"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: assess weak/pending signal before block"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer confirmed unauthorized use (exposure $2312.75)"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: create internal case record in graph"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2/R6: confirmed unauthorized use with exposure > $1,000 or linked cross-card entities"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: monitor connected cards sharing device/region"
+      }
+    ],
+    "what_changed": "Customer denial confirmed unauthorized usage, raising fraud probability to 0.92."
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2/R6: confirmed unauthorized use with exposure > $1,000 or linked cross-card entities",
+    "narrative": "Between 2016-12-29 and 2016-12-29, customer C11923 card(s) C11923-K2, C05595-K1, C05678-K1 experienced unauthorized transactions totaling $2312.75 conducted via the in_person channel. The activity matches the card_testing fraud typology, displaying abnormal volume and velocity inconsistent with historical cardholder profile. 5 micro authorizations under $5 followed by larger purchase in window; Device/region cluster shared across 3 cards, connected to 8 prior confirmed fraud cases; Cardholder explicitly disputed the transaction: 'Customer C11923 message: 'I never made this $131.30 purchase. Please check my card.' Refers to 3583368.'. Customer verification confirmed unauthorized use. The compromised card has been blocked and scheduled for reissue, and linked entities have been placed under protective monitoring.",
+    "subjects": [
+      "C11923",
+      "C11923-K2",
+      "C05595-K1",
+      "C05678-K1"
+    ],
+    "total_amount_usd": 2312.75,
+    "activity_dates": [
+      "2016-12-29",
+      "2016-12-29"
+    ]
+  },
+  "stop_reason": "Customer response settled the investigation; policy actions determined.",
+  "tool_calls": 6,
+  "tokens": 450,
+  "latency_s": 1.29
+}
