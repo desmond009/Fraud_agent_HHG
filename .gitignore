@@ -11,8 +11,10 @@ env/
 venv/
 .venv/
 
-# Environment / Secrets (if you want to keep .env private)
-# .env
+# Environment / Secrets
+.env
+.env*.local
+!.env.example
 
 # OS artifacts
 .DS_Store
