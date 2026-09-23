@@ -1,0 +1,19 @@
+# Large data files
+data/transactions.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Environment / Secrets (if you want to keep .env private)
+# .env
+
+# OS artifacts
+.DS_Store
+Thumbs.db
