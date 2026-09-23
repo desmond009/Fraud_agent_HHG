@@ -1,0 +1,42 @@
+[
+  {
+    "id": "evt-001",
+    "timestamp": "2026-11-22T02:30:00Z",
+    "case_id": "HHG-006",
+    "actor": "System Trigger",
+    "actor_type": "system",
+    "action": "CASE_TRIGGERED",
+    "details": "Customer dispute received: 'I never made this $482.12 purchase.'",
+    "route": "auto"
+  },
+  {
+    "id": "evt-002",
+    "timestamp": "2026-12-08T03:38:37Z",
+    "case_id": "HHG-005",
+    "actor": "AI Investigator",
+    "actor_type": "agent",
+    "action": "GRAPH_QUERY",
+    "details": "Neighborhood analysis identified device 5b64ce5e4c42 shared across 111 cards with 592 prior fraud cases.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-003",
+    "timestamp": "2026-12-08T03:38:40Z",
+    "case_id": "HHG-005",
+    "actor": "AI Investigator",
+    "actor_type": "agent",
+    "action": "ACTION_RECOMMENDED",
+    "details": "Recommended BLOCK_CARD (L1) and FILE_REPORT (L2) under Rules R2 & R6.",
+    "route": "L2"
+  },
+  {
+    "id": "evt-1790187096070",
+    "timestamp": "2026-09-23T23:41:36.070511",
+    "case_id": "HHG-005",
+    "actor": "Sarah Lin",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route L1. Notes: Confirmed ring abuse across 111 cards.",
+    "route": "L1"
+  }
+]

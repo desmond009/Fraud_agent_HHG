@@ -1,0 +1,12 @@
+{
+  "HHG-005": {
+    "status": "approved",
+    "decision": "approve",
+    "action_name": "BLOCK_CARD",
+    "route": "L1",
+    "approved_by": "Sarah Lin",
+    "analyst_role": "L1 Team Lead",
+    "approved_at": "2026-09-23T23:41:36.070511",
+    "notes": "Confirmed ring abuse across 111 cards."
+  }
+}
