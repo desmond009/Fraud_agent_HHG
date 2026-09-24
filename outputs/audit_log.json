@@ -438,5 +438,15 @@
     "action": "APPROVE_APPROVE_TRANSACTION",
     "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
     "route": "auto"
+  },
+  {
+    "id": "evt-1790258153440",
+    "timestamp": "2026-09-24T19:25:53.440766",
+    "case_id": "HHG-007",
+    "actor": "LangGraph Agent",
+    "actor_type": "agent",
+    "action": "INVESTIGATION_COMPLETED",
+    "details": "Ran all 6 nodes in 0.61s. Verdict: legitimate. Pattern: none.",
+    "route": "auto"
   }
 ]
