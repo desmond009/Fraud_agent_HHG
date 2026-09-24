@@ -370,7 +370,29 @@
       "schema_compliance": "100%",
       "tigergraph_writeback_verified": true,
       "overall": "PASS"
+    },
+    "model_training_pipeline": {
+      "status": "completed",
+      "data_loader": {
+        "ground_truth_parsing": "PASS",
+        "identity_device_mapping": "PASS",
+        "dataset_shape_alignment": "PASS",
+        "preprocessing_clean_matrix": "PASS"
+      },
+      "training_execution": {
+        "training_status": "PASS",
+        "roc_auc_metric": "PASS",
+        "memory_safety": "PASS"
+      },
+      "artifacts_and_checkpointing": {
+        "checkpoint_persisted": "PASS",
+        "metrics_json_persisted": "PASS",
+        "report_json_persisted": "PASS",
+        "checkpoint_reload": "PASS",
+        "inference_score_valid": "PASS"
+      },
+      "overall": "PASS"
     }
   },
-  "last_updated": "2026-09-23T22:25:26.757145"
+  "last_updated": "2026-09-24T13:52:46.433667"
 }

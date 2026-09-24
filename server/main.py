@@ -37,6 +37,14 @@ try:
     from graphrag.vector_indexer import POLICY_CHUNKS, get_graphrag_retriever
 except Exception as e:
     print(f"Notice: vector_indexer import skipped ({e}) - using static policy chunks")
+
+# Fraud Model Predictor
+model_predictor = None
+try:
+    from training.predictor import FraudPredictor
+    model_predictor = FraudPredictor()
+except Exception as e:
+    print(f"Notice: FraudPredictor import skipped ({e})")
     # Fallback policies from Fraud Policy specification
     POLICY_CHUNKS = [
         {"id": "RULE_R1", "category": "rule", "rule_id": "R1", "title": "Verify before you block on a weak signal", "approval_route": "auto", "content": "Rule R1. Verify before you block on a weak signal. If the case rests on a single signal (including a risk score alone) and your assessed fraud probability is below 0.70, recommend VERIFY_WITH_CUSTOMER or STEP_UP_AUTH before any block."},
@@ -606,6 +614,72 @@ def list_transactions(
         "page": page,
         "limit": limit
     }
+
+
+# ============================================================================
+# Model Training & Inference Pipeline Endpoints
+# ============================================================================
+
+@app.get("/api/model/status")
+def get_model_status():
+    global model_predictor
+    if model_predictor is None or not model_predictor.is_loaded:
+        try:
+            from training.predictor import FraudPredictor
+            model_predictor = FraudPredictor()
+        except Exception:
+            pass
+
+    if model_predictor and model_predictor.is_loaded:
+        return {
+            "status": "LOADED",
+            "checkpoint_path": str(model_predictor.checkpoint_path),
+            "metadata": model_predictor.metadata,
+        }
+    return {
+        "status": "NOT_LOADED",
+        "message": "No model checkpoint loaded. Run training via POST /api/model/train or CLI.",
+    }
+
+
+@app.post("/api/model/predict")
+def predict_fraud(payload: Dict[str, Any] = Body(...)):
+    global model_predictor
+    if model_predictor is None or not model_predictor.is_loaded:
+        try:
+            from training.predictor import FraudPredictor
+            model_predictor = FraudPredictor()
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Failed to load model predictor: {e}")
+
+    if not model_predictor.is_loaded:
+        raise HTTPException(status_code=400, detail="Model checkpoint not loaded. Please train the model first.")
+
+    assessment = model_predictor.assess_transaction(payload)
+    return assessment
+
+
+@app.post("/api/model/train")
+def trigger_training(
+    max_rows: Optional[int] = Body(20000),
+    model_type: str = Body("hist_gb"),
+):
+    try:
+        from training.config import TrainingConfig
+        from training.train import FraudModelTrainer
+
+        config = TrainingConfig(model_type=model_type)
+        trainer = FraudModelTrainer(config)
+        result = trainer.train(max_rows=max_rows)
+
+        # Refresh in-memory predictor with newly trained checkpoint
+        global model_predictor
+        from training.predictor import FraudPredictor
+        model_predictor = FraudPredictor()
+
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Training pipeline execution failed: {str(e)}")
 
 
 if __name__ == "__main__":
