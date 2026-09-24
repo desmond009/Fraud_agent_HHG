@@ -16,7 +16,37 @@
     "route": "auto",
     "approved_by": "Sarah Lin (Lead)",
     "analyst_role": "L1 Team Lead",
-    "approved_at": "2026-09-24T00:50:56.522622",
+    "approved_at": "2026-09-24T12:11:21.569007",
+    "notes": "Approved under auto routing guidelines."
+  },
+  "HHG-004": {
+    "status": "approved",
+    "decision": "approve",
+    "action_name": "APPROVE_TRANSACTION",
+    "route": "L1",
+    "approved_by": "Sarah Lin (Lead)",
+    "analyst_role": "L1 Team Lead",
+    "approved_at": "2026-09-24T11:53:17.956241",
+    "notes": "Approved under L1 routing guidelines."
+  },
+  "HHG-007": {
+    "status": "approved",
+    "decision": "approve",
+    "action_name": "APPROVE_TRANSACTION",
+    "route": "auto",
+    "approved_by": "Sarah Lin (Lead)",
+    "analyst_role": "L1 Team Lead",
+    "approved_at": "2026-09-24T12:11:53.451779",
+    "notes": "Approved under auto routing guidelines."
+  },
+  "HHG-012": {
+    "status": "approved",
+    "decision": "approve",
+    "action_name": "APPROVE_TRANSACTION",
+    "route": "auto",
+    "approved_by": "Sarah Lin (Lead)",
+    "analyst_role": "L1 Team Lead",
+    "approved_at": "2026-09-24T12:12:23.386486",
     "notes": "Approved under auto routing guidelines."
   }
 }

@@ -69,5 +69,5 @@
   "stop_reason": "Customer response settled the investigation; policy actions determined.",
   "tool_calls": 6,
   "tokens": 0,
-  "latency_s": 1.6
+  "latency_s": 0.6
 }

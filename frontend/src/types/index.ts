@@ -41,6 +41,17 @@ export interface SARPayload {
   activity_dates: string[];
 }
 
+export interface CaseApproval {
+  status: ApprovalStatus;
+  decision: string | null;
+  action_name?: string | null;
+  route?: string | null;
+  approved_by: string | null;
+  analyst_role?: string | null;
+  approved_at: string | null;
+  notes?: string;
+}
+
 export interface CaseSummary {
   case_id: string;
   opened_at: string;
@@ -65,13 +76,7 @@ export interface CaseSummary {
   initial_actions: ActionItem[];
   final_actions: ActionItem[];
   what_changed: string;
-  approval: {
-    status: ApprovalStatus;
-    approved_by: string | null;
-    approved_at: string | null;
-    decision: string | null;
-    notes?: string;
-  };
+  approval: CaseApproval;
   written_to_graph: boolean;
   graph_case_id: string;
 }
@@ -115,13 +120,7 @@ export interface CaseDetail {
   tool_calls: number;
   tokens: number;
   latency_s: number;
-  approval?: {
-    status: ApprovalStatus;
-    decision: string | null;
-    approved_by: string | null;
-    approved_at: string | null;
-    notes?: string;
-  };
+  approval?: CaseApproval;
 }
 
 export interface GraphNode {

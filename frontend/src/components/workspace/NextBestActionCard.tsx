@@ -412,59 +412,80 @@ export const NextBestActionCard: React.FC<NextBestActionCardProps> = ({
 
         {/* Action Buttons Grid with Smooth Hover & Press Motion */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-          <motion.button
-            whileHover={hasClearance ? { scale: 1.02, y: -1 } : {}}
-            whileTap={hasClearance ? { scale: 0.98 } : {}}
-            onClick={() => onApproveAction('BLOCK_CARD', primaryAction.route, 'approve')}
-            disabled={!hasClearance}
-            style={{
-              padding: '9px 12px',
-              borderRadius: '6px',
-              background: 'linear-gradient(180deg, rgba(244, 63, 94, 0.22), rgba(244, 63, 94, 0.12))',
-              border: '1px solid rgba(244, 63, 94, 0.45)',
-              boxShadow: '0 0 14px rgba(244, 63, 94, 0.2)',
-              color: '#f43f5e',
-              fontSize: '11.5px',
-              fontWeight: 700,
-              cursor: hasClearance ? 'pointer' : 'not-allowed',
-              opacity: hasClearance ? 1 : 0.4,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '6px',
-              transition: 'border-color 0.15s ease',
-            }}
-          >
-            <Lock size={12} />
-            <span>Block Card</span>
-          </motion.button>
+          {(() => {
+            const isBlockActive = approval?.status === 'approved' && approval?.action_name === 'BLOCK_CARD';
+            const isApproveActive = approval?.status === 'approved' && approval?.action_name === 'APPROVE_TRANSACTION';
 
-          <motion.button
-            whileHover={hasClearance ? { scale: 1.02, y: -1 } : {}}
-            whileTap={hasClearance ? { scale: 0.98 } : {}}
-            onClick={() => onApproveAction('APPROVE_TRANSACTION', primaryAction.route, 'approve')}
-            disabled={!hasClearance}
-            style={{
-              padding: '9px 12px',
-              borderRadius: '6px',
-              background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.22), rgba(16, 185, 129, 0.12))',
-              border: '1px solid rgba(16, 185, 129, 0.45)',
-              boxShadow: '0 0 14px rgba(16, 185, 129, 0.2)',
-              color: '#10b981',
-              fontSize: '11.5px',
-              fontWeight: 700,
-              cursor: hasClearance ? 'pointer' : 'not-allowed',
-              opacity: hasClearance ? 1 : 0.4,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '6px',
-              transition: 'border-color 0.15s ease',
-            }}
-          >
-            <Check size={12} />
-            <span>Clear & Approve</span>
-          </motion.button>
+            return (
+              <>
+                <motion.button
+                  whileHover={hasClearance ? { scale: 1.02, y: -1 } : {}}
+                  whileTap={hasClearance ? { scale: 0.98 } : {}}
+                  onClick={() => onApproveAction('BLOCK_CARD', primaryAction.route, 'approve')}
+                  disabled={!hasClearance}
+                  style={{
+                    padding: '9px 12px',
+                    borderRadius: '6px',
+                    background: isBlockActive
+                      ? 'linear-gradient(180deg, rgba(244, 63, 94, 0.4), rgba(244, 63, 94, 0.22))'
+                      : 'linear-gradient(180deg, rgba(244, 63, 94, 0.22), rgba(244, 63, 94, 0.12))',
+                    border: isBlockActive
+                      ? '2px solid #f43f5e'
+                      : '1px solid rgba(244, 63, 94, 0.45)',
+                    boxShadow: isBlockActive
+                      ? '0 0 18px rgba(244, 63, 94, 0.45)'
+                      : '0 0 14px rgba(244, 63, 94, 0.2)',
+                    color: '#f43f5e',
+                    fontSize: '11.5px',
+                    fontWeight: 700,
+                    cursor: hasClearance ? 'pointer' : 'not-allowed',
+                    opacity: hasClearance ? 1 : 0.4,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '6px',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  <Lock size={12} />
+                  <span>{isBlockActive ? 'Blocked ✓' : 'Block Card'}</span>
+                </motion.button>
+
+                <motion.button
+                  whileHover={hasClearance ? { scale: 1.02, y: -1 } : {}}
+                  whileTap={hasClearance ? { scale: 0.98 } : {}}
+                  onClick={() => onApproveAction('APPROVE_TRANSACTION', primaryAction.route, 'approve')}
+                  disabled={!hasClearance}
+                  style={{
+                    padding: '9px 12px',
+                    borderRadius: '6px',
+                    background: isApproveActive
+                      ? 'linear-gradient(180deg, rgba(16, 185, 129, 0.4), rgba(16, 185, 129, 0.22))'
+                      : 'linear-gradient(180deg, rgba(16, 185, 129, 0.22), rgba(16, 185, 129, 0.12))',
+                    border: isApproveActive
+                      ? '2px solid #10b981'
+                      : '1px solid rgba(16, 185, 129, 0.45)',
+                    boxShadow: isApproveActive
+                      ? '0 0 18px rgba(16, 185, 129, 0.45)'
+                      : '0 0 14px rgba(16, 185, 129, 0.2)',
+                    color: '#10b981',
+                    fontSize: '11.5px',
+                    fontWeight: 700,
+                    cursor: hasClearance ? 'pointer' : 'not-allowed',
+                    opacity: hasClearance ? 1 : 0.4,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '6px',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  <Check size={12} />
+                  <span>{isApproveActive ? 'Approved ✓' : 'Clear & Approve'}</span>
+                </motion.button>
+              </>
+            );
+          })()}
         </div>
 
         {/* Secondary SAR trigger */}

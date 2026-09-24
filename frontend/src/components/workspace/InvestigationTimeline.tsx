@@ -86,6 +86,21 @@ export const InvestigationTimeline: React.FC<InvestigationTimelineProps> = ({ ca
     },
   ];
 
+  if (caseData.approval?.status === 'approved') {
+    const isBlock = caseData.approval.action_name === 'BLOCK_CARD';
+    const timeStr = caseData.approval.approved_at
+      ? new Date(caseData.approval.approved_at).toLocaleTimeString()
+      : 'Live';
+    events.push({
+      time: timeStr,
+      title: isBlock ? 'Card Block Executed' : 'Transaction Cleared & Approved',
+      desc: `Action signed off by ${caseData.approval.approved_by || 'Analyst'} (${caseData.approval.analyst_role || 'Analyst Lead'}). Decision permanently committed to audit ledger.`,
+      badge: isBlock ? 'BLOCKED' : 'APPROVED',
+      badgeColor: isBlock ? 'red' : 'green',
+      dotColor: isBlock ? '#f43f5e' : '#10b981',
+    });
+  }
+
   return (
     <div
       style={{

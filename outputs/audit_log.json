@@ -348,5 +348,95 @@
     "action": "APPROVE_APPROVE_TRANSACTION",
     "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
     "route": "auto"
+  },
+  {
+    "id": "evt-1790230994462",
+    "timestamp": "2026-09-24T11:53:14.461547",
+    "case_id": "HHG-004",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_BLOCK_CARD",
+    "details": "Analyst (L1 Team Lead) approved BLOCK_CARD under route L1. Notes: Approved under L1 routing guidelines.",
+    "route": "L1"
+  },
+  {
+    "id": "evt-1790230997956",
+    "timestamp": "2026-09-24T11:53:17.956241",
+    "case_id": "HHG-004",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route L1. Notes: Approved under L1 routing guidelines.",
+    "route": "L1"
+  },
+  {
+    "id": "evt-1790231586491",
+    "timestamp": "2026-09-24T12:03:06.491324",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790231592487",
+    "timestamp": "2026-09-24T12:03:12.487090",
+    "case_id": "HHG-001",
+    "actor": "Fraud Manager",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L2 Fraud Manager) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790231993337",
+    "timestamp": "2026-09-24T12:09:53.337705",
+    "case_id": "HHG-001",
+    "actor": "LangGraph Agent",
+    "actor_type": "agent",
+    "action": "INVESTIGATION_COMPLETED",
+    "details": "Ran all 6 nodes in 0.61s. Verdict: legitimate. Pattern: none.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790231996039",
+    "timestamp": "2026-09-24T12:09:56.039683",
+    "case_id": "HHG-001",
+    "actor": "LangGraph Agent",
+    "actor_type": "agent",
+    "action": "INVESTIGATION_COMPLETED",
+    "details": "Ran all 6 nodes in 0.6s. Verdict: legitimate. Pattern: none.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790232081569",
+    "timestamp": "2026-09-24T12:11:21.569007",
+    "case_id": "HHG-001",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790232113452",
+    "timestamp": "2026-09-24T12:11:53.451779",
+    "case_id": "HHG-007",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
+  },
+  {
+    "id": "evt-1790232143386",
+    "timestamp": "2026-09-24T12:12:23.386486",
+    "case_id": "HHG-012",
+    "actor": "Sarah Lin (Lead)",
+    "actor_type": "analyst",
+    "action": "APPROVE_APPROVE_TRANSACTION",
+    "details": "Analyst (L1 Team Lead) approved APPROVE_TRANSACTION under route auto. Notes: Approved under auto routing guidelines.",
+    "route": "auto"
   }
 ]
