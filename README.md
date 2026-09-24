@@ -1,28 +1,70 @@
 # TigerGraph Agentic Fraud Investigation & Next-Best Action
-> **Enterprise Financial Crime Intelligence Platform** · IEEE-CIS Fraud Benchmark (590k+ Transactions)
+> **Demo Video:** [Watch 3-5 Min Walkthrough](https://drive.google.com/file/d/1jREhAQDp34CtNJT9baw-p4BQKHw_Cwz5/view?usp=sharing)  
+> **Repository:** [https://github.com/desmond009/Fraud_agent_HHG](https://github.com/desmond009/Fraud_agent_HHG)  
+> **Benchmark Cases:** 20/20 Official Benchmark Cases Evaluated in [`cases/`](cases/)
 
 An autonomous fraud investigation system and analyst workbench combining **TigerGraph (MCP)**, **LangGraph (6-node agent)**, **ChromaDB GraphRAG**, and a **Palantir/Linear-inspired React 19 UI**.
 
 ---
 
-## ⚡ Quick Start
+## 🎥 3-Minute Demo Video
 
-### 1. Backend API Bridge
+▶️ **Watch the End-to-End System Walkthrough:**  
+[Google Drive Demo Video Link](https://drive.google.com/file/d/1jREhAQDp34CtNJT9baw-p4BQKHw_Cwz5/view?usp=sharing)
+
+---
+
+## ⚡ End-to-End Quick Start & Execution Guide
+
+### Prerequisites
+* Python 3.10+
+* Node.js 18+ and `npm`
+
+### Step 1: Clone Repository & Setup Virtual Environment
 ```bash
-# From repository root
-python3 -m uvicorn server.main:app --host 127.0.0.1 --port 8000
+git clone https://github.com/desmond009/Fraud_agent_HHG.git
+cd Fraud_agent_HHG
+
+# Create and activate python virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install backend dependencies
+pip install -r requirements.txt
 ```
 
-### 2. Frontend Workspace
+### Step 2: Run End-to-End Benchmark & Verification Tests
+Verify all 20 benchmark case evaluations, ML training pipelines, and policy rules:
+```bash
+# 1. Verify Phase 4 Benchmark Delivery (all 20 cases in cases/)
+python3 test_phase4.py
+
+# 2. Verify ML Model Training & Inference Pipeline (11 unit tests)
+python3 test_phase5_model_pipeline.py
+# or via pytest:
+pytest tests/test_model_pipeline.py -v
+
+# 3. Optional: Run full benchmark runner across all 20 cases
+python3 run_benchmark.py
+```
+
+### Step 3: Launch Backend Server (FastAPI)
+```bash
+# Start backend API on port 8000
+python3 -m uvicorn server.main:app --host 127.0.0.1 --port 8000 --reload
+```
+* **API Swagger Documentation:** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+* **Health Check & Cases Endpoint:** [http://127.0.0.1:8000/api/cases](http://127.0.0.1:8000/api/cases)
+
+### Step 4: Launch Frontend Analyst Workbench (React 19 + Vite)
+In a separate terminal:
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-
-* **Live Analyst Workspace:** [http://localhost:5173](http://localhost:5173)
-* **API Documentation & Swagger:** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-* **Deep Architecture Guide:** [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+* **Analyst Workbench URL:** [http://localhost:5173](http://localhost:5173)
+* **Frontend Production Build Check:** `npm run build` (0 warnings, 0 errors)
 
 ---
 

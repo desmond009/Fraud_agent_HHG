@@ -21,8 +21,8 @@ Key features we built:
 
 Huge thanks to @TigerGraphDB for hosting this hackathon and providing powerful graph capabilities to fuel next-generation AI agents!
 
-🔗 GitHub Repository: [INSERT_GITHUB_REPO_URL]
-🎥 Demo Video & Architecture: [INSERT_DEMO_VIDEO_OR_BLOG_LINK]
+🔗 GitHub Repository: https://github.com/desmond009/Fraud_agent_HHG
+🎥 Demo Video Walkthrough: https://drive.google.com/file/d/1jREhAQDp34CtNJT9baw-p4BQKHw_Cwz5/view?usp=sharing
 
 #TigerGraph #GraphAI #AgenticAI #LangGraph #FinTech #FraudPrevention #CyberSecurity #MachineLearning
 ```
@@ -57,5 +57,6 @@ Fraud isn't binary. The agent measures pre- vs. post-evidence probability (e.g. 
 💾 20 / 20 Cases Written Back to TigerGraph Memory
 
 Check out the full repo & architecture breakdown!
-🔗 [INSERT_GITHUB_REPO_URL] (4/4)
+🔗 https://github.com/desmond009/Fraud_agent_HHG
+🎥 Demo: https://drive.google.com/file/d/1jREhAQDp34CtNJT9baw-p4BQKHw_Cwz5/view?usp=sharing (4/4)
 ```

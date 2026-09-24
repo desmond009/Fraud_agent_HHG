@@ -1,6 +1,8 @@
 # Autonomous Financial Crime Intelligence: Building an Agentic Fraud Investigation System with TigerGraph & LangGraph
 
 > **Submission for the TigerGraph Agentic Fraud Investigation Hackathon (HHGOA)**  
+> **Demo Video:** [Watch 3-5 Min Walkthrough](https://drive.google.com/file/d/1jREhAQDp34CtNJT9baw-p4BQKHw_Cwz5/view?usp=sharing)  
+> **GitHub Repository:** [https://github.com/desmond009/Fraud_agent_HHG](https://github.com/desmond009/Fraud_agent_HHG)  
 > **Benchmark Dataset:** IEEE-CIS Financial Crime Dataset (590k+ Transactions, 13.5k Entities, 5.5k Historical Closed Cases)  
 > **Evaluation:** 20 / 20 Benchmark Cases Validated (100% Policy Schema Compliance)  
 
