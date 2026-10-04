@@ -90,9 +90,9 @@ export const TopBar: React.FC<TopBarProps> = ({
             fontWeight: 700,
             padding: '2px 7px',
             borderRadius: '9999px',
-            background: 'rgba(244, 63, 94, 0.18)',
-            color: '#f43f5e',
-            border: '1px solid rgba(244, 63, 94, 0.4)',
+            background: 'rgba(220, 60, 69, 0.18)',
+            color: '#dc3c45',
+            border: '1px solid rgba(220, 60, 69, 0.4)',
             letterSpacing: '0.03em',
             display: 'inline-flex',
             alignItems: 'center',
@@ -111,9 +111,9 @@ export const TopBar: React.FC<TopBarProps> = ({
             fontWeight: 700,
             padding: '2px 7px',
             borderRadius: '9999px',
-            background: 'rgba(16, 185, 129, 0.18)',
-            color: '#10b981',
-            border: '1px solid rgba(16, 185, 129, 0.4)',
+            background: 'rgba(5, 150, 105, 0.18)',
+            color: '#059669',
+            border: '1px solid rgba(5, 150, 105, 0.4)',
             letterSpacing: '0.03em',
             display: 'inline-flex',
             alignItems: 'center',
@@ -131,9 +131,9 @@ export const TopBar: React.FC<TopBarProps> = ({
           fontWeight: 700,
           padding: '2px 7px',
           borderRadius: '9999px',
-          background: 'rgba(245, 158, 11, 0.18)',
-          color: '#f59e0b',
-          border: '1px solid rgba(245, 158, 11, 0.4)',
+          background: 'rgba(217, 130, 11, 0.18)',
+          color: '#d9820b',
+          border: '1px solid rgba(217, 130, 11, 0.4)',
           letterSpacing: '0.03em',
           display: 'inline-flex',
           alignItems: 'center',
@@ -150,10 +150,9 @@ export const TopBar: React.FC<TopBarProps> = ({
       className="topbar"
       style={{
         height: '52px',
-        background: 'rgba(12, 14, 20, 0.88)',
-        backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-        boxShadow: '0 1px 0 0 rgba(255, 255, 255, 0.04), 0 4px 20px rgba(0, 0, 0, 0.35)',
+        background: 'rgba(255, 255, 255, 0.96)',
+        borderBottom: '1px solid rgba(71, 85, 140, 0.104)',
+        boxShadow: 'none',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -168,23 +167,24 @@ export const TopBar: React.FC<TopBarProps> = ({
         {/* Breadcrumb Hierarchy */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
           <span
+            className="crumb-root"
             style={{
               fontSize: '11px',
               textTransform: 'uppercase',
               letterSpacing: '0.06em',
-              color: '#71717a',
+              color: '#6b7388',
               fontWeight: 700,
               fontFamily: 'var(--font-mono)',
             }}
           >
             INVESTIGATION OPS
           </span>
-          <span style={{ color: '#3f3f46', fontSize: '12px' }}>/</span>
+          <span className="crumb-root" style={{ color: '#b4bccd', fontSize: '12px' }}>/</span>
           <h1
             style={{
               fontSize: '13.5px',
               fontWeight: 700,
-              color: '#f4f4f5',
+              color: '#1f2638',
               margin: 0,
               letterSpacing: '-0.01em',
               whiteSpace: 'nowrap',
@@ -196,29 +196,29 @@ export const TopBar: React.FC<TopBarProps> = ({
 
         {/* Vertical Divider */}
         {cases.length > 0 && (
-          <div style={{ width: '1px', height: '18px', background: 'rgba(255, 255, 255, 0.1)', flexShrink: 0 }} />
+          <div style={{ width: '1px', height: '18px', background: 'rgba(71, 85, 140, 0.13)', flexShrink: 0 }} />
         )}
 
         {/* Sleek Contextual Case Selector Popover */}
         {cases.length > 0 && selectedCase && (
           <div ref={caseMenuRef} style={{ position: 'relative' }}>
             <motion.button
-              whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.06)' }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ backgroundColor: 'rgba(71, 85, 140, 0.078)' }}
+              whileTap={{}}
               onClick={() => setIsCaseMenuOpen(!isCaseMenuOpen)}
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                background: isCaseMenuOpen ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.03)',
+                background: isCaseMenuOpen ? 'rgba(71, 85, 140, 0.104)' : 'rgba(71, 85, 140, 0.039)',
                 border: isCaseMenuOpen
-                  ? '1px solid rgba(56, 189, 248, 0.5)'
-                  : '1px solid rgba(255, 255, 255, 0.09)',
-                borderRadius: '7px',
+                  ? '1px solid rgba(79, 99, 210, 0.5)'
+                  : '1px solid rgba(71, 85, 140, 0.117)',
+                borderRadius: '5px',
                 padding: '4px 10px',
                 cursor: 'pointer',
                 transition: 'all 0.15s ease',
-                boxShadow: isCaseMenuOpen ? '0 0 14px rgba(14, 165, 233, 0.25)' : 'none',
+                boxShadow: isCaseMenuOpen ? 'none' : 'none',
               }}
             >
               {/* Status Glow Dot */}
@@ -229,17 +229,11 @@ export const TopBar: React.FC<TopBarProps> = ({
                   borderRadius: '50%',
                   background:
                     selectedCase.verdict === 'fraud'
-                      ? '#f43f5e'
+                      ? '#dc3c45'
                       : selectedCase.verdict === 'legitimate'
-                      ? '#10b981'
-                      : '#f59e0b',
-                  boxShadow: `0 0 8px ${
-                    selectedCase.verdict === 'fraud'
-                      ? 'rgba(244, 63, 94, 0.8)'
-                      : selectedCase.verdict === 'legitimate'
-                      ? 'rgba(16, 185, 129, 0.8)'
-                      : 'rgba(245, 158, 11, 0.8)'
-                  }`,
+                      ? '#059669'
+                      : '#d9820b',
+                  boxShadow: 'none',
                   flexShrink: 0,
                 }}
               />
@@ -250,7 +244,7 @@ export const TopBar: React.FC<TopBarProps> = ({
                 style={{
                   fontSize: '12px',
                   fontWeight: 700,
-                  color: '#38bdf8',
+                  color: '#4f63d2',
                   letterSpacing: '0.02em',
                 }}
               >
@@ -283,7 +277,7 @@ export const TopBar: React.FC<TopBarProps> = ({
                   className="mono"
                   style={{
                     fontSize: '10.5px',
-                    color: '#71717a',
+                    color: '#6b7388',
                     fontWeight: 600,
                   }}
                 >
@@ -297,7 +291,7 @@ export const TopBar: React.FC<TopBarProps> = ({
                 transition={{ duration: 0.15 }}
                 style={{ display: 'flex', alignItems: 'center' }}
               >
-                <ChevronDown size={13} color="#a1a1aa" />
+                <ChevronDown size={13} color="#556078" />
               </motion.div>
             </motion.button>
 
@@ -314,11 +308,10 @@ export const TopBar: React.FC<TopBarProps> = ({
                     top: 'calc(100% + 8px)',
                     left: 0,
                     width: '380px',
-                    background: 'rgba(14, 16, 24, 0.96)',
-                    backdropFilter: 'blur(24px)',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
-                    borderRadius: '10px',
-                    boxShadow: '0 16px 40px rgba(0, 0, 0, 0.65), 0 0 1px 1px rgba(255, 255, 255, 0.08)',
+                    background: 'rgba(255, 255, 255, 0.96)',
+                    border: '1px solid rgba(71, 85, 140, 0.156)',
+                    borderRadius: '6px',
+                    boxShadow: 'none',
                     zIndex: 100,
                     overflow: 'hidden',
                   }}
@@ -327,20 +320,20 @@ export const TopBar: React.FC<TopBarProps> = ({
                   <div
                     style={{
                       padding: '10px 14px',
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-                      background: 'rgba(255, 255, 255, 0.02)',
+                      borderBottom: '1px solid rgba(71, 85, 140, 0.104)',
+                      background: 'rgba(71, 85, 140, 0.026)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <Layers size={13} color="#38bdf8" />
-                      <span style={{ fontSize: '10.5px', fontWeight: 700, letterSpacing: '0.05em', color: '#f4f4f5', textTransform: 'uppercase' }}>
+                      <Layers size={13} color="#4f63d2" />
+                      <span style={{ fontSize: '10.5px', fontWeight: 700, letterSpacing: '0.05em', color: '#1f2638', textTransform: 'uppercase' }}>
                         Active Case Switcher
                       </span>
                     </div>
-                    <span style={{ fontSize: '10px', color: '#71717a', fontFamily: 'var(--font-mono)' }}>
+                    <span style={{ fontSize: '10px', color: '#6b7388', fontFamily: 'var(--font-mono)' }}>
                       {cases.length} cases loaded
                     </span>
                   </div>
@@ -352,21 +345,21 @@ export const TopBar: React.FC<TopBarProps> = ({
                       return (
                         <motion.div
                           key={c.case_id}
-                          whileHover={{ x: 2, backgroundColor: 'rgba(255, 255, 255, 0.04)' }}
+                          whileHover={{ x: 2, backgroundColor: 'rgba(71, 85, 140, 0.052)' }}
                           onClick={() => {
                             onSelectCase(c.case_id);
                             setIsCaseMenuOpen(false);
                           }}
                           style={{
                             padding: '8px 10px',
-                            borderRadius: '7px',
+                            borderRadius: '5px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'space-between',
                             cursor: 'pointer',
-                            background: isCurrent ? 'rgba(56, 189, 248, 0.08)' : 'transparent',
+                            background: isCurrent ? 'rgba(79, 99, 210, 0.08)' : 'transparent',
                             border: isCurrent
-                              ? '1px solid rgba(56, 189, 248, 0.25)'
+                              ? '1px solid rgba(79, 99, 210, 0.25)'
                               : '1px solid transparent',
                             marginBottom: '4px',
                             transition: 'all 0.15s ease',
@@ -375,12 +368,12 @@ export const TopBar: React.FC<TopBarProps> = ({
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                             {/* Checkmark or empty space */}
                             <div style={{ width: '16px', display: 'flex', justifyContent: 'center' }}>
-                              {isCurrent && <Check size={14} color="#38bdf8" />}
+                              {isCurrent && <Check size={14} color="#4f63d2" />}
                             </div>
 
                             <div>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <span className="mono" style={{ fontSize: '12px', fontWeight: 800, color: '#f4f4f5' }}>
+                                <span className="mono" style={{ fontSize: '12px', fontWeight: 700, color: '#1f2638' }}>
                                   {c.case_id}
                                 </span>
                                 {getVerdictBadge(c.verdict)}
@@ -390,14 +383,14 @@ export const TopBar: React.FC<TopBarProps> = ({
                                     style={{
                                       fontSize: '10.5px',
                                       fontWeight: 600,
-                                      color: c.risk_score >= 70 ? '#f43f5e' : c.risk_score <= 30 ? '#10b981' : '#f59e0b',
+                                      color: c.risk_score >= 70 ? '#dc3c45' : c.risk_score <= 30 ? '#059669' : '#d9820b',
                                     }}
                                   >
                                     {c.risk_score}%
                                   </span>
                                 )}
                               </div>
-                              <div style={{ fontSize: '10.5px', color: '#71717a', marginTop: '2px', textTransform: 'capitalize' }}>
+                              <div style={{ fontSize: '10.5px', color: '#6b7388', marginTop: '2px', textTransform: 'capitalize' }}>
                                 {c.pattern ? c.pattern.replace(/_/g, ' ') : 'Routine transaction'} • {c.customer_id}
                               </div>
                             </div>
@@ -407,11 +400,11 @@ export const TopBar: React.FC<TopBarProps> = ({
                             <span
                               style={{
                                 fontSize: '10px',
-                                color: '#a1a1aa',
-                                background: 'rgba(255, 255, 255, 0.05)',
+                                color: '#556078',
+                                background: 'rgba(71, 85, 140, 0.065)',
                                 padding: '2px 6px',
                                 borderRadius: '4px',
-                                border: '1px solid rgba(255, 255, 255, 0.06)',
+                                border: '1px solid rgba(71, 85, 140, 0.078)',
                               }}
                             >
                               {c.status || 'Active'}
@@ -436,7 +429,7 @@ export const TopBar: React.FC<TopBarProps> = ({
       >
         <Search
           size={13}
-          color={isSearchFocused ? '#38bdf8' : '#71717a'}
+          color={isSearchFocused ? '#4f63d2' : '#6b7388'}
           style={{
             position: 'absolute',
             left: '11px',
@@ -455,16 +448,16 @@ export const TopBar: React.FC<TopBarProps> = ({
           onBlur={() => setIsSearchFocused(false)}
           style={{
             width: '100%',
-            background: isSearchFocused ? 'rgba(10, 12, 18, 0.95)' : 'rgba(0, 0, 0, 0.35)',
+            background: isSearchFocused ? 'rgba(255, 255, 255, 0.96)' : 'rgba(40, 50, 100, 0.098)',
             border: isSearchFocused
-              ? '1px solid rgba(56, 189, 248, 0.55)'
-              : '1px solid rgba(255, 255, 255, 0.08)',
+              ? '1px solid rgba(79, 99, 210, 0.55)'
+              : '1px solid rgba(71, 85, 140, 0.104)',
             boxShadow: isSearchFocused
-              ? '0 0 16px rgba(14, 165, 233, 0.22), inset 0 1px 2px rgba(0, 0, 0, 0.4)'
-              : 'inset 0 1px 2px rgba(0, 0, 0, 0.2)',
-            borderRadius: '7px',
+              ? 'none'
+              : 'none',
+            borderRadius: '5px',
             padding: '6px 36px 6px 32px',
-            color: '#f4f4f5',
+            color: '#1f2638',
             fontSize: '11.5px',
             outline: 'none',
             transition: 'all 0.18s ease',
@@ -482,7 +475,7 @@ export const TopBar: React.FC<TopBarProps> = ({
               background: 'transparent',
               border: 'none',
               cursor: 'pointer',
-              color: '#71717a',
+              color: '#6b7388',
               display: 'flex',
               alignItems: 'center',
               padding: '2px',
@@ -501,9 +494,9 @@ export const TopBar: React.FC<TopBarProps> = ({
               fontFamily: 'var(--font-mono)',
               padding: '2px 5px',
               borderRadius: '4px',
-              background: 'rgba(255, 255, 255, 0.06)',
-              color: isSearchFocused ? '#38bdf8' : '#71717a',
-              border: '1px solid rgba(255, 255, 255, 0.09)',
+              background: 'rgba(71, 85, 140, 0.078)',
+              color: isSearchFocused ? '#4f63d2' : '#6b7388',
+              border: '1px solid rgba(71, 85, 140, 0.117)',
               pointerEvents: 'none',
             }}
           >
@@ -517,8 +510,8 @@ export const TopBar: React.FC<TopBarProps> = ({
         {/* Re-run Agent (Workspace only) */}
         {onRunActiveCase && currentTab === 'investigation' && (
           <motion.button
-            whileHover={{ scale: 1.03, y: -1 }}
-            whileTap={{ scale: 0.97 }}
+            whileHover={{}}
+            whileTap={{}}
             onClick={onRunActiveCase}
             disabled={isRunning}
             style={{
@@ -528,14 +521,14 @@ export const TopBar: React.FC<TopBarProps> = ({
               padding: '5px 12px',
               borderRadius: '6px',
               background: isRunning
-                ? 'rgba(56, 189, 248, 0.15)'
-                : 'linear-gradient(135deg, rgba(14, 165, 233, 0.8), rgba(2, 132, 199, 0.9))',
-              border: '1px solid rgba(56, 189, 248, 0.45)',
+                ? 'rgba(79, 99, 210, 0.15)'
+                : '#4f63d2',
+              border: '1px solid rgba(79, 99, 210, 0.45)',
               color: '#fff',
               fontSize: '11px',
               fontWeight: 600,
               cursor: isRunning ? 'not-allowed' : 'pointer',
-              boxShadow: '0 0 14px rgba(14, 165, 233, 0.3)',
+              boxShadow: 'none',
               transition: 'all 0.15s ease',
             }}
           >
@@ -549,12 +542,12 @@ export const TopBar: React.FC<TopBarProps> = ({
           style={{
             display: 'flex',
             alignItems: 'center',
-            background: 'rgba(18, 20, 28, 0.85)',
-            border: '1px solid rgba(255, 255, 255, 0.09)',
-            borderRadius: '7px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            border: '1px solid rgba(71, 85, 140, 0.117)',
+            borderRadius: '5px',
             padding: '2px',
             position: 'relative',
-            boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.3)',
+            boxShadow: 'none',
           }}
         >
           <div
@@ -562,14 +555,14 @@ export const TopBar: React.FC<TopBarProps> = ({
               padding: '2px 6px',
               fontSize: '10px',
               fontWeight: 700,
-              color: '#71717a',
+              color: '#6b7388',
               display: 'flex',
               alignItems: 'center',
               gap: '3px',
               letterSpacing: '0.04em',
             }}
           >
-            <Shield size={11} color="#71717a" />
+            <Shield size={11} color="#6b7388" />
             <span>ROLE:</span>
           </div>
 
@@ -584,7 +577,7 @@ export const TopBar: React.FC<TopBarProps> = ({
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: analystRole === 'L1' ? '#fbbf24' : '#a1a1aa',
+              color: analystRole === 'L1' ? '#fbbf24' : '#556078',
               zIndex: 1,
               transition: 'color 0.15s ease',
             }}
@@ -597,9 +590,9 @@ export const TopBar: React.FC<TopBarProps> = ({
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '5px',
-                  background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(245, 158, 11, 0.1))',
-                  border: '1px solid rgba(245, 158, 11, 0.5)',
-                  boxShadow: '0 0 10px rgba(245, 158, 11, 0.2)',
+                  background: 'linear-gradient(135deg, rgba(217, 130, 11, 0.22), rgba(217, 130, 11, 0.1))',
+                  border: '1px solid rgba(217, 130, 11, 0.5)',
+                  boxShadow: 'none',
                   zIndex: -1,
                 }}
               />
@@ -618,7 +611,7 @@ export const TopBar: React.FC<TopBarProps> = ({
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: analystRole === 'L2' ? '#38bdf8' : '#a1a1aa',
+              color: analystRole === 'L2' ? '#4f63d2' : '#556078',
               zIndex: 1,
               transition: 'color 0.15s ease',
             }}
@@ -631,9 +624,9 @@ export const TopBar: React.FC<TopBarProps> = ({
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '5px',
-                  background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.22), rgba(14, 165, 233, 0.1))',
-                  border: '1px solid rgba(56, 189, 248, 0.5)',
-                  boxShadow: '0 0 10px rgba(14, 165, 233, 0.2)',
+                  background: 'linear-gradient(135deg, rgba(79, 99, 210, 0.22), rgba(79, 99, 210, 0.1))',
+                  border: '1px solid rgba(79, 99, 210, 0.5)',
+                  boxShadow: 'none',
                   zIndex: -1,
                 }}
               />
@@ -648,21 +641,21 @@ export const TopBar: React.FC<TopBarProps> = ({
             display: 'flex',
             alignItems: 'center',
             gap: '7px',
-            background: 'rgba(14, 165, 233, 0.08)',
-            border: '1px solid rgba(56, 189, 248, 0.25)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+            background: 'rgba(79, 99, 210, 0.08)',
+            border: '1px solid rgba(79, 99, 210, 0.25)',
+            boxShadow: 'none',
             padding: '4px 9px',
-            borderRadius: '7px',
+            borderRadius: '5px',
             fontSize: '11px',
-            color: '#38bdf8',
+            color: '#4f63d2',
             fontWeight: 700,
             letterSpacing: '0.02em',
           }}
           title="TigerGraph 3.9 REST++ & LangGraph Agent Runtime Connected"
         >
-          <Activity size={12} color="#38bdf8" />
+          <Activity size={12} color="#4f63d2" />
           <span>TG MCP</span>
-          <span style={{ color: '#3f3f46' }}>•</span>
+          <span style={{ color: '#b4bccd' }}>•</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <motion.span
               animate={{ scale: [1, 1.35, 1], opacity: [1, 0.5, 1] }}
@@ -672,14 +665,14 @@ export const TopBar: React.FC<TopBarProps> = ({
                 width: '6px',
                 height: '6px',
                 borderRadius: '50%',
-                background: '#10b981',
-                boxShadow: '0 0 6px #10b981',
+                background: '#059669',
+                boxShadow: 'none',
               }}
             />
             <span
               className="mono"
               style={{
-                color: '#10b981',
+                color: '#059669',
                 fontSize: '10px',
                 fontWeight: 600,
               }}

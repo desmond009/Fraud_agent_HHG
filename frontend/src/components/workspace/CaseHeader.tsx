@@ -38,7 +38,7 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
               position: 'absolute',
               inset: -2,
               borderRadius: '9999px',
-              border: '2px solid rgba(244, 63, 94, 0.8)',
+              border: '2px solid rgba(220, 60, 69, 0.8)',
               pointerEvents: 'none',
               zIndex: 0,
             }}
@@ -54,10 +54,10 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
               fontWeight: 700,
               padding: '3px 11px',
               borderRadius: '9999px',
-              background: 'rgba(244, 63, 94, 0.18)',
-              color: '#f43f5e',
-              border: '1px solid rgba(244, 63, 94, 0.45)',
-              boxShadow: '0 0 14px rgba(244, 63, 94, 0.25)',
+              background: 'rgba(220, 60, 69, 0.18)',
+              color: '#dc3c45',
+              border: '1px solid rgba(220, 60, 69, 0.45)',
+              boxShadow: 'none',
               letterSpacing: '0.03em',
             }}
           >
@@ -78,10 +78,10 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
               fontWeight: 700,
               padding: '3px 11px',
               borderRadius: '9999px',
-              background: 'rgba(16, 185, 129, 0.18)',
-              color: '#10b981',
-              border: '1px solid rgba(16, 185, 129, 0.45)',
-              boxShadow: '0 0 14px rgba(16, 185, 129, 0.2)',
+              background: 'rgba(5, 150, 105, 0.18)',
+              color: '#059669',
+              border: '1px solid rgba(5, 150, 105, 0.45)',
+              boxShadow: 'none',
               letterSpacing: '0.03em',
             }}
           >
@@ -99,7 +99,7 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
             position: 'absolute',
             inset: -2,
             borderRadius: '9999px',
-            border: '2px solid rgba(245, 158, 11, 0.7)',
+            border: '2px solid rgba(217, 130, 11, 0.7)',
             pointerEvents: 'none',
             zIndex: 0,
           }}
@@ -115,9 +115,9 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
             fontWeight: 700,
             padding: '3px 11px',
             borderRadius: '9999px',
-            background: 'rgba(245, 158, 11, 0.18)',
-            color: '#f59e0b',
-            border: '1px solid rgba(245, 158, 11, 0.45)',
+            background: 'rgba(217, 130, 11, 0.18)',
+            color: '#d9820b',
+            border: '1px solid rgba(217, 130, 11, 0.45)',
             letterSpacing: '0.03em',
           }}
         >
@@ -144,11 +144,10 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
       style={{
-        background: 'radial-gradient(ellipse at 15% 0%, rgba(14, 165, 233, 0.08), transparent 70%), rgba(20, 20, 26, 0.78)',
-        backdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255, 255, 255, 0.09)',
-        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 4px 20px rgba(0, 0, 0, 0.45)',
-        borderRadius: '10px',
+        background: '#ffffff',
+        border: '1px solid rgba(71, 85, 140, 0.117)',
+        boxShadow: 'none',
+        borderRadius: '6px',
         padding: '14px 18px',
         display: 'flex',
         flexDirection: 'column',
@@ -166,8 +165,8 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
           right: '5%',
           height: '1px',
           background: isHighRisk
-            ? 'linear-gradient(90deg, transparent, rgba(244, 63, 94, 0.5), transparent)'
-            : 'linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent)',
+            ? 'linear-gradient(90deg, transparent, rgba(220, 60, 69, 0.5), transparent)'
+            : 'linear-gradient(90deg, transparent, rgba(79, 99, 210, 0.5), transparent)',
         }}
       />
 
@@ -179,8 +178,8 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
             className="mono"
             style={{
               fontSize: '23px',
-              fontWeight: 800,
-              color: '#f4f4f5',
+              fontWeight: 700,
+              color: '#1f2638',
               letterSpacing: '-0.03em',
               margin: 0,
               lineHeight: 1.2,
@@ -198,9 +197,9 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
               fontWeight: 700,
               padding: '4px 10px',
               borderRadius: '9999px',
-              background: isHighRisk ? 'rgba(244, 63, 94, 0.15)' : isLowRisk ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)',
-              color: isHighRisk ? '#f43f5e' : isLowRisk ? '#10b981' : '#f59e0b',
-              border: `1px solid ${isHighRisk ? 'rgba(244, 63, 94, 0.35)' : isLowRisk ? 'rgba(16, 185, 129, 0.35)' : 'rgba(245, 158, 11, 0.35)'}`,
+              background: isHighRisk ? 'rgba(220, 60, 69, 0.15)' : isLowRisk ? 'rgba(5, 150, 105, 0.15)' : 'rgba(217, 130, 11, 0.15)',
+              color: isHighRisk ? '#dc3c45' : isLowRisk ? '#059669' : '#d9820b',
+              border: `1px solid ${isHighRisk ? 'rgba(220, 60, 69, 0.35)' : isLowRisk ? 'rgba(5, 150, 105, 0.35)' : 'rgba(217, 130, 11, 0.35)'}`,
               display: 'inline-flex',
               alignItems: 'center',
               lineHeight: 'normal',
@@ -214,9 +213,9 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
               fontSize: '10.5px',
               padding: '3px 9px',
               borderRadius: '9999px',
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              color: '#a1a1aa',
+              background: 'rgba(71, 85, 140, 0.065)',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
+              color: '#556078',
               textTransform: 'uppercase',
               fontWeight: 600,
               letterSpacing: '0.03em',
@@ -232,17 +231,17 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
         {/* Right Side: Exposure Callout & FinCEN SAR Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#71717a', fontWeight: 700 }}>
+            <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#6b7388', fontWeight: 700 }}>
               Total Exposure
             </div>
             <div
               className="mono"
               style={{
                 fontSize: '20px',
-                fontWeight: 800,
-                color: exposure > 0 ? '#f43f5e' : '#f4f4f5',
+                fontWeight: 700,
+                color: exposure > 0 ? '#dc3c45' : '#1f2638',
                 letterSpacing: '-0.02em',
-                textShadow: exposure > 0 ? '0 0 16px rgba(244, 63, 94, 0.3)' : 'none',
+                textShadow: exposure > 0 ? '0 0 16px rgba(220, 60, 69, 0.3)' : 'none',
               }}
             >
               <AnimatedCounter value={exposure} prefix="$" suffix=" USD" decimals={2} duration={0.8} />
@@ -251,8 +250,8 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
 
           {caseData.sar?.file && onOpenSAR && (
             <motion.button
-              whileHover={{ scale: 1.03, y: -1 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{}}
+              whileTap={{}}
               onClick={onOpenSAR}
               style={{
                 display: 'flex',
@@ -260,10 +259,10 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
                 gap: '6px',
                 padding: '6px 12px',
                 borderRadius: '6px',
-                background: 'linear-gradient(180deg, rgba(14, 165, 233, 0.18), rgba(14, 165, 233, 0.08))',
-                border: '1px solid rgba(56, 189, 248, 0.45)',
-                boxShadow: '0 0 12px rgba(14, 165, 233, 0.18)',
-                color: '#38bdf8',
+                background: 'linear-gradient(180deg, rgba(79, 99, 210, 0.18), rgba(79, 99, 210, 0.08))',
+                border: '1px solid rgba(79, 99, 210, 0.45)',
+                boxShadow: 'none',
+                color: '#4f63d2',
                 fontSize: '11px',
                 fontWeight: 600,
                 cursor: 'pointer',
@@ -286,64 +285,64 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
           flexWrap: 'wrap',
           gap: '12px',
           paddingTop: '8px',
-          borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+          borderTop: '1px solid rgba(71, 85, 140, 0.078)',
           fontSize: '11px',
-          color: '#a1a1aa',
+          color: '#556078',
         }}
       >
         {/* Core Entities */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <User size={12} color="#71717a" />
-            <span style={{ color: '#71717a' }}>Customer:</span>
-            <span className="mono" style={{ color: '#38bdf8', fontWeight: 600 }}>{trigger?.customer_id}</span>
+            <User size={12} color="#6b7388" />
+            <span style={{ color: '#6b7388' }}>Customer:</span>
+            <span className="mono" style={{ color: '#4f63d2', fontWeight: 600 }}>{trigger?.customer_id}</span>
           </div>
 
-          <span style={{ color: '#3f3f46' }}>•</span>
+          <span style={{ color: '#b4bccd' }}>•</span>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <CreditCard size={12} color="#71717a" />
-            <span style={{ color: '#71717a' }}>Card:</span>
-            <span className="mono" style={{ color: '#f4f4f5', fontWeight: 600 }}>{trigger?.card_id}</span>
+            <CreditCard size={12} color="#6b7388" />
+            <span style={{ color: '#6b7388' }}>Card:</span>
+            <span className="mono" style={{ color: '#1f2638', fontWeight: 600 }}>{trigger?.card_id}</span>
           </div>
 
-          <span style={{ color: '#3f3f46' }}>•</span>
+          <span style={{ color: '#b4bccd' }}>•</span>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <span style={{ color: '#71717a' }}>Typology:</span>
-            <span style={{ color: '#f4f4f5', fontWeight: 600 }}>{formatPattern(c.pattern)}</span>
+            <span style={{ color: '#6b7388' }}>Typology:</span>
+            <span style={{ color: '#1f2638', fontWeight: 600 }}>{formatPattern(c.pattern)}</span>
           </div>
         </div>
 
         {/* Telemetry Chips */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <Clock size={11} color="#71717a" />
-            <span style={{ color: '#71717a' }}>Latency:</span>
-            <span className="mono" style={{ color: '#f4f4f5', fontWeight: 600 }}>{caseData.latency_s}s</span>
+            <Clock size={11} color="#6b7388" />
+            <span style={{ color: '#6b7388' }}>Latency:</span>
+            <span className="mono" style={{ color: '#1f2638', fontWeight: 600 }}>{caseData.latency_s}s</span>
           </div>
 
-          <span style={{ color: '#3f3f46' }}>•</span>
+          <span style={{ color: '#b4bccd' }}>•</span>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <Cpu size={11} color="#71717a" />
-            <span style={{ color: '#71717a' }}>Tools:</span>
-            <span className="mono" style={{ color: '#f4f4f5', fontWeight: 600 }}>{caseData.tool_calls}</span>
+            <Cpu size={11} color="#6b7388" />
+            <span style={{ color: '#6b7388' }}>Tools:</span>
+            <span className="mono" style={{ color: '#1f2638', fontWeight: 600 }}>{caseData.tool_calls}</span>
           </div>
 
-          <span style={{ color: '#3f3f46' }}>•</span>
+          <span style={{ color: '#b4bccd' }}>•</span>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-            <Database size={11} color="#10b981" />
-            <span style={{ color: '#71717a' }}>TigerGraph:</span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: '#10b981', fontWeight: 600 }}>
+            <Database size={11} color="#059669" />
+            <span style={{ color: '#6b7388' }}>TigerGraph:</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: '#059669', fontWeight: 600 }}>
               <span
                 style={{
                   width: '6px',
                   height: '6px',
                   borderRadius: '50%',
-                  background: '#10b981',
-                  boxShadow: '0 0 8px #10b981',
+                  background: '#059669',
+                  boxShadow: 'none',
                 }}
               />
               Synced
@@ -355,15 +354,15 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
       {/* Trigger Reason Banner Strip */}
       <div
         style={{
-          background: 'rgba(0, 0, 0, 0.4)',
-          border: '1px solid rgba(255, 255, 255, 0.06)',
+          background: '#f6f7fa',
+          border: '1px solid rgba(71, 85, 140, 0.078)',
           borderRadius: '6px',
           padding: '7px 11px',
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
           fontSize: '11px',
-          boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.4)',
+          boxShadow: 'none',
         }}
       >
         <span
@@ -372,9 +371,9 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
             fontWeight: 700,
             textTransform: 'uppercase',
             letterSpacing: '0.04em',
-            background: 'rgba(14, 165, 233, 0.16)',
-            color: '#38bdf8',
-            border: '1px solid rgba(56, 189, 248, 0.3)',
+            background: 'rgba(79, 99, 210, 0.16)',
+            color: '#4f63d2',
+            border: '1px solid rgba(79, 99, 210, 0.3)',
             padding: '2px 7px',
             borderRadius: '4px',
             whiteSpace: 'nowrap',
@@ -382,7 +381,7 @@ export const CaseHeader: React.FC<CaseHeaderProps> = ({ caseData, onOpenSAR }) =
         >
           TRIGGER: {trigger?.trigger_type.replace('_', ' ')}
         </span>
-        <span style={{ color: '#d4d4d8', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+        <span style={{ color: '#3a445b', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
           {trigger?.trigger_text || 'Automated risk scoring on authorization request.'}
         </span>
       </div>

@@ -133,13 +133,13 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
       case 'Customer':
         return '#3b82f6'; // Blue
       case 'Card':
-        return node.attributes?.is_ring ? '#f59e0b' : '#0ea5e9'; // Amber for ring card, Sky for primary
+        return node.attributes?.is_ring ? '#d9820b' : '#4f63d2'; // Amber for ring card, Sky for primary
       case 'Transaction':
-        return node.attributes?.is_flagged ? '#ef4444' : '#10b981'; // Red for flagged, Green for legitimate
+        return node.attributes?.is_flagged ? '#ef4444' : '#059669'; // Red for flagged, Green for legitimate
       case 'DeviceProfile':
         return '#ec4899'; // Pink/Magenta for device profile
       case 'ClosedCase':
-        return '#a855f7'; // Purple for historical memory
+        return '#7c5cd6'; // Purple for historical memory
       case 'LiveCase':
         return '#06b6d4'; // Cyan for live case writeback
       default:
@@ -190,20 +190,19 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
       {/* Controls Overlay */}
       <div className="graph-controls">
         <motion.button
-          whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ backgroundColor: 'rgba(71, 85, 140, 0.195)' }}
+          whileTap={{}}
           style={{
-            background: 'rgba(18, 18, 24, 0.85)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            color: '#f4f4f5',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.13)',
+            color: '#1f2638',
             borderRadius: '6px',
             padding: '6px',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)',
+            boxShadow: 'none',
           }}
           onClick={() => setTransform((prev) => ({ ...prev, scale: Math.min(2.5, prev.scale * 1.2) }))}
           title="Zoom In"
@@ -211,20 +210,19 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
           <ZoomIn size={13} />
         </motion.button>
         <motion.button
-          whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ backgroundColor: 'rgba(71, 85, 140, 0.195)' }}
+          whileTap={{}}
           style={{
-            background: 'rgba(18, 18, 24, 0.85)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            color: '#f4f4f5',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.13)',
+            color: '#1f2638',
             borderRadius: '6px',
             padding: '6px',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)',
+            boxShadow: 'none',
           }}
           onClick={() => setTransform((prev) => ({ ...prev, scale: Math.max(0.4, prev.scale * 0.8) }))}
           title="Zoom Out"
@@ -232,20 +230,19 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
           <ZoomOut size={13} />
         </motion.button>
         <motion.button
-          whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ backgroundColor: 'rgba(71, 85, 140, 0.195)' }}
+          whileTap={{}}
           style={{
-            background: 'rgba(18, 18, 24, 0.85)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            color: '#f4f4f5',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.13)',
+            color: '#1f2638',
             borderRadius: '6px',
             padding: '6px',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)',
+            boxShadow: 'none',
           }}
           onClick={resetView}
           title="Fit to View"
@@ -263,16 +260,15 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
-          background: 'rgba(18, 18, 24, 0.85)',
-          backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.09)',
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '1px solid rgba(71, 85, 140, 0.117)',
           borderRadius: '6px',
           padding: '5px 12px',
           fontSize: '11px',
           fontWeight: 600,
-          color: '#a1a1aa',
+          color: '#556078',
           zIndex: 4,
-          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.45)',
+          boxShadow: 'none',
         }}
       >
         <span
@@ -280,13 +276,13 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
             width: '6px',
             height: '6px',
             borderRadius: '50%',
-            background: '#38bdf8',
-            boxShadow: '0 0 8px #38bdf8',
+            background: '#4f63d2',
+            boxShadow: 'none',
           }}
         />
-        <span style={{ color: '#f4f4f5', letterSpacing: '0.04em' }}>TIGERGRAPH SUBGRAPH</span>
-        <span style={{ color: '#71717a' }}>•</span>
-        <span className="mono" style={{ color: '#38bdf8', fontWeight: 700 }}>
+        <span style={{ color: '#1f2638', letterSpacing: '0.04em' }}>TIGERGRAPH SUBGRAPH</span>
+        <span style={{ color: '#6b7388' }}>•</span>
+        <span className="mono" style={{ color: '#4f63d2', fontWeight: 700 }}>
           {nodes.length} Vertices / {edges.length} Edges
         </span>
       </div>
@@ -322,7 +318,7 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
             markerHeight="5"
             orient="auto-start-reverse"
           >
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8" />
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#4f63d2" />
           </marker>
         </defs>
 
@@ -349,7 +345,7 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
                   y1={src.y}
                   x2={tgt.x}
                   y2={tgt.y}
-                  stroke={isHighlighted ? '#38bdf8' : '#1e293b'}
+                  stroke={isHighlighted ? '#4f63d2' : '#ffffff'}
                   strokeWidth={isHighlighted ? 2 : 1.2}
                   strokeDasharray={edge.type === 'SHARED_DEVICE' || edge.type === 'NEXT' ? '3,3' : undefined}
                   markerEnd={isHighlighted ? 'url(#arrow-active)' : 'url(#arrow)'}
@@ -401,7 +397,7 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
                   <motion.circle
                     r="20"
                     fill="none"
-                    stroke="#f43f5e"
+                    stroke="#dc3c45"
                     strokeWidth="2"
                     animate={{ r: [16, 28], opacity: [0.85, 0] }}
                     transition={{ repeat: Infinity, duration: 1.8, ease: 'easeOut' }}
@@ -441,7 +437,7 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
                 {/* Node Label Below */}
                 <text
                   y="28"
-                  fill={isSelected ? '#38bdf8' : '#e4e4e7'}
+                  fill={isSelected ? '#4f63d2' : '#1f2638'}
                   fontSize="10px"
                   fontFamily="var(--font-sans)"
                   fontWeight={isSelected ? 700 : 500}
@@ -449,7 +445,7 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
                   style={{
                     userSelect: 'none',
                     paintOrder: 'stroke',
-                    stroke: '#09090b',
+                    stroke: '#ffffff',
                     strokeWidth: '3px',
                     strokeLinejoin: 'round',
                   }}
@@ -469,44 +465,43 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
           position: 'absolute',
           bottom: '12px',
           left: '12px',
-          background: 'rgba(18, 18, 24, 0.88)',
-          backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '8px',
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          borderRadius: '6px',
           padding: '6px 14px',
           display: 'flex',
           alignItems: 'center',
           gap: '14px',
           fontSize: '11px',
           fontWeight: 600,
-          color: '#a1a1aa',
+          color: '#556078',
           zIndex: 5,
-          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.45)',
+          boxShadow: 'none',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6', boxShadow: '0 0 6px #3b82f6' }} />
-          <span style={{ color: '#f4f4f5' }}>Customer</span>
+          <span style={{ width: 'none', height: 'none', borderRadius: '50%', background: '#3b82f6', boxShadow: 'none' }} />
+          <span style={{ color: '#1f2638' }}>Customer</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0ea5e9', boxShadow: '0 0 6px #0ea5e9' }} />
-          <span style={{ color: '#f4f4f5' }}>Card</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'none' }}>
+          <span style={{ width: 'none', height: 'none', borderRadius: '50%', background: '#4f63d2', boxShadow: 'none' }} />
+          <span style={{ color: '#1f2638' }}>Card</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f43f5e', boxShadow: '0 0 6px #f43f5e' }} />
-          <span style={{ color: '#f4f4f5' }}>Flagged Txn</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'none' }}>
+          <span style={{ width: 'none', height: 'none', borderRadius: '50%', background: '#dc3c45', boxShadow: 'none' }} />
+          <span style={{ color: '#1f2638' }}>Flagged Txn</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ec4899', boxShadow: '0 0 6px #ec4899' }} />
-          <span style={{ color: '#f4f4f5' }}>Device</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'none' }}>
+          <span style={{ width: 'none', height: 'none', borderRadius: '50%', background: '#ec4899', boxShadow: 'none' }} />
+          <span style={{ color: '#1f2638' }}>Device</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b', boxShadow: '0 0 6px #f59e0b' }} />
-          <span style={{ color: '#f4f4f5' }}>Linked Card</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'none' }}>
+          <span style={{ width: 'none', height: 'none', borderRadius: '50%', background: '#d9820b', boxShadow: 'none' }} />
+          <span style={{ color: '#1f2638' }}>Linked Card</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7', boxShadow: '0 0 6px #a855f7' }} />
-          <span style={{ color: '#f4f4f5' }}>Prior Case</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'none' }}>
+          <span style={{ width: 'none', height: 'none', borderRadius: '50%', background: '#7c5cd6', boxShadow: 'none' }} />
+          <span style={{ color: '#1f2638' }}>Prior Case</span>
         </div>
       </div>
 
@@ -525,8 +520,7 @@ export const GraphExplorer: React.FC<GraphExplorerProps> = ({ subgraph, loading 
               right: 0,
               bottom: 0,
               width: '290px',
-              background: 'rgba(11, 17, 28, 0.95)',
-              backdropFilter: 'blur(12px)',
+              background: 'rgba(255, 255, 255, 0.95)',
               borderLeft: '1px solid var(--border-default)',
               boxShadow: 'var(--shadow-drawer)',
               zIndex: 10,

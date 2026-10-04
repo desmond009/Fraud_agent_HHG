@@ -108,14 +108,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
             width: '28px',
             height: '28px',
             borderRadius: '6px',
-            background: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
+            background: '#4f63d2',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: '#fff',
-            fontWeight: 800,
+            fontWeight: 700,
             fontSize: '14px',
-            boxShadow: '0 0 12px rgba(14, 165, 233, 0.4)',
+            boxShadow: 'none',
             flexShrink: 0,
           }}
         >
@@ -193,9 +193,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     position: 'absolute',
                     inset: 0,
                     borderRadius: 'var(--radius-sm)',
-                    background: 'rgba(255, 255, 255, 0.08)',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
-                    boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+                    background: 'rgba(71, 85, 140, 0.104)',
+                    border: '1px solid rgba(71, 85, 140, 0.156)',
+                    boxShadow: 'none',
                     zIndex: 0,
                   }}
                   transition={{ type: 'spring', stiffness: 450, damping: 32 }}
@@ -235,7 +235,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           item.badgeColor === 'amber'
                             ? 'var(--risk-medium-border)'
                             : isActive
-                            ? 'rgba(14, 165, 233, 0.3)'
+                            ? 'rgba(79, 99, 210, 0.3)'
                             : 'var(--border-subtle)',
                       }}
                     >
@@ -254,7 +254,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         style={{
           padding: '10px 12px',
           borderTop: '1px solid var(--border-subtle)',
-          background: 'rgba(7, 11, 19, 0.4)',
+          background: 'rgba(71, 85, 140, 0.06)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -289,16 +289,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 width: '26px',
                 height: '26px',
                 borderRadius: '50%',
-                background: '#1e293b',
+                background: '#e9edfb',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#94a3b8',
+                color: '#556078',
                 border: '1px solid var(--border-default)',
                 flexShrink: 0,
               }}
             >
-              <UserCheck size={14} color="#38bdf8" />
+              <UserCheck size={14} color="#4f63d2" />
             </div>
             <div style={{ overflow: 'hidden' }}>
               <div style={{ fontSize: '11.5px', fontWeight: 600, color: 'var(--text-primary)', whiteSpace: 'nowrap' }}>

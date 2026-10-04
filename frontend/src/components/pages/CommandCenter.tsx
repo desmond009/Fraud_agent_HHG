@@ -447,7 +447,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
           left: '10%',
           width: '500px',
           height: '180px',
-          background: 'radial-gradient(ellipse at center, rgba(14, 165, 233, 0.12) 0%, transparent 70%)',
+          background: 'transparent',
           pointerEvents: 'none',
           zIndex: 0,
         }}
@@ -460,11 +460,10 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
         transition={snappyTransition}
         style={{
           position: 'relative',
-          background: 'radial-gradient(ellipse 80% 90% at 5% 0%, rgba(14, 165, 233, 0.16) 0%, rgba(20, 20, 25, 0.9) 100%)',
-          backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 8px 32px rgba(0, 0, 0, 0.45)',
-          borderRadius: '8px',
+          background: 'transparent',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          boxShadow: 'none',
+          borderRadius: '6px',
           padding: '18px 22px',
           display: 'flex',
           alignItems: 'center',
@@ -483,9 +482,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                 fontWeight: 700,
                 padding: '3px 9px',
                 borderRadius: '9999px',
-                background: 'rgba(14, 165, 233, 0.18)',
-                color: '#38bdf8',
-                border: '1px solid rgba(14, 165, 233, 0.35)',
+                background: 'rgba(79, 99, 210, 0.18)',
+                color: '#4f63d2',
+                border: '1px solid rgba(79, 99, 210, 0.35)',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '6px',
@@ -497,46 +496,46 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                   width: '6px',
                   height: '6px',
                   borderRadius: '50%',
-                  background: '#38bdf8',
-                  boxShadow: '0 0 8px #38bdf8',
+                  background: '#4f63d2',
+                  boxShadow: 'none',
                 }}
               />
               TIGERGRAPH FRAUD OPS
             </span>
-            <span style={{ fontSize: '11px', color: '#71717a' }}>IEEE-CIS Hackathon Edition</span>
+            <span style={{ fontSize: '11px', color: '#6b7388' }}>IEEE-CIS Hackathon Edition</span>
           </div>
 
-          <h2 style={{ fontSize: '19px', fontWeight: 800, color: '#f4f4f5', letterSpacing: '-0.02em', marginTop: '6px', marginBottom: 0 }}>
+          <h2 style={{ fontSize: '19px', fontWeight: 700, color: '#1f2638', letterSpacing: '-0.02em', marginTop: '6px', marginBottom: 0 }}>
             Fraud Investigation Command Center
           </h2>
-          <p style={{ fontSize: '12px', color: '#a1a1aa', marginTop: '3px', maxWidth: '650px', lineHeight: 1.5 }}>
+          <p style={{ fontSize: '12px', color: '#556078', marginTop: '3px', maxWidth: '650px', lineHeight: 1.5 }}>
             Real-time agentic triage queue running autonomous GraphRAG, subgraphs traversal, FinCEN SAR drafting, and policy-governed next-best actions.
           </p>
         </div>
 
         {/* Hero Exposure Metric Box */}
         <motion.div
-          whileHover={{ scale: 1.02 }}
+          whileHover={{}}
           style={{
             padding: '10px 18px',
-            borderRadius: '8px',
-            background: 'rgba(0, 0, 0, 0.5)',
-            border: '1px solid rgba(244, 63, 94, 0.35)',
-            boxShadow: '0 0 24px rgba(244, 63, 94, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+            borderRadius: '6px',
+            background: '#f6f7fa',
+            border: '1px solid rgba(220, 60, 69, 0.35)',
+            boxShadow: 'none',
             textAlign: 'right',
             display: 'flex',
             flexDirection: 'column',
             gap: '2px',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '5px', fontSize: '10.5px', color: '#a1a1aa', textTransform: 'uppercase', letterSpacing: '0.04em', fontWeight: 700 }}>
-            <ShieldAlert size={12} color="#f43f5e" />
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '5px', fontSize: '10.5px', color: '#556078', textTransform: 'uppercase', letterSpacing: '0.04em', fontWeight: 700 }}>
+            <ShieldAlert size={12} color="#dc3c45" />
             <span>EXPOSURE PREVENTED</span>
           </div>
-          <div className="mono" style={{ fontSize: '24px', fontWeight: 900, color: '#f43f5e', letterSpacing: '-0.02em' }}>
+          <div className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#dc3c45', letterSpacing: '-0.02em' }}>
             <AnimatedCounter value={Math.round(totalExposure)} prefix="$" suffix=" USD" duration={1.2} />
           </div>
-          <span style={{ fontSize: '10.5px', color: '#10b981', fontWeight: 600 }}>
+          <span style={{ fontSize: '10.5px', color: '#059669', fontWeight: 600 }}>
             100% Policy Interception
           </span>
         </motion.div>
@@ -556,14 +555,13 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
         {/* Card 1: Total Cases */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -3, borderColor: 'rgba(56, 189, 248, 0.35)', boxShadow: '0 8px 24px -4px rgba(14, 165, 233, 0.18)' }}
+          whileHover={{ borderColor: 'none', boxShadow: 'none' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -573,38 +571,37 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '10.5px', color: '#71717a', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <span style={{ fontSize: '10.5px', color: '#6b7388', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 EXAM CASES
               </span>
-              <Layers size={14} color="#38bdf8" />
+              <Layers size={14} color="#4f63d2" />
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-              <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f4f4f5' }}>
+              <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#1f2638' }}>
                 <AnimatedCounter value={totalCases} />
               </span>
-              <span style={{ fontSize: '11px', color: '#71717a' }}>cases</span>
+              <span style={{ fontSize: '11px', color: '#6b7388' }}>cases</span>
             </div>
-            <span style={{ fontSize: '10.5px', color: '#38bdf8', marginTop: '2px', display: 'block', fontWeight: 600 }}>
+            <span style={{ fontSize: '10.5px', color: '#4f63d2', marginTop: '2px', display: 'block', fontWeight: 600 }}>
               100% benchmarked
             </span>
           </div>
           {/* Progress bar */}
-          <div style={{ width: '100%', height: '3px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '9999px', overflow: 'hidden' }}>
-            <div style={{ width: '100%', height: '100%', background: '#38bdf8' }} />
+          <div style={{ width: '100%', height: '3px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '9999px', overflow: 'hidden' }}>
+            <div style={{ width: '100%', height: '100%', background: '#4f63d2' }} />
           </div>
         </motion.div>
 
         {/* Card 2: Confirmed Fraud */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -3, borderColor: 'rgba(244, 63, 94, 0.35)', boxShadow: '0 8px 24px -4px rgba(244, 63, 94, 0.18)' }}
+          whileHover={{ borderColor: 'none', boxShadow: 'none' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -614,38 +611,37 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '10.5px', color: '#71717a', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <span style={{ fontSize: '10.5px', color: '#6b7388', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 CONFIRMED FRAUD
               </span>
-              <ShieldAlert size={14} color="#f43f5e" />
+              <ShieldAlert size={14} color="#dc3c45" />
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-              <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f43f5e' }}>
+              <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#dc3c45' }}>
                 <AnimatedCounter value={fraudCases} />
               </span>
-              <span style={{ fontSize: '11px', color: '#71717a' }}>incidents</span>
+              <span style={{ fontSize: '11px', color: '#6b7388' }}>incidents</span>
             </div>
-            <span style={{ fontSize: '10.5px', color: '#f43f5e', marginTop: '2px', display: 'block', fontWeight: 600 }}>
+            <span style={{ fontSize: '10.5px', color: '#dc3c45', marginTop: '2px', display: 'block', fontWeight: 600 }}>
               Card testing & CNP fraud
             </span>
           </div>
           {/* Progress bar */}
-          <div style={{ width: '100%', height: '3px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '9999px', overflow: 'hidden' }}>
-            <div style={{ width: `${(fraudCases / Math.max(totalCases, 1)) * 100}%`, height: '100%', background: '#f43f5e' }} />
+          <div style={{ width: '100%', height: '3px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '9999px', overflow: 'hidden' }}>
+            <div style={{ width: `${(fraudCases / Math.max(totalCases, 1)) * 100}%`, height: '100%', background: '#dc3c45' }} />
           </div>
         </motion.div>
 
         {/* Card 3: Cleared False Alarms */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -3, borderColor: 'rgba(16, 185, 129, 0.35)', boxShadow: '0 8px 24px -4px rgba(16, 185, 129, 0.18)' }}
+          whileHover={{ borderColor: 'none', boxShadow: 'none' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -655,38 +651,37 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '10.5px', color: '#71717a', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <span style={{ fontSize: '10.5px', color: '#6b7388', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 CLEARED ALARMS
               </span>
-              <ShieldCheck size={14} color="#10b981" />
+              <ShieldCheck size={14} color="#059669" />
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-              <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#10b981' }}>
+              <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#059669' }}>
                 <AnimatedCounter value={legitCases} />
               </span>
-              <span style={{ fontSize: '11px', color: '#71717a' }}>legitimate</span>
+              <span style={{ fontSize: '11px', color: '#6b7388' }}>legitimate</span>
             </div>
-            <span style={{ fontSize: '10.5px', color: '#10b981', marginTop: '2px', display: 'block', fontWeight: 600 }}>
+            <span style={{ fontSize: '10.5px', color: '#059669', marginTop: '2px', display: 'block', fontWeight: 600 }}>
               Customer confirmed (Rule R3)
             </span>
           </div>
           {/* Progress bar */}
-          <div style={{ width: '100%', height: '3px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '9999px', overflow: 'hidden' }}>
-            <div style={{ width: `${(legitCases / Math.max(totalCases, 1)) * 100}%`, height: '100%', background: '#10b981' }} />
+          <div style={{ width: '100%', height: '3px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '9999px', overflow: 'hidden' }}>
+            <div style={{ width: `${(legitCases / Math.max(totalCases, 1)) * 100}%`, height: '100%', background: '#059669' }} />
           </div>
         </motion.div>
 
         {/* Card 4: SAR Filings */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -3, borderColor: 'rgba(192, 132, 252, 0.35)', boxShadow: '0 8px 24px -4px rgba(168, 85, 247, 0.18)' }}
+          whileHover={{ borderColor: 'none', boxShadow: 'none' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -696,38 +691,37 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '10.5px', color: '#71717a', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <span style={{ fontSize: '10.5px', color: '#6b7388', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 SAR REGULATORY
               </span>
-              <FileText size={14} color="#c084fc" />
+              <FileText size={14} color="#7c5cd6" />
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-              <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#c084fc' }}>
+              <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#7c5cd6' }}>
                 <AnimatedCounter value={sarCases} />
               </span>
-              <span style={{ fontSize: '11px', color: '#71717a' }}>filings</span>
+              <span style={{ fontSize: '11px', color: '#6b7388' }}>filings</span>
             </div>
-            <span style={{ fontSize: '10.5px', color: '#c084fc', marginTop: '2px', display: 'block', fontWeight: 600 }}>
+            <span style={{ fontSize: '10.5px', color: '#7c5cd6', marginTop: '2px', display: 'block', fontWeight: 600 }}>
               FinCEN compliant narratives
             </span>
           </div>
           {/* Progress bar */}
-          <div style={{ width: '100%', height: '3px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '9999px', overflow: 'hidden' }}>
-            <div style={{ width: `${(sarCases / Math.max(totalCases, 1)) * 100}%`, height: '100%', background: '#c084fc' }} />
+          <div style={{ width: '100%', height: '3px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '9999px', overflow: 'hidden' }}>
+            <div style={{ width: `${(sarCases / Math.max(totalCases, 1)) * 100}%`, height: '100%', background: '#7c5cd6' }} />
           </div>
         </motion.div>
 
         {/* Card 5: Pending Approvals */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -3, borderColor: 'rgba(245, 158, 11, 0.35)', boxShadow: '0 8px 24px -4px rgba(245, 158, 11, 0.18)' }}
+          whileHover={{ borderColor: 'none', boxShadow: 'none' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -737,24 +731,24 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '10.5px', color: '#71717a', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <span style={{ fontSize: '10.5px', color: '#6b7388', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 PENDING APPROVALS
               </span>
-              <AlertTriangle size={14} color="#f59e0b" />
+              <AlertTriangle size={14} color="#d9820b" />
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-              <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f59e0b' }}>
+              <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#d9820b' }}>
                 <AnimatedCounter value={pendingApprovals} />
               </span>
-              <span style={{ fontSize: '11px', color: '#71717a' }}>actions</span>
+              <span style={{ fontSize: '11px', color: '#6b7388' }}>actions</span>
             </div>
-            <span style={{ fontSize: '10.5px', color: '#f59e0b', marginTop: '2px', display: 'block', fontWeight: 600 }}>
+            <span style={{ fontSize: '10.5px', color: '#d9820b', marginTop: '2px', display: 'block', fontWeight: 600 }}>
               L1 / L2 sign-off required
             </span>
           </div>
           {/* Progress bar */}
-          <div style={{ width: '100%', height: '3px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '9999px', overflow: 'hidden' }}>
-            <div style={{ width: `${(pendingApprovals / Math.max(totalCases, 1)) * 100}%`, height: '100%', background: '#f59e0b' }} />
+          <div style={{ width: '100%', height: '3px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '9999px', overflow: 'hidden' }}>
+            <div style={{ width: `${(pendingApprovals / Math.max(totalCases, 1)) * 100}%`, height: '100%', background: '#d9820b' }} />
           </div>
         </motion.div>
       </motion.div>
@@ -767,10 +761,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: '12px',
-          background: 'rgba(20, 20, 25, 0.6)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '8px',
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          borderRadius: '6px',
           padding: '8px 12px',
         }}
       >
@@ -779,8 +772,8 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
           style={{
             display: 'flex',
             alignItems: 'center',
-            background: 'rgba(0, 0, 0, 0.4)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            background: '#f6f7fa',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
             borderRadius: '6px',
             padding: '2px',
             position: 'relative',
@@ -797,7 +790,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'all' ? '#f4f4f5' : '#71717a',
+              color: filter === 'all' ? '#1f2638' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -810,7 +803,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(255, 255, 255, 0.12)',
+                  background: 'rgba(71, 85, 140, 0.156)',
                   zIndex: -1,
                 }}
               />
@@ -832,7 +825,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'fraud' ? '#f43f5e' : '#71717a',
+              color: filter === 'fraud' ? '#dc3c45' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -845,8 +838,8 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(244, 63, 94, 0.2)',
-                  border: '1px solid rgba(244, 63, 94, 0.35)',
+                  background: 'rgba(220, 60, 69, 0.2)',
+                  border: '1px solid rgba(220, 60, 69, 0.35)',
                   zIndex: -1,
                 }}
               />
@@ -869,7 +862,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'legitimate' ? '#10b981' : '#71717a',
+              color: filter === 'legitimate' ? '#059669' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -882,8 +875,8 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(16, 185, 129, 0.2)',
-                  border: '1px solid rgba(16, 185, 129, 0.35)',
+                  background: 'rgba(5, 150, 105, 0.2)',
+                  border: '1px solid rgba(5, 150, 105, 0.35)',
                   zIndex: -1,
                 }}
               />
@@ -906,7 +899,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'approval_required' ? '#f59e0b' : '#71717a',
+              color: filter === 'approval_required' ? '#d9820b' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -919,8 +912,8 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(245, 158, 11, 0.2)',
-                  border: '1px solid rgba(245, 158, 11, 0.35)',
+                  background: 'rgba(217, 130, 11, 0.2)',
+                  border: '1px solid rgba(217, 130, 11, 0.35)',
                   zIndex: -1,
                 }}
               />
@@ -932,7 +925,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
 
         {/* Right: Search */}
         <div style={{ position: 'relative', width: '260px' }}>
-          <Search size={14} color="#71717a" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} />
+          <Search size={14} color="#6b7388" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} />
           <input
             type="text"
             placeholder="Filter queue by ID, customer, card..."
@@ -940,17 +933,17 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
             onChange={(e) => setSearch(e.target.value)}
             style={{
               width: '100%',
-              background: 'rgba(0, 0, 0, 0.4)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              background: '#f6f7fa',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
               borderRadius: '6px',
               padding: '6px 28px 6px 30px',
-              color: '#f4f4f5',
+              color: '#1f2638',
               fontSize: '11.5px',
               outline: 'none',
               transition: 'border-color 0.15s ease',
             }}
-            onFocus={(e) => (e.target.style.borderColor = 'rgba(14, 165, 233, 0.6)')}
-            onBlur={(e) => (e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)')}
+            onFocus={(e) => (e.target.style.borderColor = 'rgba(79, 99, 210, 0.6)')}
+            onBlur={(e) => (e.target.style.borderColor = 'rgba(71, 85, 140, 0.104)')}
           />
           {search && (
             <button
@@ -962,7 +955,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                 transform: 'translateY(-50%)',
                 background: 'none',
                 border: 'none',
-                color: '#71717a',
+                color: '#6b7388',
                 cursor: 'pointer',
                 padding: '2px',
               }}
@@ -976,11 +969,10 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
       {/* 4. Investigation Triage Queue Data Table with Waterfall Entrance */}
       <div
         style={{
-          background: 'rgba(20, 20, 25, 0.7)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.5)',
-          borderRadius: '8px',
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          boxShadow: 'none',
+          borderRadius: '6px',
           overflow: 'hidden',
           position: 'relative',
         }}
@@ -990,9 +982,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
             <thead>
               <tr
                 style={{
-                  background: 'rgba(0, 0, 0, 0.45)',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-                  color: '#71717a',
+                  background: '#f6f7fa',
+                  borderBottom: '1px solid rgba(71, 85, 140, 0.104)',
+                  color: '#6b7388',
                   fontSize: '10.5px',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -1005,9 +997,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                   <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
                     <span>CASE ID</span>
                     {sortColumn === 'case_id' ? (
-                      sortOrder === 'asc' ? <ChevronUp size={12} color="#38bdf8" /> : <ChevronDown size={12} color="#38bdf8" />
+                      sortOrder === 'asc' ? <ChevronUp size={12} color="#4f63d2" /> : <ChevronDown size={12} color="#4f63d2" />
                     ) : (
-                      <ArrowUpDown size={11} color="#52525b" />
+                      <ArrowUpDown size={11} color="#8c94a8" />
                     )}
                   </div>
                 </th>
@@ -1020,9 +1012,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                   <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
                     <span>VERDICT</span>
                     {sortColumn === 'verdict' ? (
-                      sortOrder === 'asc' ? <ChevronUp size={12} color="#38bdf8" /> : <ChevronDown size={12} color="#38bdf8" />
+                      sortOrder === 'asc' ? <ChevronUp size={12} color="#4f63d2" /> : <ChevronDown size={12} color="#4f63d2" />
                     ) : (
-                      <ArrowUpDown size={11} color="#52525b" />
+                      <ArrowUpDown size={11} color="#8c94a8" />
                     )}
                   </div>
                 </th>
@@ -1034,9 +1026,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                   <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'flex-end', gap: '5px' }}>
                     <span>EXPOSURE</span>
                     {sortColumn === 'exposure' ? (
-                      sortOrder === 'asc' ? <ChevronUp size={12} color="#38bdf8" /> : <ChevronDown size={12} color="#38bdf8" />
+                      sortOrder === 'asc' ? <ChevronUp size={12} color="#4f63d2" /> : <ChevronDown size={12} color="#4f63d2" />
                     ) : (
-                      <ArrowUpDown size={11} color="#52525b" />
+                      <ArrowUpDown size={11} color="#8c94a8" />
                     )}
                   </div>
                 </th>
@@ -1062,10 +1054,10 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
             >
               {displayCases.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '48px 16px', textAlign: 'center', color: '#71717a' }}>
+                  <td colSpan={8} style={{ padding: '48px 16px', textAlign: 'center', color: '#6b7388' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                      <Layers size={28} color="#52525b" />
-                      <span style={{ fontSize: '13px', fontWeight: 600, color: '#a1a1aa' }}>
+                      <Layers size={28} color="#8c94a8" />
+                      <span style={{ fontSize: '13px', fontWeight: 600, color: '#556078' }}>
                         No cases match current filter criteria
                       </span>
                       <button
@@ -1080,9 +1072,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                           borderRadius: '4px',
                           fontSize: '11px',
                           fontWeight: 600,
-                          background: 'rgba(14, 165, 233, 0.15)',
-                          border: '1px solid rgba(14, 165, 233, 0.3)',
-                          color: '#38bdf8',
+                          background: 'rgba(79, 99, 210, 0.15)',
+                          border: '1px solid rgba(79, 99, 210, 0.3)',
+                          color: '#4f63d2',
                           cursor: 'pointer',
                         }}
                       >
@@ -1097,14 +1089,14 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                   const isFraud = c.verdict === 'fraud';
                   const isSelected = selectedPreviewCase?.case_id === c.case_id;
 
-                  let routeBg = 'rgba(14, 165, 233, 0.15)';
-                  let routeColor = '#38bdf8';
+                  let routeBg = 'rgba(79, 99, 210, 0.15)';
+                  let routeColor = '#4f63d2';
                   if (primaryAction.route === 'L2') {
-                    routeBg = 'rgba(168, 85, 247, 0.15)';
-                    routeColor = '#c084fc';
+                    routeBg = 'rgba(124, 92, 214, 0.15)';
+                    routeColor = '#7c5cd6';
                   } else if (primaryAction.route === 'L1') {
-                    routeBg = 'rgba(245, 158, 11, 0.15)';
-                    routeColor = '#f59e0b';
+                    routeBg = 'rgba(217, 130, 11, 0.15)';
+                    routeColor = '#d9820b';
                   }
 
                   return (
@@ -1121,51 +1113,51 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                       }}
                       onClick={() => setSelectedPreviewCase(c)}
                       style={{
-                        borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+                        borderBottom: '1px solid rgba(71, 85, 140, 0.052)',
                         borderLeft: isSelected
-                          ? '3px solid #38bdf8'
+                          ? '3px solid #4f63d2'
                           : isFraud
-                          ? '3px solid rgba(244, 63, 94, 0.3)'
+                          ? '3px solid rgba(220, 60, 69, 0.3)'
                           : '3px solid transparent',
-                        background: isSelected ? 'rgba(255, 255, 255, 0.06)' : 'transparent',
+                        background: isSelected ? 'rgba(71, 85, 140, 0.078)' : 'transparent',
                         cursor: 'pointer',
                         transition: 'background 0.12s ease, border-left-color 0.12s ease',
                       }}
                       onMouseEnter={(e) => {
                         if (!isSelected) {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.035)';
-                          e.currentTarget.style.borderLeftColor = isFraud ? '#f43f5e' : '#38bdf8';
+                          e.currentTarget.style.background = 'rgba(71, 85, 140, 0.046)';
+                          e.currentTarget.style.borderLeftColor = isFraud ? '#dc3c45' : '#4f63d2';
                         }
                       }}
                       onMouseLeave={(e) => {
                         if (!isSelected) {
                           e.currentTarget.style.background = 'transparent';
-                          e.currentTarget.style.borderLeftColor = isFraud ? 'rgba(244, 63, 94, 0.3)' : 'transparent';
+                          e.currentTarget.style.borderLeftColor = isFraud ? 'rgba(220, 60, 69, 0.3)' : 'transparent';
                         }
                       }}
                     >
                       {/* Case ID */}
                       <td style={{ padding: '10px 14px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span className="mono" style={{ fontWeight: 800, color: '#38bdf8', fontSize: '12px' }}>
+                          <span className="mono" style={{ fontWeight: 700, color: '#4f63d2', fontSize: '12px' }}>
                             {c.case_id}
                           </span>
                           <motion.button
-                            whileHover={{ scale: 1.2 }}
-                            whileTap={{ scale: 0.9 }}
+                            whileHover={{}}
+                            whileTap={{}}
                             onClick={(e) => handleCopyId(c.case_id, e)}
                             style={{
                               background: 'none',
                               border: 'none',
                               padding: '2px',
                               cursor: 'pointer',
-                              color: '#71717a',
+                              color: '#6b7388',
                               display: 'flex',
                               alignItems: 'center',
                             }}
                           >
                             {copiedId === c.case_id ? (
-                              <Check size={11} color="#10b981" />
+                              <Check size={11} color="#059669" />
                             ) : (
                               <Copy size={11} />
                             )}
@@ -1179,7 +1171,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                           style={{
                             fontSize: '11px',
                             textTransform: 'capitalize',
-                            color: '#a1a1aa',
+                            color: '#556078',
                             fontWeight: 500,
                           }}
                         >
@@ -1195,22 +1187,22 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                               width: '24px',
                               height: '24px',
                               borderRadius: '50%',
-                              background: 'rgba(255, 255, 255, 0.08)',
-                              border: '1px solid rgba(255, 255, 255, 0.1)',
+                              background: 'rgba(71, 85, 140, 0.104)',
+                              border: '1px solid rgba(71, 85, 140, 0.13)',
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
                               flexShrink: 0,
                             }}
                           >
-                            <User size={11} color="#cbd5e1" />
+                            <User size={11} color="#47516a" />
                           </div>
                           <div>
-                            <div className="mono" style={{ fontWeight: 700, color: '#f4f4f5', fontSize: '12px' }}>
+                            <div className="mono" style={{ fontWeight: 700, color: '#1f2638', fontSize: '12px' }}>
                               {c.customer_id}
                             </div>
-                            <div className="mono" style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '10.5px', color: '#71717a' }}>
-                              <CreditCard size={10} color="#71717a" />
+                            <div className="mono" style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '10.5px', color: '#6b7388' }}>
+                              <CreditCard size={10} color="#6b7388" />
                               <span>{c.card_id}</span>
                             </div>
                           </div>
@@ -1227,11 +1219,11 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                               gap: '5px',
                               padding: '2px 8px',
                               borderRadius: '9999px',
-                              background: 'rgba(244, 63, 94, 0.15)',
-                              color: '#f43f5e',
-                              border: '1px solid rgba(244, 63, 94, 0.35)',
+                              background: 'rgba(220, 60, 69, 0.15)',
+                              color: '#dc3c45',
+                              border: '1px solid rgba(220, 60, 69, 0.35)',
                               fontSize: '10.5px',
-                              fontWeight: 800,
+                              fontWeight: 700,
                             }}
                           >
                             {/* Live pulse radar */}
@@ -1239,9 +1231,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                               <motion.span
                                 animate={{ scale: [1, 2.2], opacity: [0.8, 0] }}
                                 transition={{ repeat: Infinity, duration: 1.4, ease: 'easeOut' }}
-                                style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#f43f5e' }}
+                                style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#dc3c45' }}
                               />
-                              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#f43f5e' }} />
+                              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#dc3c45' }} />
                             </span>
                             <span>FRAUD ({Math.round(c.fraud_probability * 100)}%)</span>
                           </div>
@@ -1253,9 +1245,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                               gap: '4px',
                               padding: '2px 8px',
                               borderRadius: '9999px',
-                              background: 'rgba(16, 185, 129, 0.15)',
-                              color: '#10b981',
-                              border: '1px solid rgba(16, 185, 129, 0.35)',
+                              background: 'rgba(5, 150, 105, 0.15)',
+                              color: '#059669',
+                              border: '1px solid rgba(5, 150, 105, 0.35)',
                               fontSize: '10.5px',
                               fontWeight: 700,
                             }}
@@ -1267,9 +1259,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                       </td>
 
                       {/* Typology */}
-                      <td style={{ padding: '10px 14px', color: '#cbd5e1', fontSize: '11px' }}>
+                      <td style={{ padding: '10px 14px', color: '#47516a', fontSize: '11px' }}>
                         {c.pattern === 'none' ? (
-                          <span style={{ color: '#71717a' }}>—</span>
+                          <span style={{ color: '#6b7388' }}>—</span>
                         ) : (
                           <span style={{ textTransform: 'capitalize' }}>
                             {c.pattern.replace(/_/g, ' ')}
@@ -1284,7 +1276,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                           style={{
                             fontWeight: 700,
                             fontSize: '12px',
-                            color: c.exposure_usd > 0 ? '#f43f5e' : '#a1a1aa',
+                            color: c.exposure_usd > 0 ? '#dc3c45' : '#556078',
                           }}
                         >
                           ${c.exposure_usd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -1294,7 +1286,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                       {/* Recommended NBA */}
                       <td style={{ padding: '10px 14px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span className="mono" style={{ fontWeight: 700, fontSize: '11px', color: '#f4f4f5' }}>
+                          <span className="mono" style={{ fontWeight: 700, fontSize: '11px', color: '#1f2638' }}>
                             {primaryAction.action}
                           </span>
                           <span
@@ -1317,8 +1309,8 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                       {/* Action Button */}
                       <td style={{ padding: '10px 14px', textAlign: 'right' }}>
                         <motion.button
-                          whileHover={{ scale: 1.03, backgroundColor: 'rgba(14, 165, 233, 0.15)', borderColor: 'rgba(14, 165, 233, 0.4)' }}
-                          whileTap={{ scale: 0.97 }}
+                          whileHover={{ backgroundColor: 'rgba(79, 99, 210, 0.15)', borderColor: 'rgba(79, 99, 210, 0.4)' }}
+                          whileTap={{}}
                           onClick={(e) => {
                             e.stopPropagation();
                             onOpenCase(c.case_id);
@@ -1331,15 +1323,15 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                             fontSize: '11px',
                             fontWeight: 600,
                             borderRadius: '4px',
-                            background: 'rgba(255, 255, 255, 0.05)',
-                            border: '1px solid rgba(255, 255, 255, 0.1)',
-                            color: '#f4f4f5',
+                            background: 'rgba(71, 85, 140, 0.065)',
+                            border: '1px solid rgba(71, 85, 140, 0.13)',
+                            color: '#1f2638',
                             cursor: 'pointer',
                             transition: 'all 0.15s ease',
                           }}
                         >
-                          <span style={{ color: '#a1a1aa' }}>Inspect</span>
-                          <ArrowRight size={11} color="#38bdf8" />
+                          <span style={{ color: '#556078' }}>Inspect</span>
+                          <ArrowRight size={11} color="#4f63d2" />
                         </motion.button>
                       </td>
                     </motion.tr>
@@ -1354,27 +1346,27 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
         <div
           style={{
             padding: '8px 14px',
-            background: 'rgba(0, 0, 0, 0.45)',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            background: '#f6f7fa',
+            borderTop: '1px solid rgba(71, 85, 140, 0.104)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             fontSize: '11px',
-            color: '#71717a',
+            color: '#6b7388',
             flexWrap: 'wrap',
             gap: '8px',
           }}
         >
           <div>
-            Showing <strong style={{ color: '#f4f4f5' }}>{filteredCases.length}</strong> of{' '}
-            <strong style={{ color: '#f4f4f5' }}>{totalCases}</strong> benchmark triage cases
+            Showing <strong style={{ color: '#1f2638' }}>{filteredCases.length}</strong> of{' '}
+            <strong style={{ color: '#1f2638' }}>{totalCases}</strong> benchmark triage cases
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#f43f5e' }} /> Confirmed Fraud ({fraudCases})
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#dc3c45' }} /> Confirmed Fraud ({fraudCases})
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} /> Cleared Legitimate ({legitCases})
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#059669' }} /> Cleared Legitimate ({legitCases})
             </span>
           </div>
         </div>
@@ -1395,10 +1387,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
               bottom: 0,
               width: '420px',
               maxWidth: '92vw',
-              background: 'rgba(11, 17, 28, 0.96)',
-              backdropFilter: 'blur(20px)',
-              borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
-              boxShadow: '-8px 0 32px rgba(0, 0, 0, 0.8)',
+              background: 'rgba(255, 255, 255, 0.96)',
+              borderLeft: '1px solid rgba(71, 85, 140, 0.13)',
+              boxShadow: 'var(--shadow-drawer)',
               zIndex: 1000,
               display: 'flex',
               flexDirection: 'column',
@@ -1410,18 +1401,18 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
             <div
               style={{
                 padding: '16px',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                borderBottom: '1px solid rgba(71, 85, 140, 0.104)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 position: 'sticky',
                 top: 0,
-                background: 'rgba(11, 17, 28, 0.98)',
+                background: 'rgba(255, 255, 255, 0.98)',
                 zIndex: 10,
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span className="mono" style={{ fontSize: '13px', fontWeight: 800, color: '#38bdf8' }}>
+                <span className="mono" style={{ fontSize: '13px', fontWeight: 700, color: '#4f63d2' }}>
                   {selectedPreviewCase.case_id}
                 </span>
                 <span
@@ -1432,13 +1423,13 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                     borderRadius: '4px',
                     background:
                       selectedPreviewCase.verdict === 'fraud'
-                        ? 'rgba(244, 63, 94, 0.15)'
-                        : 'rgba(16, 185, 129, 0.15)',
-                    color: selectedPreviewCase.verdict === 'fraud' ? '#f43f5e' : '#10b981',
+                        ? 'rgba(220, 60, 69, 0.15)'
+                        : 'rgba(5, 150, 105, 0.15)',
+                    color: selectedPreviewCase.verdict === 'fraud' ? '#dc3c45' : '#059669',
                     border: `1px solid ${
                       selectedPreviewCase.verdict === 'fraud'
-                        ? 'rgba(244, 63, 94, 0.35)'
-                        : 'rgba(16, 185, 129, 0.35)'
+                        ? 'rgba(220, 60, 69, 0.35)'
+                        : 'rgba(5, 150, 105, 0.35)'
                     }`,
                     textTransform: 'uppercase',
                   }}
@@ -1448,13 +1439,13 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{}}
+                whileTap={{}}
                 onClick={() => setSelectedPreviewCase(null)}
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#71717a',
+                  color: '#6b7388',
                   cursor: 'pointer',
                   padding: '4px',
                   borderRadius: '4px',
@@ -1471,23 +1462,23 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
               <div
                 style={{
                   padding: '14px',
-                  borderRadius: '8px',
-                  background: 'rgba(0, 0, 0, 0.4)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '6px',
+                  background: '#f6f7fa',
+                  border: '1px solid rgba(71, 85, 140, 0.104)',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '8px',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', color: '#71717a' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', color: '#6b7388' }}>
                   <span style={{ fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     Calibrated Fraud Probability
                   </span>
                   <span
                     className="mono"
                     style={{
-                      fontWeight: 800,
-                      color: selectedPreviewCase.verdict === 'fraud' ? '#f43f5e' : '#10b981',
+                      fontWeight: 700,
+                      color: selectedPreviewCase.verdict === 'fraud' ? '#dc3c45' : '#059669',
                     }}
                   >
                     {selectedPreviewCase.verdict.toUpperCase()}
@@ -1495,22 +1486,22 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                  <span className="mono" style={{ fontSize: '28px', fontWeight: 800, color: '#f4f4f5' }}>
+                  <span className="mono" style={{ fontSize: '28px', fontWeight: 700, color: '#1f2638' }}>
                     {Math.round(selectedPreviewCase.fraud_probability * 100)}%
                   </span>
-                  <span className="mono" style={{ fontSize: '11px', color: '#71717a' }}>
+                  <span className="mono" style={{ fontSize: '11px', color: '#6b7388' }}>
                     ({selectedPreviewCase.fraud_probability.toFixed(2)})
                   </span>
                 </div>
 
-                <div style={{ width: '100%', height: '5px', borderRadius: '9999px', background: 'rgba(255, 255, 255, 0.08)', overflow: 'hidden' }}>
+                <div style={{ width: '100%', height: '5px', borderRadius: '9999px', background: 'rgba(71, 85, 140, 0.104)', overflow: 'hidden' }}>
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${Math.round(selectedPreviewCase.fraud_probability * 100)}%` }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     style={{
                       height: '100%',
-                      background: selectedPreviewCase.verdict === 'fraud' ? '#f43f5e' : '#10b981',
+                      background: selectedPreviewCase.verdict === 'fraud' ? '#dc3c45' : '#059669',
                     }}
                   />
                 </div>
@@ -1518,31 +1509,31 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
 
               {/* Case Attributes Grid */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                   Case Core Identifiers
                 </span>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '11px' }}>
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <span style={{ color: '#71717a', display: 'block', fontSize: '10px' }}>EXPOSURE</span>
-                    <span className="mono" style={{ fontWeight: 800, color: selectedPreviewCase.exposure_usd > 0 ? '#f43f5e' : '#f4f4f5', fontSize: '13px' }}>
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                    <span style={{ color: '#6b7388', display: 'block', fontSize: '10px' }}>EXPOSURE</span>
+                    <span className="mono" style={{ fontWeight: 700, color: selectedPreviewCase.exposure_usd > 0 ? '#dc3c45' : '#1f2638', fontSize: '13px' }}>
                       ${selectedPreviewCase.exposure_usd.toFixed(2)} USD
                     </span>
                   </div>
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <span style={{ color: '#71717a', display: 'block', fontSize: '10px' }}>TYPOLOGY</span>
-                    <span className="mono" style={{ fontWeight: 700, color: '#f4f4f5', fontSize: '11px', textTransform: 'capitalize' }}>
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                    <span style={{ color: '#6b7388', display: 'block', fontSize: '10px' }}>TYPOLOGY</span>
+                    <span className="mono" style={{ fontWeight: 700, color: '#1f2638', fontSize: '11px', textTransform: 'capitalize' }}>
                       {selectedPreviewCase.pattern === 'none' ? 'Routine' : selectedPreviewCase.pattern.replace(/_/g, ' ')}
                     </span>
                   </div>
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <span style={{ color: '#71717a', display: 'block', fontSize: '10px' }}>CUSTOMER ID</span>
-                    <span className="mono" style={{ fontWeight: 700, color: '#f4f4f5' }}>
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                    <span style={{ color: '#6b7388', display: 'block', fontSize: '10px' }}>CUSTOMER ID</span>
+                    <span className="mono" style={{ fontWeight: 700, color: '#1f2638' }}>
                       {selectedPreviewCase.customer_id}
                     </span>
                   </div>
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <span style={{ color: '#71717a', display: 'block', fontSize: '10px' }}>PRIMARY CARD</span>
-                    <span className="mono" style={{ fontWeight: 700, color: '#f4f4f5' }}>
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                    <span style={{ color: '#6b7388', display: 'block', fontSize: '10px' }}>PRIMARY CARD</span>
+                    <span className="mono" style={{ fontWeight: 700, color: '#1f2638' }}>
                       {selectedPreviewCase.card_id}
                     </span>
                   </div>
@@ -1552,17 +1543,17 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
               {/* Trigger Text Excerpt */}
               {selectedPreviewCase.trigger_text && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                  <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                     Trigger Signal
                   </span>
                   <div
                     style={{
                       padding: '10px 12px',
                       borderRadius: '6px',
-                      background: 'rgba(0, 0, 0, 0.35)',
-                      border: '1px solid rgba(255, 255, 255, 0.06)',
+                      background: '#f6f7fa',
+                      border: '1px solid rgba(71, 85, 140, 0.078)',
                       fontSize: '11px',
-                      color: '#d4d4d8',
+                      color: '#3a445b',
                       lineHeight: 1.5,
                     }}
                   >
@@ -1573,21 +1564,21 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
 
               {/* Recommended Action Pill */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                   Agent Governed Action
                 </span>
                 <div
                   style={{
                     padding: '10px 12px',
                     borderRadius: '6px',
-                    background: 'rgba(14, 165, 233, 0.08)',
-                    border: '1px solid rgba(14, 165, 233, 0.25)',
+                    background: 'rgba(79, 99, 210, 0.08)',
+                    border: '1px solid rgba(79, 99, 210, 0.25)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                   }}
                 >
-                  <span className="mono" style={{ fontSize: '12px', fontWeight: 800, color: '#38bdf8' }}>
+                  <span className="mono" style={{ fontSize: '12px', fontWeight: 700, color: '#4f63d2' }}>
                     {selectedPreviewCase.final_actions?.[0]?.action || 'MONITOR_CARD'}
                   </span>
                   <span
@@ -1597,8 +1588,8 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                       fontWeight: 700,
                       padding: '2px 6px',
                       borderRadius: '4px',
-                      background: 'rgba(14, 165, 233, 0.15)',
-                      color: '#38bdf8',
+                      background: 'rgba(79, 99, 210, 0.15)',
+                      color: '#4f63d2',
                     }}
                   >
                     ROUTE: {selectedPreviewCase.final_actions?.[0]?.route || 'auto'}
@@ -1611,15 +1602,15 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
             <div
               style={{
                 padding: '14px 16px',
-                borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'rgba(11, 17, 28, 0.98)',
+                borderTop: '1px solid rgba(71, 85, 140, 0.104)',
+                background: 'rgba(255, 255, 255, 0.98)',
                 position: 'sticky',
                 bottom: 0,
               }}
             >
               <motion.button
-                whileHover={{ scale: 1.02, backgroundColor: '#38bdf8' }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ backgroundColor: '#4f63d2' }}
+                whileTap={{}}
                 onClick={() => {
                   onOpenCase(selectedPreviewCase.case_id);
                   setSelectedPreviewCase(null);
@@ -1632,13 +1623,13 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ cases, onOpenCase,
                   gap: '8px',
                   padding: '9px 16px',
                   borderRadius: '6px',
-                  background: '#0ea5e9',
+                  background: '#4f63d2',
                   border: 'none',
-                  color: '#09090b',
+                  color: '#ffffff',
                   fontWeight: 700,
                   fontSize: '12px',
                   cursor: 'pointer',
-                  boxShadow: '0 0 16px rgba(14, 165, 233, 0.3)',
+                  boxShadow: 'none',
                   transition: 'background 0.15s ease',
                 }}
               >
