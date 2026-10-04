@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent))
 
-from mcp.tigergraph_mcp import TigerGraphMCPBridge
+from graph_tools.tigergraph_mcp import TigerGraphMCPBridge
 from graphrag.vector_indexer import get_graphrag_retriever
 from config import update_task, load_progress
 

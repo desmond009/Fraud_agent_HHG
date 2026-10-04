@@ -1,7 +1,7 @@
 import gc
 import logging
 from pathlib import Path
-from typing import Dict, List, Optional, Set, Tuple, Union
+from typing import Any, Dict, List, Optional, Set, Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -211,11 +211,9 @@ class FraudDataLoader:
         if "DeviceType" in self.config.categorical_features:
             df["DeviceType"] = df["TransactionID"].map(device_map).fillna("unknown")
 
-        # Ground truth label: 1 if in confirmed fraud cases OR risk_score >= 0.85
-        # (gives robust labels for training)
-        is_confirmed = df["TransactionID"].isin(fraud_txns)
-        has_high_risk = df["risk_score"].fillna(0.0) >= 0.85 if "risk_score" in df.columns else False
-        labels = (is_confirmed | has_high_risk).astype(np.int32)
+        # Ground truth: transactions confirmed as fraud in closed investigations. (Labels must NOT
+        # be derived from the legacy risk_score: that makes the model learn to copy an existing score.)
+        labels = df["TransactionID"].isin(fraud_txns).astype(np.int32)
 
         # Drop identifier and target columns from feature DataFrame
         drop_cols = [c for c in ["TransactionID", "risk_score", "customer_id", "ts"] if c in df.columns]
@@ -277,3 +275,45 @@ class FraudDataLoader:
         gc.collect()
 
         return X_train, X_test, y_train, y_test, preprocessor
+
+    def load_temporal_dataset(self) -> Dict[str, Any]:
+        """Full-dataset load with a leakage-safe, time-ordered train/validation/test split.
+
+        Only transactions up to the last confirmed-fraud timestamp are used: later rows have no
+        investigation outcomes yet, so treating them as "not fraud" would poison the labels.
+        Splits are chronological (train -> validation -> test), mimicking deployment.
+        """
+        txn_path = self.config.data_dir / "transactions.csv"
+        if not txn_path.exists():
+            raise FileNotFoundError(f"Dataset not found at {txn_path}")
+
+        fraud_txns = self.get_ground_truth_fraud_txns()
+        device_map = self.load_identity_mapping()
+
+        feature_cols = list(dict.fromkeys(
+            self.config.numerical_features + [c for c in self.config.categorical_features if c != "DeviceType"]))
+        wanted = set(feature_cols + ["TransactionID", "TransactionDT", "risk_score"])
+        logger.info("Loading full transactions dataset for temporal split...")
+        df = pd.read_csv(txn_path, usecols=lambda c: c in wanted, low_memory=False)
+        df["TransactionID"] = df["TransactionID"].astype(str)
+        if "DeviceType" in self.config.categorical_features:
+            df["DeviceType"] = df["TransactionID"].map(device_map).fillna("unknown")
+
+        df["y"] = df["TransactionID"].isin(fraud_txns).astype(np.int8)
+        cutoff = df.loc[df["y"] == 1, "TransactionDT"].max()
+        df = df[df["TransactionDT"] <= cutoff].sort_values("TransactionDT", kind="stable").reset_index(drop=True)
+
+        n = len(df)
+        i_val, i_test = int(n * self.config.train_fraction), int(n * (self.config.train_fraction + self.config.val_fraction))
+        parts = {"train": df.iloc[:i_val], "val": df.iloc[i_val:i_test], "test": df.iloc[i_test:]}
+
+        out: Dict[str, Any] = {"label_cutoff_dt": float(cutoff), "rows_total": n}
+        for name, part in parts.items():
+            out[name] = {
+                "X": part.drop(columns=["TransactionID", "risk_score", "TransactionDT", "y"]),
+                "y": part["y"].to_numpy(dtype=np.int32),
+                "legacy_risk_score": part["risk_score"].to_numpy(dtype=float) if "risk_score" in part else None,
+            }
+        del df
+        gc.collect()
+        return out

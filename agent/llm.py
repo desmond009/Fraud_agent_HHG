@@ -1,11 +1,14 @@
+import logging
 import os
 from typing import Optional, Dict, Any, List, Tuple
 from dotenv import load_dotenv
 
 load_dotenv()
 
+logger = logging.getLogger("fraudagent.llm")
+
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-MODEL_NAME = "gemini-3.6-flash"
+MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
 
 _genai_client = None
 
@@ -13,7 +16,8 @@ if GEMINI_API_KEY:
     try:
         from google import genai
         _genai_client = genai.Client(api_key=GEMINI_API_KEY)
-    except Exception:
+    except Exception as e:
+        logger.warning("Gemini client unavailable: %s", e)
         _genai_client = None
 
 
@@ -57,10 +61,13 @@ def generate_sar_narrative(case_id: str, customer_id: str, cards: List[str],
             }
         )
         if resp and resp.text:
-            token_count = resp.usage_metadata.total_token_count if hasattr(resp, "usage_metadata") and resp.usage_metadata else 180
+            usage = getattr(resp, "usage_metadata", None)
+            token_count = int(getattr(usage, "total_token_count", 0) or 0)  # real count, 0 if unreported
             return resp.text.strip(), token_count
-    except Exception:
-        pass
+        logger.warning("Gemini returned no text for %s; using templated SAR narrative", case_id)
+    except Exception as e:
+        logger.warning("Gemini SAR generation failed for %s (%s: %s); using templated narrative",
+                       case_id, type(e).__name__, e)
 
     return fallback, 0
 

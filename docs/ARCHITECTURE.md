@@ -50,7 +50,7 @@ The user interface delivers a real-world financial fraud intelligence operations
          ▼                                 ▼                                 ▼
 ┌──────────────────┐             ┌──────────────────┐             ┌──────────────────┐
 │  LANGGRAPH AGENT │             │  TIGERGRAPH MCP  │             │   GRAPHRAG STORE │
-│  (`agent/`)      │             │  BRIDGE (`mcp/`) │             │  (`graphrag/`)   │
+│  (`agent/`)      │             │  BRIDGE (`graph_tools/`) │             │  (`graphrag/`)   │
 │                  │             │                  │             │                  │
 │  6-Node Pipeline:│             │  GSQL Queries:   │             │  ChromaDB:       │
 │  1. Ingestion    │             │  • txn_window    │             │  • 10 Policy     │

@@ -1,8 +1,13 @@
 import sys
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent.parent))
 
+from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 from config import get_tg_connection, TG_GRAPH_NAME
+
+
+class GraphQueryError(RuntimeError):
+    """Raised when a TigerGraph query fails. Callers must not continue with empty evidence."""
 
 
 class TigerGraphMCPBridge:
@@ -20,6 +25,7 @@ class TigerGraphMCPBridge:
             res = self.conn.runInstalledQuery("txn_window", params)
             if res and isinstance(res, list):
                 return res[0]
+            return {}
         except Exception:
             params_interp = {
                 "target_card": card_id,
@@ -52,7 +58,7 @@ class TigerGraphMCPBridge:
                       @@txn_ids AS txn_ids;
             }}
             '''
-            res = self.conn.runInterpretedQuery(q, params)
+            res = self._run_interpreted(q, params_interp)
             if res and isinstance(res, list):
                 return res[0]
         return {}
@@ -63,6 +69,7 @@ class TigerGraphMCPBridge:
             res = self.conn.runInstalledQuery("device_region_neighborhood", params)
             if res and isinstance(res, list):
                 return res[0]
+            return {}
         except Exception:
             params_interp = {"target_txn": txn_id}
             q = f'''
@@ -95,7 +102,7 @@ class TigerGraphMCPBridge:
                       @@prior_cases AS prior_cases;
             }}
             '''
-            res = self.conn.runInterpretedQuery(q, params)
+            res = self._run_interpreted(q, params_interp)
             if res and isinstance(res, list):
                 return res[0]
         return {}
@@ -106,6 +113,7 @@ class TigerGraphMCPBridge:
             res = self.conn.runInstalledQuery("historical_case_matcher", params)
             if res and isinstance(res, list):
                 return res[0].get("MatchingCases", [])
+            return []
         except Exception:
             q = f'''
             INTERPRET QUERY (STRING pattern_filter, INT max_results) FOR GRAPH {self.graph_name} {{
@@ -116,13 +124,22 @@ class TigerGraphMCPBridge:
                 PRINT MatchingCases;
             }}
             '''
-            res = self.conn.runInterpretedQuery(q, params)
+            res = self._run_interpreted(q, params)
             if res and isinstance(res, list):
                 return res[0].get("MatchingCases", [])
         return []
 
+    def _run_interpreted(self, query: str, params: Dict[str, Any]):
+        try:
+            return self.conn.runInterpretedQuery(query, params)
+        except Exception as e:
+            raise GraphQueryError(f"TigerGraph interpreted query failed: {e}") from e
+
     def get_transaction(self, txn_id: str) -> Dict[str, Any]:
-        txns = self.conn.getVerticesById("Transaction", txn_id)
+        try:
+            txns = self.conn.getVerticesById("Transaction", txn_id)
+        except Exception as e:
+            raise GraphQueryError(f"get_transaction({txn_id}) failed: {e}") from e
         if txns:
             return txns[0] if isinstance(txns, list) else txns
         return {}
@@ -141,25 +158,29 @@ class TigerGraphMCPBridge:
 
     def write_investigation_case(self, case_id: str, outcome: str, pattern: str,
                                  exposure_usd: float, analyst_notes: str,
-                                 card_id: str = "", txn_ids: Optional[List[str]] = None) -> bool:
+                                 card_id: str = "", txn_ids: Optional[List[str]] = None,
+                                 opened_at: str = "", actions_taken: str = "CREATE_CASE") -> bool:
+        closed_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
         vertex_data = [(case_id, {
             "outcome": outcome,
             "pattern": pattern,
             "exposure_usd": float(exposure_usd),
-            "opened_at": "2016-12-31 00:00:00",
-            "closed_at": "2016-12-31 00:00:00",
-            "actions_taken": "CREATE_CASE",
+            "opened_at": opened_at or closed_at,
+            "closed_at": closed_at,
+            "actions_taken": actions_taken,
             "report_filed": "Yes" if exposure_usd > 1000 else "No",
             "analyst_notes": analyst_notes,
             "n_txns": len(txn_ids) if txn_ids else 1,
         })]
-        self.conn.upsertVertices("ClosedCase", vertex_data)
-
-        if card_id:
-            self.conn.upsertEdges("ClosedCase", "ON_CARD", "Card", [(case_id, card_id, {})])
-        if txn_ids:
-            edges = [(case_id, tid, {}) for tid in txn_ids]
-            self.conn.upsertEdges("ClosedCase", "INVOLVES", "Transaction", edges)
+        try:
+            self.conn.upsertVertices("ClosedCase", vertex_data)
+            if card_id:
+                self.conn.upsertEdges("ClosedCase", "ON_CARD", "Card", [(case_id, card_id, {})])
+            if txn_ids:
+                edges = [(case_id, tid, {}) for tid in txn_ids]
+                self.conn.upsertEdges("ClosedCase", "INVOLVES", "Transaction", edges)
+        except Exception as e:
+            raise GraphQueryError(f"write_investigation_case({case_id}) failed: {e}") from e
         return True
 
     def get_mcp_tools_schema(self) -> List[Dict[str, Any]]:

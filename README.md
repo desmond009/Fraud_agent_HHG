@@ -122,9 +122,31 @@ Evaluated across the 20 official benchmark alert cases (`case_pack.csv`):
 │   └── src/styles/       # Dark-mode financial intelligence design system
 ├── server/               # FastAPI REST API bridge
 ├── agent/                # LangGraph 6-node investigation state machine
-├── mcp/                  # TigerGraph MCP tool definitions & GSQL queries
+├── graph_tools/          # TigerGraph bridge (MCP-style tool definitions) & GSQL queries
 ├── graphrag/             # ChromaDB vector index for policy rules & regulations
 ├── cases/                # 20 benchmark case evaluation JSONs (HHG-001 to HHG-020)
 ├── schema/               # TigerGraph schema.gsql
 └── docs/                 # System architecture and technical documentation
 ```
+
+## Backend: running, security and tests
+
+```bash
+pip install -r requirements.txt
+cp .env.example .env            # fill in TG_* (and optionally GEMINI_API_KEY)
+uvicorn server.main:app --port 8000
+cd frontend && npm install && npm run dev
+```
+
+- **Auth:** set `ANALYST_TOKENS` (see `.env.example`) to require `Authorization: Bearer <token>` on every
+  `/api` route except `/api/health`; analyst name and L1/L2 role then come from the token. Put the same
+  token in `frontend/.env.local` as `VITE_API_TOKEN`. Without it the API runs in an explicit dev mode.
+- **Audit ledger:** `outputs/audit.db` (SQLite, append-only, SHA-256 hash chain). `GET /api/audit-log/verify`
+  re-computes the chain and reports tampering. Old `audit_log.json` / `case_approvals.json` are imported once.
+- **Investigations:** `POST /api/cases/{id}/run` accepts an optional `{"customer_response": "confirmed|denied|no_reply"}`.
+  Without it the customer reply is simulated and flagged `simulated: true`. If the agent runtime is not installed
+  the endpoint replays the stored deliverable (`mode: "replay"`) and logs it as `INVESTIGATION_REPLAYED`.
+- **Model:** `python -m training.train` runs the full-dataset temporal workflow (confirmed-fraud labels only,
+  threshold tuned and probabilities calibrated on a validation window, metrics reported on the latest window).
+  `POST /api/model/train` runs it as a background job (L2 only).
+- **Tests:** `pytest` (agent tests need `langgraph`; `test_phase*.py` at the repo root need a live TigerGraph).

@@ -216,18 +216,19 @@ class TestModelCheckpointAndArtifacts:
 class TestEndToEndPipelineIntegration:
     """Integration tests confirming the pipeline runs smoothly from ingestion to API serving."""
 
-    def test_full_pipeline_to_prediction(self):
-        # 1. Ingest & Train
+    def test_full_pipeline_to_prediction(self, tmp_path):
+        # 1. Ingest & Train (into a temp dir: tests must never overwrite the real checkpoint)
         config = TrainingConfig(
             model_type="hist_gb",
             max_rows=3000,
+            models_dir=tmp_path,
         )
         trainer = FraudModelTrainer(config)
         train_result = trainer.train(max_rows=3000, save_artifacts=True)
         assert train_result["status"] == "SUCCESS"
 
         # 2. Predictor inference verification
-        predictor = FraudPredictor()
+        predictor = FraudPredictor(checkpoint_path=config.checkpoint_path)
         assert predictor.is_loaded
 
         batch_test = [

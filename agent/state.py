@@ -12,6 +12,7 @@ class InvestigationState(TypedDict, total=False):
     trigger_type: str
     trigger_text: str
     risk_score: float
+    customer_response: str  # optional real evidence: confirmed | denied | no_reply
 
     # Execution telemetry
     tool_calls: int
@@ -33,6 +34,8 @@ class InvestigationState(TypedDict, total=False):
     retrieved_rules: List[Dict[str, Any]]
 
     # Probability & Deliberation
+    model_signal: Dict[str, Any]
+    probability_breakdown: List[Dict[str, Any]]
     initial_fraud_probability: float
     final_fraud_probability: float
     initial_actions: List[Dict[str, str]]

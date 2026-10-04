@@ -2,10 +2,9 @@ import sys
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent.parent))
 
 import os
+import re
 from pathlib import Path
 from typing import List, Dict, Any, Optional
-import chromadb
-from chromadb.config import Settings
 from config import OUTPUT_DIR, update_task
 
 PERSIST_DIR = OUTPUT_DIR / "vector_store"
@@ -222,6 +221,7 @@ POLICY_CHUNKS = [
 class GraphRAGIndexer:
     def __init__(self, persist_dir: Path = PERSIST_DIR):
         self.persist_dir = str(persist_dir)
+        import chromadb  # lazy: keeps POLICY_CHUNKS importable without chromadb installed
         self.client = chromadb.PersistentClient(path=self.persist_dir)
         self.collection = self._get_or_create_collection()
 
@@ -287,11 +287,39 @@ class GraphRAGIndexer:
         return formatted
 
 
-def get_graphrag_retriever() -> GraphRAGIndexer:
-    indexer = GraphRAGIndexer()
-    if indexer.collection.count() == 0:
-        indexer.build_index()
-    return indexer
+class KeywordRetriever:
+    """Dependency-free fallback with the same interface as GraphRAGIndexer.retrieve_guidance."""
+
+    def retrieve_guidance(self, query: str, top_k: int = 3, category: Optional[str] = None) -> List[Dict[str, Any]]:
+        terms = {t for t in re.findall(r"[a-z0-9_]+", query.lower().replace("_", " ")) if len(t) > 2}
+        scored = []
+        for chunk in POLICY_CHUNKS:
+            if category and chunk["category"] != category:
+                continue
+            text = f"{chunk['title']} {chunk['content']} {chunk['rule_id']}".lower().replace("_", " ")
+            words = set(re.findall(r"[a-z0-9]+", text))
+            overlap = len(terms & words)
+            scored.append((overlap / (len(terms) or 1), chunk))
+        scored.sort(key=lambda x: x[0], reverse=True)
+        return [
+            {
+                "id": c["id"],
+                "content": c["content"],
+                "metadata": {k: c[k] for k in ("category", "rule_id", "title", "approval_route")},
+                "distance": round(1.0 - score, 4),
+            }
+            for score, c in scored[:top_k]
+        ]
+
+
+def get_graphrag_retriever():
+    try:
+        indexer = GraphRAGIndexer()
+        if indexer.collection.count() == 0:
+            indexer.build_index()
+        return indexer
+    except ImportError:
+        return KeywordRetriever()
 
 
 if __name__ == "__main__":

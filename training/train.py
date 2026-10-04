@@ -13,9 +13,12 @@ import joblib
 import numpy as np
 import psutil
 from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
+from sklearn.isotonic import IsotonicRegression
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     average_precision_score,
+    brier_score_loss,
+    precision_recall_curve,
     confusion_matrix,
     f1_score,
     precision_score,
@@ -50,14 +53,15 @@ class FraudModelTrainer:
         self.data_loader = FraudDataLoader(self.config)
         self.config.models_dir.mkdir(parents=True, exist_ok=True)
 
-    def _build_model(self):
+    def _build_model(self, full_data: bool = False):
         """Builds estimator based on configured model type."""
         model_type = self.config.model_type.lower()
         if model_type == "hist_gb":
             return HistGradientBoostingClassifier(
                 class_weight="balanced",
-                max_iter=100,
+                max_iter=300 if full_data else 100,
                 learning_rate=0.1,
+                early_stopping=full_data,
                 random_state=self.config.random_state,
             )
         elif model_type == "random_forest":
@@ -77,12 +81,129 @@ class FraudModelTrainer:
         else:
             raise ValueError(f"Unsupported model_type '{model_type}'. Choose 'hist_gb', 'random_forest', or 'logistic_regression'.")
 
+    @staticmethod
+    def _tune_threshold(y_true: np.ndarray, probs: np.ndarray) -> float:
+        """Threshold that maximizes F1 on the validation split."""
+        precision, recall, thresholds = precision_recall_curve(y_true, probs)
+        f1 = 2 * precision[:-1] * recall[:-1] / np.clip(precision[:-1] + recall[:-1], 1e-12, None)
+        return float(thresholds[int(np.argmax(f1))]) if len(thresholds) else 0.5
+
+    @staticmethod
+    def _ece(y_true: np.ndarray, probs: np.ndarray, bins: int = 10) -> float:
+        """Expected calibration error: gap between predicted probability and observed fraud rate."""
+        edges = np.linspace(0, 1, bins + 1)
+        idx = np.clip(np.digitize(probs, edges) - 1, 0, bins - 1)
+        err = 0.0
+        for b in range(bins):
+            m = idx == b
+            if m.any():
+                err += m.mean() * abs(probs[m].mean() - y_true[m].mean())
+        return float(err)
+
+    def train_temporal(self, save_artifacts: bool = True) -> Dict[str, Any]:
+        """Production workflow: full dataset, chronological train/val/test, threshold tuned and
+        probabilities calibrated on validation, final metrics reported on the untouched test split."""
+        gc.collect()
+        mem_start_mb = get_process_memory_mb()
+        t_start = time.time()
+        data = self.data_loader.load_temporal_dataset()
+        tr, va, te = data["train"], data["val"], data["test"]
+
+        preprocessor = FraudPreprocessor(self.config.numerical_features, self.config.categorical_features)
+        X_train = preprocessor.fit_transform(tr["X"])
+        X_val, X_test = preprocessor.transform(va["X"]), preprocessor.transform(te["X"])
+        for name, y in (("train", tr["y"]), ("validation", va["y"]), ("test", te["y"])):
+            if y.sum() < 20:
+                raise RuntimeError(f"Only {int(y.sum())} fraud rows in the {name} split; cannot train reliably")
+
+        model = self._build_model(full_data=True)
+        logger.info(f"Fitting {self.config.model_type} on {len(X_train)} rows ({int(tr['y'].sum())} fraud)...")
+        fit_start = time.time()
+        model.fit(X_train, tr["y"])
+        fit_time_s = time.time() - fit_start
+
+        raw_val = model.predict_proba(X_val)[:, 1]
+        calibrator = IsotonicRegression(out_of_bounds="clip", y_min=0.0, y_max=1.0).fit(raw_val, va["y"])
+        cal_val = calibrator.predict(raw_val)
+        threshold = self._tune_threshold(va["y"], cal_val)
+
+        infer_start = time.time()
+        raw_test = model.predict_proba(X_test)[:, 1]
+        latency_us = (time.time() - infer_start) / max(len(X_test), 1) * 1e6
+        probs = calibrator.predict(raw_test)
+        y_test = te["y"]
+        y_pred = (probs >= threshold).astype(int)
+        cm = confusion_matrix(y_test, y_pred, labels=[0, 1])
+        tn, fp, fn, tp = (int(v) for v in cm.ravel())
+
+        legacy = te["legacy_risk_score"]
+        baseline_pr_auc = round(float(average_precision_score(y_test, legacy)), 4) if legacy is not None else None
+        metrics: Dict[str, Any] = {
+            "model_type": self.config.model_type,
+            "evaluation": "temporal split: trained on earliest 70%, tuned on next 15%, reported on latest 15%",
+            "roc_auc": round(float(roc_auc_score(y_test, probs)), 4),
+            "pr_auc": round(float(average_precision_score(y_test, probs)), 4),
+            "baseline_legacy_risk_score_pr_auc": baseline_pr_auc,
+            "precision": round(float(precision_score(y_test, y_pred, zero_division=0)), 4),
+            "recall": round(float(recall_score(y_test, y_pred, zero_division=0)), 4),
+            "f1_score": round(float(f1_score(y_test, y_pred, zero_division=0)), 4),
+            "brier_score": round(float(brier_score_loss(y_test, probs)), 5),
+            "expected_calibration_error": round(self._ece(y_test, probs), 4),
+            "confusion_matrix": {"true_negative": tn, "false_positive": fp, "false_negative": fn, "true_positive": tp},
+            "decision_threshold": round(threshold, 4),
+            "threshold_selected_on": "validation split (max F1 on calibrated probabilities)",
+            "samples": {
+                "train_samples": int(len(X_train)), "validation_samples": int(len(X_val)), "test_samples": int(len(X_test)),
+                "total_samples": int(data["rows_total"]),
+                "train_fraud_rate": round(float(tr["y"].mean()), 4), "test_fraud_rate": round(float(y_test.mean()), 4),
+                "test_fraud_count": int(y_test.sum()), "feature_count": int(X_train.shape[1]),
+                "label_cutoff_dt": data["label_cutoff_dt"],
+            },
+            "performance": {
+                "training_time_seconds": round(fit_time_s, 3),
+                "total_time_seconds": round(time.time() - t_start, 3),
+                "inference_latency_us_per_sample": round(latency_us, 2),
+                "memory_start_mb": round(mem_start_mb, 2), "memory_end_mb": round(get_process_memory_mb(), 2),
+            },
+            "evaluated_at": datetime.now().isoformat(),
+        }
+        logger.info(f"Temporal training done. PR-AUC {metrics['pr_auc']} (legacy score {baseline_pr_auc}), "
+                    f"P/R {metrics['precision']}/{metrics['recall']} @ {metrics['decision_threshold']}")
+
+        checkpoint_data = {
+            "model": model,
+            "calibrator": calibrator,
+            "preprocessor": preprocessor,
+            "feature_names_in": preprocessor.feature_names_in_,
+            "feature_names_out": preprocessor.feature_names_out_,
+            "config": {
+                "model_type": self.config.model_type, "random_state": self.config.random_state,
+                "decision_threshold": round(threshold, 4),
+                "numerical_features": self.config.numerical_features,
+                "categorical_features": self.config.categorical_features,
+            },
+            "metrics": metrics,
+            "trained_at": datetime.now().isoformat(),
+        }
+        if save_artifacts:
+            joblib.dump(checkpoint_data, self.config.checkpoint_path, compress=3)
+            self.config.metrics_path.write_text(json.dumps(metrics, indent=2))
+            self.config.report_path.write_text(json.dumps({
+                "status": "SUCCESS", "checkpoint_file": self.config.checkpoint_path.name,
+                "metrics_file": self.config.metrics_path.name, "training_summary": metrics}, indent=2))
+        return {"status": "SUCCESS", "metrics": metrics,
+                "checkpoint_path": str(self.config.checkpoint_path) if save_artifacts else None,
+                "metrics_path": str(self.config.metrics_path) if save_artifacts else None}
+
     def train(
         self,
         max_rows: Optional[int] = None,
         save_artifacts: bool = True,
     ) -> Dict[str, Any]:
         """Executes the training workflow end-to-end.
+
+        With `max_rows=None` (and no config.max_rows) this runs the production temporal workflow
+        (`train_temporal`). With a row limit it runs the quick random-split workflow used for smoke tests.
 
         Args:
             max_rows: Optional limit on rows ingested for training.
@@ -91,6 +212,9 @@ class FraudModelTrainer:
         Returns:
             Dictionary containing metrics, execution telemetry, and artifact paths.
         """
+        if max_rows is None and self.config.max_rows is None:
+            return self.train_temporal(save_artifacts=save_artifacts)
+
         gc.collect()
         mem_start_mb = get_process_memory_mb()
         t_start = time.time()
@@ -250,7 +374,7 @@ class FraudModelTrainer:
 
 def main():
     parser = argparse.ArgumentParser(description="Train Fraud Detection ML Pipeline")
-    parser.add_argument("--max-rows", type=int, default=50_000, help="Max rows to ingest for training")
+    parser.add_argument("--max-rows", type=int, default=None, help="Quick random-split run on N rows; omit for the full temporal workflow")
     parser.add_argument("--model", type=str, default="hist_gb", choices=["hist_gb", "random_forest", "logistic_regression"])
     parser.add_argument("--test-size", type=float, default=0.20, help="Test set fraction")
     args = parser.parse_args()
