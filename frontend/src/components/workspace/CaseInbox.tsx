@@ -44,9 +44,8 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
       <aside
         style={{
           width: '48px',
-          background: 'rgba(16, 16, 22, 0.85)',
-          backdropFilter: 'blur(16px)',
-          borderRight: '1px solid rgba(255, 255, 255, 0.08)',
+          background: 'rgba(255, 255, 255, 0.96)',
+          borderRight: '1px solid rgba(71, 85, 140, 0.104)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -59,8 +58,8 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
           className="btn-icon"
           title="Expand Case Inbox"
           style={{
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            background: 'rgba(71, 85, 140, 0.065)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
             color: 'var(--text-secondary)',
             borderRadius: '6px',
             padding: '6px',
@@ -84,22 +83,21 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
         height: '100%',
         minHeight: 0,
         overflow: 'hidden',
-        background: 'rgba(16, 16, 22, 0.8)',
-        backdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-        borderRadius: '10px',
-        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 4px 20px rgba(0, 0, 0, 0.4)',
+        background: 'rgba(255, 255, 255, 0.96)',
+        border: '1px solid rgba(71, 85, 140, 0.104)',
+        borderRadius: '6px',
+        boxShadow: 'none',
       }}
     >
       {/* Header & Collapse */}
       <div
         style={{
           padding: '10px 12px',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.07)',
+          borderBottom: '1px solid rgba(71, 85, 140, 0.091)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          background: 'rgba(255, 255, 255, 0.02)',
+          background: 'rgba(71, 85, 140, 0.026)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
@@ -108,15 +106,15 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
               width: '20px',
               height: '20px',
               borderRadius: '5px',
-              background: 'rgba(14, 165, 233, 0.15)',
+              background: 'rgba(79, 99, 210, 0.15)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <ShieldAlert size={12} color="#38bdf8" />
+            <ShieldAlert size={12} color="#4f63d2" />
           </div>
-          <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#f4f4f5' }}>
+          <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1f2638' }}>
             Investigation Queue
           </span>
           <span
@@ -124,10 +122,10 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
             style={{
               fontSize: '10px',
               padding: '1px 6px',
-              background: 'rgba(255, 255, 255, 0.06)',
+              background: 'rgba(71, 85, 140, 0.078)',
               borderRadius: '9999px',
-              color: '#38bdf8',
-              border: '1px solid rgba(56, 189, 248, 0.25)',
+              color: '#4f63d2',
+              border: '1px solid rgba(79, 99, 210, 0.25)',
               fontWeight: 700,
             }}
           >
@@ -156,20 +154,20 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
       </div>
 
       {/* Search Input */}
-      <div style={{ padding: '8px 10px', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
+      <div style={{ padding: '8px 10px', borderBottom: '1px solid rgba(71, 85, 140, 0.078)' }}>
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: '6px',
-            background: 'rgba(0, 0, 0, 0.4)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            background: '#f6f7fa',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
             borderRadius: '6px',
             padding: '5px 8px',
             transition: 'border-color 0.15s ease',
           }}
         >
-          <Search size={12} color="#71717a" />
+          <Search size={12} color="#6b7388" />
           <input
             type="text"
             placeholder="Filter queue or IDs..."
@@ -179,7 +177,7 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
               background: 'transparent',
               border: 'none',
               outline: 'none',
-              color: '#f4f4f5',
+              color: '#1f2638',
               fontSize: '11px',
               width: '100%',
               fontFamily: 'inherit',
@@ -191,7 +189,7 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: '#71717a',
+                color: '#6b7388',
                 cursor: 'pointer',
                 padding: 0,
                 display: 'flex',
@@ -210,10 +208,10 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
             display: 'flex',
             gap: '2px',
             marginTop: '6px',
-            background: 'rgba(0, 0, 0, 0.3)',
+            background: '#f6f7fa',
             borderRadius: '6px',
             padding: '2px',
-            border: '1px solid rgba(255, 255, 255, 0.04)',
+            border: '1px solid rgba(71, 85, 140, 0.052)',
           }}
         >
           {(['all', 'high', 'pending'] as const).map((m) => {
@@ -232,7 +230,7 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
                   borderRadius: '4px',
                   border: 'none',
                   background: 'transparent',
-                  color: isActive ? '#f4f4f5' : '#71717a',
+                  color: isActive ? '#1f2638' : '#6b7388',
                   cursor: 'pointer',
                   transition: 'color 0.15s ease',
                   zIndex: 2,
@@ -245,8 +243,8 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
                       position: 'absolute',
                       inset: 0,
                       borderRadius: '4px',
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
+                      background: 'rgba(71, 85, 140, 0.13)',
+                      border: '1px solid rgba(71, 85, 140, 0.156)',
                       zIndex: -1,
                     }}
                     transition={{ type: 'spring', stiffness: 450, damping: 32 }}
@@ -271,7 +269,7 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
         }}
       >
         {filtered.length === 0 ? (
-          <div style={{ padding: '24px 12px', textAlign: 'center', color: '#71717a', fontSize: '11px' }}>
+          <div style={{ padding: '24px 12px', textAlign: 'center', color: '#6b7388', fontSize: '11px' }}>
             No matching cases found.
           </div>
         ) : (
@@ -281,9 +279,9 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
             const isHigh = risk >= 70;
             const isMed = risk >= 40 && risk < 70;
 
-            const badgeBg = isHigh ? 'rgba(244, 63, 94, 0.15)' : isMed ? 'rgba(245, 158, 11, 0.15)' : 'rgba(16, 185, 129, 0.15)';
-            const badgeBorder = isHigh ? 'rgba(244, 63, 94, 0.35)' : isMed ? 'rgba(245, 158, 11, 0.35)' : 'rgba(16, 185, 129, 0.35)';
-            const badgeColor = isHigh ? '#f43f5e' : isMed ? '#f59e0b' : '#10b981';
+            const badgeBg = isHigh ? 'rgba(220, 60, 69, 0.15)' : isMed ? 'rgba(217, 130, 11, 0.15)' : 'rgba(5, 150, 105, 0.15)';
+            const badgeBorder = isHigh ? 'rgba(220, 60, 69, 0.35)' : isMed ? 'rgba(217, 130, 11, 0.35)' : 'rgba(5, 150, 105, 0.35)';
+            const badgeColor = isHigh ? '#dc3c45' : isMed ? '#d9820b' : '#059669';
 
             return (
               <motion.div
@@ -296,9 +294,9 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
                   padding: '9px 10px',
                   borderRadius: '6px',
                   cursor: 'pointer',
-                  background: isSelected ? 'rgba(255, 255, 255, 0.05)' : 'transparent',
-                  border: isSelected ? '1px solid rgba(56, 189, 248, 0.35)' : '1px solid transparent',
-                  boxShadow: isSelected ? '0 0 14px rgba(14, 165, 233, 0.15)' : 'none',
+                  background: isSelected ? 'rgba(71, 85, 140, 0.065)' : 'transparent',
+                  border: isSelected ? '1px solid rgba(79, 99, 210, 0.35)' : '1px solid transparent',
+                  boxShadow: isSelected ? 'none' : 'none',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '4px',
@@ -316,8 +314,8 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
                       top: 0,
                       bottom: 0,
                       width: '3px',
-                      background: 'linear-gradient(180deg, #38bdf8, #0ea5e9)',
-                      boxShadow: '0 0 8px #38bdf8',
+                      background: 'linear-gradient(180deg, #4f63d2, #4f63d2)',
+                      boxShadow: 'none',
                       zIndex: 2,
                     }}
                     transition={{ type: 'spring', stiffness: 450, damping: 32 }}
@@ -326,7 +324,7 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
 
                 {/* Top Line: ID & Risk Pill */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', zIndex: 1 }}>
-                  <span className="mono" style={{ fontSize: '12px', fontWeight: 800, color: isSelected ? '#38bdf8' : '#f4f4f5' }}>
+                  <span className="mono" style={{ fontSize: '12px', fontWeight: 700, color: isSelected ? '#4f63d2' : '#1f2638' }}>
                     {c.case_id}
                   </span>
                   <span
@@ -352,8 +350,8 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
                           width: '5px',
                           height: '5px',
                           borderRadius: '50%',
-                          background: '#f43f5e',
-                          boxShadow: '0 0 6px #f43f5e',
+                          background: '#dc3c45',
+                          boxShadow: 'none',
                           display: 'inline-block',
                         }}
                       />
@@ -363,9 +361,9 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
                 </div>
 
                 {/* Subtitle / Customer */}
-                <div style={{ fontSize: '11px', color: '#a1a1aa', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ fontSize: '11px', color: '#556078', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span className="mono" style={{ fontWeight: 600 }}>{c.customer_id}</span>
-                  <span style={{ fontSize: '10px', color: '#71717a' }}>
+                  <span style={{ fontSize: '10px', color: '#6b7388' }}>
                     {c.opened_at ? new Date(c.opened_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Recent'}
                   </span>
                 </div>
@@ -374,7 +372,7 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
                 <div
                   style={{
                     fontSize: '10.5px',
-                    color: '#71717a',
+                    color: '#6b7388',
                     lineHeight: '1.3',
                     display: '-webkit-box',
                     WebkitLineClamp: 2,
@@ -387,16 +385,16 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
 
                 {/* Bottom details */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '2px' }}>
-                  <span className="mono" style={{ fontSize: '10.5px', fontWeight: 700, color: '#f4f4f5' }}>
+                  <span className="mono" style={{ fontSize: '10.5px', fontWeight: 700, color: '#1f2638' }}>
                     ${(c.exposure_usd || 0).toLocaleString()} USD
                   </span>
                   <span
                     style={{
                       fontSize: '9px',
                       textTransform: 'uppercase',
-                      color: c.status.toLowerCase().includes('pending') ? '#f59e0b' : '#71717a',
+                      color: c.status.toLowerCase().includes('pending') ? '#d9820b' : '#6b7388',
                       fontWeight: 600,
-                      background: 'rgba(255, 255, 255, 0.04)',
+                      background: 'rgba(71, 85, 140, 0.052)',
                       padding: '1px 5px',
                       borderRadius: '3px',
                     }}
@@ -414,13 +412,13 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
       <div
         style={{
           padding: '8px 10px',
-          borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-          background: 'rgba(0, 0, 0, 0.25)',
+          borderTop: '1px solid rgba(71, 85, 140, 0.078)',
+          background: '#f6f7fa',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           fontSize: '10px',
-          color: '#71717a',
+          color: '#6b7388',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -429,8 +427,8 @@ export const CaseInbox: React.FC<CaseInboxProps> = ({
               width: '6px',
               height: '6px',
               borderRadius: '50%',
-              background: '#38bdf8',
-              boxShadow: '0 0 6px #38bdf8',
+              background: '#4f63d2',
+              boxShadow: 'none',
             }}
           />
           <span>GraphRAG Vector Active</span>

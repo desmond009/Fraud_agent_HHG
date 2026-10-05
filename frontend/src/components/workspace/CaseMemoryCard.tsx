@@ -26,11 +26,10 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
   return (
     <div
       style={{
-        background: 'radial-gradient(ellipse at 15% 0%, rgba(168, 85, 247, 0.06), transparent 70%), rgba(20, 20, 26, 0.78)',
-        backdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255, 255, 255, 0.09)',
-        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.07), 0 4px 20px rgba(0, 0, 0, 0.45)',
-        borderRadius: '10px',
+        background: '#ffffff',
+        border: '1px solid rgba(71, 85, 140, 0.117)',
+        boxShadow: 'none',
+        borderRadius: '6px',
         padding: '14px 16px',
         display: 'flex',
         flexDirection: 'column',
@@ -40,18 +39,18 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
     >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <History size={14} color="#a855f7" />
-          <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#f4f4f5' }}>
+          <History size={14} color="#7c5cd6" />
+          <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1f2638' }}>
             Historical Case Memory ({similarPriorCases.length})
           </span>
         </div>
-        <span style={{ fontSize: '10px', color: '#71717a' }}>
+        <span style={{ fontSize: '10px', color: '#6b7388' }}>
           TigerGraph Vector Matcher
         </span>
       </div>
 
       {similarPriorCases.length === 0 ? (
-        <div style={{ fontSize: '11px', color: '#71717a', fontStyle: 'italic', padding: '8px 0' }}>
+        <div style={{ fontSize: '11px', color: '#6b7388', fontStyle: 'italic', padding: '8px 0' }}>
           No prior closed cases matched for this pattern.
         </div>
       ) : (
@@ -64,11 +63,11 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
                 key={caseId}
                 whileHover={{ x: 2 }}
                 style={{
-                  background: 'rgba(0, 0, 0, 0.4)',
-                  border: isExpanded ? '1px solid rgba(168, 85, 247, 0.35)' : '1px solid rgba(255, 255, 255, 0.06)',
-                  borderRadius: '8px',
+                  background: '#f6f7fa',
+                  border: isExpanded ? '1px solid rgba(124, 92, 214, 0.35)' : '1px solid rgba(71, 85, 140, 0.078)',
+                  borderRadius: '6px',
                   overflow: 'hidden',
-                  boxShadow: isExpanded ? '0 0 14px rgba(168, 85, 247, 0.15)' : 'inset 0 1px 2px rgba(0, 0, 0, 0.3)',
+                  boxShadow: isExpanded ? 'none' : 'none',
                   transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
                 }}
               >
@@ -84,7 +83,7 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span className="mono" style={{ fontSize: '12px', fontWeight: 800, color: '#a855f7' }}>
+                    <span className="mono" style={{ fontSize: '12px', fontWeight: 700, color: '#7c5cd6' }}>
                       {caseId}
                     </span>
                     <span
@@ -94,10 +93,10 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
                         fontWeight: 700,
                         padding: '1px 6px',
                         borderRadius: '9999px',
-                        background: 'rgba(168, 85, 247, 0.15)',
-                        color: '#a855f7',
-                        border: '1px solid rgba(168, 85, 247, 0.35)',
-                        boxShadow: '0 0 8px rgba(168, 85, 247, 0.2)',
+                        background: 'rgba(124, 92, 214, 0.15)',
+                        color: '#7c5cd6',
+                        border: '1px solid rgba(124, 92, 214, 0.35)',
+                        boxShadow: 'none',
                       }}
                     >
                       {simScore}% MATCH
@@ -105,10 +104,10 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <span style={{ fontSize: '10px', color: '#71717a' }}>
+                    <span style={{ fontSize: '10px', color: '#6b7388' }}>
                       {isExpanded ? 'Collapse' : 'Inspect'}
                     </span>
-                    {isExpanded ? <ChevronDown size={13} color="#a1a1aa" /> : <ChevronRight size={13} color="#71717a" />}
+                    {isExpanded ? <ChevronDown size={13} color="#556078" /> : <ChevronRight size={13} color="#6b7388" />}
                   </div>
                 </div>
 
@@ -126,7 +125,7 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
                       <div
                         style={{
                           padding: '0 12px 10px 12px',
-                          borderTop: '1px solid rgba(255, 255, 255, 0.04)',
+                          borderTop: '1px solid rgba(71, 85, 140, 0.052)',
                           marginTop: '4px',
                           display: 'flex',
                           flexDirection: 'column',
@@ -134,20 +133,20 @@ export const CaseMemoryCard: React.FC<CaseMemoryCardProps> = ({ caseData }) => {
                           fontSize: '11px',
                         }}
                       >
-                        <div style={{ color: '#a1a1aa', marginTop: '6px' }}>
-                          Typology: <strong style={{ color: '#f4f4f5' }}>{pattern.replace('_', ' ')}</strong>
+                        <div style={{ color: '#556078', marginTop: '6px' }}>
+                          Typology: <strong style={{ color: '#1f2638' }}>{pattern.replace('_', ' ')}</strong>
                         </div>
-                        <div style={{ color: '#d4d4d8', lineHeight: 1.45 }}>
+                        <div style={{ color: '#3a445b', lineHeight: 1.45 }}>
                           Resolved with card block and protective entity clustering. Vector memory matched shared device subnet.
                         </div>
                         <div
                           style={{
                             padding: '5px 8px',
-                            background: 'rgba(16, 185, 129, 0.08)',
-                            border: '1px solid rgba(16, 185, 129, 0.25)',
+                            background: 'rgba(5, 150, 105, 0.08)',
+                            border: '1px solid rgba(5, 150, 105, 0.25)',
                             borderRadius: '4px',
                             fontSize: '10px',
-                            color: '#10b981',
+                            color: '#059669',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '5px',

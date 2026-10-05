@@ -45,6 +45,8 @@ class TrainingConfig:
     metrics_name: str = "metrics.json"
     report_name: str = "training_report.json"
     decision_threshold: float = 0.50
+    train_fraction: float = 0.70   # temporal split: first 70% of time -> train
+    val_fraction: float = 0.15     # next 15% -> validation (threshold + calibration); last 15% -> test
     numerical_features: List[str] = field(default_factory=lambda: list(DEFAULT_NUMERICAL_FEATURES))
     categorical_features: List[str] = field(default_factory=lambda: list(DEFAULT_CATEGORICAL_FEATURES))
 

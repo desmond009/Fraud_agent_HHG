@@ -19,3 +19,13 @@ venv/
 # OS artifacts
 .DS_Store
 Thumbs.db
+
+# Runtime state (never commit): audit ledger, approvals, indexes, vector store, job outputs
+outputs/audit.db*
+outputs/audit_log.json
+outputs/case_approvals.json
+outputs/txn_offsets.db*
+outputs/vector_store/
+*.db-wal
+*.db-shm
+.pytest_cache/

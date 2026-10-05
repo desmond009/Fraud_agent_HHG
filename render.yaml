@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: ringleader-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: TG_HOST
+        sync: false
+      - key: TG_USERNAME
+        value: tigergraph
+      - key: TG_PASSWORD
+        sync: false
+      - key: TG_SECRET
+        sync: false
+      - key: TG_GRAPH_NAME
+        value: FraudGraph
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ANALYST_TOKENS
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false

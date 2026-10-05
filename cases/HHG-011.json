@@ -3,7 +3,7 @@
   "case": {
     "status": "closed_fraud",
     "verdict": "fraud",
-    "fraud_probability": 0.92,
+    "fraud_probability": 0.98,
     "pattern": "card_testing",
     "pattern_description": "",
     "affected_txn_ids": [
@@ -58,9 +58,9 @@
     ],
     "first_suspicious_txn_id": "3583199",
     "connected_card_ids": [
-      "C05595-K1",
       "C05678-K1",
-      "C03938-K1"
+      "C03938-K1",
+      "C05595-K1"
     ],
     "connected_device_profiles": [
       "a6e029ef1f64"
@@ -83,9 +83,9 @@
         "source": "graph",
         "ref": "query:device_region_neighborhood(txn_id=3583368)",
         "entity_ids": [
-          "C05595-K1",
           "C05678-K1",
-          "C03938-K1"
+          "C03938-K1",
+          "C05595-K1"
         ]
       },
       {
@@ -95,21 +95,59 @@
         "entity_ids": [
           "3583368"
         ]
+      },
+      {
+        "claim": "Trained fraud model scores this transaction at 0.36",
+        "source": "model",
+        "ref": "model:2026-10-04T22:43:46.281444",
+        "entity_ids": [
+          "3583368"
+        ]
       }
     ],
     "similar_prior_cases": [
-      "CASE-HHG-011",
-      "CC-0370"
+      "CC-5187",
+      "CC-2247"
     ],
     "summary": "Investigation confirmed card testing fraud with $2312.75 total exposure. Triggered by Customer C11923 message: 'I never made this $131.30 purchase. Please check my card.' Refers to 3583368.. Key evidence: 5 micro authorizations under $5 followed by larger purchase in window Card blocked and protective actions applied under policy.",
     "written_to_graph": true,
-    "graph_case_id": "CASE-HHG-011"
+    "graph_case_id": "CASE-HHG-011",
+    "probability_breakdown": [
+      {
+        "factor": "base: fraud model (mean)",
+        "value": 0.358,
+        "log_odds_delta": null
+      },
+      {
+        "factor": "card-testing velocity pattern (R5)",
+        "log_odds_delta": 1.6
+      },
+      {
+        "factor": "device/region cluster: 3 cards, 8 prior fraud cases (R6)",
+        "log_odds_delta": 1.48
+      },
+      {
+        "factor": "unverified customer dispute",
+        "log_odds_delta": 2.0
+      },
+      {
+        "factor": "customer response: denied",
+        "log_odds_delta": 4.0
+      }
+    ],
+    "model_signal": {
+      "available": true,
+      "probability": 0.3582,
+      "model_version": "2026-10-04T22:43:46.281444"
+    }
   },
   "evidence_requests": [
     {
       "type": "customer_validation",
       "asked_after_step": 3,
-      "assumed_response": "Customer states they did not make these purchases and remained in possession of the card"
+      "response": "denied",
+      "simulated": true,
+      "assumed_response": "Customer states they did not make these purchases and remained in possession of the card (simulated)"
     }
   ],
   "next_best_actions": {
@@ -129,7 +167,7 @@
       {
         "action": "BLOCK_CARD",
         "route": "L1",
-        "reason": "R2: customer confirmed unauthorized use (exposure $2312.75)"
+        "reason": "R2: unauthorized use confirmed (exposure $2312.75)"
       },
       {
         "action": "CREATE_CASE",
@@ -147,17 +185,17 @@
         "reason": "R6: monitor connected cards sharing device/region"
       }
     ],
-    "what_changed": "Customer denial confirmed unauthorized usage, raising fraud probability to 0.92."
+    "what_changed": "Customer response (denied) moved fraud probability from 0.98 to 0.98."
   },
   "sar": {
     "file": true,
     "reason": "R2/R6: confirmed unauthorized use with exposure > $1,000 or linked cross-card entities",
-    "narrative": "Between 2016-12-29 and 2016-12-29, customer C11923 card(s) C11923-K2, C05595-K1, C05678-K1 experienced unauthorized transactions totaling $2312.75 conducted via the in_person channel. The activity matches the card_testing fraud typology, displaying abnormal volume and velocity inconsistent with historical cardholder profile. 5 micro authorizations under $5 followed by larger purchase in window; Device/region cluster shared across 3 cards, connected to 8 prior confirmed fraud cases; Cardholder explicitly disputed the transaction: 'Customer C11923 message: 'I never made this $131.30 purchase. Please check my card.' Refers to 3583368.'. Customer verification confirmed unauthorized use. The compromised card has been blocked and scheduled for reissue, and linked entities have been placed under protective monitoring.",
+    "narrative": "**SUSPICIOUS ACTIVITY REPORT NARRATIVE**\n\nOn December 29, 2016, customer C11923 engaged in suspected card testing activity resulting in $2,312.75 USD in unauthorized transactions across primary card C11923-K2 and associated cards C05678-K1 and C03938-K1. The activity occurred through the in-person channel using a shared device and region cluster that directly connects these accounts to eight prior confirmed fraud cases. Specifically, the suspect conducted five micro-authorizations under $5.00 within a brief time window to validate the card credentials before executing a larger subsequent purchase. Customer C11923 explicitly disputed the transactions, stating via written message (Reference 3583368), \"I never made this $131.30 purchase. Please check my card.\" This rapid sequence of low-value validation attempts immediately preceding a large purchase, combined with the compromised device footprint and cardholder dispute, confirms unauthorized card testing. The financial institution has initiated fraud protocols, blocked the compromised cards to mitigate further loss, and continues to monitor related account activity.",
     "subjects": [
       "C11923",
       "C11923-K2",
-      "C05595-K1",
-      "C05678-K1"
+      "C05678-K1",
+      "C03938-K1"
     ],
     "total_amount_usd": 2312.75,
     "activity_dates": [
@@ -167,6 +205,6 @@
   },
   "stop_reason": "Customer response settled the investigation; policy actions determined.",
   "tool_calls": 6,
-  "tokens": 450,
-  "latency_s": 1.29
+  "tokens": 478,
+  "latency_s": 4.19
 }

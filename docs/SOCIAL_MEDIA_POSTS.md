@@ -7,7 +7,7 @@
 ## 📱 LinkedIn Post (Recommended)
 
 ```text
-🚀 Excited to unveil FraudAgent — an autonomous, policy-governed financial crime intelligence platform built for the @TigerGraphDB Agentic Fraud Investigation Hackathon!
+🚀 Excited to unveil Ringleader — an autonomous, policy-governed financial crime intelligence platform built for the @TigerGraphDB Agentic Fraud Investigation Hackathon!
 
 Detecting fraud on 590,000+ IEEE-CIS transactions is challenging enough, but real-world investigations often break down when signals are ambiguous. A $50 charge might look normal—until graph traversal uncovers that the device fingerprint is secretly shared across 111 cards tied to prior fraud rings.
 
@@ -32,7 +32,7 @@ Huge thanks to @TigerGraphDB for hosting this hackathon and providing powerful g
 ## 🐦 X (Twitter) Post / Thread
 
 ```text
-🚀 Just submitted FraudAgent for the @TigerGraphDB Agentic Fraud Investigation Hackathon!
+🚀 Just submitted Ringleader for the @TigerGraphDB Agentic Fraud Investigation Hackathon!
 
 We built an autonomous, policy-governed fraud investigation workbench powered by TigerGraph, LangGraph, and GraphRAG.
 
@@ -41,7 +41,7 @@ Here is how graph intelligence transforms fraud investigation 🧵👇 (1/4)
 
 ```text
 1️⃣ Multi-hop Graph Traversal:
-Point-in-time fraud models miss coordinated syndicates. Using @TigerGraphDB GSQL & MCP tools, FraudAgent uncovers devices shared across 100+ cards and linked to prior closed fraud cases in sub-seconds. (2/4)
+Point-in-time fraud models miss coordinated syndicates. Using @TigerGraphDB GSQL & MCP tools, Ringleader uncovers devices shared across 100+ cards and linked to prior closed fraud cases in sub-seconds. (2/4)
 ```
 
 ```text

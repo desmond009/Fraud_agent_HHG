@@ -417,7 +417,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#f4f4f5', letterSpacing: '-0.02em', margin: 0 }}>
+            <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#1f2638', letterSpacing: '-0.02em', margin: 0 }}>
               Transaction Explorer & Risk Signals
             </h2>
             <span
@@ -427,23 +427,23 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 fontWeight: 700,
                 padding: '2px 8px',
                 borderRadius: '9999px',
-                background: 'rgba(14, 165, 233, 0.15)',
-                color: '#38bdf8',
-                border: '1px solid rgba(14, 165, 233, 0.3)',
+                background: 'rgba(79, 99, 210, 0.15)',
+                color: '#4f63d2',
+                border: '1px solid rgba(79, 99, 210, 0.3)',
               }}
             >
               TigerGraph Engine
             </span>
           </div>
-          <p style={{ fontSize: '11.5px', color: '#a1a1aa', marginTop: '3px' }}>
+          <p style={{ fontSize: '11.5px', color: '#556078', marginTop: '3px' }}>
             590,742 total transactions loaded in TigerGraph. Real-time GSQL feature scoring, graph neighborhood velocity, and autonomous agent triage.
           </p>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <motion.button
-            whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ backgroundColor: 'rgba(71, 85, 140, 0.104)' }}
+            whileTap={{}}
             onClick={() => loadTxns()}
             disabled={loading}
             style={{
@@ -454,14 +454,14 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
               borderRadius: '6px',
               fontSize: '11px',
               fontWeight: 600,
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              color: '#f4f4f5',
+              background: 'rgba(71, 85, 140, 0.065)',
+              border: '1px solid rgba(71, 85, 140, 0.13)',
+              color: '#1f2638',
               cursor: 'pointer',
               transition: 'all 0.15s ease',
             }}
           >
-            <RefreshCw size={12} className={loading ? 'animate-spin' : ''} color={loading ? '#38bdf8' : '#a1a1aa'} />
+            <RefreshCw size={12} className={loading ? 'animate-spin' : ''} color={loading ? '#4f63d2' : '#556078'} />
             <span>{loading ? 'Syncing...' : 'Sync Stream'}</span>
           </motion.button>
         </div>
@@ -481,14 +481,13 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
         {/* Metric 1: Total Scored with Rolling Numbers */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -2, borderColor: 'rgba(255, 255, 255, 0.16)' }}
+          whileHover={{ borderColor: 'rgba(71, 85, 140, 0.208)' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -496,7 +495,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
               Total Scored Txns
             </span>
             <div
@@ -508,9 +507,9 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 borderRadius: '9999px',
                 fontSize: '10px',
                 fontWeight: 700,
-                background: 'rgba(16, 185, 129, 0.15)',
-                color: '#10b981',
-                border: '1px solid rgba(16, 185, 129, 0.3)',
+                background: 'rgba(5, 150, 105, 0.15)',
+                color: '#059669',
+                border: '1px solid rgba(5, 150, 105, 0.3)',
               }}
             >
               {/* Radar pulse wave effect */}
@@ -518,20 +517,20 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 <motion.span
                   animate={{ scale: [1, 2.5], opacity: [0.8, 0] }}
                   transition={{ repeat: Infinity, duration: 1.8, ease: 'easeOut' }}
-                  style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981' }}
+                  style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#059669' }}
                 />
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} />
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#059669' }} />
               </div>
               <span>Live Stream</span>
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-            <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f4f4f5' }}>
+            <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#1f2638' }}>
               <AnimatedCounter value={590742} duration={1.2} />
             </span>
-            <span style={{ fontSize: '11px', color: '#71717a' }}>records</span>
+            <span style={{ fontSize: '11px', color: '#6b7388' }}>records</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#38bdf8', marginTop: '4px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#4f63d2', marginTop: '4px' }}>
             <Activity size={12} />
             <span>TigerGraph GSQL Real-Time</span>
           </div>
@@ -540,14 +539,13 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
         {/* Metric 2: Velocity Spike */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -2, borderColor: 'rgba(255, 255, 255, 0.16)' }}
+          whileHover={{ borderColor: 'rgba(71, 85, 140, 0.208)' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -555,7 +553,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
               High-Risk Velocity
             </span>
             <span
@@ -564,21 +562,21 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 fontWeight: 700,
                 padding: '2px 7px',
                 borderRadius: '9999px',
-                background: 'rgba(244, 63, 94, 0.15)',
-                color: '#f43f5e',
-                border: '1px solid rgba(244, 63, 94, 0.3)',
+                background: 'rgba(220, 60, 69, 0.15)',
+                color: '#dc3c45',
+                border: '1px solid rgba(220, 60, 69, 0.3)',
               }}
             >
               &gt; 0.75 Risk
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-            <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f43f5e' }}>
+            <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#dc3c45' }}>
               <AnimatedCounter value={14} suffix=" txns / min" duration={0.8} />
             </span>
-            <span style={{ fontSize: '11px', color: '#71717a' }}>peak</span>
+            <span style={{ fontSize: '11px', color: '#6b7388' }}>peak</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#f43f5e', marginTop: '4px', fontWeight: 600 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#dc3c45', marginTop: '4px', fontWeight: 600 }}>
             <TrendingUp size={12} />
             <span>+3.2% vs 1h baseline</span>
           </div>
@@ -587,14 +585,13 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
         {/* Metric 3: Flagged Volume with Rolling USD */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -2, borderColor: 'rgba(255, 255, 255, 0.16)' }}
+          whileHover={{ borderColor: 'rgba(71, 85, 140, 0.208)' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -602,7 +599,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
               Flagged Exposure
             </span>
             <span
@@ -611,22 +608,22 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 fontWeight: 700,
                 padding: '2px 7px',
                 borderRadius: '9999px',
-                background: 'rgba(245, 158, 11, 0.15)',
-                color: '#f59e0b',
-                border: '1px solid rgba(245, 158, 11, 0.3)',
+                background: 'rgba(217, 130, 11, 0.15)',
+                color: '#d9820b',
+                border: '1px solid rgba(217, 130, 11, 0.3)',
               }}
             >
               High Severity
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-            <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f4f4f5' }}>
+            <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#1f2638' }}>
               <AnimatedCounter value={148290} prefix="$" duration={1.1} />
             </span>
-            <span className="mono" style={{ fontSize: '11px', color: '#71717a' }}>USD</span>
+            <span className="mono" style={{ fontSize: '11px', color: '#6b7388' }}>USD</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#a1a1aa', marginTop: '4px' }}>
-            <DollarSign size={12} color="#f59e0b" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#556078', marginTop: '4px' }}>
+            <DollarSign size={12} color="#d9820b" />
             <span>Queued exposure across clusters</span>
           </div>
         </motion.div>
@@ -634,14 +631,13 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
         {/* Metric 4: Auto-Blocked */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -2, borderColor: 'rgba(255, 255, 255, 0.16)' }}
+          whileHover={{ borderColor: 'rgba(71, 85, 140, 0.208)' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -649,7 +645,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
               Auto-Blocked / Review
             </span>
             <span
@@ -658,21 +654,21 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 fontWeight: 700,
                 padding: '2px 7px',
                 borderRadius: '9999px',
-                background: 'rgba(56, 189, 248, 0.15)',
-                color: '#38bdf8',
-                border: '1px solid rgba(56, 189, 248, 0.3)',
+                background: 'rgba(79, 99, 210, 0.15)',
+                color: '#4f63d2',
+                border: '1px solid rgba(79, 99, 210, 0.3)',
               }}
             >
               R1–R10 Rules
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-            <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f4f4f5' }}>
+            <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#1f2638' }}>
               <AnimatedCounter value={128} duration={0.9} />
             </span>
-            <span style={{ fontSize: '11px', color: '#71717a' }}>actions</span>
+            <span style={{ fontSize: '11px', color: '#6b7388' }}>actions</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#10b981', marginTop: '4px', fontWeight: 600 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#059669', marginTop: '4px', fontWeight: 600 }}>
             <ShieldCheck size={12} />
             <span>98.4% Agent Precision</span>
           </div>
@@ -687,16 +683,15 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: '12px',
-          background: 'rgba(20, 20, 25, 0.6)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '8px',
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          borderRadius: '6px',
           padding: '8px 12px',
         }}
       >
         {/* Left: Search input */}
         <div style={{ position: 'relative', width: '280px' }}>
-          <Search size={14} color="#71717a" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} />
+          <Search size={14} color="#6b7388" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} />
           <input
             type="text"
             placeholder="Search txn ID, card, customer, or case..."
@@ -704,17 +699,17 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
             onChange={(e) => setSearch(e.target.value)}
             style={{
               width: '100%',
-              background: 'rgba(0, 0, 0, 0.4)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              background: '#f6f7fa',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
               borderRadius: '6px',
               padding: '6px 30px 6px 32px',
-              color: '#f4f4f5',
+              color: '#1f2638',
               fontSize: '11.5px',
               outline: 'none',
               transition: 'border-color 0.15s ease',
             }}
-            onFocus={(e) => (e.target.style.borderColor = 'rgba(14, 165, 233, 0.6)')}
-            onBlur={(e) => (e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)')}
+            onFocus={(e) => (e.target.style.borderColor = 'rgba(79, 99, 210, 0.6)')}
+            onBlur={(e) => (e.target.style.borderColor = 'rgba(71, 85, 140, 0.104)')}
           />
           {search && (
             <button
@@ -726,7 +721,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 transform: 'translateY(-50%)',
                 background: 'none',
                 border: 'none',
-                color: '#71717a',
+                color: '#6b7388',
                 cursor: 'pointer',
                 padding: '2px',
               }}
@@ -743,8 +738,8 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
             style={{
               display: 'flex',
               alignItems: 'center',
-              background: 'rgba(0, 0, 0, 0.4)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              background: '#f6f7fa',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
               borderRadius: '6px',
               padding: '2px',
               position: 'relative',
@@ -761,7 +756,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 border: 'none',
                 cursor: 'pointer',
                 background: 'transparent',
-                color: channelFilter === 'all' ? '#f4f4f5' : '#71717a',
+                color: channelFilter === 'all' ? '#1f2638' : '#6b7388',
                 zIndex: 2,
                 transition: 'color 0.15s ease',
               }}
@@ -774,7 +769,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                     position: 'absolute',
                     inset: 0,
                     borderRadius: '4px',
-                    background: 'rgba(255, 255, 255, 0.12)',
+                    background: 'rgba(71, 85, 140, 0.156)',
                     zIndex: -1,
                   }}
                 />
@@ -795,7 +790,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 border: 'none',
                 cursor: 'pointer',
                 background: 'transparent',
-                color: channelFilter === 'online' ? '#38bdf8' : '#71717a',
+                color: channelFilter === 'online' ? '#4f63d2' : '#6b7388',
                 zIndex: 2,
                 transition: 'color 0.15s ease',
               }}
@@ -808,8 +803,8 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                     position: 'absolute',
                     inset: 0,
                     borderRadius: '4px',
-                    background: 'rgba(14, 165, 233, 0.2)',
-                    border: '1px solid rgba(14, 165, 233, 0.35)',
+                    background: 'rgba(79, 99, 210, 0.2)',
+                    border: '1px solid rgba(79, 99, 210, 0.35)',
                     zIndex: -1,
                   }}
                 />
@@ -831,7 +826,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 border: 'none',
                 cursor: 'pointer',
                 background: 'transparent',
-                color: channelFilter === 'in_person' ? '#f59e0b' : '#71717a',
+                color: channelFilter === 'in_person' ? '#d9820b' : '#6b7388',
                 zIndex: 2,
                 transition: 'color 0.15s ease',
               }}
@@ -844,8 +839,8 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                     position: 'absolute',
                     inset: 0,
                     borderRadius: '4px',
-                    background: 'rgba(245, 158, 11, 0.2)',
-                    border: '1px solid rgba(245, 158, 11, 0.35)',
+                    background: 'rgba(217, 130, 11, 0.2)',
+                    border: '1px solid rgba(217, 130, 11, 0.35)',
                     zIndex: -1,
                   }}
                 />
@@ -860,8 +855,8 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
             style={{
               display: 'flex',
               alignItems: 'center',
-              background: 'rgba(0, 0, 0, 0.4)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              background: '#f6f7fa',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
               borderRadius: '6px',
               padding: '2px',
               position: 'relative',
@@ -878,7 +873,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 border: 'none',
                 cursor: 'pointer',
                 background: 'transparent',
-                color: riskTier === 'all' ? '#f4f4f5' : '#71717a',
+                color: riskTier === 'all' ? '#1f2638' : '#6b7388',
                 zIndex: 2,
               }}
             >
@@ -890,7 +885,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                     position: 'absolute',
                     inset: 0,
                     borderRadius: '4px',
-                    background: 'rgba(255, 255, 255, 0.12)',
+                    background: 'rgba(71, 85, 140, 0.156)',
                     zIndex: -1,
                   }}
                 />
@@ -908,7 +903,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 border: 'none',
                 cursor: 'pointer',
                 background: 'transparent',
-                color: riskTier === 'low' ? '#10b981' : '#71717a',
+                color: riskTier === 'low' ? '#059669' : '#6b7388',
                 zIndex: 2,
               }}
             >
@@ -920,8 +915,8 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                     position: 'absolute',
                     inset: 0,
                     borderRadius: '4px',
-                    background: 'rgba(16, 185, 129, 0.2)',
-                    border: '1px solid rgba(16, 185, 129, 0.35)',
+                    background: 'rgba(5, 150, 105, 0.2)',
+                    border: '1px solid rgba(5, 150, 105, 0.35)',
                     zIndex: -1,
                   }}
                 />
@@ -939,7 +934,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 border: 'none',
                 cursor: 'pointer',
                 background: 'transparent',
-                color: riskTier === 'moderate' ? '#f59e0b' : '#71717a',
+                color: riskTier === 'moderate' ? '#d9820b' : '#6b7388',
                 zIndex: 2,
               }}
             >
@@ -951,8 +946,8 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                     position: 'absolute',
                     inset: 0,
                     borderRadius: '4px',
-                    background: 'rgba(245, 158, 11, 0.2)',
-                    border: '1px solid rgba(245, 158, 11, 0.35)',
+                    background: 'rgba(217, 130, 11, 0.2)',
+                    border: '1px solid rgba(217, 130, 11, 0.35)',
                     zIndex: -1,
                   }}
                 />
@@ -970,7 +965,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 border: 'none',
                 cursor: 'pointer',
                 background: 'transparent',
-                color: riskTier === 'critical' ? '#f43f5e' : '#71717a',
+                color: riskTier === 'critical' ? '#dc3c45' : '#6b7388',
                 zIndex: 2,
               }}
             >
@@ -982,8 +977,8 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                     position: 'absolute',
                     inset: 0,
                     borderRadius: '4px',
-                    background: 'rgba(244, 63, 94, 0.2)',
-                    border: '1px solid rgba(244, 63, 94, 0.35)',
+                    background: 'rgba(220, 60, 69, 0.2)',
+                    border: '1px solid rgba(220, 60, 69, 0.35)',
                     zIndex: -1,
                   }}
                 />
@@ -997,11 +992,10 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
       {/* 4. Stripe Radar Data Table with Waterfall Entrance */}
       <div
         style={{
-          background: 'rgba(20, 20, 25, 0.7)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.5)',
-          borderRadius: '8px',
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          boxShadow: 'none',
+          borderRadius: '6px',
           overflow: 'hidden',
           position: 'relative',
         }}
@@ -1011,9 +1005,9 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
             <thead>
               <tr
                 style={{
-                  background: 'rgba(0, 0, 0, 0.45)',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-                  color: '#71717a',
+                  background: '#f6f7fa',
+                  borderBottom: '1px solid rgba(71, 85, 140, 0.104)',
+                  color: '#6b7388',
                   fontSize: '10.5px',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -1046,13 +1040,13 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
             >
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={7} style={{ padding: '48px 16px', textAlign: 'center', color: '#71717a' }}>
+                  <td colSpan={7} style={{ padding: '48px 16px', textAlign: 'center', color: '#6b7388' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                      <Receipt size={28} color="#52525b" />
-                      <span style={{ fontSize: '13px', fontWeight: 600, color: '#a1a1aa' }}>
+                      <Receipt size={28} color="#8c94a8" />
+                      <span style={{ fontSize: '13px', fontWeight: 600, color: '#556078' }}>
                         No transactions match current filters
                       </span>
-                      <p style={{ fontSize: '11px', color: '#71717a', margin: 0 }}>
+                      <p style={{ fontSize: '11px', color: '#6b7388', margin: 0 }}>
                         Try resetting your search query or selecting "All Channels" and "All Scores".
                       </p>
                       <button
@@ -1067,9 +1061,9 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                           borderRadius: '4px',
                           fontSize: '11px',
                           fontWeight: 600,
-                          background: 'rgba(14, 165, 233, 0.15)',
-                          border: '1px solid rgba(14, 165, 233, 0.3)',
-                          color: '#38bdf8',
+                          background: 'rgba(79, 99, 210, 0.15)',
+                          border: '1px solid rgba(79, 99, 210, 0.3)',
+                          color: '#4f63d2',
                           cursor: 'pointer',
                         }}
                       >
@@ -1086,18 +1080,18 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                   const isSelected = selectedTxn?.txn_id === t.txn_id;
 
                   // Color tokens for risk pill & progress bar
-                  let riskColor = '#10b981';
-                  let riskBg = 'rgba(16, 185, 129, 0.15)';
-                  let riskBorder = 'rgba(16, 185, 129, 0.35)';
+                  let riskColor = '#059669';
+                  let riskBg = 'rgba(5, 150, 105, 0.15)';
+                  let riskBorder = 'rgba(5, 150, 105, 0.35)';
 
                   if (isSevere) {
-                    riskColor = '#f43f5e';
-                    riskBg = 'rgba(244, 63, 94, 0.15)';
-                    riskBorder = 'rgba(244, 63, 94, 0.35)';
+                    riskColor = '#dc3c45';
+                    riskBg = 'rgba(220, 60, 69, 0.15)';
+                    riskBorder = 'rgba(220, 60, 69, 0.35)';
                   } else if (isModerate) {
-                    riskColor = '#f59e0b';
-                    riskBg = 'rgba(245, 158, 11, 0.15)';
-                    riskBorder = 'rgba(245, 158, 11, 0.35)';
+                    riskColor = '#d9820b';
+                    riskBg = 'rgba(217, 130, 11, 0.15)';
+                    riskBorder = 'rgba(217, 130, 11, 0.35)';
                   }
 
                   return (
@@ -1113,13 +1107,13 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                       }}
                       onClick={() => setSelectedTxn(t)}
                       style={{
-                        borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
-                        background: isSelected ? 'rgba(255, 255, 255, 0.06)' : 'transparent',
+                        borderBottom: '1px solid rgba(71, 85, 140, 0.052)',
+                        background: isSelected ? 'rgba(71, 85, 140, 0.078)' : 'transparent',
                         cursor: 'pointer',
                         transition: 'background 0.12s ease',
                       }}
                       onMouseEnter={(e) => {
-                        if (!isSelected) e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                        if (!isSelected) e.currentTarget.style.background = 'rgba(71, 85, 140, 0.039)';
                       }}
                       onMouseLeave={(e) => {
                         if (!isSelected) e.currentTarget.style.background = 'transparent';
@@ -1128,12 +1122,12 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                       {/* 1. TXN ID with Copy Button */}
                       <td style={{ padding: '10px 14px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span className="mono" style={{ fontWeight: 700, color: '#38bdf8', fontSize: '12px' }}>
+                          <span className="mono" style={{ fontWeight: 700, color: '#4f63d2', fontSize: '12px' }}>
                             #{t.txn_id}
                           </span>
                           <motion.button
-                            whileHover={{ scale: 1.2 }}
-                            whileTap={{ scale: 0.9 }}
+                            whileHover={{}}
+                            whileTap={{}}
                             onClick={(e) => handleCopyTxnId(t.txn_id, e)}
                             title="Copy Transaction ID"
                             style={{
@@ -1141,13 +1135,13 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                               border: 'none',
                               padding: '2px',
                               cursor: 'pointer',
-                              color: '#71717a',
+                              color: '#6b7388',
                               display: 'flex',
                               alignItems: 'center',
                             }}
                           >
                             {copiedId === t.txn_id ? (
-                              <Check size={11} color="#10b981" />
+                              <Check size={11} color="#059669" />
                             ) : (
                               <Copy size={11} />
                             )}
@@ -1157,8 +1151,8 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
 
                       {/* 2. Formatted Timestamp */}
                       <td style={{ padding: '10px 14px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#a1a1aa', fontSize: '11px' }} className="mono">
-                          <Clock size={11} color="#71717a" style={{ flexShrink: 0 }} />
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#556078', fontSize: '11px' }} className="mono">
+                          <Clock size={11} color="#6b7388" style={{ flexShrink: 0 }} />
                           <span>{formatTxnDate(t.timestamp)}</span>
                         </div>
                       </td>
@@ -1171,22 +1165,22 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                               width: '24px',
                               height: '24px',
                               borderRadius: '50%',
-                              background: 'rgba(255, 255, 255, 0.08)',
-                              border: '1px solid rgba(255, 255, 255, 0.1)',
+                              background: 'rgba(71, 85, 140, 0.104)',
+                              border: '1px solid rgba(71, 85, 140, 0.13)',
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
                               flexShrink: 0,
                             }}
                           >
-                            <User size={11} color="#cbd5e1" />
+                            <User size={11} color="#47516a" />
                           </div>
                           <div>
-                            <div className="mono" style={{ fontWeight: 700, color: '#f4f4f5', fontSize: '12px' }}>
+                            <div className="mono" style={{ fontWeight: 700, color: '#1f2638', fontSize: '12px' }}>
                               {t.customer_id}
                             </div>
-                            <div className="mono" style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '10.5px', color: '#71717a' }}>
-                              <CreditCard size={10} color="#71717a" />
+                            <div className="mono" style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '10.5px', color: '#6b7388' }}>
+                              <CreditCard size={10} color="#6b7388" />
                               <span>{t.card_id}</span>
                             </div>
                           </div>
@@ -1195,9 +1189,9 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
 
                       {/* 4. Amount */}
                       <td style={{ padding: '10px 14px' }}>
-                        <div className="mono" style={{ fontWeight: 700, color: '#f4f4f5', fontSize: '12px' }}>
+                        <div className="mono" style={{ fontWeight: 700, color: '#1f2638', fontSize: '12px' }}>
                           ${t.amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                          <span style={{ fontSize: '10px', color: '#71717a', marginLeft: '4px', fontWeight: 500 }}>USD</span>
+                          <span style={{ fontSize: '10px', color: '#6b7388', marginLeft: '4px', fontWeight: 500 }}>USD</span>
                         </div>
                       </td>
 
@@ -1213,9 +1207,9 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                               fontWeight: 700,
                               padding: '2px 7px',
                               borderRadius: '9999px',
-                              background: 'rgba(14, 165, 233, 0.15)',
-                              color: '#38bdf8',
-                              border: '1px solid rgba(14, 165, 233, 0.3)',
+                              background: 'rgba(79, 99, 210, 0.15)',
+                              color: '#4f63d2',
+                              border: '1px solid rgba(79, 99, 210, 0.3)',
                             }}
                           >
                             <Globe size={10} /> ONLINE
@@ -1230,9 +1224,9 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                               fontWeight: 700,
                               padding: '2px 7px',
                               borderRadius: '9999px',
-                              background: 'rgba(255, 255, 255, 0.08)',
-                              color: '#a1a1aa',
-                              border: '1px solid rgba(255, 255, 255, 0.12)',
+                              background: 'rgba(71, 85, 140, 0.104)',
+                              color: '#556078',
+                              border: '1px solid rgba(71, 85, 140, 0.156)',
                             }}
                           >
                             <Store size={10} /> IN_PERSON
@@ -1251,7 +1245,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                               alignItems: 'center',
                               gap: '5px',
                               fontSize: '10.5px',
-                              fontWeight: 800,
+                              fontWeight: 700,
                               padding: '2px 6px',
                               borderRadius: '4px',
                               background: riskBg,
@@ -1264,9 +1258,9 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                                 <motion.span
                                   animate={{ scale: [1, 2.2], opacity: [0.8, 0] }}
                                   transition={{ repeat: Infinity, duration: 1.4, ease: 'easeOut' }}
-                                  style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#f43f5e' }}
+                                  style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#dc3c45' }}
                                 />
-                                <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#f43f5e' }} />
+                                <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#dc3c45' }} />
                               </span>
                             )}
                             <span>{t.risk_score.toFixed(2)}</span>
@@ -1278,7 +1272,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                               flex: 1,
                               height: '4px',
                               borderRadius: '9999px',
-                              background: 'rgba(255, 255, 255, 0.08)',
+                              background: 'rgba(71, 85, 140, 0.104)',
                               overflow: 'hidden',
                               position: 'relative',
                             }}
@@ -1291,7 +1285,7 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                                 height: '100%',
                                 background: riskColor,
                                 borderRadius: '9999px',
-                                boxShadow: isSevere ? '0 0 6px rgba(244, 63, 94, 0.6)' : undefined,
+                                boxShadow: isSevere ? 'none' : undefined,
                               }}
                             />
                           </div>
@@ -1301,8 +1295,8 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                       {/* 7. Action Button ("Investigate Case") with hover slide */}
                       <td style={{ padding: '10px 14px', textAlign: 'right' }}>
                         <motion.button
-                          whileHover={{ scale: 1.03, backgroundColor: 'rgba(14, 165, 233, 0.15)', borderColor: 'rgba(14, 165, 233, 0.4)' }}
-                          whileTap={{ scale: 0.97 }}
+                          whileHover={{ backgroundColor: 'rgba(79, 99, 210, 0.15)', borderColor: 'rgba(79, 99, 210, 0.4)' }}
+                          whileTap={{}}
                           onClick={(e) => {
                             e.stopPropagation();
                             onInvestigateCase(t.case_id);
@@ -1315,24 +1309,24 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                             fontSize: '11px',
                             fontWeight: 600,
                             borderRadius: '4px',
-                            background: 'rgba(255, 255, 255, 0.05)',
-                            border: '1px solid rgba(255, 255, 255, 0.1)',
-                            color: '#f4f4f5',
+                            background: 'rgba(71, 85, 140, 0.065)',
+                            border: '1px solid rgba(71, 85, 140, 0.13)',
+                            color: '#1f2638',
                             cursor: 'pointer',
                             transition: 'all 0.15s ease',
                           }}
                         >
-                          <span className="mono" style={{ color: '#38bdf8', fontWeight: 700 }}>
+                          <span className="mono" style={{ color: '#4f63d2', fontWeight: 700 }}>
                             {t.case_id}
                           </span>
-                          <span style={{ color: '#a1a1aa' }}>Inspect</span>
+                          <span style={{ color: '#556078' }}>Inspect</span>
                           <motion.span
                             initial={{ x: 0 }}
                             whileHover={{ x: 3 }}
                             transition={snappyTransition}
                             style={{ display: 'inline-flex', alignItems: 'center' }}
                           >
-                            <ArrowRight size={11} color="#38bdf8" />
+                            <ArrowRight size={11} color="#4f63d2" />
                           </motion.span>
                         </motion.button>
                       </td>
@@ -1348,30 +1342,30 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
         <div
           style={{
             padding: '8px 14px',
-            background: 'rgba(0, 0, 0, 0.45)',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            background: '#f6f7fa',
+            borderTop: '1px solid rgba(71, 85, 140, 0.104)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             fontSize: '11px',
-            color: '#71717a',
+            color: '#6b7388',
             flexWrap: 'wrap',
             gap: '8px',
           }}
         >
           <div>
-            Showing <strong style={{ color: '#f4f4f5' }}>{filtered.length}</strong> of{' '}
-            <strong style={{ color: '#f4f4f5' }}>590,742</strong> scored transactions
+            Showing <strong style={{ color: '#1f2638' }}>{filtered.length}</strong> of{' '}
+            <strong style={{ color: '#1f2638' }}>590,742</strong> scored transactions
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} /> &le;0.40 Low
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#059669' }} /> &le;0.40 Low
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#f59e0b' }} /> 0.41–0.70 Moderate
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#d9820b' }} /> 0.41–0.70 Moderate
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#f43f5e' }} /> &gt;0.70 Severe
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#dc3c45' }} /> &gt;0.70 Severe
             </span>
           </div>
         </div>
@@ -1392,10 +1386,9 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
               bottom: 0,
               width: '420px',
               maxWidth: '90vw',
-              background: 'rgba(11, 17, 28, 0.96)',
-              backdropFilter: 'blur(20px)',
-              borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
-              boxShadow: '-8px 0 32px rgba(0, 0, 0, 0.8)',
+              background: 'rgba(255, 255, 255, 0.96)',
+              borderLeft: '1px solid rgba(71, 85, 140, 0.13)',
+              boxShadow: 'var(--shadow-drawer)',
               zIndex: 1000,
               display: 'flex',
               flexDirection: 'column',
@@ -1407,19 +1400,19 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
             <div
               style={{
                 padding: '14px 16px',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                borderBottom: '1px solid rgba(71, 85, 140, 0.104)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 position: 'sticky',
                 top: 0,
-                background: 'rgba(11, 17, 28, 0.98)',
+                background: 'rgba(255, 255, 255, 0.98)',
                 zIndex: 10,
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Receipt size={16} color="#38bdf8" />
-                <span className="mono" style={{ fontSize: '13px', fontWeight: 800, color: '#f4f4f5' }}>
+                <Receipt size={16} color="#4f63d2" />
+                <span className="mono" style={{ fontSize: '13px', fontWeight: 700, color: '#1f2638' }}>
                   TXN #{selectedTxn.txn_id}
                 </span>
                 <span
@@ -1428,9 +1421,9 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                     fontWeight: 700,
                     padding: '2px 6px',
                     borderRadius: '4px',
-                    background: 'rgba(14, 165, 233, 0.15)',
-                    color: '#38bdf8',
-                    border: '1px solid rgba(14, 165, 233, 0.3)',
+                    background: 'rgba(79, 99, 210, 0.15)',
+                    color: '#4f63d2',
+                    border: '1px solid rgba(79, 99, 210, 0.3)',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -1438,13 +1431,13 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 </span>
               </div>
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{}}
+                whileTap={{}}
                 onClick={() => setSelectedTxn(null)}
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#71717a',
+                  color: '#6b7388',
                   cursor: 'pointer',
                   padding: '4px',
                   borderRadius: '4px',
@@ -1461,23 +1454,23 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
               <div
                 style={{
                   padding: '14px',
-                  borderRadius: '8px',
-                  background: 'rgba(0, 0, 0, 0.4)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '6px',
+                  background: '#f6f7fa',
+                  border: '1px solid rgba(71, 85, 140, 0.104)',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '8px',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', color: '#71717a' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', color: '#6b7388' }}>
                   <span style={{ fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     TigerGraph Model Risk Score
                   </span>
                   <span
                     className="mono"
                     style={{
-                      fontWeight: 800,
-                      color: selectedTxn.risk_score > 0.7 ? '#f43f5e' : selectedTxn.risk_score > 0.4 ? '#f59e0b' : '#10b981',
+                      fontWeight: 700,
+                      color: selectedTxn.risk_score > 0.7 ? '#dc3c45' : selectedTxn.risk_score > 0.4 ? '#d9820b' : '#059669',
                     }}
                   >
                     {selectedTxn.risk_score > 0.7 ? 'SEVERE RISK' : selectedTxn.risk_score > 0.4 ? 'MODERATE RISK' : 'LOW RISK'}
@@ -1485,15 +1478,15 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                  <span className="mono" style={{ fontSize: '28px', fontWeight: 800, color: '#f4f4f5' }}>
+                  <span className="mono" style={{ fontSize: '28px', fontWeight: 700, color: '#1f2638' }}>
                     {(selectedTxn.risk_score * 100).toFixed(0)}%
                   </span>
-                  <span className="mono" style={{ fontSize: '11px', color: '#71717a' }}>
+                  <span className="mono" style={{ fontSize: '11px', color: '#6b7388' }}>
                     ({selectedTxn.risk_score.toFixed(2)})
                   </span>
                 </div>
 
-                <div style={{ width: '100%', height: '5px', borderRadius: '9999px', background: 'rgba(255, 255, 255, 0.08)', overflow: 'hidden' }}>
+                <div style={{ width: '100%', height: '5px', borderRadius: '9999px', background: 'rgba(71, 85, 140, 0.104)', overflow: 'hidden' }}>
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${Math.round(selectedTxn.risk_score * 100)}%` }}
@@ -1502,10 +1495,10 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                       height: '100%',
                       background:
                         selectedTxn.risk_score > 0.7
-                          ? '#f43f5e'
+                          ? '#dc3c45'
                           : selectedTxn.risk_score > 0.4
-                          ? '#f59e0b'
-                          : '#10b981',
+                          ? '#d9820b'
+                          : '#059669',
                     }}
                   />
                 </div>
@@ -1513,31 +1506,31 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
 
               {/* Transaction Attributes Grid */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                   Transaction Metadata
                 </span>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '11px' }}>
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <span style={{ color: '#71717a', display: 'block', fontSize: '10px' }}>AMOUNT</span>
-                    <span className="mono" style={{ fontWeight: 800, color: '#f4f4f5', fontSize: '13px' }}>
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                    <span style={{ color: '#6b7388', display: 'block', fontSize: '10px' }}>AMOUNT</span>
+                    <span className="mono" style={{ fontWeight: 700, color: '#1f2638', fontSize: '13px' }}>
                       ${selectedTxn.amount.toFixed(2)} USD
                     </span>
                   </div>
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <span style={{ color: '#71717a', display: 'block', fontSize: '10px' }}>CHANNEL</span>
-                    <span className="mono" style={{ fontWeight: 700, color: '#f4f4f5', fontSize: '12px', textTransform: 'capitalize' }}>
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                    <span style={{ color: '#6b7388', display: 'block', fontSize: '10px' }}>CHANNEL</span>
+                    <span className="mono" style={{ fontWeight: 700, color: '#1f2638', fontSize: '12px', textTransform: 'capitalize' }}>
                       {selectedTxn.channel}
                     </span>
                   </div>
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <span style={{ color: '#71717a', display: 'block', fontSize: '10px' }}>CUSTOMER ID</span>
-                    <span className="mono" style={{ fontWeight: 700, color: '#f4f4f5' }}>
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                    <span style={{ color: '#6b7388', display: 'block', fontSize: '10px' }}>CUSTOMER ID</span>
+                    <span className="mono" style={{ fontWeight: 700, color: '#1f2638' }}>
                       {selectedTxn.customer_id}
                     </span>
                   </div>
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <span style={{ color: '#71717a', display: 'block', fontSize: '10px' }}>CARD ID</span>
-                    <span className="mono" style={{ fontWeight: 700, color: '#f4f4f5' }}>
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                    <span style={{ color: '#6b7388', display: 'block', fontSize: '10px' }}>CARD ID</span>
+                    <span className="mono" style={{ fontWeight: 700, color: '#1f2638' }}>
                       {selectedTxn.card_id}
                     </span>
                   </div>
@@ -1546,31 +1539,31 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
 
               {/* TigerGraph Graph Signals */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                   TigerGraph Real-Time Signals
                 </span>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                    <Zap size={14} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)', display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                    <Zap size={14} color="#d9820b" style={{ flexShrink: 0, marginTop: '2px' }} />
                     <div>
-                      <span style={{ fontWeight: 700, color: '#f4f4f5', display: 'block', fontSize: '11.5px' }}>
+                      <span style={{ fontWeight: 700, color: '#1f2638', display: 'block', fontSize: '11.5px' }}>
                         Velocity & Hop Analysis
                       </span>
-                      <span style={{ color: '#a1a1aa', fontSize: '10.5px', lineHeight: 1.4 }}>
+                      <span style={{ color: '#556078', fontSize: '10.5px', lineHeight: 1.4 }}>
                         Sub-second multi-hop traversal evaluated card and customer graph neighborhood within 2 degrees.
                       </span>
                     </div>
                   </div>
 
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                    <Layers size={14} color="#38bdf8" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)', display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                    <Layers size={14} color="#4f63d2" style={{ flexShrink: 0, marginTop: '2px' }} />
                     <div>
-                      <span style={{ fontWeight: 700, color: '#f4f4f5', display: 'block', fontSize: '11.5px' }}>
+                      <span style={{ fontWeight: 700, color: '#1f2638', display: 'block', fontSize: '11.5px' }}>
                         Linked Benchmark Case
                       </span>
-                      <span style={{ color: '#a1a1aa', fontSize: '10.5px', lineHeight: 1.4 }}>
+                      <span style={{ color: '#556078', fontSize: '10.5px', lineHeight: 1.4 }}>
                         Associated with benchmark case{' '}
-                        <strong className="mono" style={{ color: '#38bdf8' }}>{selectedTxn.case_id}</strong>.
+                        <strong className="mono" style={{ color: '#4f63d2' }}>{selectedTxn.case_id}</strong>.
                       </span>
                     </div>
                   </div>
@@ -1579,17 +1572,17 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
 
               {/* Raw JSON Preview */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                   Raw TigerGraph Entity Payload
                 </span>
                 <div
                   style={{
                     padding: '10px',
                     borderRadius: '6px',
-                    background: 'rgba(0, 0, 0, 0.5)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    background: '#f6f7fa',
+                    border: '1px solid rgba(71, 85, 140, 0.078)',
                     fontSize: '10px',
-                    color: '#a1a1aa',
+                    color: '#556078',
                     overflowX: 'auto',
                   }}
                   className="mono"
@@ -1603,15 +1596,15 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
             <div
               style={{
                 padding: '14px 16px',
-                borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'rgba(11, 17, 28, 0.98)',
+                borderTop: '1px solid rgba(71, 85, 140, 0.104)',
+                background: 'rgba(255, 255, 255, 0.98)',
                 position: 'sticky',
                 bottom: 0,
               }}
             >
               <motion.button
-                whileHover={{ scale: 1.02, backgroundColor: '#38bdf8' }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ backgroundColor: '#4f63d2' }}
+                whileTap={{}}
                 onClick={() => {
                   onInvestigateCase(selectedTxn.case_id);
                   setSelectedTxn(null);
@@ -1624,13 +1617,13 @@ export const TransactionExplorer: React.FC<TransactionExplorerProps> = ({ onInve
                   gap: '8px',
                   padding: '9px 16px',
                   borderRadius: '6px',
-                  background: '#0ea5e9',
+                  background: '#4f63d2',
                   border: 'none',
-                  color: '#09090b',
+                  color: '#ffffff',
                   fontWeight: 700,
                   fontSize: '12px',
                   cursor: 'pointer',
-                  boxShadow: '0 0 16px rgba(14, 165, 233, 0.3)',
+                  boxShadow: 'none',
                   transition: 'background 0.15s ease',
                 }}
               >

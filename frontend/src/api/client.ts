@@ -7,28 +7,38 @@ import {
   TransactionItem,
 } from '../types';
 
-const API_BASE = '/api';
+// Dev: Vite proxies /api to localhost:8000. Production: set VITE_API_BASE to the backend URL (e.g. https://ringleader.onrender.com/api).
+const API_BASE = (import.meta.env.VITE_API_BASE as string | undefined) ?? '/api';
+
+// Optional bearer token (set VITE_API_TOKEN in frontend/.env.local when the API has ANALYST_TOKENS enabled).
+const API_TOKEN = import.meta.env.VITE_API_TOKEN as string | undefined;
+
+function apiFetch(path: string, init: RequestInit = {}): Promise<Response> {
+  const headers = new Headers(init.headers);
+  if (API_TOKEN) headers.set('Authorization', `Bearer ${API_TOKEN}`);
+  return fetch(`${API_BASE}${path}`, { ...init, headers });
+}
 
 export async function fetchHealth(): Promise<any> {
-  const res = await fetch(`${API_BASE}/health`);
+  const res = await apiFetch(`/health`);
   if (!res.ok) throw new Error('Failed to fetch health');
   return res.json();
 }
 
 export async function fetchCases(): Promise<CaseSummary[]> {
-  const res = await fetch(`${API_BASE}/cases`);
+  const res = await apiFetch(`/cases`);
   if (!res.ok) throw new Error('Failed to fetch cases');
   return res.json();
 }
 
 export async function fetchCaseDetail(caseId: string): Promise<CaseDetail> {
-  const res = await fetch(`${API_BASE}/cases/${caseId}`);
+  const res = await apiFetch(`/cases/${caseId}`);
   if (!res.ok) throw new Error(`Failed to fetch case ${caseId}`);
   return res.json();
 }
 
 export async function fetchCaseSubgraph(caseId: string): Promise<SubgraphData> {
-  const res = await fetch(`${API_BASE}/cases/${caseId}/subgraph`);
+  const res = await apiFetch(`/cases/${caseId}/subgraph`);
   if (!res.ok) throw new Error(`Failed to fetch subgraph for ${caseId}`);
   return res.json();
 }
@@ -44,7 +54,7 @@ export async function submitAnalystAction(
     notes?: string;
   }
 ): Promise<{ success: boolean; record: any }> {
-  const res = await fetch(`${API_BASE}/cases/${caseId}/action`, {
+  const res = await apiFetch(`/cases/${caseId}/action`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -54,7 +64,7 @@ export async function submitAnalystAction(
 }
 
 export async function runCaseInvestigation(caseId: string): Promise<{ success: boolean; data: any }> {
-  const res = await fetch(`${API_BASE}/cases/${caseId}/run`, {
+  const res = await apiFetch(`/cases/${caseId}/run`, {
     method: 'POST',
   });
   if (!res.ok) throw new Error(`Failed to run investigation for ${caseId}`);
@@ -62,13 +72,13 @@ export async function runCaseInvestigation(caseId: string): Promise<{ success: b
 }
 
 export async function fetchPolicies(): Promise<PolicyRule[]> {
-  const res = await fetch(`${API_BASE}/policies`);
+  const res = await apiFetch(`/policies`);
   if (!res.ok) throw new Error('Failed to fetch policies');
   return res.json();
 }
 
 export async function fetchAuditLog(limit: number = 50): Promise<AuditEvent[]> {
-  const res = await fetch(`${API_BASE}/audit-log?limit=${limit}`);
+  const res = await apiFetch(`/audit-log?limit=${limit}`);
   if (!res.ok) throw new Error('Failed to fetch audit log');
   return res.json();
 }
@@ -87,7 +97,7 @@ export async function fetchTransactions(params?: {
   if (params?.channel) query.set('channel', params.channel);
   if (params?.card_id) query.set('card_id', params.card_id);
 
-  const res = await fetch(`${API_BASE}/transactions?${query.toString()}`);
+  const res = await apiFetch(`/transactions?${query.toString()}`);
   if (!res.ok) throw new Error('Failed to fetch transactions');
   return res.json();
 }

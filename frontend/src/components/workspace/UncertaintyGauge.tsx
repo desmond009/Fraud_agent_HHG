@@ -37,19 +37,18 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
   const sufficiencyPct = Math.min(98, 50 + evidenceCount * 15 + (connectedCards > 0 ? 15 : 0));
 
   const getVerdictColor = (pct: number) => {
-    if (pct >= 70) return '#f43f5e';
-    if (pct <= 25) return '#10b981';
-    return '#f59e0b';
+    if (pct >= 70) return '#dc3c45';
+    if (pct <= 25) return '#059669';
+    return '#d9820b';
   };
 
   return (
     <div
       style={{
-        background: 'radial-gradient(ellipse at 15% 0%, rgba(14, 165, 233, 0.05), transparent 70%), rgba(20, 20, 26, 0.78)',
-        backdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255, 255, 255, 0.09)',
-        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.07), 0 4px 20px rgba(0, 0, 0, 0.45)',
-        borderRadius: '10px',
+        background: '#ffffff',
+        border: '1px solid rgba(71, 85, 140, 0.117)',
+        boxShadow: 'none',
+        borderRadius: '6px',
         padding: '14px 16px',
         display: 'flex',
         flexDirection: 'column',
@@ -59,21 +58,21 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
     >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <AlertTriangle size={14} color="#f59e0b" />
-          <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#f4f4f5' }}>
+          <AlertTriangle size={14} color="#d9820b" />
+          <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1f2638' }}>
             Risk & Uncertainty Calibration
           </span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{ fontSize: '10.5px', color: '#a1a1aa' }}>
-            Sufficiency: <strong style={{ color: '#38bdf8' }}>{sufficiencyPct}%</strong>
+          <div style={{ fontSize: '10.5px', color: '#556078' }}>
+            Sufficiency: <strong style={{ color: '#4f63d2' }}>{sufficiencyPct}%</strong>
           </div>
-          <div style={{ width: '40px', height: '4px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '2px', overflow: 'hidden' }}>
+          <div style={{ width: '40px', height: '4px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '2px', overflow: 'hidden' }}>
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${sufficiencyPct}%` }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              style={{ height: '100%', background: '#38bdf8', borderRadius: '2px' }}
+              style={{ height: '100%', background: '#4f63d2', borderRadius: '2px' }}
             />
           </div>
         </div>
@@ -86,41 +85,41 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
           gridTemplateColumns: '1fr auto 1fr',
           alignItems: 'center',
           gap: '14px',
-          background: 'rgba(0, 0, 0, 0.4)',
+          background: '#f6f7fa',
           padding: '12px 14px',
-          borderRadius: '8px',
-          border: '1px solid rgba(255, 255, 255, 0.06)',
-          boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.3)',
+          borderRadius: '6px',
+          border: '1px solid rgba(71, 85, 140, 0.078)',
+          boxShadow: 'none',
         }}
       >
         {/* Stage 1: Initial Assessment (Prior to verification) */}
         <div>
-          <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#71717a', fontWeight: 600 }}>
+          <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#6b7388', fontWeight: 600 }}>
             Initial Assessment
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '2px' }}>
-            <span className="mono" style={{ fontSize: '20px', fontWeight: 800, color: '#f4f4f5' }}>
+            <span className="mono" style={{ fontSize: '20px', fontWeight: 700, color: '#1f2638' }}>
               <AnimatedCounter value={initialPct} suffix="%" duration={0.8} />
             </span>
-            <span style={{ fontSize: '10px', color: '#71717a' }}>probability</span>
+            <span style={{ fontSize: '10px', color: '#6b7388' }}>probability</span>
           </div>
 
           {/* Animated Bar Width for Initial */}
-          <div style={{ width: '100%', height: '4px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '2px', marginTop: '6px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '4px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '2px', marginTop: '6px', overflow: 'hidden' }}>
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${initialPct}%` }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               style={{
                 height: '100%',
-                background: '#f59e0b',
+                background: '#d9820b',
                 borderRadius: '2px',
-                boxShadow: '0 0 6px rgba(245, 158, 11, 0.6)',
+                boxShadow: 'none',
               }}
             />
           </div>
 
-          <div style={{ fontSize: '10px', color: '#71717a', marginTop: '4px' }}>
+          <div style={{ fontSize: '10px', color: '#6b7388', marginTop: '4px' }}>
             Rule R1 weak-signal guard
           </div>
         </div>
@@ -135,10 +134,10 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
             style={{
               padding: '3px 8px',
               borderRadius: '9999px',
-              background: delta >= 0 ? 'rgba(244, 63, 94, 0.15)' : 'rgba(16, 185, 129, 0.15)',
-              color: delta >= 0 ? '#f43f5e' : '#10b981',
-              border: `1px solid ${delta >= 0 ? 'rgba(244, 63, 94, 0.35)' : 'rgba(16, 185, 129, 0.35)'}`,
-              boxShadow: `0 0 10px ${delta >= 0 ? 'rgba(244, 63, 94, 0.2)' : 'rgba(16, 185, 129, 0.2)'}`,
+              background: delta >= 0 ? 'rgba(220, 60, 69, 0.15)' : 'rgba(5, 150, 105, 0.15)',
+              color: delta >= 0 ? '#dc3c45' : '#059669',
+              border: `1px solid ${delta >= 0 ? 'rgba(220, 60, 69, 0.35)' : 'rgba(5, 150, 105, 0.35)'}`,
+              boxShadow: 'none',
               fontSize: '10.5px',
               fontWeight: 700,
               display: 'flex',
@@ -149,12 +148,12 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
             {delta >= 0 ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
             <span>{delta >= 0 ? `+${delta}%` : `${delta}%`}</span>
           </motion.div>
-          <ArrowRight size={13} color="#52525b" />
+          <ArrowRight size={13} color="#8c94a8" />
         </div>
 
         {/* Stage 2: Final Calibrated Verdict */}
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#71717a', fontWeight: 600 }}>
+          <div style={{ fontSize: '10px', textTransform: 'uppercase', color: '#6b7388', fontWeight: 600 }}>
             Post-Evidence Verdict
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'flex-end', gap: '6px', marginTop: '2px' }}>
@@ -162,18 +161,18 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
               className="mono"
               style={{
                 fontSize: '22px',
-                fontWeight: 800,
+                fontWeight: 700,
                 color: getVerdictColor(finalPct),
                 textShadow: `0 0 14px ${getVerdictColor(finalPct)}50`,
               }}
             >
               <AnimatedCounter value={finalPct} suffix="%" duration={0.8} />
             </span>
-            <span style={{ fontSize: '10px', color: '#71717a' }}>calibrated</span>
+            <span style={{ fontSize: '10px', color: '#6b7388' }}>calibrated</span>
           </div>
 
           {/* Animated Bar Width for Final Verdict */}
-          <div style={{ width: '100%', height: '4px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '2px', marginTop: '6px', overflow: 'hidden', display: 'flex', justifyContent: 'flex-end' }}>
+          <div style={{ width: '100%', height: '4px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '2px', marginTop: '6px', overflow: 'hidden', display: 'flex', justifyContent: 'flex-end' }}>
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${finalPct}%` }}
@@ -182,12 +181,12 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
                 height: '100%',
                 background: getVerdictColor(finalPct),
                 borderRadius: '2px',
-                boxShadow: `0 0 8px ${getVerdictColor(finalPct)}88`,
+                boxShadow: 'none',
               }}
             />
           </div>
 
-          <div style={{ fontSize: '10px', color: '#a1a1aa', marginTop: '4px', fontWeight: 500 }}>
+          <div style={{ fontSize: '10px', color: '#556078', marginTop: '4px', fontWeight: 500 }}>
             {c.verdict === 'fraud' ? 'Confirmed Unauthorized' : 'Confirmed Legitimate'}
           </div>
         </div>
@@ -202,22 +201,22 @@ export const UncertaintyGauge: React.FC<UncertaintyGaugeProps> = ({ caseData }) 
           style={{
             padding: '8px 12px',
             borderRadius: '6px',
-            background: 'rgba(56, 189, 248, 0.08)',
-            border: '1px solid rgba(56, 189, 248, 0.25)',
-            boxShadow: '0 0 12px rgba(14, 165, 233, 0.1)',
+            background: 'rgba(79, 99, 210, 0.08)',
+            border: '1px solid rgba(79, 99, 210, 0.25)',
+            boxShadow: 'none',
             fontSize: '11px',
-            color: '#f4f4f5',
+            color: '#1f2638',
             display: 'flex',
             alignItems: 'flex-start',
             gap: '8px',
           }}
         >
           <div style={{ marginTop: '2px', flexShrink: 0 }}>
-            <HelpCircle size={13} color="#38bdf8" />
+            <HelpCircle size={13} color="#4f63d2" />
           </div>
           <div style={{ flex: 1, lineHeight: 1.4 }}>
-            <span style={{ fontWeight: 600, color: '#38bdf8' }}>Catalyst / What Changed: </span>
-            <span style={{ color: '#d4d4d8' }}>{nba.what_changed}</span>
+            <span style={{ fontWeight: 600, color: '#4f63d2' }}>Catalyst / What Changed: </span>
+            <span style={{ color: '#3a445b' }}>{nba.what_changed}</span>
           </div>
         </motion.div>
       )}

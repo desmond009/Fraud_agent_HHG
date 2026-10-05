@@ -9,7 +9,7 @@
 
 | Official Requirement | Status | File Location / Proof |
 | :--- | :---: | :--- |
-| **1. Working Agent** | ✅ Complete | [`agent/graph.py`](file:///Users/vijender/Downloads/FraudAgent/agent/graph.py), [`mcp/tigergraph_mcp.py`](file:///Users/vijender/Downloads/FraudAgent/mcp/tigergraph_mcp.py), [`graphrag/vector_indexer.py`](file:///Users/vijender/Downloads/FraudAgent/graphrag/vector_indexer.py) |
+| **1. Working Agent** | ✅ Complete | [`agent/graph.py`](file:///Users/vijender/Downloads/FraudAgent/agent/graph.py), [`graph_tools/tigergraph_mcp.py`](file:///Users/vijender/Downloads/FraudAgent/graph_tools/tigergraph_mcp.py), [`graphrag/vector_indexer.py`](file:///Users/vijender/Downloads/FraudAgent/graphrag/vector_indexer.py) |
 | **2. GitHub Repository** | ✅ Ready | Complete Git repository with clean commits and documentation |
 | **3. Agent output on the 20 provided cases** | ✅ 20/20 Validated | [`cases/HHG-001.json`](file:///Users/vijender/Downloads/FraudAgent/cases/HHG-001.json) through [`cases/HHG-020.json`](file:///Users/vijender/Downloads/FraudAgent/cases/HHG-020.json) |
 | ↳ *Internal investigation record, evidence, decisions* | ✅ Complete | Included under `"case"`, `"evidence"`, and `"summary"` in each JSON |

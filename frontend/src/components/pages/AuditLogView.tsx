@@ -363,7 +363,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
           left: '10%',
           width: '500px',
           height: '180px',
-          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.1) 0%, transparent 70%)',
+          background: 'transparent',
           pointerEvents: 'none',
           zIndex: 0,
         }}
@@ -376,11 +376,10 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
         transition={snappyTransition}
         style={{
           position: 'relative',
-          background: 'radial-gradient(ellipse 80% 90% at 5% 0%, rgba(16, 185, 129, 0.14) 0%, rgba(20, 20, 25, 0.9) 100%)',
-          backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 8px 32px rgba(0, 0, 0, 0.45)',
-          borderRadius: '8px',
+          background: 'transparent',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          boxShadow: 'none',
+          borderRadius: '6px',
           padding: '18px 22px',
           display: 'flex',
           alignItems: 'center',
@@ -399,9 +398,9 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                 fontWeight: 700,
                 padding: '3px 9px',
                 borderRadius: '9999px',
-                background: 'rgba(16, 185, 129, 0.18)',
-                color: '#10b981',
-                border: '1px solid rgba(16, 185, 129, 0.35)',
+                background: 'rgba(5, 150, 105, 0.18)',
+                color: '#059669',
+                border: '1px solid rgba(5, 150, 105, 0.35)',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '6px',
@@ -413,19 +412,19 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                   width: '6px',
                   height: '6px',
                   borderRadius: '50%',
-                  background: '#10b981',
-                  boxShadow: '0 0 8px #10b981',
+                  background: '#059669',
+                  boxShadow: 'none',
                 }}
               />
               IMMUTABLE AUDIT TRAIL
             </span>
-            <span style={{ fontSize: '11px', color: '#71717a' }}>FinCEN BSA / AML Governance</span>
+            <span style={{ fontSize: '11px', color: '#6b7388' }}>FinCEN BSA / AML Governance</span>
           </div>
 
-          <h2 style={{ fontSize: '19px', fontWeight: 800, color: '#f4f4f5', letterSpacing: '-0.02em', marginTop: '6px', marginBottom: 0 }}>
+          <h2 style={{ fontSize: '19px', fontWeight: 700, color: '#1f2638', letterSpacing: '-0.02em', marginTop: '6px', marginBottom: 0 }}>
             Investigation Audit & Action Log
           </h2>
-          <p style={{ fontSize: '12px', color: '#a1a1aa', marginTop: '3px', maxWidth: '680px', lineHeight: 1.5 }}>
+          <p style={{ fontSize: '12px', color: '#556078', marginTop: '3px', maxWidth: '680px', lineHeight: 1.5 }}>
             Cryptographically verified chronological record of AI agent deliberations, TigerGraph GSQL query invocations, and analyst human sign-offs.
           </p>
         </div>
@@ -433,8 +432,8 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
         {/* Hero Actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <motion.button
-            whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ backgroundColor: 'rgba(71, 85, 140, 0.104)' }}
+            whileTap={{}}
             onClick={handleExportJSON}
             style={{
               display: 'inline-flex',
@@ -442,22 +441,22 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
               gap: '6px',
               padding: '7px 12px',
               borderRadius: '6px',
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              color: '#cbd5e1',
+              background: 'rgba(71, 85, 140, 0.065)',
+              border: '1px solid rgba(71, 85, 140, 0.13)',
+              color: '#47516a',
               fontSize: '11.5px',
               fontWeight: 600,
               cursor: 'pointer',
               transition: 'all 0.15s ease',
             }}
           >
-            <Download size={13} color="#38bdf8" />
+            <Download size={13} color="#4f63d2" />
             <span>Export Ledger</span>
           </motion.button>
 
           <motion.button
-            whileHover={{ scale: 1.02, backgroundColor: 'rgba(16, 185, 129, 0.25)' }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ backgroundColor: 'rgba(5, 150, 105, 0.25)' }}
+            whileTap={{}}
             onClick={loadEvents}
             disabled={loading}
             style={{
@@ -466,13 +465,13 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
               gap: '6px',
               padding: '7px 14px',
               borderRadius: '6px',
-              background: 'rgba(16, 185, 129, 0.16)',
-              border: '1px solid rgba(16, 185, 129, 0.35)',
-              color: '#10b981',
+              background: 'rgba(5, 150, 105, 0.16)',
+              border: '1px solid rgba(5, 150, 105, 0.35)',
+              color: '#059669',
               fontSize: '11.5px',
               fontWeight: 700,
               cursor: 'pointer',
-              boxShadow: '0 0 16px rgba(16, 185, 129, 0.15)',
+              boxShadow: 'none',
               transition: 'all 0.15s ease',
             }}
           >
@@ -496,14 +495,13 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
         {/* Card 1: Total Events */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -3, borderColor: 'rgba(56, 189, 248, 0.35)', boxShadow: '0 8px 24px -4px rgba(14, 165, 233, 0.18)' }}
+          whileHover={{ borderColor: 'none', boxShadow: 'none' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -513,37 +511,36 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '10.5px', color: '#71717a', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <span style={{ fontSize: '10.5px', color: '#6b7388', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 AUDIT LEDGER ENTRIES
               </span>
-              <Activity size={14} color="#38bdf8" />
+              <Activity size={14} color="#4f63d2" />
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-              <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f4f4f5' }}>
+              <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#1f2638' }}>
                 <AnimatedCounter value={totalCount} />
               </span>
-              <span style={{ fontSize: '11px', color: '#71717a' }}>events</span>
+              <span style={{ fontSize: '11px', color: '#6b7388' }}>events</span>
             </div>
-            <span style={{ fontSize: '10.5px', color: '#38bdf8', marginTop: '2px', display: 'block', fontWeight: 600 }}>
+            <span style={{ fontSize: '10.5px', color: '#4f63d2', marginTop: '2px', display: 'block', fontWeight: 600 }}>
               100% Cryptographically Logged
             </span>
           </div>
-          <div style={{ width: '100%', height: '3px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '9999px', overflow: 'hidden' }}>
-            <div style={{ width: '100%', height: '100%', background: '#38bdf8' }} />
+          <div style={{ width: '100%', height: '3px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '9999px', overflow: 'hidden' }}>
+            <div style={{ width: '100%', height: '100%', background: '#4f63d2' }} />
           </div>
         </motion.div>
 
         {/* Card 2: Human Sign-Offs */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -3, borderColor: 'rgba(16, 185, 129, 0.35)', boxShadow: '0 8px 24px -4px rgba(16, 185, 129, 0.18)' }}
+          whileHover={{ borderColor: 'none', boxShadow: 'none' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -553,37 +550,36 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '10.5px', color: '#71717a', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <span style={{ fontSize: '10.5px', color: '#6b7388', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 HUMAN L1/L2 SIGN-OFFS
               </span>
-              <CheckCircle size={14} color="#10b981" />
+              <CheckCircle size={14} color="#059669" />
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-              <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#10b981' }}>
+              <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#059669' }}>
                 <AnimatedCounter value={humanSignoffs} />
               </span>
-              <span style={{ fontSize: '11px', color: '#71717a' }}>approvals</span>
+              <span style={{ fontSize: '11px', color: '#6b7388' }}>approvals</span>
             </div>
-            <span style={{ fontSize: '10.5px', color: '#10b981', marginTop: '2px', display: 'block', fontWeight: 600 }}>
+            <span style={{ fontSize: '10.5px', color: '#059669', marginTop: '2px', display: 'block', fontWeight: 600 }}>
               Lead Analyst Human Authority
             </span>
           </div>
-          <div style={{ width: '100%', height: '3px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '9999px', overflow: 'hidden' }}>
-            <div style={{ width: `${(humanSignoffs / Math.max(totalCount, 1)) * 100}%`, height: '100%', background: '#10b981' }} />
+          <div style={{ width: '100%', height: '3px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '9999px', overflow: 'hidden' }}>
+            <div style={{ width: `${(humanSignoffs / Math.max(totalCount, 1)) * 100}%`, height: '100%', background: '#059669' }} />
           </div>
         </motion.div>
 
         {/* Card 3: Autonomous AI Actions */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -3, borderColor: 'rgba(14, 165, 233, 0.35)', boxShadow: '0 8px 24px -4px rgba(14, 165, 233, 0.18)' }}
+          whileHover={{ borderColor: 'none', boxShadow: 'none' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -593,37 +589,36 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '10.5px', color: '#71717a', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <span style={{ fontSize: '10.5px', color: '#6b7388', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 AUTONOMOUS AI DECISIONS
               </span>
-              <Bot size={14} color="#0ea5e9" />
+              <Bot size={14} color="#4f63d2" />
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-              <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#0ea5e9' }}>
+              <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#4f63d2' }}>
                 <AnimatedCounter value={agentActions} />
               </span>
-              <span style={{ fontSize: '11px', color: '#71717a' }}>deliberations</span>
+              <span style={{ fontSize: '11px', color: '#6b7388' }}>deliberations</span>
             </div>
-            <span style={{ fontSize: '10.5px', color: '#0ea5e9', marginTop: '2px', display: 'block', fontWeight: 600 }}>
+            <span style={{ fontSize: '10.5px', color: '#4f63d2', marginTop: '2px', display: 'block', fontWeight: 600 }}>
               Agentic GraphRAG Traversal
             </span>
           </div>
-          <div style={{ width: '100%', height: '3px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '9999px', overflow: 'hidden' }}>
-            <div style={{ width: `${(agentActions / Math.max(totalCount, 1)) * 100}%`, height: '100%', background: '#0ea5e9' }} />
+          <div style={{ width: '100%', height: '3px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '9999px', overflow: 'hidden' }}>
+            <div style={{ width: `${(agentActions / Math.max(totalCount, 1)) * 100}%`, height: '100%', background: '#4f63d2' }} />
           </div>
         </motion.div>
 
         {/* Card 4: Graph Queries */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -3, borderColor: 'rgba(192, 132, 252, 0.35)', boxShadow: '0 8px 24px -4px rgba(168, 85, 247, 0.18)' }}
+          whileHover={{ borderColor: 'none', boxShadow: 'none' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -633,23 +628,23 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '10.5px', color: '#71717a', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <span style={{ fontSize: '10.5px', color: '#6b7388', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 TIGERGRAPH GSQL QUERIES
               </span>
-              <Database size={14} color="#c084fc" />
+              <Database size={14} color="#7c5cd6" />
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-              <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#c084fc' }}>
+              <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#7c5cd6' }}>
                 <AnimatedCounter value={graphQueries} />
               </span>
-              <span style={{ fontSize: '11px', color: '#71717a' }}>invocations</span>
+              <span style={{ fontSize: '11px', color: '#6b7388' }}>invocations</span>
             </div>
-            <span style={{ fontSize: '10.5px', color: '#c084fc', marginTop: '2px', display: 'block', fontWeight: 600 }}>
+            <span style={{ fontSize: '10.5px', color: '#7c5cd6', marginTop: '2px', display: 'block', fontWeight: 600 }}>
               Device Rings & Subgraph Scans
             </span>
           </div>
-          <div style={{ width: '100%', height: '3px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '9999px', overflow: 'hidden' }}>
-            <div style={{ width: `${(graphQueries / Math.max(totalCount, 1)) * 100}%`, height: '100%', background: '#c084fc' }} />
+          <div style={{ width: '100%', height: '3px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '9999px', overflow: 'hidden' }}>
+            <div style={{ width: `${(graphQueries / Math.max(totalCount, 1)) * 100}%`, height: '100%', background: '#7c5cd6' }} />
           </div>
         </motion.div>
       </motion.div>
@@ -662,10 +657,9 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: '12px',
-          background: 'rgba(20, 20, 25, 0.6)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '8px',
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          borderRadius: '6px',
           padding: '8px 12px',
         }}
       >
@@ -674,8 +668,8 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
           style={{
             display: 'flex',
             alignItems: 'center',
-            background: 'rgba(0, 0, 0, 0.4)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            background: '#f6f7fa',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
             borderRadius: '6px',
             padding: '2px',
             position: 'relative',
@@ -692,7 +686,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'all' ? '#f4f4f5' : '#71717a',
+              color: filter === 'all' ? '#1f2638' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -705,7 +699,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(255, 255, 255, 0.12)',
+                  background: 'rgba(71, 85, 140, 0.156)',
                   zIndex: -1,
                 }}
               />
@@ -727,7 +721,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'human' ? '#10b981' : '#71717a',
+              color: filter === 'human' ? '#059669' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -740,8 +734,8 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(16, 185, 129, 0.2)',
-                  border: '1px solid rgba(16, 185, 129, 0.35)',
+                  background: 'rgba(5, 150, 105, 0.2)',
+                  border: '1px solid rgba(5, 150, 105, 0.35)',
                   zIndex: -1,
                 }}
               />
@@ -764,7 +758,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'agent' ? '#38bdf8' : '#71717a',
+              color: filter === 'agent' ? '#4f63d2' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -777,8 +771,8 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(14, 165, 233, 0.2)',
-                  border: '1px solid rgba(14, 165, 233, 0.35)',
+                  background: 'rgba(79, 99, 210, 0.2)',
+                  border: '1px solid rgba(79, 99, 210, 0.35)',
                   zIndex: -1,
                 }}
               />
@@ -801,7 +795,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'graph' ? '#c084fc' : '#71717a',
+              color: filter === 'graph' ? '#7c5cd6' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -814,8 +808,8 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(168, 85, 247, 0.2)',
-                  border: '1px solid rgba(168, 85, 247, 0.35)',
+                  background: 'rgba(124, 92, 214, 0.2)',
+                  border: '1px solid rgba(124, 92, 214, 0.35)',
                   zIndex: -1,
                 }}
               />
@@ -827,7 +821,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
 
         {/* Right: Search Box */}
         <div style={{ position: 'relative', width: '280px' }}>
-          <Search size={14} color="#71717a" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} />
+          <Search size={14} color="#6b7388" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} />
           <input
             type="text"
             placeholder="Search event ID, case ref, actor, note..."
@@ -835,17 +829,17 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
             onChange={(e) => setSearch(e.target.value)}
             style={{
               width: '100%',
-              background: 'rgba(0, 0, 0, 0.4)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              background: '#f6f7fa',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
               borderRadius: '6px',
               padding: '6px 28px 6px 30px',
-              color: '#f4f4f5',
+              color: '#1f2638',
               fontSize: '11.5px',
               outline: 'none',
               transition: 'border-color 0.15s ease',
             }}
-            onFocus={(e) => (e.target.style.borderColor = 'rgba(16, 185, 129, 0.6)')}
-            onBlur={(e) => (e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)')}
+            onFocus={(e) => (e.target.style.borderColor = 'rgba(5, 150, 105, 0.6)')}
+            onBlur={(e) => (e.target.style.borderColor = 'rgba(71, 85, 140, 0.104)')}
           />
           {search && (
             <button
@@ -857,7 +851,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                 transform: 'translateY(-50%)',
                 background: 'none',
                 border: 'none',
-                color: '#71717a',
+                color: '#6b7388',
                 cursor: 'pointer',
                 padding: '2px',
               }}
@@ -871,11 +865,10 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
       {/* 4. Interactive Sortable Audit Table */}
       <div
         style={{
-          background: 'rgba(20, 20, 25, 0.7)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.5)',
-          borderRadius: '8px',
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          boxShadow: 'none',
+          borderRadius: '6px',
           overflow: 'hidden',
           position: 'relative',
         }}
@@ -885,9 +878,9 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
             <thead>
               <tr
                 style={{
-                  background: 'rgba(0, 0, 0, 0.45)',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-                  color: '#71717a',
+                  background: '#f6f7fa',
+                  borderBottom: '1px solid rgba(71, 85, 140, 0.104)',
+                  color: '#6b7388',
                   fontSize: '10.5px',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -900,9 +893,9 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                   <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
                     <span>EVENT ID</span>
                     {sortColumn === 'id' ? (
-                      sortOrder === 'asc' ? <ChevronUp size={12} color="#10b981" /> : <ChevronDown size={12} color="#10b981" />
+                      sortOrder === 'asc' ? <ChevronUp size={12} color="#059669" /> : <ChevronDown size={12} color="#059669" />
                     ) : (
-                      <ArrowUpDown size={11} color="#52525b" />
+                      <ArrowUpDown size={11} color="#8c94a8" />
                     )}
                   </div>
                 </th>
@@ -914,9 +907,9 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                   <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
                     <span>TIMESTAMP</span>
                     {sortColumn === 'timestamp' ? (
-                      sortOrder === 'asc' ? <ChevronUp size={12} color="#10b981" /> : <ChevronDown size={12} color="#10b981" />
+                      sortOrder === 'asc' ? <ChevronUp size={12} color="#059669" /> : <ChevronDown size={12} color="#059669" />
                     ) : (
-                      <ArrowUpDown size={11} color="#52525b" />
+                      <ArrowUpDown size={11} color="#8c94a8" />
                     )}
                   </div>
                 </th>
@@ -928,9 +921,9 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                   <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
                     <span>CASE REF</span>
                     {sortColumn === 'case_id' ? (
-                      sortOrder === 'asc' ? <ChevronUp size={12} color="#10b981" /> : <ChevronDown size={12} color="#10b981" />
+                      sortOrder === 'asc' ? <ChevronUp size={12} color="#059669" /> : <ChevronDown size={12} color="#059669" />
                     ) : (
-                      <ArrowUpDown size={11} color="#52525b" />
+                      <ArrowUpDown size={11} color="#8c94a8" />
                     )}
                   </div>
                 </th>
@@ -959,10 +952,10 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
             >
               {displayEvents.length === 0 ? (
                 <tr>
-                  <td colSpan={7} style={{ padding: '48px 16px', textAlign: 'center', color: '#71717a' }}>
+                  <td colSpan={7} style={{ padding: '48px 16px', textAlign: 'center', color: '#6b7388' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                      <Layers size={28} color="#52525b" />
-                      <span style={{ fontSize: '13px', fontWeight: 600, color: '#a1a1aa' }}>
+                      <Layers size={28} color="#8c94a8" />
+                      <span style={{ fontSize: '13px', fontWeight: 600, color: '#556078' }}>
                         No audit events match current criteria
                       </span>
                       <button
@@ -976,9 +969,9 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                           borderRadius: '4px',
                           fontSize: '11px',
                           fontWeight: 600,
-                          background: 'rgba(16, 185, 129, 0.15)',
-                          border: '1px solid rgba(16, 185, 129, 0.3)',
-                          color: '#10b981',
+                          background: 'rgba(5, 150, 105, 0.15)',
+                          border: '1px solid rgba(5, 150, 105, 0.3)',
+                          color: '#059669',
                           cursor: 'pointer',
                         }}
                       >
@@ -995,31 +988,31 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                   const isSelected = selectedEvent?.id === evt.id;
 
                   // Border accent color
-                  let borderAccent = 'rgba(16, 185, 129, 0.3)';
-                  if (isAgent) borderAccent = 'rgba(14, 165, 233, 0.3)';
-                  if (isGraph) borderAccent = 'rgba(168, 85, 247, 0.3)';
+                  let borderAccent = 'rgba(5, 150, 105, 0.3)';
+                  if (isAgent) borderAccent = 'rgba(79, 99, 210, 0.3)';
+                  if (isGraph) borderAccent = 'rgba(124, 92, 214, 0.3)';
 
                   // Action badge styling
-                  let actionBg = 'rgba(255, 255, 255, 0.06)';
-                  let actionColor = '#f4f4f5';
-                  let actionBorder = 'rgba(255, 255, 255, 0.1)';
+                  let actionBg = 'rgba(71, 85, 140, 0.078)';
+                  let actionColor = '#1f2638';
+                  let actionBorder = 'rgba(71, 85, 140, 0.13)';
 
                   if (evt.action.includes('APPROVE')) {
-                    actionBg = 'rgba(16, 185, 129, 0.15)';
-                    actionColor = '#10b981';
-                    actionBorder = 'rgba(16, 185, 129, 0.35)';
+                    actionBg = 'rgba(5, 150, 105, 0.15)';
+                    actionColor = '#059669';
+                    actionBorder = 'rgba(5, 150, 105, 0.35)';
                   } else if (evt.action.includes('RECOMMENDED')) {
-                    actionBg = 'rgba(14, 165, 233, 0.15)';
-                    actionColor = '#38bdf8';
-                    actionBorder = 'rgba(14, 165, 233, 0.35)';
+                    actionBg = 'rgba(79, 99, 210, 0.15)';
+                    actionColor = '#4f63d2';
+                    actionBorder = 'rgba(79, 99, 210, 0.35)';
                   } else if (evt.action.includes('GRAPH')) {
-                    actionBg = 'rgba(168, 85, 247, 0.15)';
-                    actionColor = '#c084fc';
-                    actionBorder = 'rgba(168, 85, 247, 0.35)';
+                    actionBg = 'rgba(124, 92, 214, 0.15)';
+                    actionColor = '#7c5cd6';
+                    actionBorder = 'rgba(124, 92, 214, 0.35)';
                   } else if (evt.action.includes('TRIGGER')) {
-                    actionBg = 'rgba(245, 158, 11, 0.15)';
-                    actionColor = '#f59e0b';
-                    actionBorder = 'rgba(245, 158, 11, 0.35)';
+                    actionBg = 'rgba(217, 130, 11, 0.15)';
+                    actionColor = '#d9820b';
+                    actionBorder = 'rgba(217, 130, 11, 0.35)';
                   }
 
                   return (
@@ -1036,17 +1029,17 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                       }}
                       onClick={() => setSelectedEvent(evt)}
                       style={{
-                        borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+                        borderBottom: '1px solid rgba(71, 85, 140, 0.052)',
                         borderLeft: isSelected
-                          ? '3px solid #10b981'
+                          ? '3px solid #059669'
                           : `3px solid transparent`,
-                        background: isSelected ? 'rgba(255, 255, 255, 0.06)' : 'transparent',
+                        background: isSelected ? 'rgba(71, 85, 140, 0.078)' : 'transparent',
                         cursor: 'pointer',
                         transition: 'background 0.12s ease, border-left-color 0.12s ease',
                       }}
                       onMouseEnter={(e) => {
                         if (!isSelected) {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.035)';
+                          e.currentTarget.style.background = 'rgba(71, 85, 140, 0.046)';
                           e.currentTarget.style.borderLeftColor = borderAccent.replace('0.3', '0.9');
                         }
                       }}
@@ -1060,25 +1053,25 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                       {/* Event ID */}
                       <td style={{ padding: '10px 14px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span className="mono" style={{ fontSize: '11px', color: '#a1a1aa', fontWeight: 600 }}>
+                          <span className="mono" style={{ fontSize: '11px', color: '#556078', fontWeight: 600 }}>
                             {evt.id}
                           </span>
                           <motion.button
-                            whileHover={{ scale: 1.2 }}
-                            whileTap={{ scale: 0.9 }}
+                            whileHover={{}}
+                            whileTap={{}}
                             onClick={(e) => handleCopyId(evt.id, e)}
                             style={{
                               background: 'none',
                               border: 'none',
                               padding: '2px',
                               cursor: 'pointer',
-                              color: '#71717a',
+                              color: '#6b7388',
                               display: 'flex',
                               alignItems: 'center',
                             }}
                           >
                             {copiedId === evt.id ? (
-                              <Check size={11} color="#10b981" />
+                              <Check size={11} color="#059669" />
                             ) : (
                               <Copy size={11} />
                             )}
@@ -1088,7 +1081,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
 
                       {/* Timestamp */}
                       <td style={{ padding: '10px 14px' }}>
-                        <span className="mono" style={{ fontSize: '11px', color: '#cbd5e1' }}>
+                        <span className="mono" style={{ fontSize: '11px', color: '#47516a' }}>
                           {evt.timestamp ? evt.timestamp.replace('T', ' ').slice(0, 19) : '—'}
                         </span>
                       </td>
@@ -1096,8 +1089,8 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                       {/* Case Ref */}
                       <td style={{ padding: '10px 14px' }}>
                         <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
+                          whileHover={{}}
+                          whileTap={{}}
                           onClick={(e) => {
                             e.stopPropagation();
                             if (onInvestigateCase) {
@@ -1105,11 +1098,11 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                             }
                           }}
                           style={{
-                            background: 'rgba(14, 165, 233, 0.12)',
-                            border: '1px solid rgba(14, 165, 233, 0.3)',
+                            background: 'rgba(79, 99, 210, 0.12)',
+                            border: '1px solid rgba(79, 99, 210, 0.3)',
                             padding: '2px 8px',
                             borderRadius: '4px',
-                            color: '#38bdf8',
+                            color: '#4f63d2',
                             fontSize: '11px',
                             fontWeight: 700,
                             cursor: 'pointer',
@@ -1120,7 +1113,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                           className="mono"
                         >
                           <span>{evt.case_id}</span>
-                          <ExternalLink size={10} color="#38bdf8" />
+                          <ExternalLink size={10} color="#4f63d2" />
                         </motion.button>
                       </td>
 
@@ -1133,16 +1126,16 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                               height: '22px',
                               borderRadius: '50%',
                               background: isApproval
-                                ? 'rgba(16, 185, 129, 0.15)'
+                                ? 'rgba(5, 150, 105, 0.15)'
                                 : isAgent
-                                ? 'rgba(14, 165, 233, 0.15)'
-                                : 'rgba(255, 255, 255, 0.08)',
+                                ? 'rgba(79, 99, 210, 0.15)'
+                                : 'rgba(71, 85, 140, 0.104)',
                               border: `1px solid ${
                                 isApproval
-                                  ? 'rgba(16, 185, 129, 0.35)'
+                                  ? 'rgba(5, 150, 105, 0.35)'
                                   : isAgent
-                                  ? 'rgba(14, 165, 233, 0.35)'
-                                  : 'rgba(255, 255, 255, 0.1)'
+                                  ? 'rgba(79, 99, 210, 0.35)'
+                                  : 'rgba(71, 85, 140, 0.13)'
                               }`,
                               display: 'flex',
                               alignItems: 'center',
@@ -1151,18 +1144,18 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                             }}
                           >
                             {isApproval ? (
-                              <User size={11} color="#10b981" />
+                              <User size={11} color="#059669" />
                             ) : isAgent ? (
-                              <Bot size={11} color="#38bdf8" />
+                              <Bot size={11} color="#4f63d2" />
                             ) : (
-                              <Cpu size={11} color="#f59e0b" />
+                              <Cpu size={11} color="#d9820b" />
                             )}
                           </div>
                           <div>
-                            <span style={{ fontWeight: 600, color: '#f4f4f5', fontSize: '11.5px', display: 'block' }}>
+                            <span style={{ fontWeight: 600, color: '#1f2638', fontSize: '11.5px', display: 'block' }}>
                               {evt.actor}
                             </span>
-                            <span style={{ fontSize: '10px', color: '#71717a' }}>
+                            <span style={{ fontSize: '10px', color: '#6b7388' }}>
                               {isApproval ? 'L1 Lead Analyst' : isAgent ? 'Agent Deliberation' : 'System Trigger'}
                             </span>
                           </div>
@@ -1189,15 +1182,15 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                       </td>
 
                       {/* Details & Audit Notes */}
-                      <td style={{ padding: '10px 14px', color: '#d4d4d8', maxWidth: '380px', lineHeight: 1.45, fontSize: '11px' }}>
+                      <td style={{ padding: '10px 14px', color: '#3a445b', maxWidth: '380px', lineHeight: 1.45, fontSize: '11px' }}>
                         {evt.details}
                       </td>
 
                       {/* Action Button */}
                       <td style={{ padding: '10px 14px', textAlign: 'right' }}>
                         <motion.button
-                          whileHover={{ scale: 1.04, backgroundColor: 'rgba(16, 185, 129, 0.15)', borderColor: 'rgba(16, 185, 129, 0.4)' }}
-                          whileTap={{ scale: 0.96 }}
+                          whileHover={{ backgroundColor: 'rgba(5, 150, 105, 0.15)', borderColor: 'rgba(5, 150, 105, 0.4)' }}
+                          whileTap={{}}
                           onClick={(e) => {
                             e.stopPropagation();
                             setSelectedEvent(evt);
@@ -1210,15 +1203,15 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                             fontSize: '11px',
                             fontWeight: 600,
                             borderRadius: '4px',
-                            background: 'rgba(255, 255, 255, 0.05)',
-                            border: '1px solid rgba(255, 255, 255, 0.1)',
-                            color: '#f4f4f5',
+                            background: 'rgba(71, 85, 140, 0.065)',
+                            border: '1px solid rgba(71, 85, 140, 0.13)',
+                            color: '#1f2638',
                             cursor: 'pointer',
                             transition: 'all 0.15s ease',
                           }}
                         >
-                          <span style={{ color: '#a1a1aa' }}>Inspect</span>
-                          <ArrowRight size={11} color="#10b981" />
+                          <span style={{ color: '#556078' }}>Inspect</span>
+                          <ArrowRight size={11} color="#059669" />
                         </motion.button>
                       </td>
                     </motion.tr>
@@ -1233,30 +1226,30 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
         <div
           style={{
             padding: '8px 14px',
-            background: 'rgba(0, 0, 0, 0.45)',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            background: '#f6f7fa',
+            borderTop: '1px solid rgba(71, 85, 140, 0.104)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             fontSize: '11px',
-            color: '#71717a',
+            color: '#6b7388',
             flexWrap: 'wrap',
             gap: '8px',
           }}
         >
           <div>
-            Showing <strong style={{ color: '#f4f4f5' }}>{displayEvents.length}</strong> of{' '}
-            <strong style={{ color: '#f4f4f5' }}>{totalCount}</strong> verified audit events
+            Showing <strong style={{ color: '#1f2638' }}>{displayEvents.length}</strong> of{' '}
+            <strong style={{ color: '#1f2638' }}>{totalCount}</strong> verified audit events
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} /> Human Sign-Offs ({humanSignoffs})
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#059669' }} /> Human Sign-Offs ({humanSignoffs})
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#38bdf8' }} /> Autonomous Agent ({agentActions})
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#4f63d2' }} /> Autonomous Agent ({agentActions})
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#c084fc' }} /> Graph Queries ({graphQueries})
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#7c5cd6' }} /> Graph Queries ({graphQueries})
             </span>
           </div>
         </div>
@@ -1277,10 +1270,9 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
               bottom: 0,
               width: '440px',
               maxWidth: '92vw',
-              background: 'rgba(11, 17, 28, 0.96)',
-              backdropFilter: 'blur(20px)',
-              borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
-              boxShadow: '-8px 0 32px rgba(0, 0, 0, 0.8)',
+              background: 'rgba(255, 255, 255, 0.96)',
+              borderLeft: '1px solid rgba(71, 85, 140, 0.13)',
+              boxShadow: 'var(--shadow-drawer)',
               zIndex: 1000,
               display: 'flex',
               flexDirection: 'column',
@@ -1292,18 +1284,18 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
             <div
               style={{
                 padding: '16px',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                borderBottom: '1px solid rgba(71, 85, 140, 0.104)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 position: 'sticky',
                 top: 0,
-                background: 'rgba(11, 17, 28, 0.98)',
+                background: 'rgba(255, 255, 255, 0.98)',
                 zIndex: 10,
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span className="mono" style={{ fontSize: '13px', fontWeight: 800, color: '#10b981' }}>
+                <span className="mono" style={{ fontSize: '13px', fontWeight: 700, color: '#059669' }}>
                   {selectedEvent.id}
                 </span>
                 <span
@@ -1313,13 +1305,13 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                     padding: '2px 7px',
                     borderRadius: '4px',
                     background: selectedEvent.action.includes('APPROVE')
-                      ? 'rgba(16, 185, 129, 0.15)'
-                      : 'rgba(14, 165, 233, 0.15)',
-                    color: selectedEvent.action.includes('APPROVE') ? '#10b981' : '#38bdf8',
+                      ? 'rgba(5, 150, 105, 0.15)'
+                      : 'rgba(79, 99, 210, 0.15)',
+                    color: selectedEvent.action.includes('APPROVE') ? '#059669' : '#4f63d2',
                     border: `1px solid ${
                       selectedEvent.action.includes('APPROVE')
-                        ? 'rgba(16, 185, 129, 0.35)'
-                        : 'rgba(14, 165, 233, 0.35)'
+                        ? 'rgba(5, 150, 105, 0.35)'
+                        : 'rgba(79, 99, 210, 0.35)'
                     }`,
                     textTransform: 'uppercase',
                   }}
@@ -1329,13 +1321,13 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{}}
+                whileTap={{}}
                 onClick={() => setSelectedEvent(null)}
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#71717a',
+                  color: '#6b7388',
                   cursor: 'pointer',
                   padding: '4px',
                   borderRadius: '4px',
@@ -1352,35 +1344,35 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
               <div
                 style={{
                   padding: '14px',
-                  borderRadius: '8px',
-                  background: 'rgba(0, 0, 0, 0.4)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '6px',
+                  background: '#f6f7fa',
+                  border: '1px solid rgba(71, 85, 140, 0.104)',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '10px',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', color: '#71717a' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', color: '#6b7388' }}>
                   <span style={{ fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     Audit Verification Status
                   </span>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#10b981', fontWeight: 700 }}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#059669', fontWeight: 700 }}>
                     <Shield size={11} />
                     Verified & Cryptographically Signed
                   </span>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '11px', marginTop: '4px' }}>
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <span style={{ color: '#71717a', display: 'block', fontSize: '10px' }}>TIMESTAMP</span>
-                    <span className="mono" style={{ fontWeight: 700, color: '#f4f4f5', fontSize: '11px' }}>
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                    <span style={{ color: '#6b7388', display: 'block', fontSize: '10px' }}>TIMESTAMP</span>
+                    <span className="mono" style={{ fontWeight: 700, color: '#1f2638', fontSize: '11px' }}>
                       {selectedEvent.timestamp}
                     </span>
                   </div>
 
-                  <div style={{ padding: '10px', borderRadius: '6px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <span style={{ color: '#71717a', display: 'block', fontSize: '10px' }}>CLEARANCE ROUTE</span>
-                    <span className="mono" style={{ fontWeight: 700, color: '#38bdf8', fontSize: '11px' }}>
+                  <div style={{ padding: '10px', borderRadius: '6px', background: '#f6f7fa', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                    <span style={{ color: '#6b7388', display: 'block', fontSize: '10px' }}>CLEARANCE ROUTE</span>
+                    <span className="mono" style={{ fontWeight: 700, color: '#4f63d2', fontSize: '11px' }}>
                       ROUTE: {selectedEvent.route ? selectedEvent.route.toUpperCase() : 'AUTO'}
                     </span>
                   </div>
@@ -1391,27 +1383,27 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
               <div
                 style={{
                   padding: '12px 14px',
-                  borderRadius: '8px',
-                  background: 'rgba(14, 165, 233, 0.08)',
-                  border: '1px solid rgba(14, 165, 233, 0.25)',
+                  borderRadius: '6px',
+                  background: 'rgba(79, 99, 210, 0.08)',
+                  border: '1px solid rgba(79, 99, 210, 0.25)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
                 }}
               >
                 <div>
-                  <span style={{ fontSize: '10.5px', color: '#71717a', textTransform: 'uppercase', letterSpacing: '0.04em', fontWeight: 700, display: 'block' }}>
+                  <span style={{ fontSize: '10.5px', color: '#6b7388', textTransform: 'uppercase', letterSpacing: '0.04em', fontWeight: 700, display: 'block' }}>
                     Associated Benchmark Case
                   </span>
-                  <span className="mono" style={{ fontSize: '15px', fontWeight: 800, color: '#38bdf8' }}>
+                  <span className="mono" style={{ fontSize: '15px', fontWeight: 700, color: '#4f63d2' }}>
                     {selectedEvent.case_id}
                   </span>
                 </div>
 
                 {onInvestigateCase && (
                   <motion.button
-                    whileHover={{ scale: 1.04, backgroundColor: '#38bdf8' }}
-                    whileTap={{ scale: 0.96 }}
+                    whileHover={{ backgroundColor: '#4f63d2' }}
+                    whileTap={{}}
                     onClick={() => {
                       onInvestigateCase(selectedEvent.case_id);
                       setSelectedEvent(null);
@@ -1422,13 +1414,13 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                       gap: '6px',
                       padding: '6px 12px',
                       borderRadius: '6px',
-                      background: '#0ea5e9',
+                      background: '#4f63d2',
                       border: 'none',
-                      color: '#09090b',
+                      color: '#ffffff',
                       fontSize: '11.5px',
                       fontWeight: 700,
                       cursor: 'pointer',
-                      boxShadow: '0 0 12px rgba(14, 165, 233, 0.3)',
+                      boxShadow: 'none',
                     }}
                   >
                     <span>Inspect Case</span>
@@ -1439,15 +1431,15 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
 
               {/* Actor Details */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                   Actor & Authority
                 </span>
                 <div
                   style={{
                     padding: '12px',
                     borderRadius: '6px',
-                    background: 'rgba(0, 0, 0, 0.35)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    background: '#f6f7fa',
+                    border: '1px solid rgba(71, 85, 140, 0.078)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '10px',
@@ -1459,12 +1451,12 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                       height: '32px',
                       borderRadius: '50%',
                       background: selectedEvent.actor_type === 'analyst'
-                        ? 'rgba(16, 185, 129, 0.15)'
-                        : 'rgba(14, 165, 233, 0.15)',
+                        ? 'rgba(5, 150, 105, 0.15)'
+                        : 'rgba(79, 99, 210, 0.15)',
                       border: `1px solid ${
                         selectedEvent.actor_type === 'analyst'
-                          ? 'rgba(16, 185, 129, 0.35)'
-                          : 'rgba(14, 165, 233, 0.35)'
+                          ? 'rgba(5, 150, 105, 0.35)'
+                          : 'rgba(79, 99, 210, 0.35)'
                       }`,
                       display: 'flex',
                       alignItems: 'center',
@@ -1472,19 +1464,19 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                     }}
                   >
                     {selectedEvent.actor_type === 'analyst' ? (
-                      <User size={15} color="#10b981" />
+                      <User size={15} color="#059669" />
                     ) : (
-                      <Bot size={15} color="#38bdf8" />
+                      <Bot size={15} color="#4f63d2" />
                     )}
                   </div>
                   <div>
-                    <div style={{ fontWeight: 700, color: '#f4f4f5', fontSize: '12px' }}>
+                    <div style={{ fontWeight: 700, color: '#1f2638', fontSize: '12px' }}>
                       {selectedEvent.actor}
                     </div>
-                    <div style={{ fontSize: '11px', color: '#71717a' }}>
+                    <div style={{ fontSize: '11px', color: '#6b7388' }}>
                       {selectedEvent.actor_type === 'analyst'
                         ? 'AML Level 1 / Level 2 Clearance Authority'
-                        : 'TigerGraph Autonomous Fraud Agent'}
+                        : 'Ringleader Autonomous Fraud Agent'}
                     </div>
                   </div>
                 </div>
@@ -1492,17 +1484,17 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
 
               {/* Full Audit Notes */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                   Audit Notes & Operational Deliberation
                 </span>
                 <div
                   style={{
                     padding: '12px 14px',
                     borderRadius: '6px',
-                    background: 'rgba(0, 0, 0, 0.45)',
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    background: '#f6f7fa',
+                    border: '1px solid rgba(71, 85, 140, 0.104)',
                     fontSize: '12px',
-                    color: '#e4e4e7',
+                    color: '#1f2638',
                     lineHeight: 1.6,
                   }}
                 >
@@ -1513,7 +1505,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
               {/* Raw JSON Record for Compliance Auditors */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                  <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                     Raw Cryptographic JSON Payload
                   </span>
                   <button
@@ -1521,7 +1513,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: copiedJson ? '#10b981' : '#71717a',
+                      color: copiedJson ? '#059669' : '#6b7388',
                       fontSize: '11px',
                       cursor: 'pointer',
                       display: 'flex',
@@ -1538,10 +1530,10 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                   style={{
                     padding: '12px',
                     borderRadius: '6px',
-                    background: 'rgba(0, 0, 0, 0.6)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    background: '#f6f7fa',
+                    border: '1px solid rgba(71, 85, 140, 0.078)',
                     fontSize: '10.5px',
-                    color: '#a1a1aa',
+                    color: '#556078',
                     overflowX: 'auto',
                     lineHeight: 1.5,
                   }}
@@ -1555,15 +1547,15 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
             <div
               style={{
                 padding: '14px 16px',
-                borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'rgba(11, 17, 28, 0.98)',
+                borderTop: '1px solid rgba(71, 85, 140, 0.104)',
+                background: 'rgba(255, 255, 255, 0.98)',
                 position: 'sticky',
                 bottom: 0,
               }}
             >
               <motion.button
-                whileHover={{ scale: 1.02, backgroundColor: '#10b981' }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ backgroundColor: '#059669' }}
+                whileTap={{}}
                 onClick={() => setSelectedEvent(null)}
                 style={{
                   width: '100%',
@@ -1573,9 +1565,9 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                   gap: '8px',
                   padding: '9px 16px',
                   borderRadius: '6px',
-                  background: 'rgba(16, 185, 129, 0.2)',
-                  border: '1px solid rgba(16, 185, 129, 0.4)',
-                  color: '#10b981',
+                  background: 'rgba(5, 150, 105, 0.2)',
+                  border: '1px solid rgba(5, 150, 105, 0.4)',
+                  color: '#059669',
                   fontWeight: 700,
                   fontSize: '12px',
                   cursor: 'pointer',

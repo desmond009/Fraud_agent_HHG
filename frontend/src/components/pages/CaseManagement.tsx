@@ -516,9 +516,9 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
             fontWeight: 700,
             padding: '2px 8px',
             borderRadius: '9999px',
-            background: 'rgba(244, 63, 94, 0.15)',
-            color: '#f43f5e',
-            border: '1px solid rgba(244, 63, 94, 0.35)',
+            background: 'rgba(220, 60, 69, 0.15)',
+            color: '#dc3c45',
+            border: '1px solid rgba(220, 60, 69, 0.35)',
             whiteSpace: 'nowrap',
             position: 'relative',
           }}
@@ -529,8 +529,8 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                 width: '6px',
                 height: '6px',
                 borderRadius: '50%',
-                background: '#f43f5e',
-                boxShadow: '0 0 8px #f43f5e',
+                background: '#dc3c45',
+                boxShadow: 'none',
                 animation: 'pulse-ring 2s infinite',
               }}
             />
@@ -550,9 +550,9 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
             fontWeight: 700,
             padding: '2px 8px',
             borderRadius: '9999px',
-            background: 'rgba(16, 185, 129, 0.15)',
-            color: '#10b981',
-            border: '1px solid rgba(16, 185, 129, 0.35)',
+            background: 'rgba(5, 150, 105, 0.15)',
+            color: '#059669',
+            border: '1px solid rgba(5, 150, 105, 0.35)',
             whiteSpace: 'nowrap',
           }}
         >
@@ -570,9 +570,9 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
           fontWeight: 700,
           padding: '2px 8px',
           borderRadius: '9999px',
-          background: 'rgba(245, 158, 11, 0.15)',
-          color: '#f59e0b',
-          border: '1px solid rgba(245, 158, 11, 0.35)',
+          background: 'rgba(217, 130, 11, 0.15)',
+          color: '#d9820b',
+          border: '1px solid rgba(217, 130, 11, 0.35)',
           whiteSpace: 'nowrap',
         }}
       >
@@ -591,7 +591,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
           left: '10%',
           width: '500px',
           height: '180px',
-          background: 'radial-gradient(ellipse at center, rgba(14, 165, 233, 0.12) 0%, transparent 70%)',
+          background: 'transparent',
           pointerEvents: 'none',
           zIndex: 0,
         }}
@@ -604,11 +604,10 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
         transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
         style={{
           position: 'relative',
-          background: 'radial-gradient(ellipse 80% 90% at 5% 0%, rgba(14, 165, 233, 0.14) 0%, rgba(20, 20, 25, 0.9) 100%)',
-          backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 8px 32px rgba(0, 0, 0, 0.45)',
-          borderRadius: '8px',
+          background: 'transparent',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          boxShadow: 'none',
+          borderRadius: '6px',
           padding: '16px 20px',
           display: 'flex',
           alignItems: 'center',
@@ -627,9 +626,9 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                 fontWeight: 700,
                 padding: '3px 9px',
                 borderRadius: '9999px',
-                background: 'rgba(14, 165, 233, 0.18)',
-                color: '#38bdf8',
-                border: '1px solid rgba(14, 165, 233, 0.35)',
+                background: 'rgba(79, 99, 210, 0.18)',
+                color: '#4f63d2',
+                border: '1px solid rgba(79, 99, 210, 0.35)',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '6px',
@@ -641,19 +640,19 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                   width: '6px',
                   height: '6px',
                   borderRadius: '50%',
-                  background: '#38bdf8',
-                  boxShadow: '0 0 8px #38bdf8',
+                  background: '#4f63d2',
+                  boxShadow: 'none',
                 }}
               />
               TIGERGRAPH CASE MEMORY
             </span>
-            <span style={{ fontSize: '11px', color: '#71717a' }}>20 Benchmark Deliverables</span>
+            <span style={{ fontSize: '11px', color: '#6b7388' }}>20 Benchmark Deliverables</span>
           </div>
 
-          <h2 style={{ fontSize: '19px', fontWeight: 800, color: '#f4f4f5', letterSpacing: '-0.02em', marginTop: '6px', marginBottom: 0 }}>
+          <h2 style={{ fontSize: '19px', fontWeight: 700, color: '#1f2638', letterSpacing: '-0.02em', marginTop: '6px', marginBottom: 0 }}>
             Exam Case Repository & Memory Store
           </h2>
-          <p style={{ fontSize: '12px', color: '#a1a1aa', marginTop: '3px', maxWidth: '650px', lineHeight: 1.5 }}>
+          <p style={{ fontSize: '12px', color: '#556078', marginTop: '3px', maxWidth: '650px', lineHeight: 1.5 }}>
             Evaluated by the autonomous LangGraph multi-node agent and indexed into TigerGraph closed-case memory with subgraphs & vectors.
           </p>
         </div>
@@ -664,8 +663,8 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
             position: 'relative',
             display: 'flex',
             alignItems: 'center',
-            background: 'rgba(0, 0, 0, 0.45)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            background: '#f6f7fa',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
             borderRadius: '6px',
             padding: '2px',
           }}
@@ -684,7 +683,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: viewMode === 'table' ? '#f4f4f5' : '#71717a',
+              color: viewMode === 'table' ? '#1f2638' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -696,7 +695,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(255, 255, 255, 0.12)',
+                  background: 'rgba(71, 85, 140, 0.156)',
                   zIndex: -1,
                 }}
                 transition={{ type: 'spring', stiffness: 450, damping: 32 }}
@@ -719,7 +718,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: viewMode === 'cards' ? '#38bdf8' : '#71717a',
+              color: viewMode === 'cards' ? '#4f63d2' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -731,8 +730,8 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(14, 165, 233, 0.2)',
-                  border: '1px solid rgba(14, 165, 233, 0.35)',
+                  background: 'rgba(79, 99, 210, 0.2)',
+                  border: '1px solid rgba(79, 99, 210, 0.35)',
                   zIndex: -1,
                 }}
                 transition={{ type: 'spring', stiffness: 450, damping: 32 }}
@@ -758,50 +757,50 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
             value: kpis.total,
             isCurrency: false,
             sub: '100% TigerGraph Synced',
-            icon: <Database size={13} color="#38bdf8" />,
-            color: '#f4f4f5',
+            icon: <Database size={13} color="#4f63d2" />,
+            color: '#1f2638',
             pct: 100,
-            barColor: '#38bdf8',
+            barColor: '#4f63d2',
           },
           {
             title: 'Confirmed Fraud',
             value: kpis.fraud,
             isCurrency: false,
             sub: 'Cards Blocked (R1-R6)',
-            icon: <ShieldAlert size={13} color="#f43f5e" />,
-            color: '#f43f5e',
+            icon: <ShieldAlert size={13} color="#dc3c45" />,
+            color: '#dc3c45',
             pct: (kpis.fraud / Math.max(kpis.total, 1)) * 100,
-            barColor: '#f43f5e',
+            barColor: '#dc3c45',
           },
           {
             title: 'Cleared Legitimate',
             value: kpis.legitimate,
             isCurrency: false,
             sub: 'Zero False Churn (R3)',
-            icon: <ShieldCheck size={13} color="#10b981" />,
-            color: '#10b981',
+            icon: <ShieldCheck size={13} color="#059669" />,
+            color: '#059669',
             pct: (kpis.legitimate / Math.max(kpis.total, 1)) * 100,
-            barColor: '#10b981',
+            barColor: '#059669',
           },
           {
             title: 'Prevented Fraud Exposure',
             value: Math.round(kpis.totalExposure),
             isCurrency: true,
             sub: 'USD Capital Protected',
-            icon: <DollarSign size={13} color="#f43f5e" />,
-            color: '#f43f5e',
+            icon: <DollarSign size={13} color="#dc3c45" />,
+            color: '#dc3c45',
             pct: 100,
-            barColor: '#f43f5e',
+            barColor: '#dc3c45',
           },
           {
             title: 'FinCEN SARs Filed',
             value: kpis.sar,
             isCurrency: false,
             sub: 'Regulatory Compliant',
-            icon: <FileText size={13} color="#c084fc" />,
-            color: '#c084fc',
+            icon: <FileText size={13} color="#7c5cd6" />,
+            color: '#7c5cd6',
             pct: (kpis.sar / Math.max(kpis.total, 1)) * 100,
-            barColor: '#c084fc',
+            barColor: '#7c5cd6',
           },
         ].map((kpi, i) => (
           <motion.div
@@ -810,14 +809,13 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
             variants={kpiVariants}
             initial="hidden"
             animate="visible"
-            whileHover={{ y: -3, borderColor: `${kpi.barColor}55`, boxShadow: `0 8px 24px -4px ${kpi.barColor}25` }}
+            whileHover={{ borderColor: `${kpi.barColor}55`, boxShadow: 'none' }}
             transition={{ duration: 0.18 }}
             style={{
-              background: 'rgba(20, 20, 25, 0.7)',
-              backdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-              borderRadius: '8px',
+              background: 'rgba(255, 255, 255, 0.9)',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
+              boxShadow: 'none',
+              borderRadius: '6px',
               padding: '12px 14px',
               display: 'flex',
               flexDirection: 'column',
@@ -827,25 +825,25 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
           >
             <div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', color: '#71717a', fontWeight: 700, letterSpacing: '0.04em' }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', color: '#6b7388', fontWeight: 700, letterSpacing: '0.04em' }}>
                   {kpi.title}
                 </span>
                 {kpi.icon}
               </div>
-              <div className="mono" style={{ fontSize: '22px', fontWeight: 800, color: kpi.color, marginTop: '4px' }}>
+              <div className="mono" style={{ fontSize: '22px', fontWeight: 700, color: kpi.color, marginTop: '4px' }}>
                 {kpi.isCurrency ? (
                   <AnimatedCounter value={kpi.value} prefix="$" suffix=" USD" duration={1.2} />
                 ) : (
                   <AnimatedCounter value={kpi.value} />
                 )}
               </div>
-              <div style={{ fontSize: '10.5px', color: '#a1a1aa', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <div style={{ fontSize: '10.5px', color: '#556078', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                 <span>{kpi.sub}</span>
               </div>
             </div>
 
             {/* Spark progress bar */}
-            <div style={{ width: '100%', height: '3px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '9999px', overflow: 'hidden' }}>
+            <div style={{ width: '100%', height: '3px', background: 'rgba(71, 85, 140, 0.104)', borderRadius: '9999px', overflow: 'hidden' }}>
               <div style={{ width: `${kpi.pct}%`, height: '100%', background: kpi.barColor }} />
             </div>
           </motion.div>
@@ -860,15 +858,15 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: '12px',
-          background: 'rgba(20, 20, 25, 0.6)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '8px',
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          borderRadius: '6px',
           padding: '8px 12px',
         }}
       >
         {/* Search Bar with ⌘K Badge */}
         <div style={{ position: 'relative', width: '280px' }}>
-          <Search size={13} color="#71717a" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} />
+          <Search size={13} color="#6b7388" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} />
           <input
             type="text"
             placeholder="Search case, customer, card, pattern..."
@@ -876,11 +874,11 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
             onChange={(e) => setSearch(e.target.value)}
             style={{
               width: '100%',
-              background: 'rgba(0, 0, 0, 0.4)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              background: '#f6f7fa',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
               borderRadius: '6px',
               padding: '6px 36px 6px 30px',
-              color: '#f4f4f5',
+              color: '#1f2638',
               fontSize: '11px',
               outline: 'none',
               fontFamily: 'inherit',
@@ -894,11 +892,11 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
               top: '50%',
               transform: 'translateY(-50%)',
               fontSize: '9.5px',
-              color: '#71717a',
-              background: 'rgba(255, 255, 255, 0.06)',
+              color: '#6b7388',
+              background: 'rgba(71, 85, 140, 0.078)',
               padding: '1px 5px',
               borderRadius: '3px',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
             }}
           >
             ⌘K
@@ -926,7 +924,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                   borderRadius: '6px',
                   border: 'none',
                   background: 'transparent',
-                  color: isActive ? '#f4f4f5' : '#71717a',
+                  color: isActive ? '#1f2638' : '#6b7388',
                   cursor: 'pointer',
                   zIndex: 2,
                 }}
@@ -938,8 +936,8 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                       position: 'absolute',
                       inset: 0,
                       borderRadius: '6px',
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.15)',
+                      background: 'rgba(71, 85, 140, 0.13)',
+                      border: '1px solid rgba(71, 85, 140, 0.195)',
                       zIndex: -1,
                     }}
                     transition={{ type: 'spring', stiffness: 450, damping: 32 }}
@@ -953,14 +951,14 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
 
         {/* Sorting Dropdown */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ fontSize: '11px', color: '#71717a' }}>Sort:</span>
+          <span style={{ fontSize: '11px', color: '#6b7388' }}>Sort:</span>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
             style={{
-              background: 'rgba(0, 0, 0, 0.4)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              color: '#f4f4f5',
+              background: '#f6f7fa',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
+              color: '#1f2638',
               borderRadius: '6px',
               padding: '5px 10px',
               fontSize: '11px',
@@ -985,11 +983,10 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
             animate="visible"
             exit={{ opacity: 0, transition: { duration: 0.15 } }}
             style={{
-              background: 'rgba(20, 20, 25, 0.7)',
-              backdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 4px 16px rgba(0, 0, 0, 0.4)',
-              borderRadius: '8px',
+              background: 'rgba(255, 255, 255, 0.9)',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
+              boxShadow: 'none',
+              borderRadius: '6px',
               overflow: 'hidden',
               display: 'flex',
               flexDirection: 'column',
@@ -1002,12 +999,12 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                 gridTemplateColumns: '130px 110px 170px 110px 120px 1fr 100px 90px',
                 alignItems: 'center',
                 padding: '10px 16px',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'rgba(0, 0, 0, 0.4)',
+                borderBottom: '1px solid rgba(71, 85, 140, 0.104)',
+                background: '#f6f7fa',
                 fontSize: '10px',
                 fontWeight: 700,
                 textTransform: 'uppercase',
-                color: '#71717a',
+                color: '#6b7388',
                 letterSpacing: '0.04em',
               }}
             >
@@ -1024,7 +1021,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
             {/* Table Rows with Stagger */}
             <div style={{ overflowY: 'auto', maxHeight: 'calc(100vh - 360px)' }}>
               {filteredAndSortedCases.length === 0 ? (
-                <div style={{ padding: '36px', textAlign: 'center', color: '#71717a', fontSize: '12px' }}>
+                <div style={{ padding: '36px', textAlign: 'center', color: '#6b7388', fontSize: '12px' }}>
                   No cases match the selected filter.
                 </div>
               ) : (
@@ -1040,31 +1037,31 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                         gridTemplateColumns: '130px 110px 170px 110px 120px 1fr 100px 90px',
                         alignItems: 'center',
                         padding: '11px 16px',
-                        borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+                        borderBottom: '1px solid rgba(71, 85, 140, 0.052)',
                         cursor: 'pointer',
-                        background: index % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.01)',
+                        background: index % 2 === 0 ? 'transparent' : 'rgba(71, 85, 140, 0.013)',
                         transition: 'background 0.15s ease',
                       }}
-                      onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)')}
+                      onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(71, 85, 140, 0.065)')}
                       onMouseLeave={(e) =>
-                        (e.currentTarget.style.background = index % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.01)')
+                        (e.currentTarget.style.background = index % 2 === 0 ? 'transparent' : 'rgba(71, 85, 140, 0.013)')
                       }
                     >
                       {/* Status Pill */}
                       <div>{renderVerdictBadge(c.verdict, c.fraud_probability || 0)}</div>
 
                       {/* Case ID */}
-                      <div className="mono" style={{ fontSize: '13px', fontWeight: 800, color: '#f4f4f5' }}>
+                      <div className="mono" style={{ fontSize: '13px', fontWeight: 700, color: '#1f2638' }}>
                         {c.case_id}
                       </div>
 
                       {/* Typology */}
-                      <div style={{ fontSize: '11.5px', color: '#d4d4d8', fontWeight: 500 }}>
+                      <div style={{ fontSize: '11.5px', color: '#3a445b', fontWeight: 500 }}>
                         {formatPattern(c.pattern)}
                       </div>
 
                       {/* Customer ID */}
-                      <div className="mono" style={{ fontSize: '11.5px', color: '#38bdf8', fontWeight: 600 }}>
+                      <div className="mono" style={{ fontSize: '11.5px', color: '#4f63d2', fontWeight: 600 }}>
                         {c.customer_id}
                       </div>
 
@@ -1074,7 +1071,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                         style={{
                           fontSize: '12px',
                           fontWeight: 700,
-                          color: (c.exposure_usd || 0) > 0 ? '#f43f5e' : '#a1a1aa',
+                          color: (c.exposure_usd || 0) > 0 ? '#dc3c45' : '#556078',
                         }}
                       >
                         ${(c.exposure_usd || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -1084,7 +1081,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                       <div
                         style={{
                           fontSize: '11px',
-                          color: '#a1a1aa',
+                          color: '#556078',
                           lineHeight: 1.35,
                           paddingRight: '12px',
                           overflow: 'hidden',
@@ -1105,9 +1102,9 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                               fontWeight: 700,
                               padding: '2px 6px',
                               borderRadius: '4px',
-                              background: 'rgba(168, 85, 247, 0.15)',
-                              color: '#a855f7',
-                              border: '1px solid rgba(168, 85, 247, 0.35)',
+                              background: 'rgba(124, 92, 214, 0.15)',
+                              color: '#7c5cd6',
+                              border: '1px solid rgba(124, 92, 214, 0.35)',
                               display: 'inline-flex',
                               alignItems: 'center',
                               gap: '3px',
@@ -1116,7 +1113,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                             <FileText size={10} /> SAR FILED
                           </span>
                         ) : (
-                          <span style={{ fontSize: '10px', color: '#52525b' }}>—</span>
+                          <span style={{ fontSize: '10px', color: '#8c94a8' }}>—</span>
                         )}
                       </div>
 
@@ -1133,9 +1130,9 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                             gap: '5px',
                             padding: '4px 8px',
                             borderRadius: '4px',
-                            background: 'rgba(255, 255, 255, 0.05)',
-                            border: '1px solid rgba(255, 255, 255, 0.08)',
-                            color: '#38bdf8',
+                            background: 'rgba(71, 85, 140, 0.065)',
+                            border: '1px solid rgba(71, 85, 140, 0.104)',
+                            color: '#4f63d2',
                             fontSize: '11px',
                             fontWeight: 600,
                             cursor: 'pointer',
@@ -1171,21 +1168,19 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                   key={c.case_id}
                   variants={rowVariants}
                   whileHover={{
-                    y: -4,
-                    borderColor: isFraud ? 'rgba(244, 63, 94, 0.45)' : 'rgba(14, 165, 233, 0.45)',
+                    borderColor: isFraud ? 'rgba(220, 60, 69, 0.45)' : 'rgba(79, 99, 210, 0.45)',
                     boxShadow: isFraud
-                      ? '0 12px 32px -4px rgba(244, 63, 94, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08)'
-                      : '0 12px 32px -4px rgba(14, 165, 233, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                      ? 'none'
+                      : 'none',
                   }}
                   transition={{ duration: 0.18 }}
                   onClick={() => setInspectedCase(c)}
                   style={{
-                    background: 'rgba(20, 20, 25, 0.75)',
-                    backdropFilter: 'blur(14px)',
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                    borderLeft: isFraud ? '3px solid #f43f5e' : '3px solid #10b981',
-                    boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 4px 16px rgba(0, 0, 0, 0.4)',
-                    borderRadius: '8px',
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    border: '1px solid rgba(71, 85, 140, 0.104)',
+                    borderLeft: isFraud ? '3px solid #dc3c45' : '3px solid #059669',
+                    boxShadow: 'none',
+                    borderRadius: '6px',
                     padding: '14px 16px',
                     cursor: 'pointer',
                     display: 'flex',
@@ -1198,7 +1193,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                   {/* Top Card Bar: Case ID + Verdict Badge + SAR Status */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span className="mono" style={{ fontSize: '15px', fontWeight: 800, color: '#f4f4f5' }}>
+                      <span className="mono" style={{ fontSize: '15px', fontWeight: 700, color: '#1f2638' }}>
                         {c.case_id}
                       </span>
                       {renderVerdictBadge(c.verdict, c.fraud_probability || 0)}
@@ -1210,9 +1205,9 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                           fontWeight: 700,
                           padding: '2px 7px',
                           borderRadius: '4px',
-                          background: 'rgba(168, 85, 247, 0.15)',
-                          color: '#c084fc',
-                          border: '1px solid rgba(168, 85, 247, 0.35)',
+                          background: 'rgba(124, 92, 214, 0.15)',
+                          color: '#7c5cd6',
+                          border: '1px solid rgba(124, 92, 214, 0.35)',
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '3px',
@@ -1224,12 +1219,12 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                   </div>
 
                   {/* Customer, Card and Exposure Strip */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', color: '#a1a1aa' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', color: '#556078' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                      <User size={11} color="#71717a" />
-                      <span>Customer: <strong className="mono" style={{ color: '#38bdf8' }}>{c.customer_id}</strong></span>
+                      <User size={11} color="#6b7388" />
+                      <span>Customer: <strong className="mono" style={{ color: '#4f63d2' }}>{c.customer_id}</strong></span>
                     </div>
-                    <span className="mono" style={{ fontSize: '13px', fontWeight: 800, color: (c.exposure_usd || 0) > 0 ? '#f43f5e' : '#a1a1aa' }}>
+                    <span className="mono" style={{ fontSize: '13px', fontWeight: 700, color: (c.exposure_usd || 0) > 0 ? '#dc3c45' : '#556078' }}>
                       ${(c.exposure_usd || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </span>
                   </div>
@@ -1237,21 +1232,21 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                   {/* Animated Fraud Probability Gauge Bar */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '10px' }}>
-                      <span style={{ color: '#71717a', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.04em' }}>
+                      <span style={{ color: '#6b7388', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.04em' }}>
                         Probability
                       </span>
-                      <span className="mono" style={{ fontWeight: 800, color: isFraud ? '#f43f5e' : '#10b981' }}>
+                      <span className="mono" style={{ fontWeight: 700, color: isFraud ? '#dc3c45' : '#059669' }}>
                         {pct}%
                       </span>
                     </div>
-                    <div style={{ width: '100%', height: '4px', borderRadius: '2px', background: 'rgba(255, 255, 255, 0.08)', overflow: 'hidden' }}>
+                    <div style={{ width: '100%', height: '4px', borderRadius: '2px', background: 'rgba(71, 85, 140, 0.104)', overflow: 'hidden' }}>
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${pct}%` }}
                         transition={{ duration: 0.6, ease: 'easeOut' }}
                         style={{
                           height: '100%',
-                          background: isFraud ? '#f43f5e' : '#10b981',
+                          background: isFraud ? '#dc3c45' : '#059669',
                         }}
                       />
                     </div>
@@ -1261,25 +1256,25 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                   <div
                     style={{
                       fontSize: '11px',
-                      color: '#d4d4d8',
-                      background: 'rgba(0, 0, 0, 0.35)',
+                      color: '#3a445b',
+                      background: '#f6f7fa',
                       padding: '6px 10px',
                       borderRadius: '6px',
-                      border: '1px solid rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(71, 85, 140, 0.065)',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '5px',
                     }}
                   >
-                    <strong style={{ color: '#71717a', fontSize: '10.5px' }}>Typology:</strong>
-                    <span style={{ color: '#f4f4f5', fontWeight: 600 }}>{formatPattern(c.pattern)}</span>
+                    <strong style={{ color: '#6b7388', fontSize: '10.5px' }}>Typology:</strong>
+                    <span style={{ color: '#1f2638', fontWeight: 600 }}>{formatPattern(c.pattern)}</span>
                   </div>
 
                   {/* Trigger Note Excerpt */}
                   <p
                     style={{
                       fontSize: '11px',
-                      color: '#a1a1aa',
+                      color: '#556078',
                       lineHeight: 1.45,
                       margin: 0,
                       display: '-webkit-box',
@@ -1292,14 +1287,14 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                   </p>
 
                   {/* Card Footer */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '8px', borderTop: '1px solid rgba(255, 255, 255, 0.06)', marginTop: 'auto' }}>
-                    <span style={{ fontSize: '10px', color: '#71717a' }}>
-                      Latency: <strong style={{ color: '#a1a1aa' }}>{c.latency_s}s</strong> • {c.tool_calls || 6} tools
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '8px', borderTop: '1px solid rgba(71, 85, 140, 0.078)', marginTop: 'auto' }}>
+                    <span style={{ fontSize: '10px', color: '#6b7388' }}>
+                      Latency: <strong style={{ color: '#556078' }}>{c.latency_s}s</strong> • {c.tool_calls || 6} tools
                     </span>
                     <span
                       style={{
                         fontSize: '11px',
-                        color: '#38bdf8',
+                        color: '#4f63d2',
                         fontWeight: 700,
                         display: 'inline-flex',
                         alignItems: 'center',
@@ -1325,8 +1320,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
               position: 'fixed',
               inset: 0,
               zIndex: 60,
-              background: 'rgba(0, 0, 0, 0.65)',
-              backdropFilter: 'blur(6px)',
+              background: '#f6f7fa',
               display: 'flex',
               justifyContent: 'flex-end',
             }}
@@ -1342,8 +1336,8 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                 maxWidth: '92vw',
                 height: '100%',
                 background: '#121216',
-                borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
-                boxShadow: '-12px 0 32px rgba(0, 0, 0, 0.6)',
+                borderLeft: '1px solid rgba(71, 85, 140, 0.13)',
+                boxShadow: 'none',
                 display: 'flex',
                 flexDirection: 'column',
                 padding: '20px',
@@ -1353,9 +1347,9 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
               onClick={(e) => e.stopPropagation()}
             >
               {/* Drawer Header */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '12px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '12px', borderBottom: '1px solid rgba(71, 85, 140, 0.104)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span className="mono" style={{ fontSize: '18px', fontWeight: 800, color: '#f4f4f5' }}>
+                  <span className="mono" style={{ fontSize: '18px', fontWeight: 700, color: '#1f2638' }}>
                     {inspectedCase.case_id}
                   </span>
                   {renderVerdictBadge(inspectedCase.verdict || 'legitimate', inspectedCase.fraud_probability || 0)}
@@ -1365,7 +1359,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                   style={{
                     background: 'transparent',
                     border: 'none',
-                    color: '#71717a',
+                    color: '#6b7388',
                     cursor: 'pointer',
                     padding: '4px',
                   }}
@@ -1376,69 +1370,69 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
 
               {/* Entity Chips */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-                <div style={{ background: 'rgba(0, 0, 0, 0.4)', padding: '10px', borderRadius: '6px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                  <span style={{ fontSize: '10px', color: '#71717a', textTransform: 'uppercase', fontWeight: 700 }}>Customer ID</span>
-                  <div className="mono" style={{ fontSize: '13px', fontWeight: 700, color: '#38bdf8', marginTop: '2px' }}>
+                <div style={{ background: '#f6f7fa', padding: '10px', borderRadius: '6px', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                  <span style={{ fontSize: '10px', color: '#6b7388', textTransform: 'uppercase', fontWeight: 700 }}>Customer ID</span>
+                  <div className="mono" style={{ fontSize: '13px', fontWeight: 700, color: '#4f63d2', marginTop: '2px' }}>
                     {inspectedCase.customer_id}
                   </div>
                 </div>
 
-                <div style={{ background: 'rgba(0, 0, 0, 0.4)', padding: '10px', borderRadius: '6px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                  <span style={{ fontSize: '10px', color: '#71717a', textTransform: 'uppercase', fontWeight: 700 }}>Exposure Amount</span>
-                  <div className="mono" style={{ fontSize: '13px', fontWeight: 800, color: (inspectedCase.exposure_usd || 0) > 0 ? '#f43f5e' : '#10b981', marginTop: '2px' }}>
+                <div style={{ background: '#f6f7fa', padding: '10px', borderRadius: '6px', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                  <span style={{ fontSize: '10px', color: '#6b7388', textTransform: 'uppercase', fontWeight: 700 }}>Exposure Amount</span>
+                  <div className="mono" style={{ fontSize: '13px', fontWeight: 700, color: (inspectedCase.exposure_usd || 0) > 0 ? '#dc3c45' : '#059669', marginTop: '2px' }}>
                     ${(inspectedCase.exposure_usd || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </div>
                 </div>
               </div>
 
               {/* Dynamic Animated Risk Progression Gauge */}
-              <div style={{ background: 'rgba(0, 0, 0, 0.35)', padding: '12px', borderRadius: '6px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
+              <div style={{ background: '#f6f7fa', padding: '12px', borderRadius: '6px', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-                  <span style={{ fontSize: '10px', textTransform: 'uppercase', color: '#71717a', fontWeight: 700 }}>
+                  <span style={{ fontSize: '10px', textTransform: 'uppercase', color: '#6b7388', fontWeight: 700 }}>
                     Calibrated Fraud Probability
                   </span>
-                  <span className="mono" style={{ fontSize: '12px', fontWeight: 800, color: inspectedCase.verdict === 'fraud' ? '#f43f5e' : '#10b981' }}>
+                  <span className="mono" style={{ fontSize: '12px', fontWeight: 700, color: inspectedCase.verdict === 'fraud' ? '#dc3c45' : '#059669' }}>
                     {Math.round((inspectedCase.fraud_probability || 0) * 100)}%
                   </span>
                 </div>
-                <div style={{ width: '100%', height: '6px', borderRadius: '3px', background: 'rgba(255, 255, 255, 0.08)', overflow: 'hidden' }}>
+                <div style={{ width: '100%', height: '6px', borderRadius: '3px', background: 'rgba(71, 85, 140, 0.104)', overflow: 'hidden' }}>
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${Math.round((inspectedCase.fraud_probability || 0) * 100)}%` }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
                     style={{
                       height: '100%',
-                      background: inspectedCase.verdict === 'fraud' ? '#f43f5e' : '#10b981',
+                      background: inspectedCase.verdict === 'fraud' ? '#dc3c45' : '#059669',
                     }}
                   />
                 </div>
               </div>
 
               {/* Trigger Analysis */}
-              <div style={{ background: 'rgba(0, 0, 0, 0.35)', padding: '12px', borderRadius: '6px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                <span style={{ fontSize: '10px', textTransform: 'uppercase', color: '#71717a', fontWeight: 700 }}>
+              <div style={{ background: '#f6f7fa', padding: '12px', borderRadius: '6px', border: '1px solid rgba(71, 85, 140, 0.078)' }}>
+                <span style={{ fontSize: '10px', textTransform: 'uppercase', color: '#6b7388', fontWeight: 700 }}>
                   Trigger Context & Findings
                 </span>
-                <p style={{ fontSize: '11.5px', color: '#f4f4f5', lineHeight: 1.45, marginTop: '4px' }}>
+                <p style={{ fontSize: '11.5px', color: '#1f2638', lineHeight: 1.45, marginTop: '4px' }}>
                   {inspectedCase.trigger_text}
                 </p>
               </div>
 
               {/* Regulatory SAR Status */}
               {inspectedCase.sar_filed && (
-                <div style={{ background: 'rgba(168, 85, 247, 0.1)', border: '1px solid rgba(168, 85, 247, 0.3)', padding: '12px', borderRadius: '6px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#a855f7', fontWeight: 700, fontSize: '11px' }}>
+                <div style={{ background: 'rgba(124, 92, 214, 0.1)', border: '1px solid rgba(124, 92, 214, 0.3)', padding: '12px', borderRadius: '6px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#7c5cd6', fontWeight: 700, fontSize: '11px' }}>
                     <FileText size={13} />
                     <span>FinCEN SAR Report Generated</span>
                   </div>
-                  <p style={{ fontSize: '11px', color: '#d4d4d8', marginTop: '4px', lineHeight: 1.4 }}>
+                  <p style={{ fontSize: '11px', color: '#3a445b', marginTop: '4px', lineHeight: 1.4 }}>
                     {inspectedCase.sar_reason || 'Mandatory filing triggered by cross-account graph ring detection.'}
                   </p>
                 </div>
               )}
 
               {/* Primary Call to Action */}
-              <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
+              <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid rgba(71, 85, 140, 0.104)' }}>
                 <button
                   onClick={() => {
                     const id = inspectedCase.case_id!;
@@ -1449,7 +1443,7 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                     width: '100%',
                     padding: '10px 16px',
                     borderRadius: '6px',
-                    background: '#0284c7',
+                    background: '#4f63d2',
                     border: 'none',
                     color: '#ffffff',
                     fontSize: '12px',
@@ -1459,11 +1453,11 @@ export const CaseManagement: React.FC<CaseManagementProps> = ({ cases, onOpenCas
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '8px',
-                    boxShadow: '0 4px 12px rgba(2, 132, 199, 0.35)',
+                    boxShadow: 'none',
                     transition: 'background 0.15s ease',
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.background = '#0369a1')}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = '#0284c7')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = '#4f63d2')}
                 >
                   <span>Open Full Investigation Canvas</span>
                   <ArrowRight size={13} />

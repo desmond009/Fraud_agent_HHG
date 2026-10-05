@@ -291,24 +291,24 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
     if (r.includes('l2')) {
       return {
         label: 'L2 MANAGER',
-        bg: 'rgba(168, 85, 247, 0.15)',
-        color: '#c084fc',
-        border: 'rgba(168, 85, 247, 0.35)',
+        bg: 'rgba(124, 92, 214, 0.15)',
+        color: '#7c5cd6',
+        border: 'rgba(124, 92, 214, 0.35)',
       };
     }
     if (r.includes('l1')) {
       return {
         label: 'L1 LEAD',
-        bg: 'rgba(245, 158, 11, 0.15)',
-        color: '#f59e0b',
-        border: 'rgba(245, 158, 11, 0.35)',
+        bg: 'rgba(217, 130, 11, 0.15)',
+        color: '#d9820b',
+        border: 'rgba(217, 130, 11, 0.35)',
       };
     }
     return {
       label: 'AUTO AGENT',
-      bg: 'rgba(14, 165, 233, 0.15)',
-      color: '#38bdf8',
-      border: 'rgba(14, 165, 233, 0.35)',
+      bg: 'rgba(79, 99, 210, 0.15)',
+      color: '#4f63d2',
+      border: 'rgba(79, 99, 210, 0.35)',
     };
   };
 
@@ -316,35 +316,35 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
     switch (category) {
       case 'rule':
         return {
-          gradient: 'linear-gradient(90deg, #0ea5e9, #38bdf8)',
-          icon: <Shield size={14} color="#38bdf8" />,
-          pillBg: 'rgba(14, 165, 233, 0.15)',
-          pillColor: '#38bdf8',
-          pillBorder: 'rgba(14, 165, 233, 0.35)',
+          gradient: 'linear-gradient(90deg, #4f63d2, #4f63d2)',
+          icon: <Shield size={14} color="#4f63d2" />,
+          pillBg: 'rgba(79, 99, 210, 0.15)',
+          pillColor: '#4f63d2',
+          pillBorder: 'rgba(79, 99, 210, 0.35)',
         };
       case 'pattern':
         return {
-          gradient: 'linear-gradient(90deg, #f59e0b, #fbbf24)',
-          icon: <Zap size={14} color="#f59e0b" />,
-          pillBg: 'rgba(245, 158, 11, 0.15)',
-          pillColor: '#f59e0b',
-          pillBorder: 'rgba(245, 158, 11, 0.35)',
+          gradient: 'linear-gradient(90deg, #d9820b, #e5a53a)',
+          icon: <Zap size={14} color="#d9820b" />,
+          pillBg: 'rgba(217, 130, 11, 0.15)',
+          pillColor: '#d9820b',
+          pillBorder: 'rgba(217, 130, 11, 0.35)',
         };
       case 'regulatory':
         return {
-          gradient: 'linear-gradient(90deg, #a855f7, #c084fc)',
-          icon: <Scale size={14} color="#c084fc" />,
-          pillBg: 'rgba(168, 85, 247, 0.15)',
-          pillColor: '#c084fc',
-          pillBorder: 'rgba(168, 85, 247, 0.35)',
+          gradient: 'linear-gradient(90deg, #7c5cd6, #7c5cd6)',
+          icon: <Scale size={14} color="#7c5cd6" />,
+          pillBg: 'rgba(124, 92, 214, 0.15)',
+          pillColor: '#7c5cd6',
+          pillBorder: 'rgba(124, 92, 214, 0.35)',
         };
       default:
         return {
-          gradient: 'linear-gradient(90deg, #71717a, #a1a1aa)',
-          icon: <BookOpen size={14} color="#cbd5e1" />,
-          pillBg: 'rgba(255, 255, 255, 0.1)',
-          pillColor: '#cbd5e1',
-          pillBorder: 'rgba(255, 255, 255, 0.2)',
+          gradient: 'linear-gradient(90deg, #6b7388, #556078)',
+          icon: <BookOpen size={14} color="#47516a" />,
+          pillBg: 'rgba(71, 85, 140, 0.13)',
+          pillColor: '#47516a',
+          pillBorder: 'rgba(71, 85, 140, 0.26)',
         };
     }
   };
@@ -355,7 +355,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#f4f4f5', letterSpacing: '-0.02em', margin: 0 }}>
+            <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#1f2638', letterSpacing: '-0.02em', margin: 0 }}>
               Fraud Policy & Regulatory Standard (v1.0)
             </h2>
             <span
@@ -365,15 +365,15 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                 fontWeight: 700,
                 padding: '2px 8px',
                 borderRadius: '9999px',
-                background: 'rgba(14, 165, 233, 0.15)',
-                color: '#38bdf8',
-                border: '1px solid rgba(14, 165, 233, 0.3)',
+                background: 'rgba(79, 99, 210, 0.15)',
+                color: '#4f63d2',
+                border: '1px solid rgba(79, 99, 210, 0.3)',
               }}
             >
               GraphRAG Vector Indexed
             </span>
           </div>
-          <p style={{ fontSize: '11.5px', color: '#a1a1aa', marginTop: '3px' }}>
+          <p style={{ fontSize: '11.5px', color: '#556078', marginTop: '3px' }}>
             Operational rules R1 through R10, FinCEN SAR narrative directives, and approval routing hierarchies governing agent actions.
           </p>
         </div>
@@ -393,14 +393,13 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
         {/* Metric 1: Operational Rules */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -2, borderColor: 'rgba(255, 255, 255, 0.16)' }}
+          whileHover={{ borderColor: 'rgba(71, 85, 140, 0.208)' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -408,7 +407,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
               Operational Rules
             </span>
             <div
@@ -420,9 +419,9 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                 borderRadius: '9999px',
                 fontSize: '10px',
                 fontWeight: 700,
-                background: 'rgba(14, 165, 233, 0.15)',
-                color: '#38bdf8',
-                border: '1px solid rgba(14, 165, 233, 0.3)',
+                background: 'rgba(79, 99, 210, 0.15)',
+                color: '#4f63d2',
+                border: '1px solid rgba(79, 99, 210, 0.3)',
               }}
             >
               <Shield size={10} />
@@ -430,11 +429,11 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-            <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f4f4f5' }}>
+            <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#1f2638' }}>
               <AnimatedCounter value={10} suffix=" Rules" />
             </span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#10b981', marginTop: '4px', fontWeight: 600 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#059669', marginTop: '4px', fontWeight: 600 }}>
             <ShieldCheck size={12} />
             <span>Autonomous & Supervised</span>
           </div>
@@ -443,14 +442,13 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
         {/* Metric 2: Known Typologies */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -2, borderColor: 'rgba(255, 255, 255, 0.16)' }}
+          whileHover={{ borderColor: 'rgba(71, 85, 140, 0.208)' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -458,7 +456,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
               Attack Typologies
             </span>
             <span
@@ -467,21 +465,21 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                 fontWeight: 700,
                 padding: '2px 7px',
                 borderRadius: '9999px',
-                background: 'rgba(245, 158, 11, 0.15)',
-                color: '#f59e0b',
-                border: '1px solid rgba(245, 158, 11, 0.3)',
+                background: 'rgba(217, 130, 11, 0.15)',
+                color: '#d9820b',
+                border: '1px solid rgba(217, 130, 11, 0.3)',
               }}
             >
               5 Patterns
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-            <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f59e0b' }}>
+            <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#d9820b' }}>
               <AnimatedCounter value={5} suffix=" Typologies" />
             </span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#a1a1aa', marginTop: '4px' }}>
-            <Zap size={12} color="#f59e0b" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#556078', marginTop: '4px' }}>
+            <Zap size={12} color="#d9820b" />
             <span>Card Testing, CNP, ATO</span>
           </div>
         </motion.div>
@@ -489,14 +487,13 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
         {/* Metric 3: Regulatory Standard */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -2, borderColor: 'rgba(255, 255, 255, 0.16)' }}
+          whileHover={{ borderColor: 'rgba(71, 85, 140, 0.208)' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -504,7 +501,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
               Regulatory Filing
             </span>
             <span
@@ -513,20 +510,20 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                 fontWeight: 700,
                 padding: '2px 7px',
                 borderRadius: '9999px',
-                background: 'rgba(168, 85, 247, 0.15)',
-                color: '#c084fc',
-                border: '1px solid rgba(168, 85, 247, 0.3)',
+                background: 'rgba(124, 92, 214, 0.15)',
+                color: '#7c5cd6',
+                border: '1px solid rgba(124, 92, 214, 0.3)',
               }}
             >
               FinCEN SAR
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-            <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f4f4f5' }}>
+            <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#1f2638' }}>
               &gt; $1,000 USD
             </span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#c084fc', marginTop: '4px', fontWeight: 600 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#7c5cd6', marginTop: '4px', fontWeight: 600 }}>
             <Scale size={12} />
             <span>Mandatory External SAR</span>
           </div>
@@ -535,14 +532,13 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
         {/* Metric 4: GraphRAG Similarity */}
         <motion.div
           variants={staggerItem}
-          whileHover={{ y: -2, borderColor: 'rgba(255, 255, 255, 0.16)' }}
+          whileHover={{ borderColor: 'rgba(71, 85, 140, 0.208)' }}
           transition={{ duration: 0.18 }}
           style={{
-            background: 'rgba(20, 20, 25, 0.7)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.4)',
-            borderRadius: '8px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
+            boxShadow: 'none',
+            borderRadius: '6px',
             padding: '12px 14px',
             display: 'flex',
             flexDirection: 'column',
@@ -550,7 +546,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+            <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
               GraphRAG Similarity
             </span>
             <span
@@ -559,21 +555,21 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                 fontWeight: 700,
                 padding: '2px 7px',
                 borderRadius: '9999px',
-                background: 'rgba(16, 185, 129, 0.15)',
-                color: '#10b981',
-                border: '1px solid rgba(16, 185, 129, 0.3)',
+                background: 'rgba(5, 150, 105, 0.15)',
+                color: '#059669',
+                border: '1px solid rgba(5, 150, 105, 0.3)',
               }}
             >
               16 / 16
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
-            <span className="mono" style={{ fontSize: '24px', fontWeight: 800, color: '#f4f4f5' }}>
+            <span className="mono" style={{ fontSize: '24px', fontWeight: 700, color: '#1f2638' }}>
               <AnimatedCounter value={100} suffix="%" />
             </span>
-            <span style={{ fontSize: '11px', color: '#71717a' }}>indexed</span>
+            <span style={{ fontSize: '11px', color: '#6b7388' }}>indexed</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#38bdf8', marginTop: '4px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#4f63d2', marginTop: '4px' }}>
             <Sparkles size={12} />
             <span>384-Dim Vector Memory</span>
           </div>
@@ -588,10 +584,9 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: '12px',
-          background: 'rgba(20, 20, 25, 0.6)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '8px',
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '1px solid rgba(71, 85, 140, 0.104)',
+          borderRadius: '6px',
           padding: '8px 12px',
         }}
       >
@@ -600,8 +595,8 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
           style={{
             display: 'flex',
             alignItems: 'center',
-            background: 'rgba(0, 0, 0, 0.4)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            background: '#f6f7fa',
+            border: '1px solid rgba(71, 85, 140, 0.104)',
             borderRadius: '6px',
             padding: '2px',
             position: 'relative',
@@ -618,7 +613,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'all' ? '#f4f4f5' : '#71717a',
+              color: filter === 'all' ? '#1f2638' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -631,7 +626,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(255, 255, 255, 0.12)',
+                  background: 'rgba(71, 85, 140, 0.156)',
                   zIndex: -1,
                 }}
               />
@@ -653,7 +648,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'rule' ? '#38bdf8' : '#71717a',
+              color: filter === 'rule' ? '#4f63d2' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -666,8 +661,8 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(14, 165, 233, 0.2)',
-                  border: '1px solid rgba(14, 165, 233, 0.35)',
+                  background: 'rgba(79, 99, 210, 0.2)',
+                  border: '1px solid rgba(79, 99, 210, 0.35)',
                   zIndex: -1,
                 }}
               />
@@ -690,7 +685,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'pattern' ? '#f59e0b' : '#71717a',
+              color: filter === 'pattern' ? '#d9820b' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -703,8 +698,8 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(245, 158, 11, 0.2)',
-                  border: '1px solid rgba(245, 158, 11, 0.35)',
+                  background: 'rgba(217, 130, 11, 0.2)',
+                  border: '1px solid rgba(217, 130, 11, 0.35)',
                   zIndex: -1,
                 }}
               />
@@ -727,7 +722,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
               border: 'none',
               cursor: 'pointer',
               background: 'transparent',
-              color: filter === 'regulatory' ? '#c084fc' : '#71717a',
+              color: filter === 'regulatory' ? '#7c5cd6' : '#6b7388',
               zIndex: 2,
               transition: 'color 0.15s ease',
             }}
@@ -740,8 +735,8 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '4px',
-                  background: 'rgba(168, 85, 247, 0.2)',
-                  border: '1px solid rgba(168, 85, 247, 0.35)',
+                  background: 'rgba(124, 92, 214, 0.2)',
+                  border: '1px solid rgba(124, 92, 214, 0.35)',
                   zIndex: -1,
                 }}
               />
@@ -753,7 +748,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
 
         {/* Right: Universal Search */}
         <div style={{ position: 'relative', width: '260px' }}>
-          <Search size={14} color="#71717a" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} />
+          <Search size={14} color="#6b7388" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} />
           <input
             type="text"
             placeholder="Search policies or rules..."
@@ -761,17 +756,17 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
             onChange={(e) => setSearch(e.target.value)}
             style={{
               width: '100%',
-              background: 'rgba(0, 0, 0, 0.4)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              background: '#f6f7fa',
+              border: '1px solid rgba(71, 85, 140, 0.104)',
               borderRadius: '6px',
               padding: '6px 28px 6px 30px',
-              color: '#f4f4f5',
+              color: '#1f2638',
               fontSize: '11.5px',
               outline: 'none',
               transition: 'border-color 0.15s ease',
             }}
-            onFocus={(e) => (e.target.style.borderColor = 'rgba(14, 165, 233, 0.6)')}
-            onBlur={(e) => (e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)')}
+            onFocus={(e) => (e.target.style.borderColor = 'rgba(79, 99, 210, 0.6)')}
+            onBlur={(e) => (e.target.style.borderColor = 'rgba(71, 85, 140, 0.104)')}
           />
           {search && (
             <button
@@ -783,7 +778,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                 transform: 'translateY(-50%)',
                 background: 'none',
                 border: 'none',
-                color: '#71717a',
+                color: '#6b7388',
                 cursor: 'pointer',
                 padding: '2px',
               }}
@@ -832,18 +827,16 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                 },
               }}
               whileHover={{
-                y: -3,
-                borderColor: 'rgba(255, 255, 255, 0.18)',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.6)',
+                borderColor: 'rgba(71, 85, 140, 0.234)',
+                boxShadow: 'none',
               }}
               transition={{ duration: 0.18 }}
               onClick={() => setSelectedPolicy(item)}
               style={{
-                background: 'rgba(20, 20, 25, 0.7)',
-                backdropFilter: 'blur(12px)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 4px 16px rgba(0, 0, 0, 0.4)',
-                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                border: '1px solid rgba(71, 85, 140, 0.104)',
+                boxShadow: 'none',
+                borderRadius: '6px',
                 padding: '16px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -873,7 +866,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                     className="mono"
                     style={{
                       fontSize: '11px',
-                      fontWeight: 800,
+                      fontWeight: 700,
                       padding: '3px 8px',
                       borderRadius: '4px',
                       background: theme.pillBg,
@@ -887,7 +880,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                     {theme.icon}
                     <span>{item.rule_id}</span>
                   </span>
-                  <span style={{ fontSize: '10.5px', color: '#71717a', textTransform: 'capitalize' }}>
+                  <span style={{ fontSize: '10.5px', color: '#6b7388', textTransform: 'capitalize' }}>
                     {item.category}
                   </span>
                 </div>
@@ -916,7 +909,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                   style={{
                     fontSize: '13.5px',
                     fontWeight: 700,
-                    color: '#f4f4f5',
+                    color: '#1f2638',
                     margin: 0,
                     lineHeight: 1.35,
                   }}
@@ -928,7 +921,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                 <p
                   style={{
                     fontSize: '11.5px',
-                    color: '#a1a1aa',
+                    color: '#556078',
                     lineHeight: 1.55,
                     marginTop: '8px',
                     marginBottom: 0,
@@ -949,9 +942,9 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                       fontWeight: 700,
                       padding: '2px 6px',
                       borderRadius: '4px',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      color: '#cbd5e1',
-                      border: '1px solid rgba(255, 255, 255, 0.08)',
+                      background: 'rgba(71, 85, 140, 0.065)',
+                      color: '#47516a',
+                      border: '1px solid rgba(71, 85, 140, 0.104)',
                     }}
                   >
                     {act}
@@ -966,15 +959,15 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   paddingTop: '10px',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+                  borderTop: '1px solid rgba(71, 85, 140, 0.078)',
                   fontSize: '10.5px',
-                  color: '#71717a',
+                  color: '#6b7388',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <GitBranch size={11} color="#38bdf8" />
+                  <GitBranch size={11} color="#4f63d2" />
                   <span>
-                    <strong style={{ color: '#f4f4f5' }}>{linkedCases.length}</strong> benchmark cases
+                    <strong style={{ color: '#1f2638' }}>{linkedCases.length}</strong> benchmark cases
                   </span>
                 </div>
 
@@ -983,7 +976,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                     display: 'flex',
                     alignItems: 'center',
                     gap: '4px',
-                    color: '#38bdf8',
+                    color: '#4f63d2',
                     fontWeight: 600,
                   }}
                 >
@@ -1011,10 +1004,9 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
               bottom: 0,
               width: '440px',
               maxWidth: '92vw',
-              background: 'rgba(11, 17, 28, 0.96)',
-              backdropFilter: 'blur(20px)',
-              borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
-              boxShadow: '-8px 0 32px rgba(0, 0, 0, 0.8)',
+              background: 'rgba(255, 255, 255, 0.96)',
+              borderLeft: '1px solid rgba(71, 85, 140, 0.13)',
+              boxShadow: 'var(--shadow-drawer)',
               zIndex: 1000,
               display: 'flex',
               flexDirection: 'column',
@@ -1026,13 +1018,13 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
             <div
               style={{
                 padding: '16px',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                borderBottom: '1px solid rgba(71, 85, 140, 0.104)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 position: 'sticky',
                 top: 0,
-                background: 'rgba(11, 17, 28, 0.98)',
+                background: 'rgba(255, 255, 255, 0.98)',
                 zIndex: 10,
               }}
             >
@@ -1041,7 +1033,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                   className="mono"
                   style={{
                     fontSize: '12px',
-                    fontWeight: 800,
+                    fontWeight: 700,
                     padding: '3px 8px',
                     borderRadius: '4px',
                     background: getCategoryTheme(selectedPolicy.category).pillBg,
@@ -1051,19 +1043,19 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                 >
                   {selectedPolicy.rule_id}
                 </span>
-                <span style={{ fontSize: '13px', fontWeight: 800, color: '#f4f4f5' }}>
+                <span style={{ fontSize: '13px', fontWeight: 700, color: '#1f2638' }}>
                   Policy Specification
                 </span>
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{}}
+                whileTap={{}}
                 onClick={() => setSelectedPolicy(null)}
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#71717a',
+                  color: '#6b7388',
                   cursor: 'pointer',
                   padding: '4px',
                   borderRadius: '4px',
@@ -1080,17 +1072,17 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
               <div
                 style={{
                   padding: '14px',
-                  borderRadius: '8px',
-                  background: 'rgba(0, 0, 0, 0.4)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '6px',
+                  background: '#f6f7fa',
+                  border: '1px solid rgba(71, 85, 140, 0.104)',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '6px',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '10.5px', textTransform: 'uppercase', color: '#71717a', fontWeight: 700 }}>
-                    Category: <strong style={{ color: '#38bdf8' }}>{selectedPolicy.category}</strong>
+                  <span style={{ fontSize: '10.5px', textTransform: 'uppercase', color: '#6b7388', fontWeight: 700 }}>
+                    Category: <strong style={{ color: '#4f63d2' }}>{selectedPolicy.category}</strong>
                   </span>
                   <span
                     className="mono"
@@ -1107,24 +1099,24 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                     ROUTE: {getRouteBadge(selectedPolicy.approval_route).label}
                   </span>
                 </div>
-                <h3 style={{ fontSize: '14px', fontWeight: 800, color: '#f4f4f5', margin: '4px 0 0 0' }}>
+                <h3 style={{ fontSize: '14px', fontWeight: 700, color: '#1f2638', margin: '4px 0 0 0' }}>
                   {selectedPolicy.title}
                 </h3>
               </div>
 
               {/* Exact Policy Directive Mandate */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                   Mandate & Operational Contract
                 </span>
                 <div
                   style={{
                     padding: '12px 14px',
-                    borderRadius: '8px',
-                    background: 'rgba(0, 0, 0, 0.3)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    borderRadius: '6px',
+                    background: '#f6f7fa',
+                    border: '1px solid rgba(71, 85, 140, 0.078)',
                     fontSize: '12px',
-                    color: '#d4d4d8',
+                    color: '#3a445b',
                     lineHeight: 1.6,
                   }}
                 >
@@ -1134,7 +1126,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
 
               {/* Prescribed Next-Best Actions */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                   Governed Autonomous / Analyst Actions
                 </span>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -1144,17 +1136,17 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                       style={{
                         padding: '8px 12px',
                         borderRadius: '6px',
-                        background: 'rgba(14, 165, 233, 0.08)',
-                        border: '1px solid rgba(14, 165, 233, 0.25)',
+                        background: 'rgba(79, 99, 210, 0.08)',
+                        border: '1px solid rgba(79, 99, 210, 0.25)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
                       }}
                     >
-                      <span className="mono" style={{ fontSize: '11px', fontWeight: 700, color: '#38bdf8' }}>
+                      <span className="mono" style={{ fontSize: '11px', fontWeight: 700, color: '#4f63d2' }}>
                         {act}
                       </span>
-                      <span style={{ fontSize: '10px', color: '#a1a1aa' }}>
+                      <span style={{ fontSize: '10px', color: '#556078' }}>
                         {getRouteBadge(selectedPolicy.approval_route).label}
                       </span>
                     </div>
@@ -1164,7 +1156,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
 
               {/* Linked 20 Benchmark Test Cases */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                   Linked Benchmark Test Cases ({POLICY_BENCHMARK_MAP[selectedPolicy.rule_id]?.length || 0})
                 </span>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
@@ -1183,29 +1175,29 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                         gap: '6px',
                         padding: '5px 10px',
                         borderRadius: '6px',
-                        background: 'rgba(255, 255, 255, 0.06)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                        color: '#f4f4f5',
+                        background: 'rgba(71, 85, 140, 0.078)',
+                        border: '1px solid rgba(71, 85, 140, 0.13)',
+                        color: '#1f2638',
                         fontSize: '11px',
                         fontWeight: 600,
                         cursor: 'pointer',
                         transition: 'all 0.15s ease',
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(14, 165, 233, 0.18)';
-                        e.currentTarget.style.borderColor = 'rgba(14, 165, 233, 0.4)';
-                        e.currentTarget.style.color = '#38bdf8';
+                        e.currentTarget.style.background = 'rgba(79, 99, 210, 0.18)';
+                        e.currentTarget.style.borderColor = 'rgba(79, 99, 210, 0.4)';
+                        e.currentTarget.style.color = '#4f63d2';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                        e.currentTarget.style.color = '#f4f4f5';
+                        e.currentTarget.style.background = 'rgba(71, 85, 140, 0.078)';
+                        e.currentTarget.style.borderColor = 'rgba(71, 85, 140, 0.13)';
+                        e.currentTarget.style.color = '#1f2638';
                       }}
                     >
-                      <span className="mono" style={{ color: '#38bdf8', fontWeight: 700 }}>
+                      <span className="mono" style={{ color: '#4f63d2', fontWeight: 700 }}>
                         {caseId}
                       </span>
-                      <ArrowRight size={10} color="#a1a1aa" />
+                      <ArrowRight size={10} color="#556078" />
                     </button>
                   ))}
                 </div>
@@ -1213,17 +1205,17 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
 
               {/* TigerGraph GraphRAG Vector Memory Details */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#71717a', fontWeight: 700 }}>
+                <span style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#6b7388', fontWeight: 700 }}>
                   TigerGraph GraphRAG Vector Embeddings
                 </span>
                 <div
                   style={{
                     padding: '10px 12px',
                     borderRadius: '6px',
-                    background: 'rgba(0, 0, 0, 0.5)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    background: '#f6f7fa',
+                    border: '1px solid rgba(71, 85, 140, 0.078)',
                     fontSize: '11px',
-                    color: '#a1a1aa',
+                    color: '#556078',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '4px',
@@ -1232,15 +1224,15 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span>Embedding Model:</span>
-                    <span style={{ color: '#f4f4f5' }}>sentence-transformers</span>
+                    <span style={{ color: '#1f2638' }}>sentence-transformers</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span>Dimensions:</span>
-                    <span style={{ color: '#f4f4f5' }}>384 dense floats</span>
+                    <span style={{ color: '#1f2638' }}>384 dense floats</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span>Cosine Similarity Gate:</span>
-                    <span style={{ color: '#10b981' }}>&ge; 0.78 threshold</span>
+                    <span style={{ color: '#059669' }}>&ge; 0.78 threshold</span>
                   </div>
                 </div>
               </div>
@@ -1251,15 +1243,15 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
               <div
                 style={{
                   padding: '14px 16px',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                  background: 'rgba(11, 17, 28, 0.98)',
+                  borderTop: '1px solid rgba(71, 85, 140, 0.104)',
+                  background: 'rgba(255, 255, 255, 0.98)',
                   position: 'sticky',
                   bottom: 0,
                 }}
               >
                 <motion.button
-                  whileHover={{ scale: 1.02, backgroundColor: '#38bdf8' }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ backgroundColor: '#4f63d2' }}
+                  whileTap={{}}
                   onClick={() => {
                     const firstCase = POLICY_BENCHMARK_MAP[selectedPolicy.rule_id][0];
                     onInvestigateCase(firstCase);
@@ -1273,13 +1265,13 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ policies, onInvestig
                     gap: '8px',
                     padding: '9px 16px',
                     borderRadius: '6px',
-                    background: '#0ea5e9',
+                    background: '#4f63d2',
                     border: 'none',
-                    color: '#09090b',
+                    color: '#ffffff',
                     fontWeight: 700,
                     fontSize: '12px',
                     cursor: 'pointer',
-                    boxShadow: '0 0 16px rgba(14, 165, 233, 0.3)',
+                    boxShadow: 'none',
                     transition: 'background 0.15s ease',
                   }}
                 >

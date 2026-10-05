@@ -216,18 +216,19 @@ class TestModelCheckpointAndArtifacts:
 class TestEndToEndPipelineIntegration:
     """Integration tests confirming the pipeline runs smoothly from ingestion to API serving."""
 
-    def test_full_pipeline_to_prediction(self):
-        # 1. Ingest & Train
+    def test_full_pipeline_to_prediction(self, tmp_path):
+        # 1. Ingest & Train (into a temp dir: tests must never overwrite the real checkpoint)
         config = TrainingConfig(
             model_type="hist_gb",
             max_rows=3000,
+            models_dir=tmp_path,
         )
         trainer = FraudModelTrainer(config)
         train_result = trainer.train(max_rows=3000, save_artifacts=True)
         assert train_result["status"] == "SUCCESS"
 
         # 2. Predictor inference verification
-        predictor = FraudPredictor()
+        predictor = FraudPredictor(checkpoint_path=config.checkpoint_path)
         assert predictor.is_loaded
 
         batch_test = [
@@ -242,7 +243,9 @@ class TestEndToEndPipelineIntegration:
         assert all(0.0 <= p <= 1.0 for p in probabilities)
         assert all(p in [0, 1] for p in predictions)
 
-    def test_fastapi_model_status_and_predict_endpoints(self):
+    def test_fastapi_model_status_and_predict_endpoints(self, monkeypatch):
+        from server import auth
+        monkeypatch.setattr(auth, "AUTH_ENABLED", False)  # keep hermetic regardless of ANALYST_TOKENS in .env
         client = TestClient(app)
 
         # GET /api/model/status

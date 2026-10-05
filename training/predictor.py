@@ -18,6 +18,7 @@ class FraudPredictor:
     def __init__(self, checkpoint_path: Optional[Path] = None):
         self.checkpoint_path = Path(checkpoint_path or (MODELS_DIR / "fraud_detector_v1.joblib"))
         self.model = None
+        self.calibrator = None
         self.preprocessor: Optional[FraudPreprocessor] = None
         self.metadata: Dict[str, Any] = {}
         self.is_loaded = False
@@ -30,6 +31,7 @@ class FraudPredictor:
 
         data = joblib.load(self.checkpoint_path)
         self.model = data["model"]
+        self.calibrator = data.get("calibrator")  # absent in legacy checkpoints
         self.preprocessor = data["preprocessor"]
         self.metadata = {
             "trained_at": data.get("trained_at"),
@@ -59,7 +61,13 @@ class FraudPredictor:
         df = self._to_dataframe(data)
         X = self.preprocessor.transform(df)
         probs = self.model.predict_proba(X)[:, 1]
+        if self.calibrator is not None:
+            probs = self.calibrator.predict(probs)
         return np.asarray(probs, dtype=np.float32)
+
+    @property
+    def threshold(self) -> float:
+        return float(self.metadata.get("config", {}).get("decision_threshold", 0.50))
 
     def predict(
         self,
@@ -67,14 +75,24 @@ class FraudPredictor:
         threshold: Optional[float] = None,
     ) -> np.ndarray:
         """Predicts binary classification: 1 for fraud, 0 for legitimate."""
-        thresh = threshold if threshold is not None else self.metadata.get("config", {}).get("decision_threshold", 0.50)
+        thresh = threshold if threshold is not None else self.threshold
         probs = self.predict_proba(data)
         return (probs >= thresh).astype(int)
+
+    def score_row(self, row: Dict[str, Any]) -> float:
+        """Scores a raw transactions.csv row (strings / None) by coercing numeric features."""
+        clean = dict(row)
+        for col in self.preprocessor.numerical_features:
+            try:
+                clean[col] = float(clean[col]) if clean.get(col) not in (None, "") else np.nan
+            except (TypeError, ValueError):
+                clean[col] = np.nan
+        return float(self.predict_proba(clean)[0])
 
     def assess_transaction(self, txn: Dict[str, Any]) -> Dict[str, Any]:
         """Provides full fraud assessment and explanatory breakdown for a single transaction."""
         prob = float(self.predict_proba(txn)[0])
-        decision = "FLAGGED_FRAUD" if prob >= 0.50 else "CLEARED"
+        decision = "FLAGGED_FRAUD" if prob >= self.threshold else "CLEARED"
 
         # Risk signals analysis
         signals = []
@@ -89,7 +107,7 @@ class FraudPredictor:
         return {
             "fraud_probability": round(prob, 4),
             "verdict": decision,
-            "threshold": 0.50,
+            "threshold": self.threshold,
             "risk_signals": signals,
             "model_version": self.metadata.get("trained_at", "v1.0"),
         }
