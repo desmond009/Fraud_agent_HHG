@@ -42,7 +42,11 @@ class FakeRetriever:
 
 @pytest.fixture
 def run(monkeypatch):
+    from agent import llm
     from agent.graph import investigation_app
+
+    # Keep tests hermetic: never call Gemini even when a key is present in .env.
+    monkeypatch.setattr(llm, "_genai_client", None)
 
     def _run(case, bridge=None, **state):
         bridge = bridge or FakeBridge()
