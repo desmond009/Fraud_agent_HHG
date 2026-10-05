@@ -7,7 +7,8 @@ import {
   TransactionItem,
 } from '../types';
 
-const API_BASE = '/api';
+// Dev: Vite proxies /api to localhost:8000. Production: set VITE_API_BASE to the backend URL (e.g. https://fraudagent.onrender.com/api).
+const API_BASE = (import.meta.env.VITE_API_BASE as string | undefined) ?? '/api';
 
 // Optional bearer token (set VITE_API_TOKEN in frontend/.env.local when the API has ANALYST_TOKENS enabled).
 const API_TOKEN = import.meta.env.VITE_API_TOKEN as string | undefined;
