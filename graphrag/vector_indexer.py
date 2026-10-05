@@ -313,6 +313,10 @@ class KeywordRetriever:
 
 
 def get_graphrag_retriever():
+    # GRAPHRAG_BACKEND=keyword skips ChromaDB and its embedding model (saves several hundred MB of RAM
+    # on small hosts); the policy corpus is tiny so keyword retrieval is adequate there.
+    if os.getenv("GRAPHRAG_BACKEND", "vector").lower() == "keyword":
+        return KeywordRetriever()
     try:
         indexer = GraphRAGIndexer()
         if indexer.collection.count() == 0:

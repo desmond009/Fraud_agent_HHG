@@ -3,7 +3,7 @@
   "case": {
     "status": "closed_fraud",
     "verdict": "fraud",
-    "fraud_probability": 0.83,
+    "fraud_probability": 0.89,
     "pattern": "card_not_present_fraud",
     "pattern_description": "",
     "affected_txn_ids": [
@@ -26,21 +26,51 @@
         "entity_ids": [
           "3583227"
         ]
+      },
+      {
+        "claim": "Trained fraud model scores this transaction at 0.01",
+        "source": "model",
+        "ref": "model:2026-10-04T22:43:46.281444",
+        "entity_ids": [
+          "3583227"
+        ]
       }
     ],
     "similar_prior_cases": [
-      "CC-2464",
-      "CC-2370"
+      "CC-5451",
+      "CC-5432"
     ],
     "summary": "Investigation confirmed card not present fraud fraud with $273.48 total exposure. Triggered by Customer C08106 message: 'I never made this $128.33 purchase. Please check my card.' Refers to 3583227.. Key evidence: Cardholder explicitly disputed the transaction: 'Customer C08106 message: 'I never made this $128.33 purchase. Please check my card.' Refers to 3583227.' Card blocked and protective actions applied under policy.",
     "written_to_graph": true,
-    "graph_case_id": "CASE-HHG-004"
+    "graph_case_id": "CASE-HHG-004",
+    "probability_breakdown": [
+      {
+        "factor": "base: fraud model (mean)",
+        "value": 0.011,
+        "log_odds_delta": null
+      },
+      {
+        "factor": "unverified customer dispute",
+        "log_odds_delta": 2.0
+      },
+      {
+        "factor": "customer response: denied",
+        "log_odds_delta": 4.0
+      }
+    ],
+    "model_signal": {
+      "available": true,
+      "probability": 0.0111,
+      "model_version": "2026-10-04T22:43:46.281444"
+    }
   },
   "evidence_requests": [
     {
       "type": "customer_validation",
       "asked_after_step": 3,
-      "assumed_response": "Customer states they did not make these purchases and remained in possession of the card"
+      "response": "denied",
+      "simulated": true,
+      "assumed_response": "Customer states they did not make these purchases and remained in possession of the card (simulated)"
     }
   ],
   "next_best_actions": {
@@ -60,7 +90,7 @@
       {
         "action": "BLOCK_CARD",
         "route": "L1",
-        "reason": "R2: customer confirmed unauthorized use (exposure $273.48)"
+        "reason": "R2: unauthorized use confirmed (exposure $273.48)"
       },
       {
         "action": "CREATE_CASE",
@@ -68,7 +98,7 @@
         "reason": "R2: create internal case record in graph"
       }
     ],
-    "what_changed": "Customer denial confirmed unauthorized usage, raising fraud probability to 0.83."
+    "what_changed": "Customer response (denied) moved fraud probability from 0.13 to 0.89."
   },
   "sar": {
     "file": false,
@@ -81,5 +111,5 @@
   "stop_reason": "Customer response settled the investigation; policy actions determined.",
   "tool_calls": 6,
   "tokens": 0,
-  "latency_s": 0.81
+  "latency_s": 1.0
 }

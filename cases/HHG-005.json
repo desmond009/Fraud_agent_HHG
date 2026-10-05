@@ -3,7 +3,7 @@
   "case": {
     "status": "closed_fraud",
     "verdict": "fraud",
-    "fraud_probability": 0.88,
+    "fraud_probability": 0.98,
     "pattern": "card_not_present_new_device",
     "pattern_description": "",
     "affected_txn_ids": [
@@ -11,9 +11,9 @@
     ],
     "first_suspicious_txn_id": "3523199",
     "connected_card_ids": [
-      "C10948-K1",
-      "C00750-K2",
-      "C07987-K2"
+      "C13316-K1",
+      "C08780-K1",
+      "C04173-K1"
     ],
     "connected_device_profiles": [
       "5b64ce5e4c42"
@@ -25,25 +25,55 @@
         "source": "graph",
         "ref": "query:device_region_neighborhood(txn_id=3523199)",
         "entity_ids": [
-          "C10948-K1",
-          "C00750-K2",
-          "C07987-K2"
+          "C13316-K1",
+          "C08780-K1",
+          "C04173-K1"
+        ]
+      },
+      {
+        "claim": "Trained fraud model scores this transaction at 0.00",
+        "source": "model",
+        "ref": "model:2026-10-04T22:43:46.281444",
+        "entity_ids": [
+          "3523199"
         ]
       }
     ],
     "similar_prior_cases": [
-      "CC-4785",
-      "CC-4207"
+      "CC-5405",
+      "CC-5294"
     ],
     "summary": "Investigation confirmed card not present new device fraud with $100.07 total exposure. Triggered by Real-time model scored transaction 3523199 ($100.07, online) at 0.54. Review and decide.. Key evidence: Device/region cluster shared across 111 cards, connected to 592 prior confirmed fraud cases Card blocked and protective actions applied under policy.",
     "written_to_graph": true,
-    "graph_case_id": "CASE-HHG-005"
+    "graph_case_id": "CASE-HHG-005",
+    "probability_breakdown": [
+      {
+        "factor": "base: trigger risk score + fraud model (mean)",
+        "value": 0.271,
+        "log_odds_delta": null
+      },
+      {
+        "factor": "device/region cluster: 111 cards, 592 prior fraud cases (R6)",
+        "log_odds_delta": 2.0
+      },
+      {
+        "factor": "customer response: denied",
+        "log_odds_delta": 4.0
+      }
+    ],
+    "model_signal": {
+      "available": true,
+      "probability": 0.0027,
+      "model_version": "2026-10-04T22:43:46.281444"
+    }
   },
   "evidence_requests": [
     {
       "type": "customer_validation",
       "asked_after_step": 3,
-      "assumed_response": "Customer states they did not make these purchases and remained in possession of the card"
+      "response": "denied",
+      "simulated": true,
+      "assumed_response": "Customer states they did not make these purchases and remained in possession of the card (simulated)"
     }
   ],
   "next_best_actions": {
@@ -63,7 +93,7 @@
       {
         "action": "BLOCK_CARD",
         "route": "L1",
-        "reason": "R2: customer confirmed unauthorized use (exposure $100.07)"
+        "reason": "R2: unauthorized use confirmed (exposure $100.07)"
       },
       {
         "action": "CREATE_CASE",
@@ -81,17 +111,17 @@
         "reason": "R6: monitor connected cards sharing device/region"
       }
     ],
-    "what_changed": "Customer denial confirmed unauthorized usage, raising fraud probability to 0.88."
+    "what_changed": "Customer response (denied) moved fraud probability from 0.73 to 0.98."
   },
   "sar": {
     "file": true,
     "reason": "R2/R6: confirmed unauthorized use with exposure > $1,000 or linked cross-card entities",
-    "narrative": "Between 2016-12-08 and 2016-12-08, customer C02923 card(s) C02923-K1, C10948-K1, C00750-K2 experienced unauthorized transactions totaling $100.07 conducted via the online channel. The activity matches the card_not_present_new_device fraud typology, displaying abnormal volume and velocity inconsistent with historical cardholder profile. Device/region cluster shared across 111 cards, connected to 592 prior confirmed fraud cases. Customer verification confirmed unauthorized use. The compromised card has been blocked and scheduled for reissue, and linked entities have been placed under protective monitoring.",
+    "narrative": "**SAR NARRATIVE**\n\nThis Suspicious Activity Report (SAR) is being filed by the AML Compliance Department regarding customer C02923 for suspected fraudulent online card activity. On December 08, 2016, a total of $100.07 USD in online transactions was attempted across three payment cards, specifically C02923-K1, C13316-K1, and C08780-K1. The activity was detected via an online channel utilizing a Card-Not-Present (CNP) from an unrecognized or new device. Investigative findings revealed that the device and region cluster associated with these transactions were shared across 111 distinct payment cards. Furthermore, this specific device cluster is directly connected to 592 previously confirmed fraud cases within the network. Although the internal trained fraud model assigned a risk score of 0.00 to these specific transactions, the extensive historical linkage to confirmed fraud warrants escalation. The institutional evidence strongly indicates a high likelihood of illicit card testing or unauthorized device compromise. Compliance is filing this report due to the identified typologies of unauthorized card-not-present activity and high-risk device linkage.",
     "subjects": [
       "C02923",
       "C02923-K1",
-      "C10948-K1",
-      "C00750-K2"
+      "C13316-K1",
+      "C08780-K1"
     ],
     "total_amount_usd": 100.07,
     "activity_dates": [
@@ -101,6 +131,6 @@
   },
   "stop_reason": "Customer response settled the investigation; policy actions determined.",
   "tool_calls": 6,
-  "tokens": 450,
-  "latency_s": 1.61
+  "tokens": 435,
+  "latency_s": 4.37
 }
