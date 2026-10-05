@@ -1,6 +1,6 @@
 # 3–5 Minute Demo Video Script & Walkthrough Guide
 
-> **Project:** FraudAgent — TigerGraph Agentic Fraud Investigation & Next-Best Action  
+> **Project:** Ringleader — TigerGraph Agentic Fraud Investigation & Next-Best Action  
 > **Target Duration:** 3:30 – 4:30 minutes  
 > **Key Benchmark Cases to Demo:** `HHG-005` (Fraud Ring & SAR), `HHG-001` (False Alarm Cleared)  
 
@@ -24,8 +24,8 @@
 ### Segment 1: Introduction (0:00 – 0:45)
 * **What to Show**: Show the live dashboard at [http://localhost:5173](http://localhost:5173) or the system architecture diagram.
 * **Spoken Script**:
-  > *"Hello! Welcome to our demonstration of FraudAgent, an autonomous, policy-governed fraud investigation platform built for the TigerGraph Agentic Fraud Investigation Hackathon.*  
-  > *Financial fraud teams face a critical challenge: manual multi-hop investigations across thousands of transactions take hours, while point-in-time fraud scores are riddled with uncertainty. FraudAgent combines TigerGraph, LangGraph, ChromaDB GraphRAG, and an analyst workbench to autonomously investigate alerts, calibrate uncertainty, enforce banking policy, and write back findings to graph memory."*
+  > *"Hello! Welcome to our demonstration of Ringleader, an autonomous, policy-governed fraud investigation platform built for the TigerGraph Agentic Fraud Investigation Hackathon.*  
+  > *Financial fraud teams face a critical challenge: manual multi-hop investigations across thousands of transactions take hours, while point-in-time fraud scores are riddled with uncertainty. Ringleader combines TigerGraph, LangGraph, ChromaDB GraphRAG, and an analyst workbench to autonomously investigate alerts, calibrate uncertainty, enforce banking policy, and write back findings to graph memory."*
 
 ---
 
@@ -41,7 +41,7 @@
 ### Segment 3: Policy Gating & L1 / L2 Manager Approval (2:00 – 3:00)
 * **What to Show**: Zoom into the Next-Best Action Card. Show the required approval routes (`L1`, `L2`). Open the FinCEN SAR Drawer. Click the Role Switcher at the top right from Analyst to L2 Manager. Click "Approve & Execute Action".
 * **Spoken Script**:
-  > *"Autonomous agents must operate within strict banking governance. FraudAgent implements strict policy rules R1 through R10. Notice the recommended actions:*  
+  > *"Autonomous agents must operate within strict banking governance. Ringleader implements strict policy rules R1 through R10. Notice the recommended actions:*  
   > *• BLOCK_CARD requires L1 Team Lead sign-off.*  
   > *• FILE_REPORT requires L2 Fraud Manager sign-off.*  
   > *Let's inspect the FinCEN SAR Drawer. The agent has already drafted a comprehensive regulatory report answering Who, What, When, Where, Why, and How with exact dollar amounts and subject cards.*  
@@ -52,7 +52,7 @@
 ### Segment 4: Case HHG-001 — False Alarm Safely Cleared (3:00 – 3:45)
 * **What to Show**: Select `HHG-001` in the Case Inbox.
 * **Spoken Script**:
-  > *"Now let's examine Case HHG-001 to see how FraudAgent prevents revenue loss and customer disruption. Here, transaction 3514030 was flagged with a weak risk score of 0.61.*  
+  > *"Now let's examine Case HHG-001 to see how Ringleader prevents revenue loss and customer disruption. Here, transaction 3514030 was flagged with a weak risk score of 0.61.*  
   > *Instead of prematurely blocking the card, the agent invoked Rule R1: verify before blocking on a weak signal. When the cardholder confirmed the purchase was legitimate, the agent safely cleared the alert under Rule R3 (CLOSE_NO_FRAUD), reducing fraud probability down to 8% with zero customer friction."*
 
 ---
@@ -60,6 +60,6 @@
 ### Segment 5: Backend, Benchmark & Conclusion (3:45 – 4:30)
 * **What to Show**: Show terminal running `python3 test_phase4.py` and `python3 test_phase5_model_pipeline.py`.
 * **Spoken Script**:
-  > *"Across all 20 official benchmark exam cases, FraudAgent achieved 100% policy compliance, cleared 5 false alarms safely, drafted 11 regulatory SAR filings, and prevented over $12,185 in fraudulent exposure with an average investigation latency of just 1.16 seconds per case.*  
+  > *"Across all 20 official benchmark exam cases, Ringleader achieved 100% policy compliance, cleared 5 false alarms safely, drafted 11 regulatory SAR filings, and prevented over $12,185 in fraudulent exposure with an average investigation latency of just 1.16 seconds per case.*  
   > *Every resolved case was written directly back into TigerGraph as permanent case memory.*  
   > *Thank you, and we invite you to review our open-source codebase on GitHub!"*

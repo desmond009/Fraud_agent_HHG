@@ -25,7 +25,7 @@ from server.schemas import (
 )
 from server.static_policies import STATIC_POLICY_CHUNKS
 
-logger = logging.getLogger("fraudagent.api")
+logger = logging.getLogger("ringleader.api")
 
 # --- Optional heavy components: each failure is logged and degrades one feature only ---------
 investigation_app = None
@@ -61,7 +61,7 @@ store = AuditStore(
 )
 
 app = FastAPI(
-    title="TigerGraph Fraud Agent API Bridge",
+    title="Ringleader API",
     description="API bridge for agentic fraud investigation and next-best-action decisions",
     version="1.1.0",
 )

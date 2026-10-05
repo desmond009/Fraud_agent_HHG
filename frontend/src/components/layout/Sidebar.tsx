@@ -132,7 +132,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 lineHeight: 1.2,
               }}
             >
-              TIGER<span style={{ color: 'var(--brand-tiger)' }}>GRAPH</span>
+              RING<span style={{ color: 'var(--brand-tiger)' }}>LEADER</span>
             </div>
             <div
               style={{

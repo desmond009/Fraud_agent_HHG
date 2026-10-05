@@ -15,9 +15,9 @@ Financial crime investigation teams at tier-1 banks are under relentless pressur
 * **Uncertain Signals**: A transaction with an initial risk score of 0.65 may be an innocent cardholder traveling abroad, or the opening move of a distributed card-testing ring.
 * **Slow Response Latency**: Gathering evidence across multiple systems often takes days, by which time funds have already been laundered.
 
-To solve this, we built **FraudAgent** — an autonomous, policy-governed fraud investigation platform that combines **TigerGraph**, **TigerGraph MCP**, **LangGraph**, **ChromaDB GraphRAG**, and a **Palantir/Linear-inspired React 19 Workspace**.
+To solve this, we built **Ringleader** — an autonomous, policy-governed fraud investigation platform that combines **TigerGraph**, **TigerGraph MCP**, **LangGraph**, **ChromaDB GraphRAG**, and a **Palantir/Linear-inspired React 19 Workspace**.
 
-Instead of treating fraud detection as a static point prediction, FraudAgent operates as a stateful, iterative investigation agent that:
+Instead of treating fraud detection as a static point prediction, Ringleader operates as a stateful, iterative investigation agent that:
 1. **Ingests Alerts**: Automatically triggers from risk score anomalies, customer dispute reports, or analyst escalations.
 2. **Traverses Knowledge Graphs**: Queries multi-hop relationship linkages across customers, cards, devices, and historical fraud rings using TigerGraph GSQL algorithms.
 3. **Calibrates Uncertainty**: Evaluates fraud probability before and after evidence collection, computing explicit explanations of what changed.
@@ -29,7 +29,7 @@ Instead of treating fraud detection as a static point prediction, FraudAgent ope
 
 ## 2. System Architecture
 
-FraudAgent is designed around an event-driven, microservices-ready architecture:
+Ringleader is designed around an event-driven, microservices-ready architecture:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────┐
@@ -113,7 +113,7 @@ Rather than feeding raw data into an LLM prompt, the agent invokes structured MC
 ## 4. Agentic Capabilities Implemented
 
 ### 1. Two-Stage Uncertainty Calibration
-In high-stakes financial operations, models cannot act blindly on initial indicators. FraudAgent separates action recommendations into two distinct stages:
+In high-stakes financial operations, models cannot act blindly on initial indicators. Ringleader separates action recommendations into two distinct stages:
 * **Initial Next-Best Action**: Formulated before requesting additional evidence (e.g., `VERIFY_WITH_CUSTOMER (auto)`, `STEP_UP_AUTH (auto)`).
 * **Final Next-Best Action**: Formulated after additional evidence is received (e.g., customer confirms authorized activity $\rightarrow$ `CLOSE_NO_FRAUD (auto)`; customer denies activity $\rightarrow$ `BLOCK_CARD (L1)`, `FILE_REPORT (L2)`).
 * **What Changed Explanation**: Generates plain-English rationale for why the confidence shifted (e.g., *"Customer denial confirmed unauthorized usage, raising fraud probability from 54% to 88%"*).

@@ -17,7 +17,7 @@ from typing import Dict, Optional
 
 from fastapi import Depends, HTTPException, Request
 
-logger = logging.getLogger("fraudagent.auth")
+logger = logging.getLogger("ringleader.auth")
 
 ROLE_RANK = {"L1": 1, "L2": 2}
 

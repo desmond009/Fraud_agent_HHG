@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: fraudagent-api
+    name: ringleader-api
     runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt

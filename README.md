@@ -1,4 +1,4 @@
-# TigerGraph Agentic Fraud Investigation & Next-Best Action
+# Ringleader — Agentic Fraud Investigation & Next-Best Action
 > **Demo Video:** [Watch 3-5 Min Walkthrough](https://drive.google.com/file/d/1jREhAQDp34CtNJT9baw-p4BQKHw_Cwz5/view?usp=sharing)  
 > **Repository:** [https://github.com/desmond009/Fraud_agent_HHG](https://github.com/desmond009/Fraud_agent_HHG)  
 > **Benchmark Cases:** 20/20 Official Benchmark Cases Evaluated in [`cases/`](cases/)

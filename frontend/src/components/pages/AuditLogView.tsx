@@ -1476,7 +1476,7 @@ export const AuditLogView: React.FC<AuditLogViewProps> = ({ onInvestigateCase })
                     <div style={{ fontSize: '11px', color: '#6b7388' }}>
                       {selectedEvent.actor_type === 'analyst'
                         ? 'AML Level 1 / Level 2 Clearance Authority'
-                        : 'TigerGraph Autonomous Fraud Agent'}
+                        : 'Ringleader Autonomous Fraud Agent'}
                     </div>
                   </div>
                 </div>
