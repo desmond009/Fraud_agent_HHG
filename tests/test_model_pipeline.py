@@ -243,7 +243,9 @@ class TestEndToEndPipelineIntegration:
         assert all(0.0 <= p <= 1.0 for p in probabilities)
         assert all(p in [0, 1] for p in predictions)
 
-    def test_fastapi_model_status_and_predict_endpoints(self):
+    def test_fastapi_model_status_and_predict_endpoints(self, monkeypatch):
+        from server import auth
+        monkeypatch.setattr(auth, "AUTH_ENABLED", False)  # keep hermetic regardless of ANALYST_TOKENS in .env
         client = TestClient(app)
 
         # GET /api/model/status
