@@ -9,6 +9,8 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.7
+      - key: GRAPHRAG_BACKEND
+        value: keyword
       - key: TG_HOST
         sync: false
       - key: TG_USERNAME
